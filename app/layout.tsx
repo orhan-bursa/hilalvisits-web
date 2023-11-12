@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import { Footer, Header } from "@/components";
+import { Footer, HorizontalNavbar, VerticalNavbar } from "@/components";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -18,9 +18,16 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <div className="main">
-          <Header />
-          <div className="main-app-content">{children}</div>
+        <div className="main mx-auto sm:mt-10 mt:0 max-w-[1000px]">
+          <div className="grid grid-cols-12">
+            <div className="sm:hidden col-span-12">
+              <HorizontalNavbar />
+            </div>
+            <div className="col-span-2 hidden sm:block justify-self-end">
+              <VerticalNavbar />
+            </div>
+            <div className="main-content-wrapper col-span-10">{children}</div>
+          </div>
           <Footer />
         </div>
       </body>
