@@ -1,8 +1,8 @@
 import {
+  Base,
   DateType,
   FilesType,
   MultiSelectType,
-  NotionPageResult,
   NumberType,
   RichTextType,
   SelectType,
@@ -10,25 +10,21 @@ import {
   TitleType,
 } from "./core";
 
-export type BlogResult = NotionPageResult & {
-  properties: Blog;
-};
-
-export type Blog = {
+export type Blog = Base & {
   city: MultiSelectType;
   cover: FilesType;
   continent: SelectType;
-  budgetAmountSpent: NumberType;
+  budget_amount_spent: NumberType;
   accomodation: MultiSelectType;
   country: MultiSelectType;
   district: MultiSelectType;
-  arrivalDate: DateType;
-  budgetCurrency: RichTextType;
+  arrival_date: DateType;
+  budget_currency: RichTextType;
   author: SelectType;
-  durationInDays: NumberType;
+  duration_in_days: NumberType;
   status: StatusType;
   suggestions: RichTextType;
-  mainDescription: RichTextType;
+  description: RichTextType;
   tags: MultiSelectType;
   title: TitleType;
 };

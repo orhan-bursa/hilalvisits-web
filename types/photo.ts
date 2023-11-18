@@ -1,18 +1,14 @@
 import {
+  Base,
   FilesType,
   MultiSelectType,
-  NotionPageResult,
   RelationType,
   SelectType,
   StatusType,
   TitleType,
 } from "./core";
 
-export type PhotoResult = NotionPageResult & {
-  properties: Photo;
-};
-
-export type Photo = {
+export type Photo = Base & {
   continent: SelectType;
   country: MultiSelectType;
   city: MultiSelectType;

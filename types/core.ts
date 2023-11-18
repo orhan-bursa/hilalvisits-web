@@ -1,18 +1,10 @@
-export type NotionPageResult = {
-  object: "page";
-  id: string;
-  created_time: string;
-  last_edited_time: string;
-  created_by: User;
-  last_edited_by: User;
-  cover: string | null;
-  icon: string | null;
-  parent: ParentDB;
-  archived: boolean;
-  properties: any;
-  url: string;
-  public_url: string | null;
-};
+export type Base = {
+  id:string
+  created_time:string
+  last_edited_time:string
+  parent: ParentDB
+  archived: boolean
+}
 
 export type User = {
   object: "user";
@@ -123,13 +115,21 @@ export type MultiSelectType = {
 export type FilesType = {
   id: string;
   type: "files";
-  files: ExternalFileType[];
+  files: ExternalFileType[] | DefaultFileType[];
 };
 
 export type ExternalFileType = {
   name: string;
   type: "external";
   external: {
+    url: string;
+  };
+};
+
+export type DefaultFileType = {
+  name: string;
+  type: "file";
+  file: {
     url: string;
   };
 };

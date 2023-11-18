@@ -1,7 +1,7 @@
 import {
   FilesType,
   MultiSelectType,
-  NotionPageResult,
+  Base,
   RelationType,
   RichTextType,
   SelectType,
@@ -9,11 +9,7 @@ import {
   TitleType,
 } from "./core";
 
-export type AlbumResult = NotionPageResult & {
-  properties: Album;
-};
-
-export type Album = {
+export type Album = Base & {
   photos: RelationType;
   cover: FilesType;
   city: MultiSelectType;
