@@ -6,11 +6,6 @@ type HomePropTypes = {
   photos: any[];
 };
 export default function Home({ blogs, photos }: HomePropTypes) {
-  console.log({
-    blogs,
-    photos,
-  });
-
   return (
     <div className="relative h-[400px] w-[100%]">
       <h1

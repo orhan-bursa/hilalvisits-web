@@ -1,5 +1,7 @@
 import "server-only";
 import { Client } from "@notionhq/client";
+import { albumMapper, blogMapper, photoMapper } from "./mapper";
+import array from "./array";
 
 export const notionClient = new Client({
   auth: process.env.NOTION_SECRET,
@@ -11,16 +13,15 @@ export const getBlogs = async () => {
     database_id: process.env.NOTION_BLOGS_DATABASE_ID!,
   });
 
-  return res?.results;
+  const blogs = blogMapper(array(res?.results))
+  return blogs;
 };
 
 export const getHomePage = async () => {
   //TODO: get limited number of items from each section
   const blogs = await getBlogs();
   const photos = await getPhotos();
-  // const albums = await getAlbums()
 
-  //TODO: add mapper
   return {
     blogs,
     photos,
@@ -33,7 +34,8 @@ export const getPhotos = async () => {
     database_id: process.env.NOTION_PHOTOS_DATABASE_ID!,
   });
 
-  return res?.results;
+  const photos = photoMapper(array(res?.results))
+  return photos;
 };
 
 export const getAlbums = async () => {
@@ -42,7 +44,8 @@ export const getAlbums = async () => {
     database_id: process.env.NOTION_ALBUMS_DATABASE_ID!,
   });
 
-  return res?.results;
+  const albums = albumMapper(array(res?.results))
+  return albums;
 };
 
 const getPageContent = async (pageId: string) => {
