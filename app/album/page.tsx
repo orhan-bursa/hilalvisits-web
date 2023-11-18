@@ -4,7 +4,7 @@ export default async function Album() {
   const albums: any = await getAlbums();
   console.log("albums: ", albums);
 
-  if (!albums) return <div>No Posts found.</div>;
+  if (!albums) return <div>No Albums found.</div>;
 
   return <FeatureAlbums data={albums} />;
 }

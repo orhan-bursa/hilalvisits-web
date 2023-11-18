@@ -1,5 +1,4 @@
 import { Blogs as FeatureBlogs } from "@/components/features";
-import { BlogResult } from "@/types/blog";
 import { getBlogs, getBlogsContent } from "@/utils/notion";
 import {
   DatabaseObjectResponse,
@@ -9,17 +8,17 @@ import {
 } from "@notionhq/client/build/src/api-endpoints";
 
 export default async function Blog() {
-  const posts: (
+  const blogs: (
     | DatabaseObjectResponse
     | PageObjectResponse
     | PartialPageObjectResponse
     | PartialDatabaseObjectResponse
   )[] = await getBlogs();
-  const idList = posts.map((post) => post.id);
 
-  const postContents = await getBlogsContent(idList);
+  const idList = blogs.map((blog) => blog.id);
+  const blogContents = await getBlogsContent(idList);
 
-  if (!posts) return <div>No Posts found.</div>;
+  if (!blogs) return <div>No Blogs found.</div>;
 
-  return <FeatureBlogs data={postContents} />;
+  return <FeatureBlogs data={blogs} />;
 }

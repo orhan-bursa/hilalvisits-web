@@ -8,27 +8,28 @@ export const notionClient = new Client({
 export const getBlogs = async () => {
   const res = await notionClient.databases.query({
     //TODO: get only published items
-    //   filter: {
-    //     property: "status",
-    //     select: {
-    //       equals: "published",
-    //     },
-    //   },
     database_id: process.env.NOTION_BLOGS_DATABASE_ID!,
   });
 
   return res?.results;
 };
 
+export const getHomePage = async () => {
+  //TODO: get limited number of items from each section
+  const blogs = await getBlogs();
+  const photos = await getPhotos();
+  // const albums = await getAlbums()
+
+  //TODO: add mapper
+  return {
+    blogs,
+    photos,
+  };
+};
+
 export const getPhotos = async () => {
   const res = await notionClient.databases.query({
     //TODO: get only published items
-    //   filter: {
-    //     property: "status",
-    //     select: {
-    //       equals: "published",
-    //     },
-    //   },
     database_id: process.env.NOTION_PHOTOS_DATABASE_ID!,
   });
 
@@ -38,12 +39,6 @@ export const getPhotos = async () => {
 export const getAlbums = async () => {
   const res = await notionClient.databases.query({
     //TODO: get only published items
-    //   filter: {
-    //     property: "status",
-    //     select: {
-    //       equals: "published",
-    //     },
-    //   },
     database_id: process.env.NOTION_ALBUMS_DATABASE_ID!,
   });
 
