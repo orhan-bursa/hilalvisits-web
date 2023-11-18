@@ -1,0 +1,7 @@
+.swiper-button-prev::after, .swiper-button-next::after{
+  @apply text-amber-400
+}
+
+.swiper-pagination-bullet-active{
+  @apply bg-amber-500
+}

@@ -1,0 +1,1091 @@
+[
+  {
+    "object": "page",
+    "id": "743b6219-033f-4b9c-b654-cb482467bbbd",
+    "created_time": "2023-11-12T14:48:00.000Z",
+    "last_edited_time": "2023-11-12T14:54:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "dfb27bd5-e4d0-4f87-bc25-0986b53746a6"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "dfb27bd5-e4d0-4f87-bc25-0986b53746a6"
+    },
+    "cover": null,
+    "icon": null,
+    "parent": {
+      "type": "database_id",
+      "database_id": "34848adb-3fbb-435f-b61e-3fd23bfcccd9"
+    },
+    "archived": false,
+    "properties": {
+      "city": {
+        "id": "%3FQN%3F",
+        "type": "multi_select",
+        "multi_select": [
+          {
+            "id": "08b6b005-6f91-45e0-af9e-1f2b9c39446b",
+            "name": "Amsterdam",
+            "color": "gray"
+          }
+        ]
+      },
+      "cover": {
+        "id": "Euc%5B",
+        "type": "files",
+        "files": [
+          {
+            "name": "https://images.unsplash.com/photo-1616321741705-e9a4073af35c?q=80&w=1896&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "type": "external",
+            "external": {
+              "url": "https://images.unsplash.com/photo-1616321741705-e9a4073af35c?q=80&w=1896&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            }
+          }
+        ]
+      },
+      "budgetAmountSpent": {
+        "id": "GVth",
+        "type": "number",
+        "number": 1200
+      },
+      "accomodation": {
+        "id": "Q%40eB",
+        "type": "multi_select",
+        "multi_select": [
+          {
+            "id": "haV|",
+            "name": "funicular",
+            "color": "purple"
+          },
+          {
+            "id": "\\OdA",
+            "name": "bus",
+            "color": "gray"
+          },
+          {
+            "id": "Oiex",
+            "name": "train",
+            "color": "pink"
+          }
+        ]
+      },
+      "country": {
+        "id": "Uf%3C%3B",
+        "type": "multi_select",
+        "multi_select": [
+          {
+            "id": "ac19ed0c-4612-40b4-8029-df88520acfdc",
+            "name": "Netherlands",
+            "color": "orange"
+          }
+        ]
+      },
+      "district": {
+        "id": "VGcC",
+        "type": "multi_select",
+        "multi_select": [
+          {
+            "id": "vxci",
+            "name": "the Hauge",
+            "color": "purple"
+          }
+        ]
+      },
+      "arrivalDate": {
+        "id": "WjeB",
+        "type": "date",
+        "date": {
+          "start": "2023-09-26",
+          "end": null,
+          "time_zone": null
+        }
+      },
+      "budgetCurrency": {
+        "id": "Yhhu",
+        "type": "rich_text",
+        "rich_text": [
+          {
+            "type": "text",
+            "text": {
+              "content": "EUR",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "EUR",
+            "href": null
+          }
+        ]
+      },
+      "author": {
+        "id": "%60fty",
+        "type": "select",
+        "select": {
+          "id": "OE{Y",
+          "name": "Hilal Kulüp Bursa",
+          "color": "purple"
+        }
+      },
+      "durationInDays": {
+        "id": "a%5Dpq",
+        "type": "number",
+        "number": 5
+      },
+      "status": {
+        "id": "geul",
+        "type": "status",
+        "status": {
+          "id": "f427b2b4-cc2c-4e6d-8e59-fb7ce61ce4f5",
+          "name": "draft",
+          "color": "default"
+        }
+      },
+      "continent": {
+        "id": "j%3Ax%60",
+        "type": "select",
+        "select": {
+          "id": "dl>}",
+          "name": "Europe",
+          "color": "green"
+        }
+      },
+      "suggestions": {
+        "id": "%7BM%5EE",
+        "type": "rich_text",
+        "rich_text": []
+      },
+      "mainDescription": {
+        "id": "%7BNzi",
+        "type": "rich_text",
+        "rich_text": [
+          {
+            "type": "text",
+            "text": {
+              "content": "Explore wonders of Amsterdam city, walk in its streets, enjoy the atmosphere!",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "Explore wonders of Amsterdam city, walk in its streets, enjoy the atmosphere!",
+            "href": null
+          }
+        ]
+      },
+      "tags": {
+        "id": "~CqR",
+        "type": "multi_select",
+        "multi_select": [
+          {
+            "id": "7e7d2fd9-ed0d-4992-8e41-d404b7f3f0a8",
+            "name": "travel",
+            "color": "green"
+          },
+          {
+            "id": "f687f856-98f4-4156-9cad-b952b2b12d67",
+            "name": "amsterdam",
+            "color": "red"
+          },
+          {
+            "id": "e72493b2-3bb3-43d1-934c-2b48f088c040",
+            "name": "europe",
+            "color": "purple"
+          }
+        ]
+      },
+      "title": {
+        "id": "title",
+        "type": "title",
+        "title": [
+          {
+            "type": "text",
+            "text": {
+              "content": "The Amsterdam Post 4",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "The Amsterdam Post 4",
+            "href": null
+          }
+        ]
+      }
+    },
+    "url": "https://www.notion.so/The-Amsterdam-Post-4-743b6219033f4b9cb654cb482467bbbd",
+    "public_url": null
+  },
+  {
+    "object": "page",
+    "id": "bae3def6-fddd-4974-b66c-7f9d2063e7a3",
+    "created_time": "2023-11-12T14:48:00.000Z",
+    "last_edited_time": "2023-11-12T14:52:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "dfb27bd5-e4d0-4f87-bc25-0986b53746a6"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "dfb27bd5-e4d0-4f87-bc25-0986b53746a6"
+    },
+    "cover": null,
+    "icon": null,
+    "parent": {
+      "type": "database_id",
+      "database_id": "34848adb-3fbb-435f-b61e-3fd23bfcccd9"
+    },
+    "archived": false,
+    "properties": {
+      "city": {
+        "id": "%3FQN%3F",
+        "type": "multi_select",
+        "multi_select": [
+          {
+            "id": "08b6b005-6f91-45e0-af9e-1f2b9c39446b",
+            "name": "Amsterdam",
+            "color": "gray"
+          }
+        ]
+      },
+      "cover": {
+        "id": "Euc%5B",
+        "type": "files",
+        "files": [
+          {
+            "name": "https://images.unsplash.com/photo-1534351590666-13e3e96b5017?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "type": "external",
+            "external": {
+              "url": "https://images.unsplash.com/photo-1534351590666-13e3e96b5017?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            }
+          }
+        ]
+      },
+      "budgetAmountSpent": {
+        "id": "GVth",
+        "type": "number",
+        "number": 1200
+      },
+      "accomodation": {
+        "id": "Q%40eB",
+        "type": "multi_select",
+        "multi_select": [
+          {
+            "id": "haV|",
+            "name": "funicular",
+            "color": "purple"
+          },
+          {
+            "id": "\\OdA",
+            "name": "bus",
+            "color": "gray"
+          },
+          {
+            "id": "Oiex",
+            "name": "train",
+            "color": "pink"
+          }
+        ]
+      },
+      "country": {
+        "id": "Uf%3C%3B",
+        "type": "multi_select",
+        "multi_select": [
+          {
+            "id": "ac19ed0c-4612-40b4-8029-df88520acfdc",
+            "name": "Netherlands",
+            "color": "orange"
+          }
+        ]
+      },
+      "district": {
+        "id": "VGcC",
+        "type": "multi_select",
+        "multi_select": [
+          {
+            "id": "vxci",
+            "name": "the Hauge",
+            "color": "purple"
+          }
+        ]
+      },
+      "arrivalDate": {
+        "id": "WjeB",
+        "type": "date",
+        "date": {
+          "start": "2023-09-26",
+          "end": null,
+          "time_zone": null
+        }
+      },
+      "budgetCurrency": {
+        "id": "Yhhu",
+        "type": "rich_text",
+        "rich_text": [
+          {
+            "type": "text",
+            "text": {
+              "content": "EUR",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "EUR",
+            "href": null
+          }
+        ]
+      },
+      "author": {
+        "id": "%60fty",
+        "type": "select",
+        "select": {
+          "id": "OE{Y",
+          "name": "Hilal Kulüp Bursa",
+          "color": "purple"
+        }
+      },
+      "durationInDays": {
+        "id": "a%5Dpq",
+        "type": "number",
+        "number": 5
+      },
+      "status": {
+        "id": "geul",
+        "type": "status",
+        "status": {
+          "id": "f427b2b4-cc2c-4e6d-8e59-fb7ce61ce4f5",
+          "name": "draft",
+          "color": "default"
+        }
+      },
+      "continent": {
+        "id": "j%3Ax%60",
+        "type": "select",
+        "select": {
+          "id": "dl>}",
+          "name": "Europe",
+          "color": "green"
+        }
+      },
+      "suggestions": {
+        "id": "%7BM%5EE",
+        "type": "rich_text",
+        "rich_text": []
+      },
+      "mainDescription": {
+        "id": "%7BNzi",
+        "type": "rich_text",
+        "rich_text": [
+          {
+            "type": "text",
+            "text": {
+              "content": "Explore wonders of Amsterdam city, walk in its streets, enjoy the atmosphere!",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "Explore wonders of Amsterdam city, walk in its streets, enjoy the atmosphere!",
+            "href": null
+          }
+        ]
+      },
+      "tags": {
+        "id": "~CqR",
+        "type": "multi_select",
+        "multi_select": [
+          {
+            "id": "7e7d2fd9-ed0d-4992-8e41-d404b7f3f0a8",
+            "name": "travel",
+            "color": "green"
+          },
+          {
+            "id": "f687f856-98f4-4156-9cad-b952b2b12d67",
+            "name": "amsterdam",
+            "color": "red"
+          },
+          {
+            "id": "e72493b2-3bb3-43d1-934c-2b48f088c040",
+            "name": "europe",
+            "color": "purple"
+          }
+        ]
+      },
+      "title": {
+        "id": "title",
+        "type": "title",
+        "title": [
+          {
+            "type": "text",
+            "text": {
+              "content": "The Amsterdam Post 2",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "The Amsterdam Post 2",
+            "href": null
+          }
+        ]
+      }
+    },
+    "url": "https://www.notion.so/The-Amsterdam-Post-2-bae3def6fddd4974b66c7f9d2063e7a3",
+    "public_url": null
+  },
+  {
+    "object": "page",
+    "id": "48a7d1ec-3cb6-4913-9af4-2bd16b7ca7e9",
+    "created_time": "2023-11-12T14:48:00.000Z",
+    "last_edited_time": "2023-11-12T14:53:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "dfb27bd5-e4d0-4f87-bc25-0986b53746a6"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "dfb27bd5-e4d0-4f87-bc25-0986b53746a6"
+    },
+    "cover": null,
+    "icon": null,
+    "parent": {
+      "type": "database_id",
+      "database_id": "34848adb-3fbb-435f-b61e-3fd23bfcccd9"
+    },
+    "archived": false,
+    "properties": {
+      "city": {
+        "id": "%3FQN%3F",
+        "type": "multi_select",
+        "multi_select": [
+          {
+            "id": "08b6b005-6f91-45e0-af9e-1f2b9c39446b",
+            "name": "Amsterdam",
+            "color": "gray"
+          }
+        ]
+      },
+      "cover": {
+        "id": "Euc%5B",
+        "type": "files",
+        "files": [
+          {
+            "name": "https://images.unsplash.com/photo-1595698251407-8e7e3030a715?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "type": "external",
+            "external": {
+              "url": "https://images.unsplash.com/photo-1595698251407-8e7e3030a715?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            }
+          }
+        ]
+      },
+      "budgetAmountSpent": {
+        "id": "GVth",
+        "type": "number",
+        "number": 1200
+      },
+      "accomodation": {
+        "id": "Q%40eB",
+        "type": "multi_select",
+        "multi_select": [
+          {
+            "id": "haV|",
+            "name": "funicular",
+            "color": "purple"
+          },
+          {
+            "id": "\\OdA",
+            "name": "bus",
+            "color": "gray"
+          },
+          {
+            "id": "Oiex",
+            "name": "train",
+            "color": "pink"
+          }
+        ]
+      },
+      "country": {
+        "id": "Uf%3C%3B",
+        "type": "multi_select",
+        "multi_select": [
+          {
+            "id": "ac19ed0c-4612-40b4-8029-df88520acfdc",
+            "name": "Netherlands",
+            "color": "orange"
+          }
+        ]
+      },
+      "district": {
+        "id": "VGcC",
+        "type": "multi_select",
+        "multi_select": [
+          {
+            "id": "vxci",
+            "name": "the Hauge",
+            "color": "purple"
+          }
+        ]
+      },
+      "arrivalDate": {
+        "id": "WjeB",
+        "type": "date",
+        "date": {
+          "start": "2023-09-26",
+          "end": null,
+          "time_zone": null
+        }
+      },
+      "budgetCurrency": {
+        "id": "Yhhu",
+        "type": "rich_text",
+        "rich_text": [
+          {
+            "type": "text",
+            "text": {
+              "content": "EUR",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "EUR",
+            "href": null
+          }
+        ]
+      },
+      "author": {
+        "id": "%60fty",
+        "type": "select",
+        "select": {
+          "id": "OE{Y",
+          "name": "Hilal Kulüp Bursa",
+          "color": "purple"
+        }
+      },
+      "durationInDays": {
+        "id": "a%5Dpq",
+        "type": "number",
+        "number": 5
+      },
+      "status": {
+        "id": "geul",
+        "type": "status",
+        "status": {
+          "id": "f427b2b4-cc2c-4e6d-8e59-fb7ce61ce4f5",
+          "name": "draft",
+          "color": "default"
+        }
+      },
+      "continent": {
+        "id": "j%3Ax%60",
+        "type": "select",
+        "select": {
+          "id": "dl>}",
+          "name": "Europe",
+          "color": "green"
+        }
+      },
+      "suggestions": {
+        "id": "%7BM%5EE",
+        "type": "rich_text",
+        "rich_text": []
+      },
+      "mainDescription": {
+        "id": "%7BNzi",
+        "type": "rich_text",
+        "rich_text": [
+          {
+            "type": "text",
+            "text": {
+              "content": "Explore wonders of Amsterdam city, walk in its streets, enjoy the atmosphere!",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "Explore wonders of Amsterdam city, walk in its streets, enjoy the atmosphere!",
+            "href": null
+          }
+        ]
+      },
+      "tags": {
+        "id": "~CqR",
+        "type": "multi_select",
+        "multi_select": [
+          {
+            "id": "7e7d2fd9-ed0d-4992-8e41-d404b7f3f0a8",
+            "name": "travel",
+            "color": "green"
+          },
+          {
+            "id": "f687f856-98f4-4156-9cad-b952b2b12d67",
+            "name": "amsterdam",
+            "color": "red"
+          },
+          {
+            "id": "e72493b2-3bb3-43d1-934c-2b48f088c040",
+            "name": "europe",
+            "color": "purple"
+          }
+        ]
+      },
+      "title": {
+        "id": "title",
+        "type": "title",
+        "title": [
+          {
+            "type": "text",
+            "text": {
+              "content": "The Amsterdam Post 3",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "The Amsterdam Post 3",
+            "href": null
+          }
+        ]
+      }
+    },
+    "url": "https://www.notion.so/The-Amsterdam-Post-3-48a7d1ec3cb649139af42bd16b7ca7e9",
+    "public_url": null
+  },
+  {
+    "object": "page",
+    "id": "c6cd0183-4308-4a8a-9c7c-f35655c8e2c1",
+    "created_time": "2023-10-10T12:25:00.000Z",
+    "last_edited_time": "2023-11-12T14:48:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "dfb27bd5-e4d0-4f87-bc25-0986b53746a6"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "dfb27bd5-e4d0-4f87-bc25-0986b53746a6"
+    },
+    "cover": null,
+    "icon": null,
+    "parent": {
+      "type": "database_id",
+      "database_id": "34848adb-3fbb-435f-b61e-3fd23bfcccd9"
+    },
+    "archived": false,
+    "properties": {
+      "city": {
+        "id": "%3FQN%3F",
+        "type": "multi_select",
+        "multi_select": []
+      },
+      "cover": {
+        "id": "Euc%5B",
+        "type": "files",
+        "files": [
+          {
+            "name": "https://images.unsplash.com/photo-1506351487281-fd19470d8bf4?auto=format&fit=crop&q=80&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&w=2574",
+            "type": "external",
+            "external": {
+              "url": "https://images.unsplash.com/photo-1506351487281-fd19470d8bf4?auto=format&fit=crop&q=80&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&w=2574"
+            }
+          }
+        ]
+      },
+      "budgetAmountSpent": {
+        "id": "GVth",
+        "type": "number",
+        "number": null
+      },
+      "accomodation": {
+        "id": "Q%40eB",
+        "type": "multi_select",
+        "multi_select": []
+      },
+      "country": {
+        "id": "Uf%3C%3B",
+        "type": "multi_select",
+        "multi_select": []
+      },
+      "district": {
+        "id": "VGcC",
+        "type": "multi_select",
+        "multi_select": []
+      },
+      "arrivalDate": {
+        "id": "WjeB",
+        "type": "date",
+        "date": null
+      },
+      "budgetCurrency": {
+        "id": "Yhhu",
+        "type": "rich_text",
+        "rich_text": []
+      },
+      "author": {
+        "id": "%60fty",
+        "type": "select",
+        "select": {
+          "id": "OE{Y",
+          "name": "Hilal Kulüp Bursa",
+          "color": "purple"
+        }
+      },
+      "durationInDays": {
+        "id": "a%5Dpq",
+        "type": "number",
+        "number": null
+      },
+      "status": {
+        "id": "geul",
+        "type": "status",
+        "status": {
+          "id": "f427b2b4-cc2c-4e6d-8e59-fb7ce61ce4f5",
+          "name": "draft",
+          "color": "default"
+        }
+      },
+      "continent": {
+        "id": "j%3Ax%60",
+        "type": "select",
+        "select": null
+      },
+      "suggestions": {
+        "id": "%7BM%5EE",
+        "type": "rich_text",
+        "rich_text": []
+      },
+      "mainDescription": {
+        "id": "%7BNzi",
+        "type": "rich_text",
+        "rich_text": [
+          {
+            "type": "text",
+            "text": {
+              "content": "Lorem ipsum dolor sit amet.",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "Lorem ipsum dolor sit amet.",
+            "href": null
+          }
+        ]
+      },
+      "tags": {
+        "id": "~CqR",
+        "type": "multi_select",
+        "multi_select": []
+      },
+      "title": {
+        "id": "title",
+        "type": "title",
+        "title": [
+          {
+            "type": "text",
+            "text": {
+              "content": "The Best of Interlaken ",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "The Best of Interlaken ",
+            "href": null
+          }
+        ]
+      }
+    },
+    "url": "https://www.notion.so/The-Best-of-Interlaken-c6cd018343084a8a9c7cf35655c8e2c1",
+    "public_url": null
+  },
+  {
+    "object": "page",
+    "id": "d513a532-dc35-433c-847e-96299dd1d94c",
+    "created_time": "2023-10-09T20:49:00.000Z",
+    "last_edited_time": "2023-11-12T14:48:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "dfb27bd5-e4d0-4f87-bc25-0986b53746a6"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "dfb27bd5-e4d0-4f87-bc25-0986b53746a6"
+    },
+    "cover": null,
+    "icon": null,
+    "parent": {
+      "type": "database_id",
+      "database_id": "34848adb-3fbb-435f-b61e-3fd23bfcccd9"
+    },
+    "archived": false,
+    "properties": {
+      "city": {
+        "id": "%3FQN%3F",
+        "type": "multi_select",
+        "multi_select": [
+          {
+            "id": "08b6b005-6f91-45e0-af9e-1f2b9c39446b",
+            "name": "Amsterdam",
+            "color": "gray"
+          }
+        ]
+      },
+      "cover": {
+        "id": "Euc%5B",
+        "type": "files",
+        "files": [
+          {
+            "name": "https://images.unsplash.com/photo-1605101100278-5d1deb2b6498?auto=format&fit=crop&q=80&w=2670&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "type": "external",
+            "external": {
+              "url": "https://images.unsplash.com/photo-1605101100278-5d1deb2b6498?auto=format&fit=crop&q=80&w=2670&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            }
+          }
+        ]
+      },
+      "budgetAmountSpent": {
+        "id": "GVth",
+        "type": "number",
+        "number": 1200
+      },
+      "accomodation": {
+        "id": "Q%40eB",
+        "type": "multi_select",
+        "multi_select": [
+          {
+            "id": "haV|",
+            "name": "funicular",
+            "color": "purple"
+          },
+          {
+            "id": "\\OdA",
+            "name": "bus",
+            "color": "gray"
+          },
+          {
+            "id": "Oiex",
+            "name": "train",
+            "color": "pink"
+          }
+        ]
+      },
+      "country": {
+        "id": "Uf%3C%3B",
+        "type": "multi_select",
+        "multi_select": [
+          {
+            "id": "ac19ed0c-4612-40b4-8029-df88520acfdc",
+            "name": "Netherlands",
+            "color": "orange"
+          }
+        ]
+      },
+      "district": {
+        "id": "VGcC",
+        "type": "multi_select",
+        "multi_select": [
+          {
+            "id": "vxci",
+            "name": "the Hauge",
+            "color": "purple"
+          }
+        ]
+      },
+      "arrivalDate": {
+        "id": "WjeB",
+        "type": "date",
+        "date": {
+          "start": "2023-09-26",
+          "end": null,
+          "time_zone": null
+        }
+      },
+      "budgetCurrency": {
+        "id": "Yhhu",
+        "type": "rich_text",
+        "rich_text": [
+          {
+            "type": "text",
+            "text": {
+              "content": "EUR",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "EUR",
+            "href": null
+          }
+        ]
+      },
+      "author": {
+        "id": "%60fty",
+        "type": "select",
+        "select": {
+          "id": "OE{Y",
+          "name": "Hilal Kulüp Bursa",
+          "color": "purple"
+        }
+      },
+      "durationInDays": {
+        "id": "a%5Dpq",
+        "type": "number",
+        "number": 5
+      },
+      "status": {
+        "id": "geul",
+        "type": "status",
+        "status": {
+          "id": "f427b2b4-cc2c-4e6d-8e59-fb7ce61ce4f5",
+          "name": "draft",
+          "color": "default"
+        }
+      },
+      "continent": {
+        "id": "j%3Ax%60",
+        "type": "select",
+        "select": {
+          "id": "dl>}",
+          "name": "Europe",
+          "color": "green"
+        }
+      },
+      "suggestions": {
+        "id": "%7BM%5EE",
+        "type": "rich_text",
+        "rich_text": []
+      },
+      "mainDescription": {
+        "id": "%7BNzi",
+        "type": "rich_text",
+        "rich_text": [
+          {
+            "type": "text",
+            "text": {
+              "content": "Explore wonders of Amsterdam city, walk in its streets, enjoy the atmosphere!",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "Explore wonders of Amsterdam city, walk in its streets, enjoy the atmosphere!",
+            "href": null
+          }
+        ]
+      },
+      "tags": {
+        "id": "~CqR",
+        "type": "multi_select",
+        "multi_select": [
+          {
+            "id": "7e7d2fd9-ed0d-4992-8e41-d404b7f3f0a8",
+            "name": "travel",
+            "color": "green"
+          },
+          {
+            "id": "f687f856-98f4-4156-9cad-b952b2b12d67",
+            "name": "amsterdam",
+            "color": "red"
+          },
+          {
+            "id": "e72493b2-3bb3-43d1-934c-2b48f088c040",
+            "name": "europe",
+            "color": "purple"
+          }
+        ]
+      },
+      "title": {
+        "id": "title",
+        "type": "title",
+        "title": [
+          {
+            "type": "text",
+            "text": {
+              "content": "The Amsterdam Post",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "The Amsterdam Post",
+            "href": null
+          }
+        ]
+      }
+    },
+    "url": "https://www.notion.so/The-Amsterdam-Post-d513a532dc35433c847e96299dd1d94c",
+    "public_url": null
+  }
+]

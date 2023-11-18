@@ -4,7 +4,7 @@ export default async function Photo() {
   const photos: any = await getPhotos();
   console.log("photos: ", photos);
 
-  if (!photos) return <div>No Posts found.</div>;
+  if (!photos) return <div>No Photos found.</div>;
 
   return <FeaturePhotos data={photos} />;
 }
