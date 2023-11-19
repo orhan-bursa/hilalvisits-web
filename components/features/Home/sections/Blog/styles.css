@@ -1,0 +1,12 @@
+.swiper-button-prev::after,
+.swiper-button-next::after {
+  @apply text-slate-100
+}
+
+.swiper-pagination-bullet {
+  @apply bg-slate-50
+}
+
+.swiper-pagination-bullet-active {
+  @apply bg-amber-500
+}

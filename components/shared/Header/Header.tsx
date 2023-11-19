@@ -15,12 +15,16 @@ const HEADER_ITEMS: HeaderItem[] = [
     href: "/blog",
   },
   {
+    title: "Albums",
+    href: "/album",
+  },
+  {
     title: "Photos",
     href: "/photo",
   },
   {
-    title: "Albums",
-    href: "/album",
+    title: "About",
+    href: "/about",
   },
 ];
 
@@ -62,7 +66,7 @@ export function VerticalNavbar() {
             <li
               key={item.href}
               className={cn(
-                "w-[100%] py-1 pr-4  border-r-2 text-right text-[16px] hover:text-red-500 duration-300  hover:border-red-300",
+                "w-[100%] py-1 pr-4  border-r-2 text-right text-[16px] hover:text-red-500 duration-300  hover:border-red-300 hover:font-semibold",
                 { active: active }
               )}
             >

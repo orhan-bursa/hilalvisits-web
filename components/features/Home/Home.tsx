@@ -1,4 +1,5 @@
-import SwiperComponent from "@/components/shared/Swiper/Swiper";
+import { HomeHero as Hero, HomeBlog as Blog } from "./sections"
+import array from "@/utils/array";
 import { babylonica } from "@/utils/fonts";
 
 type HomePropTypes = {
@@ -6,8 +7,9 @@ type HomePropTypes = {
   photos: any[];
 };
 export default function Home({ blogs, photos }: HomePropTypes) {
+
   return (
-    <div className="relative h-[400px] w-[100%]">
+    <div className="relative w-[100%]">
       <h1
         className={
           babylonica.className +
@@ -17,11 +19,18 @@ export default function Home({ blogs, photos }: HomePropTypes) {
       >
         Hilal Visits
       </h1>
-      <section className="relative h-[100%]">
-        <div className="h-[90%]">
-          <SwiperComponent />
-        </div>
-      </section>
+      {/* <h1
+        className={
+          babylonica.className +
+          " " +
+          "absolute -right-[5px] top-[5px] opacity-60 text-[100px] text-slate-50 z-20"
+        }
+      >
+        Hilal Visits
+      </h1> */}
+      <Hero data={array(blogs)} />
+      <Blog data={array(blogs)} />
+
     </div>
   );
 }
