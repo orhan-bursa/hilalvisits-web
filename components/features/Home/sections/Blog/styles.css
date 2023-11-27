@@ -1,6 +1,6 @@
 .swiper-button-prev::after,
 .swiper-button-next::after {
-  @apply text-slate-100
+  @apply text-slate-100 p-4 hover:scale-110 duration-100 hover:text-white
 }
 
 .swiper-pagination-bullet {
