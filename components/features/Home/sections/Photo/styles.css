@@ -1,0 +1,26 @@
+.swiper-slide {
+  background-size: cover;
+  background-position: center;
+}
+
+.mySwiper .swiper-slide {
+  height: 100%;
+  opacity: 0.7;
+}
+
+.mySwiper .swiper-slide-thumb-active {
+  opacity: 1;
+}
+
+.swiper-button-prev::after,
+.swiper-button-next::after {
+  @apply text-slate-100 p-4 hover:scale-110 duration-100 hover:text-white
+}
+
+.swiper-pagination-bullet {
+  @apply bg-slate-50
+}
+
+.swiper-pagination-bullet-active {
+  @apply bg-amber-500
+}

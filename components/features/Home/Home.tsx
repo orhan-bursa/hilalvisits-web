@@ -1,4 +1,8 @@
-import { HomeHero as Hero, HomeBlog as Blog } from "./sections"
+import {
+  HomeHero,
+  HomeBlog,
+  HomePhoto
+} from "./sections"
 import array from "@/utils/array";
 import { babylonica } from "@/utils/fonts";
 
@@ -28,9 +32,11 @@ export default function Home({ blogs, photos }: HomePropTypes) {
       >
         Hilal Visits
       </h1> */}
-      <Hero data={array(blogs)} />
-      <Blog data={array(blogs)} />
-
+      <HomeHero data={array(blogs)} />
+      <div className="mb-10">
+        <HomeBlog data={array(blogs)} />
+      </div>
+      <HomePhoto data={array(blogs)} />
     </div>
   );
 }

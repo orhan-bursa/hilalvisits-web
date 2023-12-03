@@ -8,10 +8,5 @@ module.exports = {
   theme: {
     extend: {},
   },
-  plugins: [
-    function ({ addVariant }) {
-      addVariant('child', '& > *');
-      addVariant('child-hover', '& > *:hover');
-    }
-  ],
+  plugins: [],
 };

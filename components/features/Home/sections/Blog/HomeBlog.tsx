@@ -14,14 +14,15 @@ import "./styles.css";
 import { Navigation } from "swiper/modules";
 import Image from "next/image";
 import Link from "next/link";
+import { CustomButton as Button } from "@/components/shared/custom";
 
 export default function HomeBlog({ data }: { data: any[] }) {
   return (
     <section className="h-[300px] flex gap-8 flex-wrap md:flex-nowrap">
       <div>
         <h1 className="text-amber-400 text-4xl tracking-wider my-4">Destinations</h1>
-        <p className="text-base">Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, quo! Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, quo! Lorem ipsum dolor sit amet.</p>
-        <button className=""></button>
+        <p className="text-base pb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, quo! Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, quo! Lorem ipsum dolor sit amet.</p>
+        <Button title="EXPLORE" />
       </div>
       <div className="h-[100%] max-w-2xl border-2 border-amber-200 p-2">
         <Swiper
@@ -54,18 +55,18 @@ export default function HomeBlog({ data }: { data: any[] }) {
                 aspectRatio: 9 / 16,
               }}
             >
-              <div className="w-[100%] h-[100%] relative cursor-pointer overflow-hidden child:text-black group">
+              <div className="w-[100%] h-[100%] relative cursor-pointer overflow-hidden  group">
                 <Link href={"/"}>
                   <Image fill src={url} alt={item.title ?? ""} objectFit="cover" className="hover:scale-110 transition-all duration-700" />
                 </Link>
-                <div className="absolute -bottom-4 group-hover:bottom-0 duration-500 ">
+                <div className="absolute -bottom-7 group-hover:bottom-0 opacity-60 group-hover:opacity-100 from-gray-800 bg-gradient-to-t duration-500">
                   <Link
                     href={"/"}
                   >
                     <div className="flex flex-col items-start justify-end text-white text-left p-2 pb-3 z-50 w-[100%] h-[50%]">
-                      <h6 className="text-lg font-semibold opacity-80 group-hover:opacity-100">Title Lorem Ipsum dolor sits</h6>
-                      <p className="text-sm opacity-70 group-hover:opacity-100">{"Lorem ipsum dolor sit amet consectetur adipisicing elit. Et, excepturi!"}</p>
-                      <button className="self-end text-xs opacity-0 group-hover:opacity-95">Read more</button>
+                      <h6 className="text-lg font-semibold duration-500">Title Lorem Ipsum dolor sits</h6>
+                      <p className="text-sm duration-500">{"Lorem ipsum dolor sit amet consectetur adipisicing elit. Et, excepturi!".slice(0, 50) + " . . ."}</p>
+                      <button className="self-end text-xs mt-3 duration-500">Read more</button>
                     </div>
                   </Link>
                 </div>
