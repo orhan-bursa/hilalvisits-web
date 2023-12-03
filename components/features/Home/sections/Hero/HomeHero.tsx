@@ -22,7 +22,7 @@ export default function HomeHero({ data }: { data: any[] }) {
     //@ts-ignore
     progressCircle.current.style.setProperty('--progress', 1 - progress);
     //@ts-ignore
-    progressContent.current.textContent = `${Math.ceil(time / 1000)}s`;
+    progressContent.current.textContent = ` · `; //${Math.ceil(time / 1000)}s
   };
 
   return (

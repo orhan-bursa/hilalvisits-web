@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Footer, HorizontalNavbar, VerticalNavbar } from "@/components";
 import "./globals.css";
 import { montserrat } from "@/utils/fonts";
+import Instagram from "@/components/shared/Instagram";
 
 export const metadata: Metadata = {
   title: "Hilal Visits",
@@ -26,6 +27,7 @@ export default function RootLayout({
             </div>
             <div className="main-content-wrapper col-span-12 sm:col-span-10">{children}</div>
           </div>
+          <Instagram />
           <Footer />
         </div>
       </body>
