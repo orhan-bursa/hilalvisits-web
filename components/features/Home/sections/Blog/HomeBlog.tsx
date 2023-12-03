@@ -57,12 +57,16 @@ export default function HomeBlog({ data }: { data: any[] }) {
             >
               <div className="w-[100%] h-[100%] relative cursor-pointer overflow-hidden  group">
                 <Link href={"/"}>
-                  <Image fill src={url} alt={item.title ?? ""} objectFit="cover" className="hover:scale-110 transition-all duration-700" />
+                  <Image
+                    src={url}
+                    alt={item.title ?? ""}
+                    fill
+                    objectFit="cover"
+                    className="hover:scale-110 transition-all duration-700"
+                  />
                 </Link>
                 <div className="absolute -bottom-7 group-hover:bottom-0 opacity-60 group-hover:opacity-100 from-gray-800 bg-gradient-to-t duration-500">
-                  <Link
-                    href={"/"}
-                  >
+                  <Link href={"/"}>
                     <div className="flex flex-col items-start justify-end text-white text-left p-2 pb-3 z-50 w-[100%] h-[50%]">
                       <h6 className="text-lg font-semibold duration-500">Title Lorem Ipsum dolor sits</h6>
                       <p className="text-sm duration-500">{"Lorem ipsum dolor sit amet consectetur adipisicing elit. Et, excepturi!".slice(0, 50) + " . . ."}</p>

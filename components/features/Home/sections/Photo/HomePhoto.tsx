@@ -100,8 +100,8 @@ export default function HomePhoto({ data }: { data: any[] }) {
               <Image
                 src={url}
                 alt={item.title ?? ""}
-                objectFit="cover"
                 fill
+                objectFit="cover"
               />
             </SwiperSlide>
           }

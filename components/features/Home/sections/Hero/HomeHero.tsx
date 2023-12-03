@@ -64,7 +64,12 @@ export default function HomeHero({ data }: { data: any[] }) {
                 alignItems: "center",
               }}
             >
-              <Image src={url} alt={item.title ?? ""} fill objectFit="cover" />
+              <Image
+                src={url}
+                alt={item.title ?? ""}
+                fill
+                objectFit="cover"
+              />
             </SwiperSlide>
           }
           )}

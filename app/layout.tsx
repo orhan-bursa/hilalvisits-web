@@ -26,9 +26,11 @@ export default function RootLayout({
               <VerticalNavbar />
             </div>
             <div className="main-content-wrapper col-span-12 sm:col-span-10">{children}</div>
+            <div className="col-span-12">
+              <Instagram />
+            </div>
+            <Footer />
           </div>
-          <Instagram />
-          <Footer />
         </div>
       </body>
     </html>
