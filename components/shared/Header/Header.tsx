@@ -58,7 +58,7 @@ export function HorizontalNavbar() {
 export function VerticalNavbar() {
   const pathname = usePathname();
   return (
-    <header className="mr-4">
+    <header className="mr-6">
       <ul className="flex flex-col items-center justify-center border-slate-200">
         {HEADER_ITEMS.map((item) => {
           const active = item.href == pathname;

@@ -13,6 +13,7 @@ import "./styles.css";
 // import required modules
 import { Pagination, Navigation, Autoplay } from "swiper/modules";
 import Image from "next/image";
+import { babylonica } from "@/utils/fonts";
 
 export default function HomeHero({ data }: { data: any[] }) {
 
@@ -24,13 +25,28 @@ export default function HomeHero({ data }: { data: any[] }) {
     //@ts-ignore
     progressContent.current.textContent = ` · `; //${Math.ceil(time / 1000)}s
   };
-
   return (
-    <section className="h-[500px]">
-      <div className="h-[90%]">
+    <section className="h-[80vh] w-[100%] relative">
+      <div className="absolute w-[calc(35vw-16px)] h-max bg-white bg-opacity-90 z-50 right-0 top-[100px] space-y-3 border-y-[3px] border-amber-400">
+        <h1
+          className={
+            babylonica.className +
+            " " +
+            "relative right-[0px] text-[100px] text-amber-400 z-50 text-center mx-20 border-b-2 cursor-pointer duration-700 whitespace-nowrap"
+          }
+        >
+          Hilal Visits
+        </h1>
+        <div className="ml-[32px] text-gray-600">
+          <p className="cursor-default">My name is Hilal, I am a traveller, Lorem ipsum dolor sit amet consectetur, adipisicing elit. Placeat accusantium ducimus dignissimos maiores neque sint obcaecati quo dolores quaerat ad.</p>
+          <button className="my-2 border-2 border-transparent border-b-gray-200 p-2 rounded hover:pl-2 hover:border-2 hover:border-gray-300 transition-all duration-700">&gt; Read more here</button>
+        </div>
+      </div>
+      <div className="h-[80vh] w-[100%]">
         <Swiper
-          slidesPerView={1}
-          spaceBetween={10}
+          speed={1000}
+          slidesPerView={"auto"}
+          spaceBetween={16}
           loop={true}
           pagination={{
             clickable: true,
@@ -38,7 +54,7 @@ export default function HomeHero({ data }: { data: any[] }) {
           navigation={true}
           modules={[Autoplay, Pagination, Navigation]}
           autoplay={{
-            delay: 10000,
+            delay: 40000,
             disableOnInteraction: false,
           }}
           onAutoplayTimeLeft={onAutoplayTimeLeft}
@@ -60,8 +76,10 @@ export default function HomeHero({ data }: { data: any[] }) {
                 fontSize: "18px",
                 background: "#fff",
                 display: "flex",
-                justifyContent: "center",
+                justifyContent: "left",
                 alignItems: "center",
+                width: "65vw",
+                borderRight: "3px solid #fbbf24",
               }}
             >
               <Image

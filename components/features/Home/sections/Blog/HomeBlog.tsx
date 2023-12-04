@@ -2,6 +2,7 @@
 import React, { useRef, useState } from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
+import { Map } from "lucide-react";
 
 // Import Swiper styles
 import "swiper/css";
@@ -18,13 +19,15 @@ import { CustomButton as Button } from "@/components/shared/custom";
 
 export default function HomeBlog({ data }: { data: any[] }) {
   return (
-    <section className="h-[300px] flex gap-8 flex-wrap md:flex-nowrap">
-      <div>
-        <h1 className="text-amber-400 text-4xl tracking-wider my-4">Destinations</h1>
-        <p className="text-base pb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, quo! Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, quo! Lorem ipsum dolor sit amet.</p>
-        <Button title="EXPLORE" />
+    <section className="h-[400px] w-[100%]">
+      <div className="flex justify-center items-center w-[100%]">
+        <div className="border-r-2 pr-2 mr-2 border-amber-400">
+          <Map color="#fbbf24" size={48} strokeWidth={1} />
+        </div>
+        <h1 className="text-amber-400 text-5xl tracking-wider my-4 text-center">DESTINATIONS</h1>
       </div>
-      <div className="h-[100%] max-w-2xl border-2 border-amber-200 p-2">
+      {/* <Button title="EXPLORE" /> */}
+      <div className="w-[100vw] h-[100%] border-2 border-amber-200 p-2">
         <Swiper
           slidesPerView={3}
           spaceBetween={8}
@@ -81,6 +84,8 @@ export default function HomeBlog({ data }: { data: any[] }) {
           )}
         </Swiper>
       </div>
+      <p className="text-base pb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, quo! Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, quo! Lorem ipsum dolor sit amet.</p>
+
     </section>
   );
 }

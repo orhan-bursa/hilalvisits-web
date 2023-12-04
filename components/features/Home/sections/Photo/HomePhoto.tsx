@@ -16,12 +16,16 @@ import { FreeMode, Navigation, Thumbs } from "swiper/modules";
 import Image from "next/image";
 import Link from "next/link";
 import { CustomButton as Button } from "@/components/shared/custom";
+import { Camera } from "lucide-react";
 
 export default function HomePhoto({ data }: { data: any[] }) {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   return (
     <section>
       <div className="mb-6 space-y-4">
+        <div>
+          <Camera color="#fbbf24" size={48} strokeWidth={1.5} />
+        </div>
         <h1 className="text-amber-400 text-4xl tracking-wider">Photography</h1>
         <p className="text-base">Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, quo! Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, quo! Lorem ipsum dolor sit amet.</p>
         <Button title="View More" />

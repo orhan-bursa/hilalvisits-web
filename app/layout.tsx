@@ -3,6 +3,7 @@ import { Footer, HorizontalNavbar, VerticalNavbar } from "@/components";
 import "./globals.css";
 import { montserrat } from "@/utils/fonts";
 import Instagram from "@/components/shared/Instagram";
+import { babylonica } from "@/utils/fonts";
 
 export const metadata: Metadata = {
   title: "Hilal Visits",
@@ -17,21 +18,30 @@ export default function RootLayout({
   return (
     <html lang="en" className={montserrat.className}>
       <body>
-        <div className="main mx-auto sm:mt-10 mt:0 max-w-[1200px]">
-          <div className="grid grid-cols-12">
-            <div className="sm:hidden col-span-12">
-              <HorizontalNavbar />
-            </div>
-            <div className="col-span-2 hidden sm:block justify-self-end sticky">
-              <VerticalNavbar />
-            </div>
-            <div className="main-content-wrapper col-span-12 sm:col-span-10">{children}</div>
-            <div className="col-span-12">
-              <Instagram />
-            </div>
-            <Footer />
-          </div>
+        <div className="sticky top-0 md:hidden w-[100%] z-50 bg-white">
+          <HorizontalNavbar />
         </div>
+        {/* <div className="relative">
+            <h1
+              className={
+                babylonica.className +
+                " " +
+                "text-[80px] text-amber-400 z-50 text-center mx-20 bg-white"
+              }
+            >
+              Hilal Visits
+            </h1>
+          </div> */}
+        {/* <div className="sticky top-0 bg-white z-50">
+            <VerticalNavbar />
+          </div> */}
+        <div>
+          {children}
+        </div>
+        <div className="w-[100vw]">
+          <Instagram />
+        </div>
+        {/* <Footer /> */}
       </body>
     </html>
   );

@@ -1,5 +1,6 @@
 import Image from "next/image"
 import Link from "next/link"
+import { babylonica } from "@/utils/fonts";
 
 export default async function Instagram() {
 
@@ -29,15 +30,23 @@ export default async function Instagram() {
   const data = await fetchInstagramData()
   const posts = mapPosts(data)
 
-  return <div className="h-20 w-[100%]">
-    <p>Instagram</p>
-    <div className="flex justify-center bg-amber-50 w-[100%] h-[200px] gap-2 p-2 border-2 border-amber-800">
+  return <div className="w-[100%] bg-amber-50 h-[400px]">
+    <h1
+      className={
+        babylonica.className +
+        " " +
+        "text-[80px] z-30 text-amber-400 text-center"
+      }
+    >
+      Instagram
+    </h1>
+    <div className="flex justify-center w-[100%] h-[60%] gap-2 p-2">
       {posts.map((post: any) =>
         <Link
           href={post.url}
           key={post.id}
         >
-          <div className="h-[100%] aspect-[4/5] relative" >
+          <div className="relative w-[calc(100vw/6)] h-[100%] z-50" >
             <Image
               src={post.src}
               alt={post.title}
