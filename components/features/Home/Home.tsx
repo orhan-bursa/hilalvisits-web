@@ -1,10 +1,10 @@
+import { SectionDivider } from "@/components/shared/custom";
 import {
   HomeHero,
   HomeBlog,
   HomePhoto
 } from "./sections"
 import array from "@/utils/array";
-import { babylonica } from "@/utils/fonts";
 
 type HomePropTypes = {
   blogs: any[];
@@ -13,12 +13,14 @@ type HomePropTypes = {
 export default function Home({ blogs, photos }: HomePropTypes) {
 
   return (
-    <div className="w-[100%]">
+    <div className="w-full">
       <HomeHero data={array(blogs)} />
+      <SectionDivider />
       <HomeBlog data={array(blogs)} />
-      {/* <div className="w-[100%] bg-amber-400 my-6 h-[1px]"></div>
-      <HomePhoto data={array(blogs)} />
-      <div className="w-[100%] bg-amber-400 my-6 h-[1px]"></div> */}
+      <SectionDivider />
+
+      {/* <HomePhoto data={array(blogs)} /> */}
+      {/* <div className="w-full bg-amber-400 my-6 h-[1px]"></div> */}
     </div>
   );
 }

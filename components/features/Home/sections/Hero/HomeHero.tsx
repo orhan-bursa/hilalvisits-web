@@ -47,7 +47,7 @@ export default function HomeHero({ data }: { data: any[] }) {
     progressContent.current.textContent = ` · `; //${Math.ceil(time / 1000)}s
   };
   return (
-    <section className="w-[100%] h-[700px] relative cursor-default">
+    <section className="w-full h-[700px] relative cursor-default">
       <div className="w-[35%] h-max px-10 pt-4 bg-white z-50 space-y-3 absolute top-0">
         <div >
           <p className="cursor-default">My name is Hilal, I am a traveller, Lorem ipsum dolor sit amet consectetur, adipisicing elit. Placeat accusantium ducimus dignissimos maiores neque sint obcaecati quo dolores quaerat ad.</p>
@@ -71,7 +71,7 @@ export default function HomeHero({ data }: { data: any[] }) {
           </ul>
         </div>
       </div>
-      <div className="h-[100%] w-[100%] px-2">
+      <div className="h-[100%] w-full px-2">
         <Swiper
           className="home-hero-swiper"
           speed={1000}
