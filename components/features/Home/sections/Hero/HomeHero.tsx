@@ -26,27 +26,20 @@ export default function HomeHero({ data }: { data: any[] }) {
     progressContent.current.textContent = ` · `; //${Math.ceil(time / 1000)}s
   };
   return (
-    <section className="h-[80vh] w-[100%] relative">
-      <div className="absolute w-[calc(35vw-16px)] h-max bg-white bg-opacity-90 z-50 right-0 top-[100px] space-y-3 border-y-[3px] border-amber-400">
-        <h1
-          className={
-            babylonica.className +
-            " " +
-            "relative right-[0px] text-[100px] text-amber-400 z-50 text-center mx-20 border-b-2 cursor-pointer duration-700 whitespace-nowrap"
-          }
-        >
-          Hilal Visits
-        </h1>
-        <div className="ml-[32px] text-gray-600">
+    <section className="w-[100%] h-[700px] relative">
+      <div className="w-[40%] h-[40%] px-10 pt-4 bg-white z-50 space-y-3 absolute top-0">
+        <div >
           <p className="cursor-default">My name is Hilal, I am a traveller, Lorem ipsum dolor sit amet consectetur, adipisicing elit. Placeat accusantium ducimus dignissimos maiores neque sint obcaecati quo dolores quaerat ad.</p>
           <button className="my-2 border-2 border-transparent border-b-gray-200 p-2 rounded hover:pl-2 hover:border-2 hover:border-gray-300 transition-all duration-700">&gt; Read more here</button>
         </div>
       </div>
-      <div className="h-[80vh] w-[100%]">
+      <div className="h-[100%] w-[100%]">
         <Swiper
+          className="home-hero-swiper"
           speed={1000}
           slidesPerView={"auto"}
           spaceBetween={16}
+          initialSlide={1}
           loop={true}
           pagination={{
             clickable: true,
@@ -58,16 +51,17 @@ export default function HomeHero({ data }: { data: any[] }) {
             disableOnInteraction: false,
           }}
           onAutoplayTimeLeft={onAutoplayTimeLeft}
-          className="SwiperComponent"
           style={{
             width: "100%",
             height: "100%",
-            marginLeft: "auto",
-            marginRight: "auto",
+            position: "relative",
+
           }}
 
         >
           {data.map((item, ind) => {
+            console.log({ item });
+
             const url = item?.cover?.files?.[0]?.external?.url ?? item?.cover?.files?.[0]?.file?.url
             return <SwiperSlide
               key={ind}
@@ -76,12 +70,17 @@ export default function HomeHero({ data }: { data: any[] }) {
                 fontSize: "18px",
                 background: "#fff",
                 display: "flex",
-                justifyContent: "left",
                 alignItems: "center",
-                width: "65vw",
-                borderRight: "3px solid #fbbf24",
+                width: "60%",
+                // borderRight: "3px solid #fbbf24",
+                left: "40%",
+                position: "relative",
               }}
             >
+              <div className="z-50 w-[70%] bottom-[10vh] right-0 absolute bg-white bg-opacity-90 text-right">
+                <h2 className="text-5xl">{item?.title?.title?.[0].plain_text ?? "No title"}</h2>
+                <p className="">{item?.description?.rich_text?.[0]?.plain_text}</p>
+              </div>
               <Image
                 src={url}
                 alt={item.title ?? ""}

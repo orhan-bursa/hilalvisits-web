@@ -19,17 +19,17 @@ import { CustomButton as Button } from "@/components/shared/custom";
 
 export default function HomeBlog({ data }: { data: any[] }) {
   return (
-    <section className="h-[400px] w-[100%]">
-      <div className="flex justify-center items-center w-[100%]">
+    <section className="h-[1400px] w-[1200px] mx-auto">
+      {/* <div className="flex justify-center items-center w-[100%]">
         <div className="border-r-2 pr-2 mr-2 border-amber-400">
           <Map color="#fbbf24" size={48} strokeWidth={1} />
         </div>
         <h1 className="text-amber-400 text-5xl tracking-wider my-4 text-center">DESTINATIONS</h1>
-      </div>
+      </div> */}
       {/* <Button title="EXPLORE" /> */}
-      <div className="w-[100vw] h-[100%] border-2 border-amber-200 p-2">
+      {/* <div className="w-[100%] h-[100%] border-2 border-amber-200 p-2">
         <Swiper
-          slidesPerView={3}
+          slidesPerView={6}
           spaceBetween={8}
           loop={true}
 
@@ -83,8 +83,8 @@ export default function HomeBlog({ data }: { data: any[] }) {
           }
           )}
         </Swiper>
-      </div>
-      <p className="text-base pb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, quo! Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, quo! Lorem ipsum dolor sit amet.</p>
+      </div> */}
+      {/* <p className="text-base pb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, quo! Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, quo! Lorem ipsum dolor sit amet.</p> */}
 
     </section>
   );

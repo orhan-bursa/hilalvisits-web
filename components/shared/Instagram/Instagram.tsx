@@ -30,32 +30,34 @@ export default async function Instagram() {
   const data = await fetchInstagramData()
   const posts = mapPosts(data)
 
-  return <div className="w-[100%] bg-amber-50 h-[400px]">
-    <h1
-      className={
-        babylonica.className +
-        " " +
-        "text-[80px] z-30 text-amber-400 text-center"
-      }
-    >
-      Instagram
-    </h1>
-    <div className="flex justify-center w-[100%] h-[60%] gap-2 p-2">
-      {posts.map((post: any) =>
-        <Link
-          href={post.url}
-          key={post.id}
-        >
-          <div className="relative w-[calc(100vw/6)] h-[100%] z-50" >
-            <Image
-              src={post.src}
-              alt={post.title}
-              fill
-              objectFit="cover"
-            />
-          </div>
-        </Link>
-      )}
+  return <div className="w-[100%]">
+    <div className="w-[100%] bg-amber-50 h-[400px]">
+      <h1
+        className={
+          babylonica.className +
+          " " +
+          "text-[80px] z-30 text-amber-400 text-center"
+        }
+      >
+        Instagram
+      </h1>
+      <div className="flex justify-center w-[100%] h-[60%] gap-2 p-2">
+        {posts.map((post: any) =>
+          <Link
+            href={post.url}
+            key={post.id}
+          >
+            <div className="relative w-[calc(100%/6)] h-[100%] z-50" >
+              <Image
+                src={post.src}
+                alt={post.title}
+                fill
+                objectFit="cover"
+              />
+            </div>
+          </Link>
+        )}
+      </div>
     </div>
-  </div>;
+  </div>
 }

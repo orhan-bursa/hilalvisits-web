@@ -1,4 +1,4 @@
-import { Home as FeatureHome } from "@/components/features";
+import { Home as FeatureHome } from "@/components";
 import { getHomePage } from "@/utils/notion";
 
 export default async function Home() {

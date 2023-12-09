@@ -21,7 +21,7 @@ import { Camera } from "lucide-react";
 export default function HomePhoto({ data }: { data: any[] }) {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   return (
-    <section>
+    <section className="w-[1200px] mx-auto">
       <div className="mb-6 space-y-4">
         <div>
           <Camera color="#fbbf24" size={48} strokeWidth={1.5} />
