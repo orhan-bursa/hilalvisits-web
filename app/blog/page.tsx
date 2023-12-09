@@ -8,14 +8,9 @@ import {
 } from "@notionhq/client/build/src/api-endpoints";
 
 export default async function Blog() {
-  const blogs: (
-    | DatabaseObjectResponse
-    | PageObjectResponse
-    | PartialPageObjectResponse
-    | PartialDatabaseObjectResponse
-  )[] = await getBlogs();
+  const blogs: any = await getBlogs();
 
-  const idList = blogs.map((blog) => blog.id);
+  const idList = blogs.map((blog: any) => blog.id);
   const blogContents = await getBlogsContent(idList);
 
   if (!blogs) return <div>No Blogs found.</div>;

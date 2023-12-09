@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Footer, HorizontalNavbar, VerticalNavbar } from "@/components";
+import { Footer, Header, Navbar } from "@/components";
 import "./globals.css";
 import { montserrat } from "@/utils/fonts";
 import Instagram from "@/components/shared/Instagram";
@@ -17,18 +17,11 @@ export default function RootLayout({
   return (
     <html lang="en" className={montserrat.className}>
       <body>
-        <div className="main mx-auto sm:mt-10 mt:0 max-w-[1200px]">
-          <div className="grid grid-cols-12">
-            <div className="sm:hidden col-span-12">
-              <HorizontalNavbar />
-            </div>
-            <div className="col-span-2 hidden sm:block justify-self-end sticky">
-              <VerticalNavbar />
-            </div>
-            <div className="main-content-wrapper col-span-12 sm:col-span-10">{children}</div>
-          </div>
-          <Instagram />
-          <Footer />
+        <div>
+          <Navbar />
+          {children}
+          {/* <Instagram /> */}
+          {/* <Footer /> */}
         </div>
       </body>
     </html>
