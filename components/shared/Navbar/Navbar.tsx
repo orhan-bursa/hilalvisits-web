@@ -5,37 +5,13 @@ import cn from "classnames";
 import { babylonica } from "@/utils/fonts";
 
 import "./styles.css";
-
-type HeaderItem = { title: string; href: string };
-const HEADER_ITEMS: HeaderItem[] = [
-  {
-    title: "Home",
-    href: "/",
-  },
-  {
-    title: "Blog",
-    href: "/blog",
-  },
-  {
-    title: "Albums",
-    href: "/album",
-  },
-  {
-    title: "Photos",
-    href: "/photo",
-  },
-  {
-    title: "About",
-    href: "/about",
-  },
-];
-
+import { NAVBAR_ITEMS } from "@/constants/navbar";
 
 export function Navbar() {
   const pathname = usePathname();
 
   return (
-    <header className="h-[100px] w-[100%] cursor-pointer ">
+    <header className="h-[100px] w-[100%] cursor-pointer border-b-2">
       <nav className="h-[100%] flex justify-between">
         <div className="w-[400px]">
           <h1
@@ -47,7 +23,7 @@ export function Navbar() {
           > Hilal Visits </h1>
         </div>
         <ul className="flex justify-center items-center h-10 mr-4">
-          {HEADER_ITEMS.map((item) => {
+          {NAVBAR_ITEMS.map((item) => {
             const active = item.href == pathname;
             return (
               <li

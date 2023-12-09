@@ -9,6 +9,10 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@mui/icons-material": "^5.14.19",
+    "@mui/material": "^5.14.20",
     "@notionhq/client": "^2.2.13",
     "@types/node": "20.5.7",
     "@types/react": "18.2.21",
@@ -17,7 +21,6 @@
     "encoding": "^0.1.13",
     "eslint": "8.48.0",
     "eslint-config-next": "13.4.19",
-    "lucide-react": "^0.294.0",
     "next": "13.4.19",
     "react": "18.2.0",
     "react-dom": "18.2.0",
