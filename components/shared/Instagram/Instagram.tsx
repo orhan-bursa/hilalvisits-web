@@ -30,8 +30,8 @@ export default async function Instagram() {
   const data = await fetchInstagramData()
   const posts = mapPosts(data)
 
-  return <div className="w-[100%]">
-    <div className="w-[100%] bg-amber-50 h-[400px]">
+  return <div className="w-full">
+    <div className="w-full bg-amber-50 h-[400px]">
       <h1
         className={
           babylonica.className +
@@ -41,7 +41,7 @@ export default async function Instagram() {
       >
         Instagram
       </h1>
-      <div className="flex justify-center w-[100%] h-[60%] gap-2 p-2">
+      <div className="flex justify-center w-full h-[60%] gap-2 p-2">
         {posts.map((post: any) =>
           <Link
             href={post.url}

@@ -11,7 +11,7 @@ export function Navbar() {
   const pathname = usePathname();
 
   return (
-    <header className="h-[100px] w-[100%] cursor-pointer border-b-2">
+    <header className="h-[100px] w-full cursor-pointer border-b-2">
       <nav className="h-[100%] flex justify-between">
         <div className="w-[400px]">
           <h1

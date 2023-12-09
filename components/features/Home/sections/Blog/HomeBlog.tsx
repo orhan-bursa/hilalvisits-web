@@ -14,19 +14,22 @@ import "./styles.css";
 import { Navigation } from "swiper/modules";
 import Image from "next/image";
 import Link from "next/link";
-import { CustomButton as Button } from "@/components/shared/custom";
+import cn from "classnames";
+import { babylonica } from "@/utils/fonts";
+import { CustomButton } from "@/components/shared/custom";
 
 export default function HomeBlog({ data }: { data: any[] }) {
   return (
-    <section className="h-[1400px] w-[1200px] mx-auto">
-      {/* <div className="flex justify-center items-center w-[100%]">
-        <div className="border-r-2 pr-2 mr-2 border-amber-400">
-          <Map color="#fbbf24" size={48} strokeWidth={1} />
-        </div>
-        <h1 className="text-amber-400 text-5xl tracking-wider my-4 text-center">DESTINATIONS</h1>
-      </div> */}
-      {/* <Button title="EXPLORE" /> */}
-      {/* <div className="w-[100%] h-[100%] border-2 border-amber-200 p-2">
+    <section className="w-[1200px] mx-auto">
+      <div>
+        <h1 className={cn(
+          babylonica.className,
+          "text-amber-400 text-[80px] tracking-wider my-4",
+          "w-full"
+        )}>
+          Destinations</h1>
+      </div>
+      <div className="w-full h-[300px] border-2 border-amber-200 p-2">
         <Swiper
           slidesPerView={6}
           spaceBetween={8}
@@ -34,7 +37,7 @@ export default function HomeBlog({ data }: { data: any[] }) {
 
           navigation={true}
           modules={[Navigation]}
-          className="SwiperComponent"
+          className="home-blog-swiper"
           style={{
             width: "100%",
             height: "100%",
@@ -57,7 +60,7 @@ export default function HomeBlog({ data }: { data: any[] }) {
                 aspectRatio: 9 / 16,
               }}
             >
-              <div className="w-[100%] h-[100%] relative cursor-pointer overflow-hidden  group">
+              <div className="w-full h-[100%] relative cursor-pointer overflow-hidden  group">
                 <Link href={"/"}>
                   <Image
                     src={url}
@@ -69,7 +72,7 @@ export default function HomeBlog({ data }: { data: any[] }) {
                 </Link>
                 <div className="absolute -bottom-7 group-hover:bottom-0 opacity-60 group-hover:opacity-100 from-gray-800 bg-gradient-to-t duration-500">
                   <Link href={"/"}>
-                    <div className="flex flex-col items-start justify-end text-white text-left p-2 pb-3 z-50 w-[100%] h-[50%]">
+                    <div className="flex flex-col items-start justify-end text-white text-left p-2 pb-3 z-50 w-full h-[50%]">
                       <h6 className="text-lg font-semibold duration-500">Title Lorem Ipsum dolor sits</h6>
                       <p className="text-sm duration-500">{"Lorem ipsum dolor sit amet consectetur adipisicing elit. Et, excepturi!".slice(0, 50) + " . . ."}</p>
                       <button className="self-end text-xs mt-3 duration-500">Read more</button>
@@ -82,9 +85,14 @@ export default function HomeBlog({ data }: { data: any[] }) {
           }
           )}
         </Swiper>
-      </div> */}
-      {/* <p className="text-base pb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, quo! Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, quo! Lorem ipsum dolor sit amet.</p> */}
-
+      </div>
+      <div className="my-2 space-y-2">
+        <p>Selection of destinations I recently explored, follow me travel tips, tricks and much more. Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse, tempore. Delectus sequi qui in eius quia doloremque molestias, laborum temporibus. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Provident, fuga.</p>
+        <CustomButton
+          href="/blog"
+          title="Explore"
+        />
+      </div>
     </section>
   );
 }
