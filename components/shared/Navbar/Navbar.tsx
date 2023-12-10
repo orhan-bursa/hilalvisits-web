@@ -23,16 +23,15 @@ export function Navbar() {
           > Hilal Visits </h1>
         </div>
         <ul className="flex justify-center items-center h-10 mr-4">
-          {NAVBAR_ITEMS.map((item) => {
+          {NAVBAR_ITEMS.map((item, i) => {
             const active = item.href == pathname;
             return (
               <li
-                key={item.href}
+                key={item.href + i}
                 className={cn(
-                  "text-[14px] hover:font-semibold duration-300 mx-3 mt-1 hover:border-b-2 hover:border-red-500 text-gray-700 hover:text-red-500 ",
-                  {
-                    active: active,
-                  }
+                  "text-[14px] mx-3 mt-1 hover:border-b-2 text-gray-700",
+                  "hover:font-semibold duration-300 hover:border-red-500 hover:text-red-500",
+                  { active: active }
                 )}
               >
                 <Link href={item.href}>{item.title}</Link>

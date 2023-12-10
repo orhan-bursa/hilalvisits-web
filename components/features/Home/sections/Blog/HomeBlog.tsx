@@ -24,7 +24,7 @@ export default function HomeBlog({ data }: { data: any[] }) {
       <div>
         <h1 className={cn(
           babylonica.className,
-          "text-amber-400 text-[80px] tracking-wider my-4",
+          "text-amber-400 text-[80px] tracking-wider",
           "w-full"
         )}>
           Destinations</h1>
