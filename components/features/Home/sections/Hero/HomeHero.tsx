@@ -55,9 +55,9 @@ export default function HomeHero({ data }: { data: any[] }) {
         </div>
         <div className="flex">
           <ul className="flex text-amber-400">
-            {SOCIALS.map((item) => {
+            {SOCIALS.map((item, i) => {
               const Icon = item.icon
-              return <li>
+              return <li key={item.title + i}>
                 <IconButton
                   LinkComponent={Link}
                   href="/"

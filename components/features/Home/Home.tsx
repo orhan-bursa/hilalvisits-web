@@ -18,9 +18,8 @@ export default function Home({ blogs, photos }: HomePropTypes) {
       <SectionDivider />
       <HomeBlog data={array(blogs)} />
       <SectionDivider />
-
-      {/* <HomePhoto data={array(blogs)} /> */}
-      {/* <div className="w-full bg-amber-400 my-6 h-[1px]"></div> */}
+      <HomePhoto data={array(blogs)} />
+      <SectionDivider />
     </div>
   );
 }
