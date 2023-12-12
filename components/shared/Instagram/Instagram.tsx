@@ -2,7 +2,10 @@ import Link from "next/link"
 import { babylonica } from "@/utils/fonts";
 import Image from "next/image";
 import cn from "classnames";
-import { CustomButton } from "@/components/shared/custom";
+import { Button, Tooltip } from "@mui/material";
+import { shortenText } from "@/utils/text";
+import InstagramIcon from '@mui/icons-material/Instagram';
+import { SOCIAL_LINKS } from "@/constants/socail";
 
 type MappedInstagramPost = {
   id: string
@@ -13,20 +16,21 @@ type MappedInstagramPost = {
 export default async function Instagram() {
 
   const mapPosts: (response: any) => MappedInstagramPost[] = (response: any) => {
-
-    return response.media.data.map((post: any) => ({
-      id: post.id,
-      title: post.caption,
-      url: post.permalink,
-      src: post.thumbnail_url || post.media_url
-    }))
+    const mappedItems = response.media.data.map((post: any) => {
+      return {
+        id: post.id,
+        title: post.caption,
+        url: post.permalink,
+        src: post.thumbnail_url || post.media_url
+      }
+    })
+    return mappedItems
   }
 
   const fetchInstagramData = async () => {
     const instaID = process.env.INSTAGRAM_ID
     const instaToken = process.env.INSTAGRAM_TOKEN
-    const instaFields = "profile_picture_url,name,username,biography,media.limit(6){caption,media_url,permalink,thumbnail_url}"
-
+    const instaFields = "profile_picture_url,name,username,biography,media.limit(6){caption,media_url,permalink,thumbnail_url,timestamp,comments_count,like_count,media_type,children{media_url}}";
     const url = `https://graph.facebook.com/v16.0/${instaID}?fields=${instaFields}&access_token=${instaToken}`
     const res = await fetch(url, {
       cache: "no-store",
@@ -35,47 +39,70 @@ export default async function Instagram() {
     return await res.json()
   }
   const data = await fetchInstagramData()
-  const allPosts = mapPosts(data)
-  const posts = allPosts.slice(1)
-  const latestPost = allPosts[0]
+  const posts = mapPosts(data)
 
   return <div className="w-full bg-amber-50 h-max flex flex-col items-center p-4">
-    <div className="w-[1200px] h-full space-y-4">
-      <h1
-        className={cn(
-          babylonica.className,
-          "text-[80px] z-30 text-amber-400 text-center"
-        )
-        }
-      >
-        Instagram
-      </h1>
-      <div className="w-full h-[300px] flex items-center justify-center">
-        <div className="relative w-[50%] h-full border-2 p-2" >
-          {latestPost.src && <Image src={latestPost.src} alt={latestPost.title} fill objectFit="cover" />}
-        </div>
-        <div className="w-[50%]">
-          <p>I regularly post on instagram, before during and after my trips. Feel free to follow to see where I will be visiting next! Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat, qui.</p>
-          <CustomButton title="Follow on Instagram" />
-        </div>
-
+    <div className="max-w-[1200px] w-full h-full">
+      <div className="w-full flex items-center justify-center ">
+        <h1
+          className={cn(
+            babylonica.className,
+            "text-[80px] z-30 text-amber-400 text-center h-28"
+          )
+          }
+        >
+          Instagram
+        </h1>
       </div>
-      <div className="w-full h-[150px]">
-        <div className="relative flex justify-center w-full h-full gap-2">
+      <div className={cn(
+        "w-full h-[480px] max-h-[480px] border-2 border-amber-400 p-2 my-4",
+        "sm:h-[320px] sm:max-h-[320px]",
+        "lg:h-[240px] lg:max-h[240px]"
+      )}>
+        <div className="relative grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 w-full h-full gap-2">
           {posts.map((post) => {
-
-            return <Link
-              href={post.url}
-              key={post.id}
-              className="aspect-square w-full"
-            >
-              <div className="relative w-full h-full" >
-                {post.src && <Image src={post.src} alt={post.title} fill objectFit="cover" />}
-              </div>
-            </Link>
+            const titleWithoutHashtags = post.title.split("#")[0]
+            const _postTitle = shortenText(titleWithoutHashtags, 100, 15)
+            return <Tooltip key={post.id} title={_postTitle}>
+              <Link
+                href={post.url}
+                className="w-full h-full col-span-1"
+              >
+                <div className="relative w-full h-full" >
+                  {post.src && <Image src={post.src} alt={post.title} fill style={{ objectFit: "cover" }} />}
+                </div>
+              </Link>
+            </Tooltip>
           }
           )}
         </div>
+      </div>
+      <div className="flex justify-center">
+        <Button
+          variant="outlined"
+          LinkComponent={Link}
+          href={SOCIAL_LINKS.instagram}
+          color="inherit"
+          startIcon={<InstagramIcon />}
+          sx={{
+            color: '#fbbf24',
+            backgroundColor: 'transparent',
+            boxShadow: 'none',
+            border: 2,
+            borderColor: '#fbbf24',
+            borderRadius: 0,
+            transition: 'all 700ms',
+            ':hover': {
+              borderColor: '#fbbf24',
+              borderWidth: 2,
+              backgroundColor: '#fbbf24',
+              color: "#FFF",
+              borderRadius: '6px'
+            },
+          }}
+        >
+          Follow
+        </Button>
       </div>
     </div>
   </div>

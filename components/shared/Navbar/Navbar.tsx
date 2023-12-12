@@ -22,7 +22,7 @@ export function Navbar() {
             }
           > Hilal Visits </h1>
         </div>
-        <ul className="flex justify-center items-center h-10 mr-4">
+        <ul className="hidden sm:flex justify-center items-center h-10 mr-4">
           {NAVBAR_ITEMS.map((item, i) => {
             const active = item.href == pathname;
             return (

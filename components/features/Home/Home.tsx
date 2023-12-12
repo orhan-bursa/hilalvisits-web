@@ -13,7 +13,7 @@ type HomePropTypes = {
 export default function Home({ blogs, photos }: HomePropTypes) {
 
   return (
-    <div className="w-full">
+    <div>
       <HomeHero data={array(blogs)} />
       <SectionDivider />
       <HomeBlog data={array(blogs)} />
