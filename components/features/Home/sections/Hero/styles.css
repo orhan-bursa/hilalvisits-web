@@ -3,12 +3,14 @@
   @apply text-amber-400
 }
 
-.home-hero-swiper .swiper-button-next {
-  right: 2%
-}
+@media screen and (min-width: 768px) {
+  .home-hero-swiper .swiper-button-next {
+    right: 2%
+  }
 
-.home-hero-swiper .swiper-button-prev {
-  left: 37%
+  .home-hero-swiper .swiper-button-prev {
+    left: 37%
+  }
 }
 
 

@@ -16,9 +16,9 @@ import cn from "classnames";
 export default function HomePhoto({ data }: { data: any[] }) {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   return (
-    <section className="w-[1200px] mx-auto">
-      <div className="flex w-full flex-col sm:flex-row">
-        <div className="w-full sm:w-[35%] m-2 space-y-4">
+    <section className="max-w-[1200px] w-full mx-auto">
+      <div className="flex w-full flex-col lg:flex-row">
+        <div className="w-full lg:w-[35%] m-2 space-y-4">
           <div>
             <h1 className={cn(
               babylonica.className,
@@ -30,7 +30,7 @@ export default function HomePhoto({ data }: { data: any[] }) {
           <p>I have a passion for photography! I like capturing unique moments during my trips. I share tips for taking best travels photographs, follow for more! Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati, praesentium.</p>
           <CustomButton title="View more" href="/photo" />
         </div>
-        <div className="w-full sm:w-[65%]">
+        <div className="w-full lg:w-[65%]">
           <Swiper
             style={{
               height: "500px",
@@ -63,7 +63,7 @@ export default function HomePhoto({ data }: { data: any[] }) {
                 <Image
                   src={url}
                   alt={item.title ?? ""}
-                  objectFit="cover"
+                  style={{ objectFit: "cover" }}
                   fill
                 />
               </SwiperSlide>
@@ -104,7 +104,7 @@ export default function HomePhoto({ data }: { data: any[] }) {
                   src={url}
                   alt={item.title ?? ""}
                   fill
-                  objectFit="cover"
+                  style={{ objectFit: "cover" }}
                 />
               </SwiperSlide>
             }

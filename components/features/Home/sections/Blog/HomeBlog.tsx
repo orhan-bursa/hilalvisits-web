@@ -20,7 +20,7 @@ import { CustomButton } from "@/components/shared/custom";
 
 export default function HomeBlog({ data }: { data: any[] }) {
   return (
-    <section className="w-[1200px] mx-auto">
+    <section className="max-w-[1200px] w-full mx-auto">
       <div>
         <h1 className={cn(
           babylonica.className,
@@ -66,7 +66,7 @@ export default function HomeBlog({ data }: { data: any[] }) {
                     src={url}
                     alt={item.title ?? ""}
                     fill
-                    objectFit="cover"
+                    style={{ objectFit: "cover" }}
                     className="hover:scale-110 transition-all duration-700"
                   />
                 </Link>
