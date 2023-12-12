@@ -9,8 +9,6 @@ export const metadata: Metadata = {
   description: "Your go to blog for traveling adventures!",
 };
 
-
-
 export default function RootLayout({
   children,
 }: {

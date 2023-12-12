@@ -13,7 +13,9 @@ import { Facebook, Instagram, Twitter } from '@mui/icons-material/';
 import type { SvgIconComponent } from '@mui/icons-material'
 import { IconButton } from "@mui/material";
 import cn from "classnames";
+import { SOCIAL_LINKS as _sl } from "@/constants";
 import { shortenText } from "@/utils/text";
+import { useBreakpoints } from "@/hooks";
 
 type Socials = {
   title: string
@@ -23,35 +25,24 @@ type Socials = {
 const SOCIALS: Socials[] = [
   {
     title: "Instagram",
-    href: "/",
+    href: _sl.instagram,
     icon: Instagram,
   },
   {
     title: "Twitter",
-    href: "/",
+    href: _sl.twitter,
     icon: Twitter,
   },
   {
     title: "Twitter",
-    href: "/",
+    href: _sl.facebook,
     icon: Facebook,
   },
 ]
 
 export default function HomeHero({ data }: { data: any[] }) {
 
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-    handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
+  const { isMobile } = useBreakpoints()
 
   const progressCircle = useRef(null);
   const progressContent = useRef(null);
@@ -62,9 +53,8 @@ export default function HomeHero({ data }: { data: any[] }) {
     progressContent.current.textContent = ` · `; //${Math.ceil(time / 1000)}s
   };
   return (
-    <section className="w-full h-[700px] relative cursor-default">
-
-      <div className="h-[100%] w-full px-2">
+    <section className="w-full h-[900px] sm:h-[800px] md:h-[700px] relative cursor-default">
+      <div className="h-[700px] min-h-[700px] md:h-full w-full  px-2">
         <Swiper
           className="home-hero-swiper"
           speed={1000}

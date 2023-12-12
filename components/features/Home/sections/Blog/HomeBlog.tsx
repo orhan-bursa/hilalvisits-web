@@ -17,8 +17,12 @@ import Link from "next/link";
 import cn from "classnames";
 import { babylonica } from "@/utils/fonts";
 import { CustomButton } from "@/components/shared/custom";
+import { useBreakpoints } from "@/hooks";
 
 export default function HomeBlog({ data }: { data: any[] }) {
+
+  const { isMobile, isDesktop } = useBreakpoints()
+
   return (
     <section className="max-w-[1200px] w-full mx-auto">
       <div>
@@ -31,7 +35,7 @@ export default function HomeBlog({ data }: { data: any[] }) {
       </div>
       <div className="w-full h-[300px] border-2 border-amber-200 p-2">
         <Swiper
-          slidesPerView={6}
+          slidesPerView={isMobile ? 2 : isDesktop ? 3 : 4}
           spaceBetween={8}
           loop={true}
 

@@ -5,7 +5,7 @@ import cn from "classnames";
 import { Button, Tooltip } from "@mui/material";
 import { shortenText } from "@/utils/text";
 import InstagramIcon from '@mui/icons-material/Instagram';
-import { SOCIAL_LINKS } from "@/constants/socail";
+import { SOCIAL_LINKS } from "@/constants/social";
 
 type MappedInstagramPost = {
   id: string
