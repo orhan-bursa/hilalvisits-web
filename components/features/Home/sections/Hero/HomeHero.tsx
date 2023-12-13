@@ -13,7 +13,7 @@ import { Facebook, Instagram, Twitter } from '@mui/icons-material/';
 import type { SvgIconComponent } from '@mui/icons-material'
 import { IconButton } from "@mui/material";
 import cn from "classnames";
-import { SOCIAL_LINKS as _sl } from "@/constants";
+import { SOCIAL_LINKS } from "@/constants";
 import { shortenText } from "@/utils/text";
 import { useBreakpoints } from "@/hooks";
 
@@ -25,17 +25,17 @@ type Socials = {
 const SOCIALS: Socials[] = [
   {
     title: "Instagram",
-    href: _sl.instagram,
+    href: SOCIAL_LINKS.instagram,
     icon: Instagram,
   },
   {
     title: "Twitter",
-    href: _sl.twitter,
+    href: SOCIAL_LINKS.twitter,
     icon: Twitter,
   },
   {
-    title: "Twitter",
-    href: _sl.facebook,
+    title: "Facebook",
+    href: SOCIAL_LINKS.facebook,
     icon: Facebook,
   },
 ]

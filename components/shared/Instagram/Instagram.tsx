@@ -6,6 +6,7 @@ import { Button, Tooltip } from "@mui/material";
 import { shortenText } from "@/utils/text";
 import InstagramIcon from '@mui/icons-material/Instagram';
 import { SOCIAL_LINKS } from "@/constants/social";
+import { CustomButton } from "../custom";
 
 type MappedInstagramPost = {
   id: string
@@ -66,6 +67,7 @@ export default async function Instagram() {
             return <Tooltip key={post.id} title={_postTitle}>
               <Link
                 href={post.url}
+                target="blank"
                 className="w-full h-full col-span-1"
               >
                 <div className="relative w-full h-full" >
@@ -78,31 +80,12 @@ export default async function Instagram() {
         </div>
       </div>
       <div className="flex justify-center">
-        <Button
-          variant="outlined"
-          LinkComponent={Link}
+        <CustomButton
           href={SOCIAL_LINKS.instagram}
-          color="inherit"
           startIcon={<InstagramIcon />}
-          sx={{
-            color: '#fbbf24',
-            backgroundColor: 'transparent',
-            boxShadow: 'none',
-            border: 2,
-            borderColor: '#fbbf24',
-            borderRadius: 0,
-            transition: 'all 700ms',
-            ':hover': {
-              borderColor: '#fbbf24',
-              borderWidth: 2,
-              backgroundColor: '#fbbf24',
-              color: "#FFF",
-              borderRadius: '6px'
-            },
-          }}
         >
           Follow
-        </Button>
+        </CustomButton>
       </div>
     </div>
   </div>

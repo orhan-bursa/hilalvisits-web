@@ -12,9 +12,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { babylonica } from "@/utils/fonts";
 import cn from "classnames";
+import { useBreakpoints } from "@/hooks";
 
 export default function HomePhoto({ data }: { data: any[] }) {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
+
+  const { isMobile, isDesktop, isWideScreen } = useBreakpoints()
+
   return (
     <section className="max-w-[1200px] w-full mx-auto">
       <div className="flex w-full flex-col lg:flex-row">
@@ -28,7 +32,7 @@ export default function HomePhoto({ data }: { data: any[] }) {
               Photography</h1>
           </div>
           <p>I have a passion for photography! I like capturing unique moments during my trips. I share tips for taking best travels photographs, follow for more! Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati, praesentium.</p>
-          <CustomButton title="View more" href="/photo" />
+          <CustomButton href="/photo" >View more</CustomButton>
         </div>
         <div className="w-full lg:w-[65%]">
           <Swiper
@@ -73,7 +77,7 @@ export default function HomePhoto({ data }: { data: any[] }) {
           <Swiper
             onSwiper={setThumbsSwiper as any}
             spaceBetween={10}
-            slidesPerView={5}
+            slidesPerView={isMobile ? 3 : isDesktop ? 4 : 5}
             freeMode={true}
             watchSlidesProgress={true}
             modules={[FreeMode, Navigation, Thumbs]}
