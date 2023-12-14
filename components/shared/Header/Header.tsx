@@ -5,31 +5,6 @@ import { babylonica } from "@/utils/fonts";
 
 import "./styles.css";
 
-type HeaderItem = { title: string; href: string };
-const HEADER_ITEMS: HeaderItem[] = [
-  {
-    title: "Home",
-    href: "/",
-  },
-  {
-    title: "Blog",
-    href: "/blog",
-  },
-  {
-    title: "Albums",
-    href: "/album",
-  },
-  {
-    title: "Photos",
-    href: "/photo",
-  },
-  {
-    title: "About",
-    href: "/about",
-  },
-];
-
-
 export function Header() {
   const pathname = usePathname();
 

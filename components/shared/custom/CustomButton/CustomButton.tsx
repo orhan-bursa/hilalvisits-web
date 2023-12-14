@@ -11,10 +11,11 @@ type ButtonProps = {
     endIcon?: ReactElement
     color?: string
     colorOnHover?: string
+    variant?: "text" | "outlined" | "contained"
 }
-export default function CustomButton({ children, style, href, color = "#fbbf24", colorOnHover = "#fff", onClick, startIcon, endIcon }: ButtonProps) {
+export default function CustomButton({ children, variant = "outlined", style, href, color = "#fbbf24", colorOnHover = "#fff", onClick, startIcon, endIcon }: ButtonProps) {
     return <Button
-        variant="outlined"
+        variant={variant}
         LinkComponent={Link}
         href={href}
         color="inherit"
@@ -22,7 +23,6 @@ export default function CustomButton({ children, style, href, color = "#fbbf24",
         startIcon={startIcon ?? undefined}
         endIcon={endIcon ?? undefined}
         sx={{
-            ...style,
             color: color,
             backgroundColor: 'transparent',
             boxShadow: 'none',
@@ -37,6 +37,7 @@ export default function CustomButton({ children, style, href, color = "#fbbf24",
                 color: colorOnHover,
                 borderRadius: '6px'
             },
+            ...style,
         }}
     >
         {children}

@@ -5,7 +5,7 @@ import cn from "classnames";
 import { babylonica } from "@/utils/fonts";
 
 import "./styles.css";
-import { NAVBAR_ITEMS } from "@/constants/navbar";
+import { PAGE_ITEMS } from "@/constants/pages";
 
 export function Navbar() {
   const pathname = usePathname();
@@ -23,7 +23,7 @@ export function Navbar() {
           > Hilal Visits </h1>
         </div>
         <ul className="hidden sm:flex justify-center items-center h-10 mr-4">
-          {NAVBAR_ITEMS.map((item, i) => {
+          {PAGE_ITEMS.map((item, i) => {
             const active = item.href == pathname;
             return (
               <li

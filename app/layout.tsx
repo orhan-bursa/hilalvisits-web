@@ -21,7 +21,7 @@ export default function RootLayout({
           <Navbar />
           {children}
           <Instagram />
-          {/* <Footer /> */}
+          <Footer />
         </div>
       </body>
     </html>
