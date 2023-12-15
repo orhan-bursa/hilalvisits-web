@@ -48,7 +48,8 @@ export default async function Instagram() {
         <h1
           className={cn(
             babylonica.className,
-            "text-[80px] z-30 text-amber-400 text-center h-28"
+            "h-28 z-30 text-center text-amber-400 ",
+            "text-6xl sm:text-[80px]"
           )
           }
         >

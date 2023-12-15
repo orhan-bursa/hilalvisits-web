@@ -20,7 +20,7 @@ export function Navbar() {
               " " +
               "h-[100%] flex justify-center items-center text-[80px] text-amber-400 z-50 whitespace-nowrap "
             }
-          > Hilal Visits </h1>
+          > Hilal Visits</h1>
         </div>
         <ul className="hidden sm:flex justify-center items-center h-10 mr-4">
           {PAGE_ITEMS.map((item, i) => {

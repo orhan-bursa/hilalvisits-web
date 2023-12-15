@@ -28,8 +28,8 @@ export default function HomeDestinations({ data }: { data: any[] }) {
       <div>
         <h1 className={cn(
           babylonica.className,
-          "text-amber-400 text-[80px] tracking-wider",
-          "w-full"
+          "w-full text-amber-400 text-[80px] tracking-wider mb-2",
+          "text-6xl sm:text-[80px] text-center sm:text-start"
         )}>
           Destinations</h1>
       </div>

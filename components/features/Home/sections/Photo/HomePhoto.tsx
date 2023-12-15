@@ -26,13 +26,15 @@ export default function HomePhoto({ data }: { data: any[] }) {
           <div>
             <h1 className={cn(
               babylonica.className,
-              "text-amber-400 text-[80px] tracking-wider",
-              "w-full"
+              "w-full text-amber-400 tracking-wider mb-2",
+              "text-6xl sm:text-[80px] text-center sm:text-start"
             )}>
               Photography</h1>
           </div>
           <p>I have a passion for photography! I like capturing unique moments during my trips. I share tips for taking best travels photographs, follow for more! Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati, praesentium.</p>
-          <CustomButton href="/photo" >View more</CustomButton>
+          <div>
+            <CustomButton href="/photo">View more</CustomButton>
+          </div>
         </div>
         <div className="w-full lg:w-[65%]">
           <Swiper
