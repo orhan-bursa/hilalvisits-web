@@ -1,7 +1,7 @@
 import { SectionDivider } from "@/components/shared/custom";
 import {
   HomeHero,
-  HomeBlog,
+  HomeDestinations,
   HomePhoto
 } from "./sections"
 import array from "@/utils/array";
@@ -16,7 +16,7 @@ export default function Home({ blogs, photos }: HomePropTypes) {
     <div>
       <HomeHero data={array(blogs)} />
       <SectionDivider />
-      <HomeBlog data={array(blogs)} />
+      <HomeDestinations data={array(blogs)} />
       <SectionDivider />
       <HomePhoto data={array(blogs)} />
       <SectionDivider />

@@ -19,7 +19,7 @@ import { babylonica } from "@/utils/fonts";
 import { CustomButton } from "@/components/shared/custom";
 import { useBreakpoints } from "@/hooks";
 
-export default function HomeBlog({ data }: { data: any[] }) {
+export default function HomeDestinations({ data }: { data: any[] }) {
 
   const { isMobile, isDesktop } = useBreakpoints()
 
@@ -28,8 +28,8 @@ export default function HomeBlog({ data }: { data: any[] }) {
       <div>
         <h1 className={cn(
           babylonica.className,
-          "text-amber-400 text-[80px] tracking-wider",
-          "w-full"
+          "w-full text-amber-400 text-[80px] tracking-wider mb-2",
+          "text-6xl sm:text-[80px] text-center sm:text-start"
         )}>
           Destinations</h1>
       </div>
@@ -94,8 +94,9 @@ export default function HomeBlog({ data }: { data: any[] }) {
         <p>Selection of destinations I recently explored, follow me travel tips, tricks and much more. Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse, tempore. Delectus sequi qui in eius quia doloremque molestias, laborum temporibus. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Provident, fuga.</p>
         <CustomButton
           href="/blog"
-          title="Explore"
-        />
+        >
+          Explore
+        </CustomButton>
       </div>
     </section>
   );

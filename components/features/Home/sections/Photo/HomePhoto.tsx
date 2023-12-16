@@ -12,9 +12,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { babylonica } from "@/utils/fonts";
 import cn from "classnames";
+import { useBreakpoints } from "@/hooks";
 
 export default function HomePhoto({ data }: { data: any[] }) {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
+
+  const { isMobile, isDesktop, isWideScreen } = useBreakpoints()
+
   return (
     <section className="max-w-[1200px] w-full mx-auto">
       <div className="flex w-full flex-col lg:flex-row">
@@ -22,13 +26,15 @@ export default function HomePhoto({ data }: { data: any[] }) {
           <div>
             <h1 className={cn(
               babylonica.className,
-              "text-amber-400 text-[80px] tracking-wider",
-              "w-full"
+              "w-full text-amber-400 tracking-wider mb-2",
+              "text-6xl sm:text-[80px] text-center sm:text-start"
             )}>
               Photography</h1>
           </div>
           <p>I have a passion for photography! I like capturing unique moments during my trips. I share tips for taking best travels photographs, follow for more! Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati, praesentium.</p>
-          <CustomButton title="View more" href="/photo" />
+          <div>
+            <CustomButton href="/photo">View more</CustomButton>
+          </div>
         </div>
         <div className="w-full lg:w-[65%]">
           <Swiper
@@ -73,7 +79,7 @@ export default function HomePhoto({ data }: { data: any[] }) {
           <Swiper
             onSwiper={setThumbsSwiper as any}
             spaceBetween={10}
-            slidesPerView={5}
+            slidesPerView={isMobile ? 3 : isDesktop ? 4 : 5}
             freeMode={true}
             watchSlidesProgress={true}
             modules={[FreeMode, Navigation, Thumbs]}

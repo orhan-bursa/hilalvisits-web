@@ -1,24 +1,45 @@
+import { Button } from "@mui/material";
 import Link from "next/link";
-import { CSSProperties } from "react";
+import type { CSSProperties, ReactElement, ReactNode } from "react";
 
 type ButtonProps = {
-    title: string
+    children: ReactNode
     style?: CSSProperties | undefined
     onClick?: any
     href?: string
+    startIcon?: ReactElement
+    endIcon?: ReactElement
+    color?: string
+    colorOnHover?: string
+    variant?: "text" | "outlined" | "contained"
 }
-export default function CustomButton({ title, style, href, onClick }: ButtonProps) {
-    return <button
-        className=" px-6 py-[5px] font-[500]
-                    border-2 border-amber-400 
-                    bg-transparent text-amber-400 
-                    hover:rounded-md hover:bg-amber-400 hover:text-white 
-                    transition-all duration-700"
-        style={{
-            ...style
+export default function CustomButton({ children, variant = "outlined", style, href, color = "#fbbf24", colorOnHover = "#fff", onClick, startIcon, endIcon }: ButtonProps) {
+    return <Button
+        variant={variant}
+        LinkComponent={Link}
+        href={href}
+        color="inherit"
+        onClick={onClick ?? undefined}
+        startIcon={startIcon ?? undefined}
+        endIcon={endIcon ?? undefined}
+        sx={{
+            color: color,
+            backgroundColor: 'transparent',
+            boxShadow: 'none',
+            border: 2,
+            borderColor: color,
+            borderRadius: 0,
+            transition: 'all 700ms',
+            ':hover': {
+                borderColor: color,
+                borderWidth: 2,
+                backgroundColor: color,
+                color: colorOnHover,
+                borderRadius: '6px'
+            },
+            ...style,
         }}
-        onClick={onClick}
     >
-        <Link href={href ?? "/"}>{title}</Link>
-    </button>;
+        {children}
+    </Button>
 }

@@ -13,7 +13,7 @@ import { Facebook, Instagram, Twitter } from '@mui/icons-material/';
 import type { SvgIconComponent } from '@mui/icons-material'
 import { IconButton } from "@mui/material";
 import cn from "classnames";
-import { SOCIAL_LINKS as _sl } from "@/constants";
+import { SOCIAL_LINKS } from "@/constants";
 import { shortenText } from "@/utils/text";
 import { useBreakpoints } from "@/hooks";
 
@@ -25,17 +25,17 @@ type Socials = {
 const SOCIALS: Socials[] = [
   {
     title: "Instagram",
-    href: _sl.instagram,
+    href: SOCIAL_LINKS.instagram,
     icon: Instagram,
   },
   {
     title: "Twitter",
-    href: _sl.twitter,
+    href: SOCIAL_LINKS.twitter,
     icon: Twitter,
   },
   {
-    title: "Twitter",
-    href: _sl.facebook,
+    title: "Facebook",
+    href: SOCIAL_LINKS.facebook,
     icon: Facebook,
   },
 ]
@@ -94,11 +94,11 @@ export default function HomeHero({ data }: { data: any[] }) {
                 position: "relative",
               }}
             >
-              <div className="z-50 p-2 w-full top-[60%] absolute bg-black bg-opacity-40 text-right text-white">
-                <h2 className="text-4xl font-[500] mb-2">{item?.title?.title?.[0].plain_text ?? "No title"}</h2>
+              <div className="z-50 w-full top-[60%] absolute bg-black bg-opacity-40 text-right text-white space-x-2">
+                <h2 className="my-2 text-4xl font-[500]">{item?.title?.title?.[0].plain_text ?? "No title"}</h2>
                 <p>{shortenText(item?.description?.rich_text?.[0]?.plain_text, 100, 15)}</p>
                 <Link href={"/"}>
-                  <button className="p-1 mt-1 border-b-2 border-gray-400 text-lg italic">Read</button>
+                  <button className=" p-1 my-2 border-b-2 border-gray-400 text-lg italic">Read</button>
                 </Link>
 
               </div>
@@ -121,7 +121,8 @@ export default function HomeHero({ data }: { data: any[] }) {
       </div>
       <div className={cn(
         "w-full block h-max px-4 md:px-8 py-4 bg-white z-50 space-y-3 top-0",
-        "md:w-[35%] md:absolute"
+        "md:w-[35%] md:absolute",
+        "opacity-90"
       )}>
         <div >
           <p className="cursor-default">My name is Hilal, I am a traveller, Lorem ipsum dolor sit amet consectetur, adipisicing elit. Placeat accusantium ducimus dignissimos maiores neque sint obcaecati quo dolores quaerat ad.</p>
