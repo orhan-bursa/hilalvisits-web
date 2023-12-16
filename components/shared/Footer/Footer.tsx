@@ -1,166 +1,113 @@
-import { PAGE_ITEMS, PAGE_LINKS, SOCIAL_LINKS } from "@/constants";
-import { shortenText } from "@/utils/text";
-import { ReactNode } from "react";
-import { CustomButton } from "../custom";
+"use client"
 import Link from "next/link";
-import { Button } from "@mui/material";
-import { Facebook, Instagram, Twitter } from "@mui/icons-material";
 import cn from 'classnames'
 
-const _text = "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ratione labore minus non vel quod doloremque laboriosam at ut reprehenderit aspernatur! Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ab, nihil!"
+import { AlternateEmail, Facebook, Instagram, KeyboardArrowUp, Mail, Twitter } from "@mui/icons-material";
+import { Button, IconButton, Tooltip } from "@mui/material";
+import { PAGE_ITEMS, PAGE_LINKS, SOCIAL_LINKS } from "@/constants";
+import { babylonica, montserrat } from "@/utils/fonts";
 
 export default function Footer() {
-  return <footer className="h-full md:h-[240px] bg-amber-400 text-white py-2 md:py-8 cursor-default flex justify-center">
-    <div className={cn(
-      "h-full max-w-[400px] divide-y-2 md:divide-y-0",
-      "md:flex md:flex-row md:justify-center md:divide-x-2 md:max-w-[900px]"
-    )}>
-      <div className="max-w-[240px] md:w-[25%] h-full px-4 border-white text-center">
-        <h4 className="w-full font-bold text-lg pb-1 md:mb-2">Explore</h4>
-        <div className="md:space-y-1">
-          {PAGE_ITEMS.map((item, i) => <Button
-            key={i + item.title}
-            LinkComponent={Link}
-            href={item.href}
-            color="inherit"
-            sx={{
-              color: "#fff"
-            }}
-          >
-            {item.title}
-          </Button>
-          )}
-        </div>
-      </div>
-      <div className="w-full md:w-[50%] h-full px-8 border-white text-center">
-        <h4 className="w-full font-bold text-lg pb-1 md:mb-2">About me</h4>
-        <div className="md:text-start">
-          <Link href={PAGE_LINKS.about}>
-            <p>{shortenText(_text, 100, 15)}</p>
-            <CustomButton
-              color="#fff"
-              colorOnHover="#fbbf24"
-              style={{ border: "none" }}
-              variant="text"
-            >
-              Read Bio
-            </CustomButton>
-          </Link>
-        </div>
-      </div>
-      <div className="w-full md:w-[25%] h-full px-4 border-white text-center">
-        <h4 className="w-full font-bold text-lg pb-1 md:mb-2">Socials</h4>
-        <div className="flex flex-col">
-          <div>
-            <Button
-              LinkComponent={Link}
-              href={SOCIAL_LINKS.instagram}
-              color="inherit"
-              sx={{
-                color: "#fff"
-              }}
-              startIcon={<Instagram />}
-            >
-              Instagram
-            </Button>
-          </div>
-          <div>
-            <Button
-              LinkComponent={Link}
-              href={SOCIAL_LINKS.facebook}
-              color="inherit"
-              sx={{
-                color: "#fff"
-              }}
-              startIcon={<Facebook />}
-            >
-              Facebook
-            </Button>
-          </div>
-          <div>
-            <Button
-              LinkComponent={Link}
-              href={SOCIAL_LINKS.twitter}
-              color="inherit"
-              sx={{
-                color: "#fff"
-              }}
-              startIcon={<Twitter />}
-            >
-              Twitter
-            </Button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </footer>;
-}
-
-/*
-<footer className="h-[320px] bg-amber-400 text-white py-8 cursor-default flex justify-center items-start">
-    <div className="w-full h-full max-w-[720px] flex justify-evenly items-start">
-      <div className="h-[100%] w-[30%] border-r-2 border-white">
-        <h4 className="w-full font-bold text-lg pb-1 mb-2">Explore</h4>
-        <div className="space-y-1">
-          {PAGE_ITEMS.map((item, i) => <div key={i + item.title}>
-            {item.title}
-          </div>
-          )}
-        </div>
-      </div>
-      <div className="h-[100%] w-[30%] border-r-2 border-white">
-        <h4 className="w-full font-bold text-lg pb-1 mb-2">About me</h4>
+  return (
+    <footer className="h-full bg-amber-400 text-white pt-8 pb-2 cursor-default flex flex-col justify-center items-center gap-4 md:gap-6">
+      <div className="max-w[900px] md:mx-8 space-y-4 md:space-y-0 md:flex md:justify-center md:gap-12">
         <div>
-          <Link href={PAGE_LINKS.about}>
-            <p>{shortenText(_text, 100, 15)}</p>
-            <CustomButton
-              color="#fff"
-              colorOnHover="#fbbf24"
-              style={{ border: "none" }}
-              variant="text"
+          <h1
+            className={
+              babylonica.className + " " +
+              "h-full md:h-auto flex justify-center items-center text-7xl font-bold text-white z-50 whitespace-nowrap"
+            }
+          > Hilal Visits
+          </h1>
+          <div className="flex justify-center">
+            <IconButton color="inherit" size="small">
+              <Instagram />
+            </IconButton>
+            <IconButton color="inherit" size="small">
+              <Twitter />
+            </IconButton>
+            <IconButton color="inherit" size="small">
+              <Facebook />
+            </IconButton>
+            <IconButton color="inherit" size="small">
+              <AlternateEmail />
+            </IconButton>
+          </div>
+        </div>
+        <div className={cn(
+          "flex justify-center gap-4 md:gap-12 max-w-[400px]",
+          "md:border-l-2 md:border-white md:border-opacity-70 md:pl-12"
+        )}>
+          <div className="text-end md:text-start md:grow">
+            <h4 className={cn(
+              "w-full font-extralight md:space-y-1",
+              "border-b-[1px] border-white border-opacity-70"
+            )}>Explore</h4>
+            <div className="max-w-[200px] md:max-w-none mx-auto md:mx-0 my-2 md:space-y-1">
+              {PAGE_ITEMS.map((item, i) => <Button
+                key={i + item.title}
+                LinkComponent={Link}
+                href={item.href}
+                color="inherit"
+                sx={{
+                  color: "#fff",
+                  padding: 0,
+                }}
+                className={montserrat.className + " " + "flex justify-end md:justify-start pr-[2px] md:pl-[2px] hover:underline hover:bg-transparent"}
+              >
+                {item.title}
+              </Button>
+              )}
+            </div>
+          </div>
+          <div className={cn(
+            "text-start md:grow-[3] border-l-2 border-white border-opacity-70 pl-4",
+            "md:border-none md:border-opacity-100 md:pl-0"
+          )}>
+            <h4 className={cn(
+              "w-full font-extralight md:space-y-1 ",
+              "border-b-[1px] border-white border-opacity-70"
+            )}>Contact</h4>
+            <div className="max-w-[300px] md:max-w-none my-2 space-y-3">
+              <p className="text-start">For business inquiries, or any questions you may have, feel free to contact me!</p>
+              <Button
+                variant="outlined"
+                color="inherit"
+                href="mailto:hilalvisits@gmail.com"
+                target="blank"
+                startIcon={<Mail />}
+              >
+                Contact
+              </Button>
+            </div>
+          </div>
+        </div>
+        <div className="flex md:justify-end md:block">
+          <Tooltip title="Scroll to top" >
+            <IconButton
+              onClick={() => window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })}
+              color="inherit"
+              sx={{ border: "1px solid white", padding: "4px" }}
             >
-              Read Bio
-            </CustomButton>
+              <KeyboardArrowUp />
+            </IconButton>
+          </Tooltip>
+        </div>
+      </div>
+      <div className="flex justify-end text-xs gap-8">
+        <div>
+          <p>&copy; 2023 HilalVisits, All rights reserved.</p>
+        </div>
+        <div className="flex gap-1">
+          <Link href={"/"}>
+            <p className="hover:underline">Terms</p>
+          </Link>
+          <p>•</p>
+          <Link href={"/"}>
+            <p className="hover:underline">Privacy Policy</p>
           </Link>
         </div>
       </div>
-      <div className="h-[100%] w-[30%] border-r-2 border-white">
-        <h4 className="w-full font-bold text-lg pb-1 mb-2">Socials</h4>
-        <Button
-          LinkComponent={Link}
-          href={SOCIAL_LINKS.instagram}
-          color="inherit"
-          sx={{
-            color: "#fff"
-          }}
-          startIcon={<Instagram />}
-        >
-          Instagram
-        </Button>
-        <Button
-          LinkComponent={Link}
-          href={SOCIAL_LINKS.facebook}
-          color="inherit"
-          sx={{
-            color: "#fff"
-          }}
-          startIcon={<Facebook />}
-        >
-          Facebook
-        </Button>
-        <Button
-          LinkComponent={Link}
-          href={SOCIAL_LINKS.twitter}
-          color="inherit"
-          sx={{
-            color: "#fff"
-          }}
-          startIcon={<Twitter />}
-        >
-          Twitter
-        </Button>
-      </div>
-    </div>
-  </footer>;
-
-*/
+    </footer>
+  )
+}
