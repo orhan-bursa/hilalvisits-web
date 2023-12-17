@@ -7,7 +7,6 @@ import "swiper/css/navigation";
 import "./styles.css";
 import { Pagination, Navigation, Autoplay } from "swiper/modules";
 import Image from "next/image";
-import { babylonica } from "@/utils/fonts";
 import Link from "next/link";
 import { Facebook, Instagram, Twitter } from '@mui/icons-material/';
 import type { SvgIconComponent } from '@mui/icons-material'

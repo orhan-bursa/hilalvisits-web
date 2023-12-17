@@ -4,7 +4,7 @@ import cn from 'classnames'
 
 import { AlternateEmail, Facebook, Instagram, KeyboardArrowUp, Mail, Twitter } from "@mui/icons-material";
 import { Button, IconButton, Tooltip } from "@mui/material";
-import { PAGE_ITEMS, PAGE_LINKS, SOCIAL_LINKS } from "@/constants";
+import { PAGE_ITEMS, SOCIAL_MENU_ITEMS } from "@/constants";
 import { babylonica, montserrat } from "@/utils/fonts";
 
 export default function Footer() {
@@ -20,18 +20,16 @@ export default function Footer() {
           > Hilal Visits
           </h1>
           <div className="flex justify-center">
-            <IconButton color="inherit" size="small">
-              <Instagram />
-            </IconButton>
-            <IconButton color="inherit" size="small">
-              <Twitter />
-            </IconButton>
-            <IconButton color="inherit" size="small">
-              <Facebook />
-            </IconButton>
-            <IconButton color="inherit" size="small">
-              <AlternateEmail />
-            </IconButton>
+            {SOCIAL_MENU_ITEMS.map(item => {
+              const Icon = item.icon
+              return <IconButton
+                LinkComponent={Link}
+                href={item.href ?? "/"}
+                color="inherit"
+              >
+                <Icon />
+              </IconButton>
+            })}
           </div>
         </div>
         <div className={cn(

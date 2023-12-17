@@ -1,7 +1,0 @@
-.active {
-    @apply border-red-300 text-red-500 border-b-2
-}
-
-.active a {
-    @apply text-red-500
-}

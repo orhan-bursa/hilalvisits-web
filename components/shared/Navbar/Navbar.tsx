@@ -1,46 +1,96 @@
 "use client";
-import Link from "next/link";
 import { usePathname } from "next/navigation";
 import cn from "classnames";
 import { babylonica } from "@/utils/fonts";
 
 import "./styles.css";
-import { PAGE_ITEMS } from "@/constants/pages";
+import { PAGE_LINKS, PAGE_TITLES } from "@/constants/pages";
+import { Button, IconButton } from "@mui/material";
+import { CollectionsBookmark, Home, Mail, NotListedLocation, PhotoCamera, PhotoLibrary } from "@mui/icons-material";
+import { SOCIAL_MENU_ITEMS } from "@/constants";
+import Link from "next/link";
 
-export function Navbar() {
+const NAVBAR_MENU_ITEMS = [
+  {
+    title: PAGE_TITLES.about,
+    href: PAGE_LINKS.about,
+    icon: NotListedLocation
+  },
+  {
+    title: PAGE_TITLES.blog,
+    href: PAGE_LINKS.blog,
+    icon: CollectionsBookmark
+  },
+  {
+    title: PAGE_TITLES.home,
+    href: PAGE_LINKS.home,
+    icon: Home
+  },
+  {
+    title: PAGE_TITLES.album,
+    href: PAGE_LINKS.album,
+    icon: PhotoLibrary
+  },
+  {
+    title: PAGE_TITLES.photo,
+    href: PAGE_LINKS.photo,
+    icon: PhotoCamera
+  },
+]
+export default function Navbar() {
   const pathname = usePathname();
 
   return (
-    <header className="h-[100px] w-full cursor-pointer border-b-2">
-      <nav className="h-[100%] flex justify-between">
-        <div className="w-[400px]">
-          <h1
-            className={
-              babylonica.className +
-              " " +
-              "h-[100%] flex justify-center items-center text-[80px] text-amber-400 z-50 whitespace-nowrap "
-            }
-          > Hilal Visits</h1>
-        </div>
-        <ul className="hidden sm:flex justify-center items-center h-10 mr-4">
-          {PAGE_ITEMS.map((item, i) => {
-            const active = item.href == pathname;
-            return (
-              <li
-                key={item.href + i}
-                className={cn(
-                  "text-[14px] mx-3 mt-1 hover:border-b-2 text-gray-700",
-                  "hover:font-semibold duration-300 hover:border-red-500 hover:text-red-500",
-                  { active: active }
-                )}
-              >
-                <Link href={item.href}>{item.title}</Link>
-              </li>
-            );
+    <nav className={cn(
+      "h-full w-full sticky top-0 z-[150] mx-auto",
+    )}>
+      <div className="bg-white">
+        <ul className={cn(
+          "flex justify-center items-center",
+        )}>
+          {NAVBAR_MENU_ITEMS.map(item => {
+            return <li
+              key={item.href}
+              className={cn(
+                "py-2 px-5 my-1",
+                "text-center text-xs hover:font-semibold border-t-2",
+                "hover:border-red-300 hover:text-red-400",
+                { active: item.href === pathname }
+              )}
+            >
+              <Link href={item.href}>{item.title.toUpperCase()}</Link>
+            </li>
           })}
         </ul>
-      </nav>
-    </header>
+      </div>
+      {/* <div className="flex justify-between items-center bg-amber-400 text-white">
+        <div>
+          <IconButton
+            color="inherit"
+            href="mailto:hilalvisits@gmail.com"
+            target="blank"
+            sx={{ p: 0 }}
+          >
+            <Mail />
+          </IconButton>
+        </div>
+        <div className="flex justify-center">
+          {SOCIAL_MENU_ITEMS.map(item => {
+            const Icon = item.icon
+            return <IconButton
+              LinkComponent={Link}
+              href={item.href ?? "/"}
+              color="inherit"
+              size="small"
+              sx={{ padding: 0 }}
+            >
+              <Icon />
+            </IconButton>
+          })}
+        </div>
+      </div> */}
+
+    </nav>
   );
 }
 
