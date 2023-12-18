@@ -81,6 +81,7 @@ export default async function Instagram() {
       </div>
       <div className="flex justify-center">
         <CustomButton
+          LinkComponent={Link}
           href={"https://www.instagram.com/hilalvisits/"}
           startIcon={<InstagramIcon />}
         >

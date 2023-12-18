@@ -94,6 +94,7 @@ export default function HomeDestinations({ data }: { data: any[] }) {
         <p>Selection of destinations I recently explored, follow me travel tips, tricks and much more. Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse, tempore. Delectus sequi qui in eius quia doloremque molestias, laborum temporibus. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Provident, fuga.</p>
         <CustomButton
           href="/blog"
+          LinkComponent={Link}
         >
           Explore
         </CustomButton>

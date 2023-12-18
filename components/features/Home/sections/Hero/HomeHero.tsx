@@ -53,7 +53,7 @@ export default function HomeHero({ data }: { data: any[] }) {
   };
   return (
     <section className="w-full h-[900px] sm:h-[800px] md:h-[700px] relative cursor-default">
-      <div className="h-[700px] min-h-[700px] md:h-full w-full  px-2">
+      <div className="h-[700px] min-h-[700px] md:h-full w-full bg-gray-200 p-2">
         <Swiper
           className="home-hero-swiper"
           speed={1000}
@@ -119,7 +119,7 @@ export default function HomeHero({ data }: { data: any[] }) {
         </Swiper>
       </div>
       <div className={cn(
-        "w-full block h-max px-4 md:px-8 py-4 bg-white z-50 space-y-3 top-0",
+        "w-full block h-max px-4 md:px-8 py-4 md:mt-2 bg-white z-50 space-y-3 top-0",
         "md:w-[35%] md:absolute",
         "opacity-90"
       )}>
@@ -133,21 +133,6 @@ export default function HomeHero({ data }: { data: any[] }) {
             "transition-all duration-700"
           )}
           >Read more</button>
-          <ul className="flex text-amber-400">
-            {SOCIALS.map((item, i) => {
-              const Icon = item.icon
-              return <li key={item.title + i}>
-                <IconButton
-                  LinkComponent={Link}
-                  href="/"
-                >
-                  <Icon color="inherit" />
-                </IconButton>
-              </li>
-            })
-            }
-
-          </ul>
         </div>
       </div>
     </section>

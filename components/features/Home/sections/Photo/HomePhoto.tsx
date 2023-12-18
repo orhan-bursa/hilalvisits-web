@@ -33,7 +33,7 @@ export default function HomePhoto({ data }: { data: any[] }) {
           </div>
           <p>I have a passion for photography! I like capturing unique moments during my trips. I share tips for taking best travels photographs, follow for more! Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati, praesentium.</p>
           <div>
-            <CustomButton href="/photo">View more</CustomButton>
+            <CustomButton LinkComponent={Link} href="/photo">View more</CustomButton>
           </div>
         </div>
         <div className="w-full lg:w-[65%]">

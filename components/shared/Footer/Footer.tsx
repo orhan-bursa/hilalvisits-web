@@ -20,9 +20,10 @@ export default function Footer() {
           > Hilal Visits
           </h1>
           <div className="flex justify-center">
-            {SOCIAL_MENU_ITEMS.map(item => {
+            {SOCIAL_MENU_ITEMS.map((item, i) => {
               const Icon = item.icon
               return <IconButton
+                key={i + item.title}
                 LinkComponent={Link}
                 href={item.href ?? "/"}
                 color="inherit"
