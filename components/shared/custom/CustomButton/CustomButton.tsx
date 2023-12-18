@@ -1,6 +1,6 @@
 import { Button } from "@mui/material";
 import Link from "next/link";
-import type { CSSProperties, ReactElement, ReactNode } from "react";
+import type { CSSProperties, ElementType, ReactElement, ReactNode } from "react";
 
 type ButtonProps = {
     children: ReactNode
@@ -12,11 +12,12 @@ type ButtonProps = {
     color?: string
     colorOnHover?: string
     variant?: "text" | "outlined" | "contained"
+    LinkComponent?: ElementType<any> | undefined
 }
-export default function CustomButton({ children, variant = "outlined", style, href, color = "#fbbf24", colorOnHover = "#fff", onClick, startIcon, endIcon }: ButtonProps) {
+export default function CustomButton({ children, variant = "outlined", style, href, color = "#fbbf24", colorOnHover = "#fff", onClick, startIcon, endIcon, LinkComponent }: ButtonProps) {
     return <Button
         variant={variant}
-        LinkComponent={Link}
+        LinkComponent={LinkComponent ?? undefined}
         href={href}
         color="inherit"
         onClick={onClick ?? undefined}

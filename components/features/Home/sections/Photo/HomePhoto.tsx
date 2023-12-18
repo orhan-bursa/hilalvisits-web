@@ -10,7 +10,7 @@ import "./styles.css";
 import { FreeMode, Navigation, Thumbs } from "swiper/modules";
 import Image from "next/image";
 import Link from "next/link";
-import { babylonica } from "@/utils/fonts";
+import { babylonica, whisper } from "@/utils/fonts";
 import cn from "classnames";
 import { useBreakpoints } from "@/hooks";
 
@@ -25,15 +25,15 @@ export default function HomePhoto({ data }: { data: any[] }) {
         <div className="w-full lg:w-[35%] m-2 space-y-4">
           <div>
             <h1 className={cn(
-              babylonica.className,
+              whisper.className,
               "w-full text-amber-400 tracking-wider mb-2",
-              "text-6xl sm:text-[80px] text-center sm:text-start"
+              "text-[60px] sm:text-[60px] text-center sm:text-start"
             )}>
               Photography</h1>
           </div>
           <p>I have a passion for photography! I like capturing unique moments during my trips. I share tips for taking best travels photographs, follow for more! Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati, praesentium.</p>
           <div>
-            <CustomButton href="/photo">View more</CustomButton>
+            <CustomButton LinkComponent={Link} href="/photo">View more</CustomButton>
           </div>
         </div>
         <div className="w-full lg:w-[65%]">

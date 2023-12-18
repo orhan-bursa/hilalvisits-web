@@ -1,7 +1,8 @@
 .active {
-    @apply border-red-300 text-red-500 border-b-2
+    @apply text-red-600 font-semibold border-t-2 border-red-500
 }
 
+/* 
 .active a {
-    @apply text-red-500
-}
+    @apply text-red-600
+} */

@@ -1,11 +1,10 @@
 import Link from "next/link"
-import { babylonica } from "@/utils/fonts";
+import { whisper } from "@/utils/fonts";
 import Image from "next/image";
 import cn from "classnames";
 import { Button, Tooltip } from "@mui/material";
 import { shortenText } from "@/utils/text";
 import InstagramIcon from '@mui/icons-material/Instagram';
-import { SOCIAL_LINKS } from "@/constants/social";
 import { CustomButton } from "../custom";
 
 type MappedInstagramPost = {
@@ -47,7 +46,7 @@ export default async function Instagram() {
       <div className="w-full flex items-center justify-center ">
         <h1
           className={cn(
-            babylonica.className,
+            whisper.className,
             "h-28 z-30 text-center text-amber-400 ",
             "text-6xl sm:text-[80px]"
           )
@@ -82,7 +81,8 @@ export default async function Instagram() {
       </div>
       <div className="flex justify-center">
         <CustomButton
-          href={SOCIAL_LINKS.instagram}
+          LinkComponent={Link}
+          href={"https://www.instagram.com/hilalvisits/"}
           startIcon={<InstagramIcon />}
         >
           Follow
