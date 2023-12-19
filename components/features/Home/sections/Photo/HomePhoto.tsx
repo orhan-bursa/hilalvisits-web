@@ -26,13 +26,13 @@ export default function HomePhoto({ data }: { data: any[] }) {
           <div>
             <h1 className={cn(
               whisper.className,
-              "w-full text-amber-400 tracking-wider mb-2",
+              "w-full text-amber-400 tracking-wider mb-2 cursor-default",
               "text-[60px] sm:text-[60px] text-center sm:text-start"
             )}>
               Photography</h1>
           </div>
           <p>I have a passion for photography! I like capturing unique moments during my trips. I share tips for taking best travels photographs, follow for more! Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati, praesentium.</p>
-          <div>
+          <div className="m-4 text-center md:text-start">
             <CustomButton LinkComponent={Link} href="/photo">View more</CustomButton>
           </div>
         </div>

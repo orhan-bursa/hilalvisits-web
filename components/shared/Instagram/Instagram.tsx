@@ -47,7 +47,7 @@ export default async function Instagram() {
         <h1
           className={cn(
             whisper.className,
-            "h-28 z-30 text-center text-amber-400 ",
+            "mb-1 z-30 text-center text-amber-400 cursor-default",
             "text-6xl sm:text-[80px]"
           )
           }

@@ -67,8 +67,7 @@ export default function HomeHero({ data }: { data: any[] }) {
           navigation={true}
           modules={[Autoplay, Pagination, Navigation]}
           autoplay={{
-            delay: 40000,
-            disableOnInteraction: true,
+            delay: 8000,
           }}
           onAutoplayTimeLeft={onAutoplayTimeLeft}
           style={{

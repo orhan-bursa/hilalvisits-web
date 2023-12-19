@@ -15,7 +15,7 @@ import { Navigation } from "swiper/modules";
 import Image from "next/image";
 import Link from "next/link";
 import cn from "classnames";
-import { babylonica, whisper } from "@/utils/fonts";
+import { whisper } from "@/utils/fonts";
 import { CustomButton } from "@/components/shared/custom";
 import { useBreakpoints } from "@/hooks";
 
@@ -28,7 +28,7 @@ export default function HomeDestinations({ data }: { data: any[] }) {
       <div>
         <h1 className={cn(
           whisper.className,
-          "w-full text-amber-400 text-[60px] tracking-wider mb-2",
+          "w-full text-amber-400 text-[60px] tracking-wider mb-2 cursor-default",
           "text-6xl sm:text-[80px] text-center sm:text-start"
         )}>
           Destinations</h1>
@@ -90,7 +90,7 @@ export default function HomeDestinations({ data }: { data: any[] }) {
           )}
         </Swiper>
       </div>
-      <div className="my-2 space-y-2">
+      <div className="mb-2 mt-4 space-y-2 text-center md:text-start">
         <p>Selection of destinations I recently explored, follow me travel tips, tricks and much more. Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse, tempore. Delectus sequi qui in eius quia doloremque molestias, laborum temporibus. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Provident, fuga.</p>
         <CustomButton
           href="/blog"
