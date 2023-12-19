@@ -2,7 +2,6 @@
     @apply text-red-600 font-semibold border-t-2 border-red-500
 }
 
-/* 
-.active a {
-    @apply text-red-600
-} */
+.mobile-active {
+    @apply text-red-600 font-semibold border-red-400 border-l-[3px]
+}

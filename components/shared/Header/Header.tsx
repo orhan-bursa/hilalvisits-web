@@ -1,16 +1,15 @@
 "use client"
 import { SOCIAL_MENU_ITEMS } from '@/constants'
 import { babylonica } from '@/utils/fonts'
-import { Mail } from '@mui/icons-material'
+import { MailOutline } from '@mui/icons-material'
 import { IconButton } from '@mui/material'
 import cn from 'classnames'
 import Link from 'next/link'
 import { CustomButton } from '@/components/shared'
-
+import './styles.css'
 export default function Header() {
     return (
-        <div className="w-full bg-white border-b-2 sm:border-b-0 text-gray-400">
-
+        <div className="w-full bg-white border-b-2 md:border-b-0 text-amber-400">
             <div className='flex justify-between items-end px-1 md:px-4 lg:px-8 gap-2 md:gap-4'>
                 <div className="w-[15%] md:w-[25%] hidden md:flex justify-start gap-1 md:gap-2">
                     {SOCIAL_MENU_ITEMS.map((item, i) => {
@@ -34,7 +33,7 @@ export default function Header() {
                     <div
                         key={"/"}
                         className={cn(
-                            "text-center text-[80px] sm:text-8xl whitespace-nowrap text-amber-400 py-2",
+                            "brand text-center text-[80px] sm:text-8xl whitespace-nowrap text-amber-400 py-2",
                         )}
                     >
                         <Link href={"/"}>
@@ -48,8 +47,8 @@ export default function Header() {
                     <CustomButton
                         variant="outlined"
                         href="mailto:hilalvisits@gmail.com"
-                        startIcon={<Mail />}
-                        color='#9ca3af'
+                        startIcon={<MailOutline />}
+                        color='#fbbf24'
                     >
                         Contact
 

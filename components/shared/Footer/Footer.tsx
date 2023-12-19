@@ -2,20 +2,20 @@
 import Link from "next/link";
 import cn from 'classnames'
 
-import { AlternateEmail, Facebook, Instagram, KeyboardArrowUp, Mail, Twitter } from "@mui/icons-material";
+import { AlternateEmail, Facebook, Instagram, KeyboardArrowUp, MailOutline, Twitter } from "@mui/icons-material";
 import { Button, IconButton, Tooltip } from "@mui/material";
 import { PAGE_ITEMS, SOCIAL_MENU_ITEMS } from "@/constants";
 import { babylonica, montserrat } from "@/utils/fonts";
 
 export default function Footer() {
   return (
-    <footer className="h-full bg-amber-400 text-white pt-8 pb-2 cursor-default flex flex-col justify-center items-center gap-4 md:gap-6">
+    <footer className="h-full bg-amber-400 text-white pt-8 pb-2 cursor-default flex flex-col justify-center items-center gap-4 md:gap-6 px-2 md:px-0 ">
       <div className="max-w[900px] md:mx-8 space-y-4 md:space-y-0 md:flex md:justify-center md:gap-12">
         <div>
           <h1
             className={
               babylonica.className + " " +
-              "h-full md:h-auto flex justify-center items-center text-7xl font-bold text-white z-50 whitespace-nowrap"
+              "h-full md:h-auto flex justify-center items-center text-6xl md:text-7xl font-bold text-white z-50 whitespace-nowrap"
             }
           > Hilal Visits
           </h1>
@@ -74,7 +74,7 @@ export default function Footer() {
                 color="inherit"
                 href="mailto:hilalvisits@gmail.com"
                 target="blank"
-                startIcon={<Mail />}
+                startIcon={<MailOutline />}
               >
                 Contact
               </Button>
