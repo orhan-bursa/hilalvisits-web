@@ -8,7 +8,7 @@ export default function BlogGrid({ data }: { data: any }) {
     <section className="max-w-[1200px] w-full min-h-[600px] h-full mx-auto">
       <div className="px-2 sm:px-4 md:px-6 lg:px-8 xl:px-0">
         <div>
-          <h1
+          <h2
             className={cn(
               whisper.className,
               "w-full text-amber-400 tracking-wider mb-2 cursor-default",
@@ -16,7 +16,7 @@ export default function BlogGrid({ data }: { data: any }) {
             )}
           >
             Blogs
-          </h1>
+          </h2>
         </div>
         <div
           className={cn(
@@ -36,6 +36,9 @@ export default function BlogGrid({ data }: { data: any }) {
                     fill
                     style={{ objectFit: "cover" }}
                   />
+                  <div className="absolute bottom-5 px-2 lg:px-4 text-white">
+                    <h3 className="text-xl">Lorem ipsum dolor sit amet.</h3>
+                  </div>
                 </div>
               </div>
             );
