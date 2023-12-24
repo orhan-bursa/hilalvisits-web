@@ -1,5 +1,5 @@
 import { getBlogImageUrl } from "@/utils/blogs";
-import { whisper } from "@/utils/fonts";
+import { babylonica, whisper } from "@/utils/fonts";
 import cn from "classnames";
 import Image from "next/image";
 
@@ -12,7 +12,7 @@ export default function BlogGrid({ data }: { data: any }) {
             className={cn(
               whisper.className,
               "w-full text-amber-400 tracking-wider mb-2 cursor-default",
-              "text-[60px] sm:text-[60px] text-center sm:text-center"
+              "text-[60px] sm:text-[80px] text-center sm:text-center"
             )}
           >
             Blogs
