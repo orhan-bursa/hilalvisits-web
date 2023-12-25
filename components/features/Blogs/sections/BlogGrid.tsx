@@ -1,7 +1,8 @@
 import { getBlogImageUrl } from "@/utils/blogs";
-import { babylonica, whisper } from "@/utils/fonts";
+import { whisper } from "@/utils/fonts";
 import cn from "classnames";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function BlogGrid({ data }: { data: any }) {
   return (
@@ -27,17 +28,27 @@ export default function BlogGrid({ data }: { data: any }) {
         >
           {data.map((blog: any, i: number) => {
             const url = getBlogImageUrl(blog);
+            console.log({ blog });
+
             return (
-              <div key={blog.title?.title?.[0].plain_text}>
-                <div className="w-full h-full relative min-h-[300px]">
-                  <Image
-                    src={url}
-                    alt={data?.title}
-                    fill
-                    style={{ objectFit: "cover" }}
-                  />
+              <div
+                key={blog.title?.title?.[0].plain_text}
+                className="cursor-pointer"
+              >
+                <div className="w-full h-full relative">
+                  <div className="w-full h-full relative min-h-[300px]">
+                    <Link href={`/blog/${blog?.id}`}>
+                      <Image
+                        src={url}
+                        alt={data?.title}
+                        fill
+                        style={{ objectFit: "cover" }}
+                      // className="hover:scale-110 transition-all duration-700"
+                      />
+                    </Link>
+                  </div>
                   <div className="absolute bottom-5 px-2 lg:px-4 text-white">
-                    <h3 className="text-xl">Lorem ipsum dolor sit amet.</h3>
+                    <h3 className="text-xl">{blog.title?.title?.[0].plain_text}</h3>
                   </div>
                 </div>
               </div>
