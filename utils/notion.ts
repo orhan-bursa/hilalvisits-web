@@ -8,56 +8,80 @@ export const notionClient = new Client({
 });
 
 export const getBlogs = async () => {
-  const res = await notionClient.databases.query({
-    //TODO: get only published items
-    database_id: process.env.NOTION_BLOGS_DATABASE_ID!,
-  });
+  try {
+    const res = await notionClient.databases.query({
+      //TODO: get only published items
+      database_id: process.env.NOTION_BLOGS_DATABASE_ID!,
+    });
 
-  const blogs = blogMapper(array(res?.results))
-  return blogs;
+    const blogs = blogMapper(array(res?.results))
+    return blogs;
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 export const getHomePage = async () => {
-  //TODO: get limited number of items from each section
-  const blogs = await getBlogs();
-  const photos = await getPhotos();
+  try {
+    //TODO: get limited number of items from each section
+    const blogs = await getBlogs();
+    const photos = await getPhotos();
 
-  return {
-    blogs,
-    photos,
-  };
+    return {
+      blogs,
+      photos,
+    };
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 export const getPhotos = async () => {
-  const res = await notionClient.databases.query({
-    //TODO: get only published items
-    database_id: process.env.NOTION_PHOTOS_DATABASE_ID!,
-  });
+  try {
+    const res = await notionClient.databases.query({
+      //TODO: get only published items
+      database_id: process.env.NOTION_PHOTOS_DATABASE_ID!,
+    });
 
-  const photos = photoMapper(array(res?.results))
-  return photos;
+    const photos = photoMapper(array(res?.results))
+    return photos;
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 export const getAlbums = async () => {
-  const res = await notionClient.databases.query({
-    //TODO: get only published items
-    database_id: process.env.NOTION_ALBUMS_DATABASE_ID!,
-  });
+  try {
+    const res = await notionClient.databases.query({
+      //TODO: get only published items
+      database_id: process.env.NOTION_ALBUMS_DATABASE_ID!,
+    });
 
-  const albums = albumMapper(array(res?.results))
-  return albums;
+    const albums = albumMapper(array(res?.results))
+    return albums;
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 const getPageContent = async (pageId: string) => {
-  const response = await notionClient.blocks.children.list({
-    block_id: pageId,
-  });
-  return response.results;
+  try {
+    const response = await notionClient.blocks.children.list({
+      block_id: pageId,
+    });
+    return response.results;
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 export const getBlogsContent = async (pageIds: string[]) => {
-  const blogsContent = await Promise.all(
-    pageIds.map((id) => getPageContent(id))
-  );
-  return blogsContent;
+  try {
+    const blogsContent = await Promise.all(
+      pageIds.map((id) => getPageContent(id))
+    );
+    return blogsContent;
+  } catch (error) {
+    console.log(error);
+  }
 };

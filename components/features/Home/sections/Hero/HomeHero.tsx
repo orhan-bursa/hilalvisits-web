@@ -10,11 +10,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { Facebook, Instagram, Twitter } from '@mui/icons-material/';
 import type { SvgIconComponent } from '@mui/icons-material'
-import { IconButton } from "@mui/material";
+import { Button, IconButton } from "@mui/material";
 import cn from "classnames";
 import { SOCIAL_LINKS } from "@/constants";
 import { shortenText } from "@/utils/text";
 import { useBreakpoints } from "@/hooks";
+import { montserrat } from "@/utils/fonts";
 
 type Socials = {
   title: string
@@ -126,12 +127,27 @@ export default function HomeHero({ data }: { data: any[] }) {
           <p className="cursor-default">My name is Hilal, I am a traveller, Lorem ipsum dolor sit amet consectetur, adipisicing elit. Placeat accusantium ducimus dignissimos maiores neque sint obcaecati quo dolores quaerat ad.</p>
         </div>
         <div className="flex md:flex-col items-center justify-between md:items-start">
-          <button className={cn(
-            "w-32 my-2 border-2 border-transparent border-b-gray-200 p-2 rounded",
-            "hover:pl-2 hover:border-2 hover:border-gray-400",
-            "transition-all duration-700"
-          )}
-          >Read more</button>
+          <Button
+            LinkComponent={Link}
+            href="/"
+            variant="text"
+            color="inherit"
+            sx={{
+              width: 128,
+              marginY: 2,
+              border: "2px solid white",
+              borderBottom: "2px solid #e2e8f0",
+              textTransform: "none",
+              fontFamily: montserrat.className,
+              fontSize: 18,
+              transition: "all 500ms ease",
+              "&:hover": {
+                border: "2px solid #94a3b8"
+              }
+            }}
+          >
+            Read more
+          </Button>
         </div>
       </div>
     </section>

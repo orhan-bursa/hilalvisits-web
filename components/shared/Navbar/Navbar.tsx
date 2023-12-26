@@ -51,7 +51,7 @@ export default function Navbar() {
             onClick={stopPropagation}
             className={cn(
               "flex flex-col justify-between items-center sticky top-[15vh]",
-              "h-[60vh] py-4 mt-[15vh] bg-white bg-opacity-100",
+              "h-[80vh] py-4 mt-[15vh] bg-white bg-opacity-100",
               "border-y-2 border-amber-400"
             )}>
             <div className="w-full">
