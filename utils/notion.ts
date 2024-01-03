@@ -2,16 +2,23 @@ import "server-only";
 import { Client } from "@notionhq/client";
 import { albumMapper, blogMapper, photoMapper } from "./mapper";
 import array from "./array";
+import type { BlockObjectResponse } from "@notionhq/client/build/src/api-endpoints";
 
 export const notionClient = new Client({
   auth: process.env.NOTION_SECRET,
 });
 
-export const getBlogs = async () => {
+const publishedStatusFilter = {
+  property: "status",
+  status: {
+    equals: "published"
+  }
+}
+export async function getBlogs() {
   try {
     const res = await notionClient.databases.query({
-      //TODO: get only published items
       database_id: process.env.NOTION_BLOGS_DATABASE_ID!,
+      filter: publishedStatusFilter
     });
 
     const blogs = blogMapper(array(res?.results))
@@ -21,9 +28,8 @@ export const getBlogs = async () => {
   }
 };
 
-export const getHomePage = async () => {
+export async function getHomePage() {
   try {
-    //TODO: get limited number of items from each section
     const blogs = await getBlogs();
     const photos = await getPhotos();
 
@@ -36,11 +42,11 @@ export const getHomePage = async () => {
   }
 };
 
-export const getPhotos = async () => {
+export async function getPhotos() {
   try {
     const res = await notionClient.databases.query({
-      //TODO: get only published items
       database_id: process.env.NOTION_PHOTOS_DATABASE_ID!,
+      filter: publishedStatusFilter
     });
 
     const photos = photoMapper(array(res?.results))
@@ -50,11 +56,12 @@ export const getPhotos = async () => {
   }
 };
 
-export const getAlbums = async () => {
+export async function getAlbums() {
   try {
     const res = await notionClient.databases.query({
       //TODO: get only published items
       database_id: process.env.NOTION_ALBUMS_DATABASE_ID!,
+      filter: publishedStatusFilter
     });
 
     const albums = albumMapper(array(res?.results))
@@ -64,18 +71,8 @@ export const getAlbums = async () => {
   }
 };
 
-const getPageContent = async (pageId: string) => {
-  try {
-    const response = await notionClient.blocks.children.list({
-      block_id: pageId,
-    });
-    return response.results;
-  } catch (error) {
-    console.log(error);
-  }
-};
 
-export const getBlogsContent = async (pageIds: string[]) => {
+export async function getBlogsContent(pageIds: string[]) {
   try {
     const blogsContent = await Promise.all(
       pageIds.map((id) => getPageContent(id))
@@ -85,3 +82,23 @@ export const getBlogsContent = async (pageIds: string[]) => {
     console.log(error);
   }
 };
+
+export async function getPageContent(pageId: string) {
+  try {
+    const response = await notionClient.blocks.children.list({
+      block_id: pageId,
+    });
+    return response.results as BlockObjectResponse[];
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export async function getPage(id: string) {
+  try {
+    const res = notionClient.pages.retrieve({ page_id: id })
+    return res
+  } catch (error) {
+    console.log(error);
+  }
+}
