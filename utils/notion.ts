@@ -8,7 +8,7 @@ export const notionClient = new Client({
   auth: process.env.NOTION_SECRET,
 });
 
-const publishedStatusQuery = {
+const publishedStatusFilter = {
   property: "status",
   status: {
     equals: "published"
@@ -18,7 +18,7 @@ export async function getBlogs() {
   try {
     const res = await notionClient.databases.query({
       database_id: process.env.NOTION_BLOGS_DATABASE_ID!,
-      filter: publishedStatusQuery
+      filter: publishedStatusFilter
     });
 
     const blogs = blogMapper(array(res?.results))
@@ -46,7 +46,7 @@ export async function getPhotos() {
   try {
     const res = await notionClient.databases.query({
       database_id: process.env.NOTION_PHOTOS_DATABASE_ID!,
-      filter: publishedStatusQuery
+      filter: publishedStatusFilter
     });
 
     const photos = photoMapper(array(res?.results))
@@ -61,7 +61,7 @@ export async function getAlbums() {
     const res = await notionClient.databases.query({
       //TODO: get only published items
       database_id: process.env.NOTION_ALBUMS_DATABASE_ID!,
-      filter: publishedStatusQuery
+      filter: publishedStatusFilter
     });
 
     const albums = albumMapper(array(res?.results))
