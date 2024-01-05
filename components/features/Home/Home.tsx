@@ -4,7 +4,7 @@ import {
   HomeDestinations,
   HomePhoto
 } from "./sections"
-import array from "@/utils/array";
+import { array } from "@/utils";
 
 type HomePropTypes = {
   blogs: any[];

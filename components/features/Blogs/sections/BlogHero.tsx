@@ -8,7 +8,6 @@ import Link from "next/link";
 export default function BlogHero({ data }: { data: any }) {
   const url = getBlogImageUrl(data);
   const title = data?.title?.title[0].plain_text;
-  console.log(data);
 
   if (!data) return <div>Unable to get data from the server</div>;
   return (

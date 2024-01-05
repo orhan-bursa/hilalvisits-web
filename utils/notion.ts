@@ -1,7 +1,7 @@
 import "server-only";
 import { Client } from "@notionhq/client";
 import { albumMapper, blogMapper, photoMapper } from "./mapper";
-import array from "./array";
+import { array } from ".";
 import type { BlockObjectResponse } from "@notionhq/client/build/src/api-endpoints";
 
 export const notionClient = new Client({
@@ -88,7 +88,7 @@ export async function getPageContent(pageId: string) {
     const response = await notionClient.blocks.children.list({
       block_id: pageId,
     });
-    return response.results as BlockObjectResponse[];
+    return array<BlockObjectResponse>(response.results)
   } catch (error) {
     console.log(error);
   }
