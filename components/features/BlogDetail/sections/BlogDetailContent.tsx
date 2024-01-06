@@ -1,5 +1,5 @@
 export default function BlogDetailContent() {
-    return <div>
+    return <section>
         Content section
-    </div>
+    </section>
 }

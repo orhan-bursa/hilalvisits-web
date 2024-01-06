@@ -1,5 +1,5 @@
 export default function BlogDetailHero() {
-    return <div>
+    return <section>
         Hero section
-    </div>
+    </section>
 }
