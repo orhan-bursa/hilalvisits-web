@@ -1,19 +1,15 @@
 import { SectionDivider } from "@/components";
-import { BlogHero } from "./sections";
-import BlogGrid from "./sections/BlogGrid";
+import { BlogGrid, BlogHero } from "./sections";
+import { BlogPageObject } from "@/types";
 
-type BlogPropTypes = {
-  blogs: any[];
-};
-
-export default function Blogs({ blogs }: BlogPropTypes) {
+export default function Blogs({ blogs }: { blogs: BlogPageObject[] }) {
   const latestBlog = blogs?.[0];
   const rest = blogs.slice(1);
   return (
     <div>
-      <BlogHero data={latestBlog} />
+      <BlogHero item={latestBlog} />
       <SectionDivider />
-      <BlogGrid data={rest} />
+      <BlogGrid items={rest} />
       <SectionDivider />
     </div>
   );

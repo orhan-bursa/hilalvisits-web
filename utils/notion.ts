@@ -1,8 +1,7 @@
 import "server-only";
 import { Client } from "@notionhq/client";
-import { albumMapper, blogMapper, photoMapper } from "./mapper";
 import { array } from ".";
-import type { BlockObjectResponse, GetPageResponse, ListBlockChildrenResponse, PageObjectResponse } from "@notionhq/client/build/src/api-endpoints";
+import { BlogPageObject, PhotoPageObject, AlbumPageObject } from "@/types";
 
 export const notionClient = new Client({
   auth: process.env.NOTION_SECRET,
@@ -21,7 +20,7 @@ export async function getBlogs() {
       filter: publishedStatusFilter
     });
 
-    const blogs = blogMapper(array(res?.results))
+    const blogs = array<BlogPageObject>(res?.results)
     return blogs;
   } catch (error) {
     console.log(error);
@@ -45,7 +44,7 @@ export async function getPhotos() {
       filter: publishedStatusFilter
     });
 
-    const photos = photoMapper(array(res?.results))
+    const photos = array<PhotoPageObject>(res?.results)
     return photos;
   } catch (error) {
     console.log(error);
@@ -60,7 +59,8 @@ export async function getAlbums() {
       filter: publishedStatusFilter
     });
 
-    return res?.results;
+    const albums = array<AlbumPageObject>(res?.results)
+    return albums;
   } catch (error) {
     console.log(error);
   }
@@ -80,7 +80,7 @@ export async function getPageContents(pageId: string) {
 export async function getPage(id: string) {
   try {
     const res = await notionClient.pages.retrieve({ page_id: id })
-    return res as PageObjectResponse
+    return res
   } catch (error) {
     console.log(error);
   }

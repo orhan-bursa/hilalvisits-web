@@ -1,15 +1,16 @@
-import { getBlogImageUrl } from "@/utils/blogs";
-import { babylonica, montserrat, whisper } from "@/utils/fonts";
+import { BlogPageObject } from "@/types";
+import { destructureBlogProps } from "@/utils";
+import { montserrat, whisper } from "@/utils/fonts";
 import { Button } from "@mui/material";
 import cn from "classnames";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function BlogHero({ data }: { data: any }) {
-  const url = getBlogImageUrl(data);
-  const title = data?.title?.title[0].plain_text;
+export default function BlogHero({ item }: { item: BlogPageObject }) {
 
-  if (!data) return <div>Unable to get data from the server</div>;
+  const { title, cover } = destructureBlogProps(item)
+
+  if (!item) return <div>Unable to get data from the server</div>;
   return (
     <section className="w-full h-full min-h-[600px] flex flex-col md:flex-row mt-2 md:p-8">
       <div className={cn(
@@ -65,7 +66,7 @@ export default function BlogHero({ data }: { data: any }) {
         "p-1"
       )}>
         <div className="min-h-[300px] h-full relative">
-          <Image src={url} alt={title} fill style={{ objectFit: "cover" }} />
+          <Image src={cover} alt={title} fill style={{ objectFit: "cover" }} />
         </div>
       </div>
     </section>

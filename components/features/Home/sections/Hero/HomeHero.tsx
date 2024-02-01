@@ -10,12 +10,14 @@ import Image from "next/image";
 import Link from "next/link";
 import { Facebook, Instagram, Twitter } from '@mui/icons-material/';
 import type { SvgIconComponent } from '@mui/icons-material'
-import { Button, IconButton } from "@mui/material";
+import { Alert, Button } from "@mui/material";
 import cn from "classnames";
 import { SOCIAL_LINKS } from "@/constants";
 import { shortenText } from "@/utils/text";
 import { useBreakpoints } from "@/hooks";
 import { montserrat } from "@/utils/fonts";
+import { BlogPageObject } from "@/types";
+import { destructureBlogProps } from "@/utils";
 
 type Socials = {
   title: string
@@ -40,18 +42,17 @@ const SOCIALS: Socials[] = [
   },
 ]
 
-export default function HomeHero({ data }: { data: any[] }) {
-
+export default function HomeHero({ items }: { items: BlogPageObject[] | undefined }) {
   const { isMobile } = useBreakpoints()
 
   const progressCircle = useRef(null);
   const progressContent = useRef(null);
   const onAutoplayTimeLeft = (s: any, time: any, progress: any) => {
-    //@ts-ignore
-    progressCircle.current.style.setProperty('--progress', 1 - progress);
-    //@ts-ignore
-    progressContent.current.textContent = ` · `; //${Math.ceil(time / 1000)}s
+    (progressCircle?.current as any)?.style?.setProperty('--progress', 1 - progress);
+    (progressContent?.current as any).textContent = ` · `; //${Math.ceil(time / 1000)}s
   };
+
+  if (!items || !items.length) return <Alert>Unable to retrieve data from server</Alert>
   return (
     <section className="w-full h-[900px] sm:h-[800px] md:h-[700px] relative cursor-default">
       <div className="h-[700px] min-h-[700px] md:h-full w-full bg-gray-200 p-2">
@@ -78,8 +79,8 @@ export default function HomeHero({ data }: { data: any[] }) {
           }}
 
         >
-          {data.map((item, ind) => {
-            const url = item?.cover?.files?.[0]?.external?.url ?? item?.cover?.files?.[0]?.file?.url
+          {items.map((item, ind) => {
+            const { cover, title, description } = destructureBlogProps(item)
             return <SwiperSlide
               key={ind}
               style={{
@@ -94,16 +95,16 @@ export default function HomeHero({ data }: { data: any[] }) {
               }}
             >
               <div className="z-50 w-full top-[60%] absolute bg-black bg-opacity-40 text-right text-white space-x-2">
-                <h2 className="my-2 text-4xl font-[500]">{item?.title?.title?.[0].plain_text ?? "No title"}</h2>
-                <p>{shortenText(item?.description?.rich_text?.[0]?.plain_text, 100, 15)}</p>
+                <h2 className="my-2 text-4xl font-[500]">{title ?? "No title"}</h2>
+                <p>{shortenText(description, 100, 15)}</p>
                 <Link href={"/"}>
                   <button className=" p-1 my-2 border-b-2 border-gray-400 text-lg italic">Read</button>
                 </Link>
 
               </div>
               <Image
-                src={url}
-                alt={item.title ?? ""}
+                src={cover}
+                alt={title ?? ""}
                 fill
                 style={{ objectFit: "cover" }}
               />

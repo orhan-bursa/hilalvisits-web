@@ -2,8 +2,6 @@ import { Chip } from "@mui/material";
 import { PageObjectResponse } from "@notionhq/client/build/src/api-endpoints";
 
 export default function BlogDetailSideContent({ albums }: { albums: PageObjectResponse[] }) {
-    console.log(albums);
-
     return (
         <div>
             <div>
