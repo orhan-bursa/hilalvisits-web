@@ -30,7 +30,7 @@ export default function BlogDetailHero({ data }: { data: BlogPageObject }) {
                 </p>
                 <div className="flex flex-wrap">
                     {tags.map(tag => {
-                        return <Chip label={tag.name} sx={{ backgroundColor: tag.color }} />
+                        return <Chip key={tag.id} label={tag.name} />
                     })}
                 </div>
             </div>
