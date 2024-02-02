@@ -18,11 +18,15 @@ import cn from "classnames";
 import { whisper } from "@/utils/fonts";
 import { CustomButton } from "@/components/shared/custom";
 import { useBreakpoints } from "@/hooks";
+import { BlogPageObject } from "@/types";
+import { destructureBlogProps } from "@/utils";
+import { Alert } from "@mui/material";
 
-export default function HomeDestinations({ data }: { data: any[] }) {
+export default function HomeDestinations({ items }: { items: BlogPageObject[] | undefined }) {
 
   const { isMobile, isDesktop } = useBreakpoints()
 
+  if (!items || !items.length) return <Alert>Unable to retrieve data from server</Alert>
   return (
     <section className="max-w-[1200px] w-full mx-auto">
       <div>
@@ -50,8 +54,8 @@ export default function HomeDestinations({ data }: { data: any[] }) {
           }}
 
         >
-          {data.map((item, ind) => {
-            const url = item?.cover?.files?.[0]?.external?.url ?? item?.cover?.files?.[0]?.file?.url
+          {items?.map((item, ind) => {
+            const { cover, title } = destructureBlogProps(item)
             return <SwiperSlide
               key={ind}
               style={{
@@ -67,8 +71,8 @@ export default function HomeDestinations({ data }: { data: any[] }) {
               <div className="w-full h-[100%] relative cursor-pointer overflow-hidden  group">
                 <Link href={"/"}>
                   <Image
-                    src={url}
-                    alt={item.title ?? ""}
+                    src={cover}
+                    alt={title ?? ""}
                     fill
                     style={{ objectFit: "cover" }}
                     className="hover:scale-110 transition-all duration-700"

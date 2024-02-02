@@ -13,12 +13,16 @@ import Link from "next/link";
 import { whisper } from "@/utils/fonts";
 import cn from "classnames";
 import { useBreakpoints } from "@/hooks";
+import { PhotoPageObject } from "@/types";
+import { destructurePhotoProps } from "@/utils";
+import { Alert } from "@mui/material";
 
-export default function HomePhoto({ data }: { data: any[] }) {
+export default function HomePhoto({ items }: { items: PhotoPageObject[] | undefined }) {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
-  const { isMobile, isDesktop, isWideScreen } = useBreakpoints();
+  const { isMobile, isDesktop } = useBreakpoints();
 
+  if (!items || !items.length) return <Alert>Unable to retrieve data from server</Alert>
   return (
     <section className="max-w-[1200px] w-full mx-auto">
       <div className="flex w-full flex-col lg:flex-row">
@@ -63,10 +67,9 @@ export default function HomePhoto({ data }: { data: any[] }) {
             modules={[FreeMode, Navigation, Thumbs]}
             className="mySwiper2"
           >
-            {data.map((item, ind) => {
-              const url =
-                item?.cover?.files?.[0]?.external?.url ??
-                item?.cover?.files?.[0]?.file?.url;
+            {items?.map((item, ind) => {
+              const { image, title } = destructurePhotoProps(item)
+
               return (
                 <SwiperSlide
                   key={ind}
@@ -80,8 +83,8 @@ export default function HomePhoto({ data }: { data: any[] }) {
                   }}
                 >
                   <Image
-                    src={url}
-                    alt={item.title ?? ""}
+                    src={image}
+                    alt={title ?? ""}
                     style={{ objectFit: "cover" }}
                     fill
                   />
@@ -106,10 +109,9 @@ export default function HomePhoto({ data }: { data: any[] }) {
               padding: "10px 0",
             }}
           >
-            {data.map((item, ind) => {
-              const url =
-                item?.cover?.files?.[0]?.external?.url ??
-                item?.cover?.files?.[0]?.file?.url;
+            {items?.map((item, ind) => {
+              const { image, title } = destructurePhotoProps(item)
+
               return (
                 <SwiperSlide
                   key={ind}
@@ -123,8 +125,8 @@ export default function HomePhoto({ data }: { data: any[] }) {
                   }}
                 >
                   <Image
-                    src={url}
-                    alt={item.title ?? ""}
+                    src={image}
+                    alt={title ?? ""}
                     fill
                     style={{ objectFit: "cover" }}
                   />

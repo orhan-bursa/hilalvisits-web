@@ -1,10 +1,11 @@
 import { Blogs as FeatureBlogs } from "@/components/features";
 import { getBlogs } from "@/utils/notion";
+import { Alert } from "@mui/material";
 
 export default async function Blog() {
-  const blogs: any = await getBlogs();
+  const blogs = await getBlogs();
 
-  if (!blogs) return <div>No Blogs found.</div>;
+  if (!blogs) return <Alert severity="warning">No Blogs Found</Alert>;
 
   return <FeatureBlogs blogs={blogs} />;
 }

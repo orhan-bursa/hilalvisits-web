@@ -5,5 +5,5 @@ export default async function Photo() {
 
   if (!photos) return <div>No Photos found.</div>;
 
-  return <FeaturePhotos data={photos} />;
+  return <FeaturePhotos items={photos} />;
 }

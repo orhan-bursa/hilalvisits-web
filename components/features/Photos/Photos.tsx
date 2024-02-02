@@ -1,3 +1,3 @@
-export default function Photos({ data }: { data?: any }) {
-  return <div>{JSON.stringify(data ?? {})}</div>;
+export default function Photos({ items }: { items?: any }) {
+  return <div>{JSON.stringify(items ?? {})}</div>;
 }

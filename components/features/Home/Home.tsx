@@ -4,21 +4,20 @@ import {
   HomeDestinations,
   HomePhoto
 } from "./sections"
-import { array } from "@/utils";
-
-type HomePropTypes = {
-  blogs: any[];
-  photos: any[];
+import { PhotoPageObject, BlogPageObject } from "@/types";
+interface IPropTypes {
+  blogs: BlogPageObject[] | undefined;
+  photos: PhotoPageObject[] | undefined;
 };
-export default function Home({ blogs, photos }: HomePropTypes) {
+export default function Home({ blogs, photos }: IPropTypes) {
 
   return (
     <div>
-      <HomeHero data={array(blogs)} />
+      <HomeHero items={blogs} />
       <SectionDivider />
-      <HomeDestinations data={array(blogs)} />
+      <HomeDestinations items={blogs} />
       <SectionDivider />
-      <HomePhoto data={array(blogs)} />
+      <HomePhoto items={photos} />
       <SectionDivider />
     </div>
   );

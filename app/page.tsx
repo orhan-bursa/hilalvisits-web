@@ -3,5 +3,6 @@ import { getBlogs, getPhotos } from "@/utils/notion";
 export default async function Home() {
   const blogs = await getBlogs();
   const photos = await getPhotos();
-  return <FeatureHome photos={photos as any[]} blogs={blogs as any[]} />;
+
+  return <FeatureHome photos={photos} blogs={blogs} />;
 }

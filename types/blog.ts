@@ -1,30 +1,34 @@
 import {
-  Base,
   DateType,
   FilesType,
   MultiSelectType,
   NumberType,
+  PageObjectBase,
   RichTextType,
   SelectType,
   StatusType,
   TitleType,
 } from "./core";
 
-export type Blog = Base & {
-  city: MultiSelectType;
-  cover: FilesType;
-  continent: SelectType;
-  budget_amount_spent: NumberType;
-  accomodation: MultiSelectType;
-  country: MultiSelectType;
-  district: MultiSelectType;
-  arrival_date: DateType;
-  budget_currency: RichTextType;
-  author: SelectType;
-  duration_in_days: NumberType;
+export type BlogPageObject = PageObjectBase & {
+  properties: BlogProperties
+}
+
+export type BlogProperties = {
   status: StatusType;
-  suggestions: RichTextType;
+  author: SelectType;
+  cover: FilesType;
   description: RichTextType;
+  arrival_date: DateType;
+  duration_in_days: NumberType;
+  accomodation: MultiSelectType;
+  budget_currency: RichTextType;
+  budget_amount_spent: NumberType;
+  continent: SelectType;
+  country: MultiSelectType;
+  city: MultiSelectType;
+  district: MultiSelectType;
+  suggestions: RichTextType;
   tags: MultiSelectType;
   title: TitleType;
 };

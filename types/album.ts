@@ -2,23 +2,23 @@ import {
   FilesType,
   MultiSelectType,
   PageObjectBase,
-  RelationType,
+  RichTextType,
   SelectType,
   StatusType,
   TitleType,
 } from "./core";
 
-export type PhotoPageObject = PageObjectBase & {
-  properties: PhotoProperties
+export type AlbumPageObject = PageObjectBase & {
+  properties: AlbumProperties
 }
 
-export type PhotoProperties = {
-  image: FilesType;
+export type AlbumProperties = {
   status: StatusType;
+  description: RichTextType;
+  cover: FilesType;
   continent: SelectType;
   country: MultiSelectType;
   city: MultiSelectType;
-  albums: RelationType;
   district: MultiSelectType;
   title: TitleType;
 };

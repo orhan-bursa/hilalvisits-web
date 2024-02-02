@@ -1,2 +1,2 @@
 export { default as BlogHero } from "./BlogHero";
-export { default } from "./BlogGrid";
+export { default as BlogGrid } from "./BlogGrid";
