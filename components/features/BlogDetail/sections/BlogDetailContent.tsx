@@ -1,4 +1,3 @@
-import { getBlockChildren } from "@/utils/notion";
 import { BlockObjectResponse, RichTextItemResponse } from "@notionhq/client/build/src/api-endpoints";
 import cn from "classnames";
 import Image from "next/image";
@@ -20,14 +19,15 @@ function getRichTextWithAnnotations(item: RichTextItemResponse, otherClassNames?
     return href ? <Link href={href ?? "/"} target="_blank">{result}</Link> : result
 }
 
-async function mapBlogContent(content: BlockObjectResponse) {
+function mapBlogContent(content: BlockObjectResponse, index: number) {
+    const key = content.id + index
     switch (content?.type) {
         case "heading_1":
-            if (content.heading_1.rich_text.length === 0) return <div className="h-16"></div>
+            if (content.heading_1.rich_text.length === 0) return <div key={key} className="h-16"></div>
             const h1item = content.heading_1.rich_text?.[0]
             return (
-                <h1 key={content.id} className={cn(
-                    "text-4xl min-h-16",
+                <h1 key={key} className={cn(
+                    "text-4xl min-h-16 text-center",
                     h1item?.annotations?.bold ? "font-bold" : "",
                     h1item?.annotations?.italic ? "italic" : "",
                     h1item?.annotations?.underline ? "underline" : ""
@@ -36,10 +36,10 @@ async function mapBlogContent(content: BlockObjectResponse) {
                 </h1>
             )
         case "heading_2":
-            if (content.heading_2.rich_text.length === 0) return <div className="h-12"></div>
+            if (content.heading_2.rich_text.length === 0) return <div key={key} className="h-12"></div>
             const h2item = content.heading_2.rich_text?.[0]
             return (
-                <h2 key={content.id} className={cn(
+                <h2 key={key} className={cn(
                     "text-3xl min-h-12",
                     h2item?.annotations?.bold ? "font-bold" : "",
                     h2item?.annotations?.italic ? "italic" : "",
@@ -49,10 +49,10 @@ async function mapBlogContent(content: BlockObjectResponse) {
                 </h2>
             )
         case "heading_3":
-            if (content.heading_3.rich_text.length === 0) return <div className="h-8"></div>
+            if (content.heading_3.rich_text.length === 0) return <div key={key} className="h-8"></div>
             const h3item = content.heading_3.rich_text?.[0]
             return (
-                <h3 key={content.id} className={cn(
+                <h3 key={key} className={cn(
                     "text-2xl min-h-8",
                     h3item?.annotations?.bold ? "font-bold" : "",
                     h3item?.annotations?.italic ? "italic" : "",
@@ -63,15 +63,15 @@ async function mapBlogContent(content: BlockObjectResponse) {
             )
 
         case "paragraph":
-            if (content.paragraph.rich_text.length === 0) return <div className="h-6"></div>
+            if (content.paragraph.rich_text.length === 0) return <div key={key} className="h-6"></div>
             return (
-                <div key={content.id} className="min-h-6">
+                <div key={key} className="min-h-6">
                     {content.paragraph.rich_text.map(item => getRichTextWithAnnotations(item))}
                 </div>
             )
         case "image":
             return (
-                <div className="min-h-[300px] w-full h-full relative aspect-video">
+                <div key={key} className="min-h-[300px] w-full h-full relative aspect-video">
                     <Image
                         alt={content.id + " image"}
                         src={content.image.type === "file" ? content.image.file.url : content.image.external.url}
@@ -81,9 +81,9 @@ async function mapBlogContent(content: BlockObjectResponse) {
                 </div>
             )
         case "bulleted_list_item":
-            if (content.bulleted_list_item.rich_text.length === 0) return <div className="h-6" key={content.id}><li></li></div>
+            if (content.bulleted_list_item.rich_text.length === 0) return <div key={key} className="h-6"><li></li></div>
             return (
-                <li key={content.id}>
+                <li key={key}>
                     {content.bulleted_list_item.rich_text.map(item => getRichTextWithAnnotations(item))}
                 </li>
             )
@@ -101,8 +101,8 @@ export default async function BlogDetailContent({ blogContents }: { blogContents
     if (!blogContents) return <div>There are no blog contents found</div>
 
     return (
-        <section className="mx-auto w-full md:max-w-[900px]">
-            {blogContents.map(async content => await mapBlogContent(content))}
+        <section className="mx-auto w-full md:max-w-[900px] mt-8 mb-12">
+            {blogContents.map((content, ind) => mapBlogContent(content, ind))}
         </section>
     )
 }

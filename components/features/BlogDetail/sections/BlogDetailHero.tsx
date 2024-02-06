@@ -6,13 +6,11 @@ import cn from "classnames";
 import Image from "next/image";
 
 export default function BlogDetailHero({ data }: { data: BlogPageObject }) {
-    const { title, cover } = destructureBlogProps(data)
+    const { title, cover, description } = destructureBlogProps(data)
 
     return (
-        <section className="w-full h-full min-h-[600px] md:max-w-[1200px] mt-2 md:p-8">
-            <div className={cn(
-                "w-full border-2 border-amber-400 p-1",
-            )}>
+        <section className="w-full h-full min-h-[600px] md:max-w-[1200px]">
+            <div className="w-full">
                 <div className="min-h-[600px] h-full relative">
                     <Image src={cover} alt={title} fill style={{ objectFit: "cover" }} />
                 </div>
@@ -29,10 +27,8 @@ export default function BlogDetailHero({ data }: { data: BlogPageObject }) {
                 )}>
                     {title}
                 </h1>
-                <p className="text-lg">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non
-                    asperiores officia officiis aliquam nostrum distinctio dolores
-                    explicabo excepturi, mollitia illum!
+                <p className="italic md:max-w-[900px]">
+                    {description}
                 </p>
             </div>
 
