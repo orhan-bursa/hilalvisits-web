@@ -113,7 +113,7 @@ export default function Navbar() {
         : null}
 
       <nav className={cn(
-        "h-full w-full sticky top-0 z-[150] mx-auto md:mb-4 px-4 bg-white",
+        "h-full w-full mx-auto md:mb-4 px-4 bg-white",
       )}>
         <div>
           <div className="flex justify-end md:hidden text-gray-600 p-2 b-2" onClick={handleOpenMenu}><Menu color="inherit" /></div>
@@ -125,7 +125,7 @@ export default function Navbar() {
                 key={i + item.href}
                 className={cn(
                   "py-2 px-8 my-1",
-                  "text-center text-xs hover:font-semibold border-t-2",
+                  "text-center text-md hover:font-semibold border-t-2",
                   "hover:border-red-300 hover:text-red-400",
                   { active: item.href === pathname }
                 )}
