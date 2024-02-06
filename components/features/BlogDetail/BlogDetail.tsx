@@ -2,35 +2,20 @@ import { BlockObjectResponse } from "@notionhq/client/build/src/api-endpoints";
 import {
   BlogDetailHero,
   BlogDetailContent,
-  BlogDetailSideContent
 } from "./sections";
-import cn from "classnames";
-import { BlogPageObject, AlbumPageObject } from "@/types";
+import { BlogPageObject } from "@/types";
 
 interface IPropTypes {
   blog: BlogPageObject
-  blogContents: BlockObjectResponse[]
-  albums: AlbumPageObject[],
+  blogContents?: BlockObjectResponse[]
 }
 
-export default function BlogDetail({ data }: { data: IPropTypes }) {
-  const { blog, blogContents, albums } = data
+export default function BlogDetail({ blog, blogContents }: IPropTypes) {
 
-  return <div className="w-full">
-    <div className="md:col-span-4">
+  return (
+    <div className="w-full flex flex-col items-center">
       <BlogDetailHero data={blog} />
+      <BlogDetailContent blogContents={blogContents} />
     </div>
-    <div className={cn(
-      "mx-auto w-full",
-      "md:grid md:grid-cols-4 md:max-w-[1200px]",
-    )}
-    >
-      <div className="md:col-span-3">
-        <BlogDetailContent />
-      </div>
-      <div className="md:col-span-1">
-        <BlogDetailSideContent albums={albums} />
-      </div>
-    </div>
-  </div>;
+  )
 }

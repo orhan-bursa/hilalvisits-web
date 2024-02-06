@@ -6,42 +6,32 @@ import cn from "classnames";
 import Image from "next/image";
 
 export default function BlogDetailHero({ data }: { data: BlogPageObject }) {
-    const { title, tags, cover } = destructureBlogProps(data)
+    const { title, cover, description } = destructureBlogProps(data)
 
     return (
-        <section className="w-full h-full min-h-[600px] flex flex-col md:flex-row mt-2 md:p-8">
+        <section className="w-full h-full min-h-[600px] md:max-w-[1200px]">
+            <div className="w-full">
+                <div className="min-h-[600px] h-full relative">
+                    <Image src={cover} alt={title} fill style={{ objectFit: "cover" }} />
+                </div>
+            </div>
             <div className={cn(
-                "w-full md:w-[40%] order-2 md:order-1",
-                "px-4 py-2",
+                "w-full px-4 py-2",
             )}>
                 <h1 className={cn(
                     whisper.className,
                     " ",
-                    "text-amber-400 underline underline-offset-8 mb-4 pl-4",
+                    "text-amber-400 underline underline-offset-8 mb-4 pl-4 text-center",
                     "text-5xl sm:text-6xl md:text-7xl lg:text-8xl",
 
                 )}>
                     {title}
                 </h1>
-                <p className="text-lg">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non
-                    asperiores officia officiis aliquam nostrum distinctio dolores
-                    explicabo excepturi, mollitia illum!
+                <p className="italic md:max-w-[900px]">
+                    {description}
                 </p>
-                <div className="flex flex-wrap">
-                    {tags.map(tag => {
-                        return <Chip key={tag.id} label={tag.name} />
-                    })}
-                </div>
             </div>
-            <div className={cn(
-                "w-full md:w-[60%] border-2 border-amber-400 order-1 md:order-2",
-                "p-1"
-            )}>
-                <div className="min-h-[300px] h-full relative">
-                    <Image src={cover} alt={title} fill style={{ objectFit: "cover" }} />
-                </div>
-            </div>
+
         </section>
     )
 }
