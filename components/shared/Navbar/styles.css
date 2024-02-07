@@ -1,5 +1,5 @@
 .active {
-    @apply text-red-600 font-semibold border-t-2 border-red-500
+    @apply text-red-600 font-semibold border-b-2 border-red-500
 }
 
 .mobile-active {
