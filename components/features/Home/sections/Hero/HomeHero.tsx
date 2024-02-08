@@ -12,35 +12,10 @@ import { Facebook, Instagram, Twitter } from '@mui/icons-material/';
 import type { SvgIconComponent } from '@mui/icons-material'
 import { Alert, Button } from "@mui/material";
 import cn from "classnames";
-import { SOCIAL_LINKS } from "@/constants";
 import { shortenText } from "@/utils/text";
 import { useBreakpoints } from "@/hooks";
-import { montserrat } from "@/utils/fonts";
 import { BlogPageObject } from "@/types";
 import { destructureBlogProps } from "@/utils";
-
-type Socials = {
-  title: string
-  href: string
-  icon: SvgIconComponent
-}
-const SOCIALS: Socials[] = [
-  {
-    title: "Instagram",
-    href: SOCIAL_LINKS.instagram,
-    icon: Instagram,
-  },
-  {
-    title: "Twitter",
-    href: SOCIAL_LINKS.twitter,
-    icon: Twitter,
-  },
-  {
-    title: "Facebook",
-    href: SOCIAL_LINKS.facebook,
-    icon: Facebook,
-  },
-]
 
 export default function HomeHero({ items }: { items: BlogPageObject[] | undefined }) {
   const { isMobile } = useBreakpoints()
@@ -53,29 +28,33 @@ export default function HomeHero({ items }: { items: BlogPageObject[] | undefine
   };
 
   if (!items || !items.length) return <Alert>Unable to retrieve data from server</Alert>
+
   return (
-    <section className="w-full h-[900px] sm:h-[800px] md:h-[700px] relative cursor-default">
-      <div className="h-[700px] min-h-[700px] md:h-full w-full bg-gray-200 p-2">
+    <section className={cn(
+      "relative cursor-default mx-auto my-8",
+      "w-full h-full max-w-[1200px] md:flex md:gap-8",
+    )}>
+      <div className="w-full h-full">
         <Swiper
           className="home-hero-swiper"
-          speed={1000}
-          slidesPerView={"auto"}
-          spaceBetween={isMobile ? 8 : 16}
-          initialSlide={1}
+          speed={500}
+          slidesPerView={isMobile ? 1 : 2}
+          spaceBetween={isMobile ? 16 : 32}
           loop={true}
           pagination={{
             clickable: true,
           }}
           navigation={true}
-          modules={[Autoplay, Pagination, Navigation]}
+          modules={[Navigation, Pagination, Autoplay]}
           autoplay={{
-            delay: 8000,
+            delay: 5000,
           }}
           onAutoplayTimeLeft={onAutoplayTimeLeft}
           style={{
             width: "100%",
             height: "100%",
-            position: "relative",
+            marginLeft: "auto",
+            marginRight: "auto",
           }}
 
         >
@@ -89,25 +68,24 @@ export default function HomeHero({ items }: { items: BlogPageObject[] | undefine
                 background: "#fff",
                 display: "flex",
                 alignItems: "center",
-                width: isMobile ? "100%" : "65%",
-                left: isMobile ? 0 : "35%",
-                position: "relative",
+                flexDirection: "column"
               }}
             >
-              <div className="z-50 w-full top-[60%] absolute bg-black bg-opacity-40 text-right text-white space-x-2">
+              <div className="relative h-full min-h-[400px] md:min-h-[500px] w-full">
+                <Image
+                  src={cover ?? ""}
+                  alt={title ?? ""}
+                  fill
+                  style={{ objectFit: "cover" }}
+                />
+              </div>
+              <div className="z-50 w-full top-[60%] absolute bg-black bg-opacity-40 text-white space-x-2">
                 <h2 className="my-2 text-4xl font-[500]">{title ?? "No title"}</h2>
                 <p>{shortenText(description, 100, 15)}</p>
                 <Link href={"/"}>
                   <button className=" p-1 my-2 border-b-2 border-gray-400 text-lg italic">Read</button>
                 </Link>
-
               </div>
-              <Image
-                src={cover}
-                alt={title ?? ""}
-                fill
-                style={{ objectFit: "cover" }}
-              />
             </SwiperSlide>
           }
           )}
@@ -119,38 +97,24 @@ export default function HomeHero({ items }: { items: BlogPageObject[] | undefine
           </div>
         </Swiper>
       </div>
-      <div className={cn(
-        "w-full block h-max px-4 md:px-8 py-4 md:mt-2 bg-white z-50 space-y-3 top-0",
-        "md:w-[35%] md:absolute",
-        "opacity-90"
-      )}>
-        <div >
-          <p className="cursor-default">My name is Hilal, I am a traveller, Lorem ipsum dolor sit amet consectetur, adipisicing elit. Placeat accusantium ducimus dignissimos maiores neque sint obcaecati quo dolores quaerat ad.</p>
-        </div>
-        <div className="flex md:flex-col items-center justify-between md:items-start">
-          <Button
-            LinkComponent={Link}
-            href="/"
-            variant="text"
-            color="inherit"
-            sx={{
-              width: 128,
-              marginY: 2,
-              border: "2px solid white",
-              borderBottom: "2px solid #e2e8f0",
-              textTransform: "none",
-              fontFamily: montserrat.className,
-              fontSize: 18,
-              transition: "all 500ms ease",
-              "&:hover": {
-                border: "2px solid #94a3b8"
-              }
-            }}
-          >
-            Read more
-          </Button>
-        </div>
-      </div>
+
     </section>
   );
 }
+
+/* 
+ <div className="w-full h-full md:w-[35%] text-center space-y-3 flex gap-4 md:block">
+        <div className="w-full aspect-square relative mx-auto">
+          <Image
+            src={me}
+            alt={"title"}
+            fill
+            style={{ objectFit: "cover" }}
+          />
+        </div>
+        <div className="text-start md:text-center">
+          <h1 className="text-2xl font-semibold">Hilal Visits</h1>
+          <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Suscipit obcaecati voluptatem inventore, minima illum quibusdam, eligendi iste voluptates vitae necessitatibus molestiae culpa quisquam saepe adipisci temporibus maiores, tenetur rerum doloribus?</p>
+        </div>
+      </div>
+              */

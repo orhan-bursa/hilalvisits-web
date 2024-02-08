@@ -9,7 +9,7 @@ import { CollectionsBookmark, Home, MailOutline, NotListedLocation, PhotoCamera,
 import Link from "next/link";
 import { Button, IconButton } from "@mui/material";
 import { SOCIAL_MENU_ITEMS } from "@/constants";
-import { babylonica } from "@/utils/fonts";
+import { whisper } from "@/utils/fonts";
 
 const NAVBAR_MENU_ITEMS = [
   {
@@ -114,38 +114,41 @@ export default function Navbar() {
         : null}
 
       <nav className={cn(
-        "h-full w-full max-w-[1200px] mx-auto px-4 py-2 bg-white flex justify-between",
+        "h-full w-full max-w-[1200px] mx-auto px-4 bg-white flex justify-between",
       )}>
         <div
           key={"/"}
           className={cn(
-            "brand text-center text-5xl sm:text-3xl whitespace-nowrap text-amber-400 py-2",
+            "brand text-center text-3xl sm:text-8xl whitespace-nowrap text-amber-400",
           )}
         >
           <Link href={"/"}>
-            <h1>Hilal Visits</h1>
+            <h1
+              className={cn(
+                whisper.className,
+              )
+              }
+            >Hilal Visits</h1>
           </Link>
         </div>
-        <div>
-          <div className="flex justify-end md:hidden text-gray-600 p-2 b-2" onClick={handleOpenMenu}><Menu color="inherit" /></div>
-          <ul className={cn(
-            "hidden md:flex  justify-center items-center",
-          )}>
-            {NAVBAR_MENU_ITEMS.map((item, i) => {
-              return <li
-                key={i + item.href}
-                className={cn(
-                  "py-2 px-4 my-1",
-                  "text-center text-md hover:font-semibold border-b-2",
-                  "hover:border-red-300 hover:text-red-400",
-                  { active: item.href === pathname }
-                )}
-              >
-                <Link href={item.href}>{item.title.toUpperCase()}</Link>
-              </li>
-            })}
-          </ul>
-        </div>
+        <div className="flex items-center justify-end md:hidden text-gray-600 p-2 b-2" onClick={handleOpenMenu}><Menu color="inherit" /></div>
+        <ul className={cn(
+          "hidden md:flex  justify-center items-center",
+        )}>
+          {NAVBAR_MENU_ITEMS.map((item, i) => {
+            return <li
+              key={i + item.href}
+              className={cn(
+                "py-2 px-4 my-1",
+                "text-center text-md hover:font-semibold border-b-2",
+                "hover:border-red-300 hover:text-red-400",
+                { active: item.href === pathname }
+              )}
+            >
+              <Link href={item.href}>{item.title.toUpperCase()}</Link>
+            </li>
+          })}
+        </ul>
       </nav>
     </>
   );

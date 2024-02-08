@@ -9,10 +9,9 @@
   }
 
   .home-hero-swiper .swiper-button-prev {
-    left: 37%
+    left: 2%
   }
 }
-
 
 .home-hero-swiper .swiper-pagination-bullet {
   @apply bg-slate-50
@@ -21,18 +20,6 @@
 .home-hero-swiper .swiper-pagination-bullet-active {
   @apply bg-amber-500
 }
-
-.home-hero-swiper .swiper-slide {
-  height: 100%;
-  transition: opacity 1s;
-  opacity: 0.7;
-
-}
-
-.home-hero-swiper .swiper-slide-active {
-  opacity: 1;
-}
-
 
 .autoplay-progress {
   --swiper-theme-color: #FBBF24;
