@@ -9,7 +9,7 @@ import { CollectionsBookmark, Home, MailOutline, NotListedLocation, PhotoCamera,
 import Link from "next/link";
 import { Button, IconButton } from "@mui/material";
 import { SOCIAL_MENU_ITEMS } from "@/constants";
-import { babylonica } from "@/utils/fonts";
+import { whisper } from "@/utils/fonts";
 
 const NAVBAR_MENU_ITEMS = [
   {
@@ -119,11 +119,16 @@ export default function Navbar() {
         <div
           key={"/"}
           className={cn(
-            "brand text-center text-3xl sm:text-5xl whitespace-nowrap text-amber-400",
+            "brand text-center text-3xl sm:text-8xl whitespace-nowrap text-amber-400",
           )}
         >
           <Link href={"/"}>
-            <h1>Hilal Visits</h1>
+            <h1
+              className={cn(
+                whisper.className,
+              )
+              }
+            >Hilal Visits</h1>
           </Link>
         </div>
         <div className="flex items-center justify-end md:hidden text-gray-600 p-2 b-2" onClick={handleOpenMenu}><Menu color="inherit" /></div>

@@ -12,13 +12,10 @@ import { Facebook, Instagram, Twitter } from '@mui/icons-material/';
 import type { SvgIconComponent } from '@mui/icons-material'
 import { Alert, Button } from "@mui/material";
 import cn from "classnames";
-import { SOCIAL_LINKS } from "@/constants";
 import { shortenText } from "@/utils/text";
 import { useBreakpoints } from "@/hooks";
-import { montserrat } from "@/utils/fonts";
 import { BlogPageObject } from "@/types";
-import { destructureBlogProps, getUrlFromFilesType } from "@/utils";
-import me from "../../../../../assets/images/v3-nobg.png";
+import { destructureBlogProps } from "@/utils";
 
 export default function HomeHero({ items }: { items: BlogPageObject[] | undefined }) {
   const { isMobile } = useBreakpoints()
@@ -37,11 +34,11 @@ export default function HomeHero({ items }: { items: BlogPageObject[] | undefine
       "relative cursor-default mx-auto my-8",
       "w-full h-full max-w-[1200px] md:flex md:gap-8",
     )}>
-      <div className="w-full h-full md:w-[65%]">
+      <div className="w-full h-full">
         <Swiper
           className="home-hero-swiper"
           speed={500}
-          slidesPerView={1}
+          slidesPerView={isMobile ? 1 : 2}
           spaceBetween={isMobile ? 16 : 32}
           loop={true}
           pagination={{
@@ -74,7 +71,7 @@ export default function HomeHero({ items }: { items: BlogPageObject[] | undefine
                 flexDirection: "column"
               }}
             >
-              <div className="relative h-full min-h-[400px] md:min-h-[600px] w-full">
+              <div className="relative h-full min-h-[400px] md:min-h-[500px] w-full">
                 <Image
                   src={cover ?? ""}
                   alt={title ?? ""}
@@ -100,7 +97,13 @@ export default function HomeHero({ items }: { items: BlogPageObject[] | undefine
           </div>
         </Swiper>
       </div>
-      <div className="w-full h-full md:w-[35%] text-center space-y-3 flex gap-4 md:block">
+
+    </section>
+  );
+}
+
+/* 
+ <div className="w-full h-full md:w-[35%] text-center space-y-3 flex gap-4 md:block">
         <div className="w-full aspect-square relative mx-auto">
           <Image
             src={me}
@@ -114,39 +117,4 @@ export default function HomeHero({ items }: { items: BlogPageObject[] | undefine
           <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Suscipit obcaecati voluptatem inventore, minima illum quibusdam, eligendi iste voluptates vitae necessitatibus molestiae culpa quisquam saepe adipisci temporibus maiores, tenetur rerum doloribus?</p>
         </div>
       </div>
-    </section>
-  );
-}
-
-/* <div className="z-50 w-full top-[60%] absolute bg-black bg-opacity-40 text-right text-white space-x-2">
-                <h2 className="my-2 text-4xl font-[500]">{title ?? "No title"}</h2>
-                <p>{shortenText(description, 100, 15)}</p>
-                <Link href={"/"}>
-                  <button className=" p-1 my-2 border-b-2 border-gray-400 text-lg italic">Read</button>
-                </Link>
-              </div> 
-              
-              
-              type Socials = {
-  title: string
-  href: string
-  icon: SvgIconComponent
-}
-const SOCIALS: Socials[] = [
-  {
-    title: "Instagram",
-    href: SOCIAL_LINKS.instagram,
-    icon: Instagram,
-  },
-  {
-    title: "Twitter",
-    href: SOCIAL_LINKS.twitter,
-    icon: Twitter,
-  },
-  {
-    title: "Facebook",
-    href: SOCIAL_LINKS.facebook,
-    icon: Facebook,
-  },
-]
               */
