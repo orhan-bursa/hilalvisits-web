@@ -17,28 +17,69 @@ import Link from "next/link";
 import cn from "classnames";
 import { whisper } from "@/utils/fonts";
 import { CustomButton } from "@/components/shared/custom";
-import { useBreakpoints } from "@/hooks";
 import { BlogPageObject } from "@/types";
 import { destructureBlogProps } from "@/utils";
-import { Alert } from "@mui/material";
+import { Alert, Chip } from "@mui/material";
 
 export default function HomeDestinations({ items }: { items: BlogPageObject[] | undefined }) {
 
-  const { isMobile, isDesktop } = useBreakpoints()
-
   if (!items || !items.length) return <Alert>Unable to retrieve data from server</Alert>
   return (
-    <section className="max-w-[1200px] w-full mx-auto">
+    <section className="max-w-[900px] w-full mx-auto">
       <div>
-        <h1 className={cn(
-          whisper.className,
-          "w-full text-amber-400 text-[60px] tracking-wider mb-2 cursor-default",
-          "text-6xl sm:text-[80px] text-center sm:text-start"
+        <h2 className={cn(
+          "w-full cursor-default py-6",
+          "text-5xl text-amber-400 text-center"
         )}>
-          Destinations</h1>
+          Latest Blogs
+        </h2>
       </div>
-      <div className="w-full h-[300px] border-2 border-amber-200 p-2">
-        <Swiper
+      <div className={cn(
+        "w-full",
+        "flex flex-col gap-8"
+      )}>
+        {items.map(blog => {
+          const { title, description, cover, country, city, continent } = destructureBlogProps(blog)
+          return (
+            <div className="flex gap-6">
+              <div className="relative h-[200px] aspect-square">
+                <Image
+                  src={cover ?? ""}
+                  alt={title}
+                  fill
+                  style={{ objectFit: "cover" }}
+                />
+              </div>
+              <div>
+                <h3 className="text-2xl font-[500]">{title}</h3>
+                <p>{description}</p>
+                <div className="flex gap-2 mt-2">
+                  {[continent, country, city].map(item => <Chip label={item} variant="outlined" sx={{
+                    borderColor: "#a8a29e",
+                    borderRadius: 2
+                  }} />)}
+                </div>
+              </div>
+            </div>
+          )
+        })}
+      </div>
+      <div className="mb-2 mt-4 space-y-2 text-center">
+        <CustomButton
+          href="/blog"
+          LinkComponent={Link}
+        >
+          See All Blogs
+        </CustomButton>
+      </div>
+    </section>
+  );
+}
+
+
+/*
+
+<Swiper
           slidesPerView={isMobile ? 2 : isDesktop ? 3 : 4}
           spaceBetween={8}
           loop={true}
@@ -93,16 +134,4 @@ export default function HomeDestinations({ items }: { items: BlogPageObject[] | 
           }
           )}
         </Swiper>
-      </div>
-      <div className="mb-2 mt-4 space-y-2 text-center md:text-start">
-        <p>Selection of destinations I recently explored, follow me travel tips, tricks and much more. Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse, tempore. Delectus sequi qui in eius quia doloremque molestias, laborum temporibus. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Provident, fuga.</p>
-        <CustomButton
-          href="/blog"
-          LinkComponent={Link}
-        >
-          Explore
-        </CustomButton>
-      </div>
-    </section>
-  );
-}
+*/

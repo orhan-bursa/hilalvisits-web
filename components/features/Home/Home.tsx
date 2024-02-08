@@ -14,11 +14,11 @@ export default function Home({ blogs, photos }: IPropTypes) {
   return (
     <div>
       <HomeHero items={blogs} />
-      <SectionDivider />
+      {/* <SectionDivider /> */}
       <HomeDestinations items={blogs} />
-      <SectionDivider />
+      {/* <SectionDivider /> */}
       <HomePhoto items={photos} />
-      <SectionDivider />
+      {/* <SectionDivider /> */}
     </div>
   );
 }
