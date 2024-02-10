@@ -31,7 +31,7 @@ export default function HomeHero({ items }: { items: BlogPageObject[] | undefine
 
   return (
     <section className={cn(
-      "relative cursor-default mx-auto my-8",
+      "relative cursor-default mx-auto",
       "w-full h-full max-w-[1200px] md:flex md:gap-8",
     )}>
       <div className="w-full h-full">
@@ -71,7 +71,7 @@ export default function HomeHero({ items }: { items: BlogPageObject[] | undefine
                 flexDirection: "column"
               }}
             >
-              <div className="relative h-full min-h-[400px] md:min-h-[500px] w-full">
+              <div className="relative w-full h-full min-h-[400px] md:min-h-[500px]">
                 <Image
                   src={cover ?? ""}
                   alt={title ?? ""}
@@ -101,20 +101,3 @@ export default function HomeHero({ items }: { items: BlogPageObject[] | undefine
     </section>
   );
 }
-
-/* 
- <div className="w-full h-full md:w-[35%] text-center space-y-3 flex gap-4 md:block">
-        <div className="w-full aspect-square relative mx-auto">
-          <Image
-            src={me}
-            alt={"title"}
-            fill
-            style={{ objectFit: "cover" }}
-          />
-        </div>
-        <div className="text-start md:text-center">
-          <h1 className="text-2xl font-semibold">Hilal Visits</h1>
-          <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Suscipit obcaecati voluptatem inventore, minima illum quibusdam, eligendi iste voluptates vitae necessitatibus molestiae culpa quisquam saepe adipisci temporibus maiores, tenetur rerum doloribus?</p>
-        </div>
-      </div>
-              */

@@ -5,7 +5,7 @@ import cn from 'classnames'
 import { AlternateEmail, Facebook, Instagram, KeyboardArrowUp, MailOutline, Twitter } from "@mui/icons-material";
 import { Button, IconButton, Tooltip } from "@mui/material";
 import { PAGE_ITEMS, SOCIAL_MENU_ITEMS } from "@/constants";
-import { babylonica, montserrat } from "@/utils/fonts";
+import { babylonica, montserrat, whisper } from "@/utils/fonts";
 
 export default function Footer() {
   return (
@@ -14,7 +14,7 @@ export default function Footer() {
         <div>
           <h1
             className={
-              babylonica.className + " " +
+              whisper.className + " " +
               "h-full md:h-auto flex justify-center items-center text-6xl md:text-7xl font-bold text-white z-50 whitespace-nowrap"
             }
           > Hilal Visits
