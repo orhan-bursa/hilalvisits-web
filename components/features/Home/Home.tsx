@@ -1,7 +1,6 @@
-import { SectionDivider } from "@/components/shared/custom";
 import {
   HomeHero,
-  HomeDestinations,
+  HomeLatestBlogs,
   HomePhoto
 } from "./sections"
 import { PhotoPageObject, BlogPageObject } from "@/types";
@@ -14,11 +13,8 @@ export default function Home({ blogs, photos }: IPropTypes) {
   return (
     <div>
       <HomeHero items={blogs} />
-      <SectionDivider />
-      <HomeDestinations items={blogs} />
-      <SectionDivider />
+      <HomeLatestBlogs items={blogs} />
       <HomePhoto items={photos} />
-      <SectionDivider />
     </div>
   );
 }

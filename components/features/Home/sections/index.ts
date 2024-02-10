@@ -1,3 +1,3 @@
 export { default as HomeHero } from "./Hero"
-export { default as HomeDestinations } from "./Destinations"
+export { default as HomeLatestBlogs } from "./LatestBlogs"
 export { default as HomePhoto } from "./Photo"
