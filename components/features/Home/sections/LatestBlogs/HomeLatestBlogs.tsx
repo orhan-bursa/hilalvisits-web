@@ -26,14 +26,12 @@ export default function HomeLatestBlogs({ items }: { items: BlogPageObject[] | u
   if (!items || !items.length) return <Alert>Unable to retrieve data from server</Alert>
   return (
     <section className="max-w-[900px] w-full mx-auto">
-      <div>
-        <h2 className={cn(
-          "w-full cursor-default py-6",
-          "text-5xl text-amber-400 text-center"
-        )}>
-          Latest Blogs
-        </h2>
-      </div>
+      <h2 className={cn(
+        "w-full cursor-default mb-6",
+        "text-5xl font-[500] text-center"
+      )}>
+        Latest Blogs
+      </h2>
       <div className={cn(
         "w-full",
         "flex flex-col gap-8"
@@ -41,8 +39,8 @@ export default function HomeLatestBlogs({ items }: { items: BlogPageObject[] | u
         {items.map(blog => {
           const { title, description, cover, country, city, continent } = destructureBlogProps(blog)
           return (
-            <div className="flex gap-6">
-              <div className="relative h-[200px] aspect-square">
+            <div key={blog.id} className="flex flex-col sm:flex-row gap-6">
+              <div className="relative h-[300px] sm:h-[200px] aspect-square">
                 <Image
                   src={cover ?? ""}
                   alt={title}
@@ -53,7 +51,7 @@ export default function HomeLatestBlogs({ items }: { items: BlogPageObject[] | u
               <div>
                 <h3 className="text-2xl font-[500]">{title}</h3>
                 <p>{description}</p>
-                <div className="flex gap-2 mt-2">
+                <div className="flex flex-wrap gap-2 mt-2">
                   {[continent, country, city].map((item, i) =>
                     <Chip
                       key={item ?? "" + i}
@@ -74,6 +72,7 @@ export default function HomeLatestBlogs({ items }: { items: BlogPageObject[] | u
         <CustomButton
           href="/blog"
           LinkComponent={Link}
+          color="gray"
         >
           See All Blogs
         </CustomButton>
