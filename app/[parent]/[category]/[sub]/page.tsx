@@ -7,5 +7,11 @@ export default async function SubCategory({ params }: { params: { parent: string
 
     if (!blogs?.length) return <div>no blogs found for this subCategoryKey: {sub}</div>
 
-    return <FeatureSubCategory items={blogs} type="sub" />
+    return (
+        <FeatureSubCategory
+            items={blogs}
+            params={params}
+            type="sub"
+        />
+    )
 }

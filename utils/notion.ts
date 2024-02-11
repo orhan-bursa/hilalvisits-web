@@ -153,3 +153,8 @@ export async function getBlogBySlug(slug: string) {
     console.log(error);
   }
 }
+
+export async function retrieveDatabase(database_id: string) {
+  const res = await notionClient.databases.retrieve({ database_id });
+  return res
+}

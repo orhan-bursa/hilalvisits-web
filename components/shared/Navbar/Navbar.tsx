@@ -119,7 +119,7 @@ export default function Navbar() {
         <div
           key={"/"}
           className={cn(
-            "brand text-center text-3xl sm:text-8xl whitespace-nowrap text-amber-400",
+            "brand text-center text-6xl sm:text-7xl md:text-[84px] whitespace-nowrap text-amber-400",
           )}
         >
           <Link href={"/"}>
