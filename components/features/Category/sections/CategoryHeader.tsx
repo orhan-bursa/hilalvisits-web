@@ -4,97 +4,54 @@ import cn from "classnames";
 import Link from "next/link";
 interface IPropTypes {
     params: { parent?: string, category?: string, sub?: string }
-    type: "parent" | "category" | "sub"
     database?: GetDatabaseResponse
 }
 
-type MenuItem = {
+type DatabaseProperty = {
     id: string;
     name: string;
     color: string;
     description?: string
 }
 
-export default function CategoryHeader({ params, type, database }: IPropTypes) {
-    const { parent, category, sub } = params
+export default function CategoryHeader({ params, database }: IPropTypes) {
+    const { parent, category } = params
 
-    const parentCategoryProps = database?.properties?.parent_category_key
-    const categoryProps = database?.properties?.category_key
-    const subCategoryProps = database?.properties?.sub_category_key
+    const categoryProps: any = database?.properties?.category_key
+    const property: DatabaseProperty = categoryProps?.select?.options?.find((prop: DatabaseProperty) => prop.name === category)
 
-    const menuItems =
-        type === "parent" && !!categoryProps && categoryProps?.type === "select" ?
-            categoryProps.select.options : []
-
-    const title =
-        type === "sub" ? sub :
-            type === "category" ? category :
-                type === "parent" ? parent : null
+    const title = property?.description
 
     return (
         <section className="max-w-[1200px] w-full mx-auto">
-            <h2 className={cn(
-                "w-full cursor-default mb-6",
-                "text-5xl font-semibold text-center"
-            )}>
-                {title?.toUpperCase()}
-            </h2>
-            <Breadcrumbs >
-                <Link
-                    color="inherit"
-                    href="/"
-                    className="hover:underline hover:text-red-500"
-                >
-                    HOME
-                </Link>
-
-                {type === "parent" ?
-                    <p className="font-bold cursor-default">{parent?.toUpperCase()}</p> :
+            <div className="flex justify-center">
+                <h2 className={cn(
+                    "cursor-default mb-2 px-4 pb-1",
+                    "text-4xl font-semibold text-center",
+                    "border-b-2 border-slate-200"
+                )}>
+                    {title?.toUpperCase()}
+                </h2>
+            </div>
+            <div className="flex justify-center">
+                <Breadcrumbs >
+                    <Link
+                        color="inherit"
+                        href="/"
+                        className="hover:underline hover:text-red-500"
+                    >
+                        HOME
+                    </Link>
                     <Link
                         color="inherit"
                         href={`/${parent}`}
                         className="hover:underline hover:text-red-500"
                     >
                         {parent?.toUpperCase()}
-                    </Link>}
-                {type === "category" ?
-                    <p className="font-bold cursor-default">{category?.toUpperCase()}</p> :
-                    type === "sub" ?
-                        <Link
-                            color="inherit"
-                            href={`/${parent}/${category}`}
-                            className="hover:underline hover:text-red-500"
-                        >
-                            {category?.toUpperCase()}
-                        </Link> : null}
-                {type === "sub" ? <p className="font-bold cursor-default">{sub?.toUpperCase()}</p>
-                    : null}
-            </Breadcrumbs>
-            {!!menuItems.length ?
-                <div className="flex flex-wrap gap-2 mb-3">
-                    {menuItems.map((item: MenuItem) => {
-                        return (
-                            <Link
-                                key={item.id}
-                                href={
-                                    type === "parent" ? `/${parent}/${item.name}`
-                                        : type === "category" ? `/${parent}/${category}/${item.name}`
-                                            : "/"
-                                }
-                            >
-                                <Chip
-                                    key={item.id}
-                                    label={item.description}
-                                    className={cn(
-                                        "cursor-pointer rounded bg-slate-600 text-white",
-                                        "hover:bg-slate-400"
-                                    )}
-                                />
-                            </Link>
-                        )
-                    })}
-                </div>
-                : null}
+                    </Link>
+                    <p className="font-bold cursor-default">{category?.toUpperCase()}</p>
+                </Breadcrumbs>
+            </div>
         </section>
     )
 }
