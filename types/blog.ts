@@ -17,12 +17,13 @@ export type BlogProperties = {
   parent_category_key: SelectType;
   category_key: SelectType;
   sub_category_key: SelectType;
+  slug: RichTextType;
   author: SelectType;
   cover: FilesType;
   description: RichTextType;
-  continent: SelectType;
-  country: MultiSelectType;
-  city: MultiSelectType;
+  parent_category: SelectType;
+  category: SelectType;
+  sub_category: SelectType;
   district: MultiSelectType;
   title: TitleType;
 };

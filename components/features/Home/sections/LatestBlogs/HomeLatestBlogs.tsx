@@ -15,7 +15,6 @@ import { Navigation } from "swiper/modules";
 import Image from "next/image";
 import Link from "next/link";
 import cn from "classnames";
-import { whisper } from "@/utils/fonts";
 import { CustomButton } from "@/components/shared/custom";
 import { BlogPageObject } from "@/types";
 import { destructureBlogProps } from "@/utils";
@@ -37,7 +36,8 @@ export default function HomeLatestBlogs({ items }: { items: BlogPageObject[] | u
         "flex flex-col gap-8"
       )}>
         {items.map(blog => {
-          const { title, description, cover, country, city, continent } = destructureBlogProps(blog)
+          const { title, description, cover, category, sub_category, parent_category, slug,
+            parent_category_key, category_key, sub_category_key, } = destructureBlogProps(blog)
           return (
             <div key={blog.id} className="flex flex-col sm:flex-row gap-6">
               <div className="relative h-[300px] sm:h-[200px] aspect-square">
@@ -49,19 +49,35 @@ export default function HomeLatestBlogs({ items }: { items: BlogPageObject[] | u
                 />
               </div>
               <div>
-                <h3 className="text-2xl font-[500]">{title}</h3>
+                <Link href={`/blog/${slug}`}>
+                  <h3 className="text-2xl font-[500]">{title}</h3>
+                </Link>
                 <p>{description}</p>
                 <div className="flex flex-wrap gap-2 mt-2">
-                  {[continent, country, city].map((item, i) =>
-                    <Chip
-                      key={item ?? "" + i}
-                      label={item}
-                      variant="outlined"
-                      sx={{
-                        borderColor: "#a8a29e",
-                        borderRadius: 2
-                      }} />
-                  )}
+                  {[
+                    {
+                      label: parent_category,
+                      href: `/${parent_category_key}`
+                    },
+                    {
+                      label: category,
+                      href: `/${parent_category_key}/${category_key}`
+                    },
+                    {
+                      label: sub_category,
+                      href: `/${parent_category_key}/${category_key}/${sub_category_key}`
+                    },
+                  ].map(tag => (
+                    <Link href={tag.href} key={tag.label}>
+                      <Chip
+                        key={tag.label}
+                        label={tag.label}
+                        variant="outlined"
+                        size="small"
+                        className="cursor-pointer rounded border-stone-400 hover:border-black hover:bg-stone-100"
+                      />
+                    </Link>
+                  ))}
                 </div>
               </div>
             </div>

@@ -14,14 +14,18 @@ type DatabaseProperty = {
     description?: string
 }
 
-export default function CategoryHeader({ params, database }: IPropTypes) {
-    const { parent, category } = params
+export default function SubCategoryHeader({ params, database }: IPropTypes) {
+    const { parent, category, sub } = params
 
-    const categoryProps: any = database?.properties?.category_key
-    const property: DatabaseProperty = categoryProps?.select?.options?.find((prop: DatabaseProperty) => prop.name === category)
+    const subCategoryProps: any = database?.properties?.sub_category_key
+
+    const property: DatabaseProperty = subCategoryProps?.select?.options?.find((prop: DatabaseProperty) => {
+        console.log(prop.name, sub)
+
+        return prop.name === sub
+    })
 
     const title = property?.description
-
     return (
         <section className="max-w-[1200px] w-full mx-auto">
             <div className="flex justify-center">
@@ -34,7 +38,7 @@ export default function CategoryHeader({ params, database }: IPropTypes) {
                 </h2>
             </div>
             <div className="flex justify-center">
-                <Breadcrumbs >
+                <Breadcrumbs>
                     <Link
                         color="inherit"
                         href="/"
@@ -49,7 +53,14 @@ export default function CategoryHeader({ params, database }: IPropTypes) {
                     >
                         {parent?.toUpperCase()}
                     </Link>
-                    <p className="font-bold cursor-default">{category?.toUpperCase()}</p>
+                    <Link
+                        color="inherit"
+                        href={`/${parent}/${category}`}
+                        className="hover:underline hover:text-red-500"
+                    >
+                        {category?.toUpperCase()}
+                    </Link>
+                    <p className="font-bold cursor-default">{sub?.toUpperCase()}</p>
                 </Breadcrumbs>
             </div>
         </section>
