@@ -3,6 +3,10 @@ import { getBlogs, retrieveDatabase } from "@/utils/notion"
 
 export default async function ParentCategory({ params }: { params: { parent?: string } }) {
     const parentCategoryKey = params.parent
+
+    //avrupa = parentkey
+    //blog db'de, menusu avrupa olan tüm blogları getir
+
     const blogs = await getBlogs({ parentCategoryKey })
 
     const database = await retrieveDatabase(process.env.NOTION_BLOGS_DATABASE_ID!)

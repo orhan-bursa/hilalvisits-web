@@ -11,6 +11,7 @@ import Link from "next/link";
 import { Button, IconButton } from "@mui/material";
 import { SOCIAL_MENU_ITEMS } from "@/constants";
 import { whisper } from "@/utils/fonts";
+import { MenuPageObject } from "@/types";
 
 const NAVBAR_MENU_ITEMS = [
     {
@@ -40,7 +41,14 @@ const NAVBAR_MENU_ITEMS = [
     },
 ]
 
-export default function DesktopMenu({ database }: { database: GetDatabaseResponse }) {
+interface IProptypes {
+    menus: {
+        first?: MenuPageObject[]
+        second?: MenuPageObject[]
+        third?: MenuPageObject[]
+    }
+}
+export default function DesktopMenu({ menus }: IProptypes) {
     const pathname = usePathname();
     const [isMobileMenuOpen, setIsOpen] = useState(false)
     const handleOpenMenu = () => setIsOpen(true)

@@ -1,4 +1,4 @@
-import { ExternalFileType, FileType, FilesType, BlogPageObject, PhotoPageObject } from "@/types";
+import { ExternalFileType, FileType, FilesType, BlogPageObject, PhotoPageObject, MenuPageObject } from "@/types";
 
 export function destructureBlogProps(blog: BlogPageObject) {
     return {
@@ -28,6 +28,16 @@ export function destructurePhotoProps(photo: PhotoPageObject) {
         albums: photo?.properties?.albums?.relation,
         district: photo?.properties?.district?.multi_select?.[0]?.name,
         title: photo?.properties?.title?.title?.[0]?.plain_text,
+    }
+}
+
+export function destructureMenuProps(menu: MenuPageObject) {
+    return {
+        key: menu?.properties?.key?.rich_text?.[0]?.plain_text,
+        slug: menu?.properties?.slug?.rich_text?.[0]?.plain_text,
+        title: menu?.properties?.title?.title?.[0]?.plain_text,
+        parent: menu?.properties?.parent?.relation,
+        subs: menu?.properties?.subs?.relation,
     }
 }
 

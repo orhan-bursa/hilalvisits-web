@@ -1,7 +1,7 @@
 import "server-only";
 import { Client } from "@notionhq/client";
 import { array } from ".";
-import { BlogPageObject, PhotoPageObject, AlbumPageObject } from "@/types";
+import { BlogPageObject, PhotoPageObject, AlbumPageObject, MenuPageObject } from "@/types";
 import { BlockObjectResponse } from "@notionhq/client/build/src/api-endpoints";
 
 type BlogsFilterQuery = {
@@ -64,6 +64,58 @@ export async function getBlogs(filter?: BlogsFilterQuery) {
     console.log(error);
   }
 };
+
+export async function getMenus(depth: "first" | "second" | "third") {
+  let query: any[] = []
+
+  if (depth === "first")
+    query = [
+      {
+        property: "parent",
+        relation: { is_empty: true }
+      },
+      {
+        property: "subs",
+        relation: { is_not_empty: true }
+      }
+    ]
+  if (depth === "second")
+    query = [
+      {
+        property: "parent",
+        relation: { is_not_empty: true }
+      },
+      {
+        property: "subs",
+        relation: { is_not_empty: true }
+      }
+    ]
+  if (depth === "third")
+    query = [
+      {
+        property: "parent",
+        relation: { is_not_empty: true }
+      },
+      {
+        property: "subs",
+        relation: { is_empty: true }
+      }
+    ]
+
+  try {
+    const res = await notionClient.databases.query({
+      database_id: process.env.NOTION_MENUS_DATABASE_ID!,
+      filter: {
+        and: query
+      }
+    });
+
+    const menus = array<MenuPageObject>(res?.results)
+    return menus;
+  } catch (error) {
+    console.log(error);
+  }
+}
 
 export async function getPhotos() {
   try {
