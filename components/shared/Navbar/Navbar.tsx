@@ -1,19 +1,16 @@
-import { DesktopMenu, MobileMenu } from "./sections";
-import { getMenus, retrieveDatabase } from "@/utils/notion";
+import { NavbarMenu } from "./sections";
+import { getMenus } from "@/utils/notion";
 
 
 export default async function Navbar() {
 
-  const first = await getMenus("first")
-  const second = await getMenus("second")
-  const third = await getMenus("third")
-  console.log({ first, second, third })
+  const first = await getMenus({ depth: 1 })
+  const second = await getMenus({ depth: 2 })
+  const third = await getMenus({ depth: 3 })
+
   return (
     <>
-      {false ?
-        <MobileMenu menus={{ first, second, third }} />
-        : null}
-      <DesktopMenu menus={{ first, second, third }} />
+      <NavbarMenu menus={{ first, second, third }} />
     </>
   );
 }

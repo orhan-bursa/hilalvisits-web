@@ -1,7 +1,8 @@
 import {
+  ArrayRollupType,
   FilesType,
-  MultiSelectType,
   PageObjectBase,
+  RelationType,
   RichTextType,
   SelectType,
   StatusType,
@@ -13,17 +14,12 @@ export type BlogPageObject = PageObjectBase & {
 }
 
 export type BlogProperties = {
+  title: TitleType;
   status: StatusType;
-  parent_category_key: SelectType;
-  category_key: SelectType;
-  sub_category_key: SelectType;
   slug: RichTextType;
   author: SelectType;
   cover: FilesType;
   description: RichTextType;
-  parent_category: SelectType;
-  category: SelectType;
-  sub_category: SelectType;
-  district: MultiSelectType;
-  title: TitleType;
+  menu: RelationType;
+  menu_path: ArrayRollupType;
 };

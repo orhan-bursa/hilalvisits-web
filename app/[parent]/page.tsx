@@ -2,23 +2,19 @@ import { Category as FeatureParentCategory } from "@/components"
 import { getBlogs, retrieveDatabase } from "@/utils/notion"
 
 export default async function ParentCategory({ params }: { params: { parent?: string } }) {
-    const parentCategoryKey = params.parent
+    const slug = params.parent
 
-    //avrupa = parentkey
-    //blog db'de, menusu avrupa olan tüm blogları getir
+    const blogs = await getBlogs({ menu_slug: slug })
+    console.log(blogs)
 
-    const blogs = await getBlogs({ parentCategoryKey })
-
-    const database = await retrieveDatabase(process.env.NOTION_BLOGS_DATABASE_ID!)
-
-    if (!blogs?.length) return <div>no blogs found for this parentCategoryKey: {parentCategoryKey}</div>
+    //TODO: add custom not found page
+    if (!blogs?.length) return <div>no blogs found for this slug: {slug}</div>
 
     return (
         <FeatureParentCategory
             items={blogs}
             params={params}
             type="parent"
-            database={database}
         />
     )
 }

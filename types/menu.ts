@@ -1,7 +1,7 @@
 import {
     PageObjectBase,
     RelationType,
-    RichTextType,
+    StringFormulaType,
     TitleType,
 } from "./core";
 
@@ -10,8 +10,8 @@ export type MenuPageObject = PageObjectBase & {
 }
 
 export type MenuProperties = {
-    slug: RichTextType;
-    key: RichTextType;
+    slug: StringFormulaType;
+    path: StringFormulaType;
     title: TitleType;
     parent: RelationType;
     subs: RelationType;

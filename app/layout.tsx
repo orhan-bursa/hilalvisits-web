@@ -18,7 +18,7 @@ export default function RootLayout({
     <html lang="en" className={montserrat.className}>
       <body>
         <div className="relative">
-          <Header />
+          {/* <Header /> */}
           <Navbar />
           {children}
           <Instagram />

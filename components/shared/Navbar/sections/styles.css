@@ -1,7 +1,0 @@
-.active {
-    @apply text-red-600 font-semibold border-b-2 border-red-500
-}
-
-.mobile-active {
-    @apply text-red-600 font-semibold border-red-400 border-l-[3px]
-}

@@ -92,11 +92,34 @@ export type LastEditedTimeType = {
   last_edited_time: string;
   id: string;
 }
-export type FormulaType = {
+export type FormulaTypeBase = {
   type: "formula";
-  formula: any;
   id: string;
 }
+export type StringFormulaType = FormulaTypeBase & {
+  formula: {
+    type: "string";
+    string: string | null;
+  }
+};
+export type DateFormulaType = FormulaTypeBase & {
+  formula: {
+    type: "date";
+    date: DateResponse | null;
+  };
+};
+export type NumberFormulaType = FormulaTypeBase & {
+  formula: {
+    type: "number";
+    number: number | null;
+  };
+};
+export type BooleanFormulaType = FormulaTypeBase & {
+  formula: {
+    type: "boolean";
+    boolean: boolean | null;
+  };
+};
 export type UniqueIdType = {
   type: "unique_id";
   unique_id: {
@@ -126,6 +149,26 @@ export type RelationType = {
     id: string;
   }>;
   id: string;
+}
+
+type RollupTypeBase = {
+  type: "rollup",
+  id: string;
+}
+
+export type ArrayRollupType = RollupTypeBase & {
+  rollup: {
+    type: "array"
+    array: Array<any>
+  }
+  function: string;
+}
+export type NumberRollupType = RollupTypeBase & {
+  rollup: {
+    type: "array"
+    array: Array<any>
+  }
+  function: string;
 }
 
 type SelectPropertyResponse = {
