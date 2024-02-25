@@ -9,6 +9,7 @@ import Link from "next/link";
 import { Button, IconButton } from "@mui/material";
 import { SOCIAL_MENU_ITEMS } from "@/constants";
 import { MenuPageObject } from "@/types";
+import { MobileMenuItem } from "./components";
 
 const NAVBAR_MENU_ITEMS = [
     {
@@ -47,10 +48,12 @@ interface IProptypes {
 }
 export default function MobileMenu({ menus }: IProptypes) {
     const pathname = usePathname();
+
     const [isMobileMenuOpen, setIsOpen] = useState(false)
     const handleOpenMenu = () => setIsOpen(true)
     const handleCloseMenu = () => setIsOpen(false)
     const stopPropagation = (e: MouseEvent<HTMLElement>) => e.stopPropagation();
+
 
     return (
         <>
@@ -74,42 +77,15 @@ export default function MobileMenu({ menus }: IProptypes) {
                             </div>
                             <nav className="w-full pl-8">
                                 <ul>
-                                    <li
-                                        className={cn(
-                                            "flex items-center  text-black   font-semibold",
-                                            "py-[6px] pl-4 ",
-                                            "border-l-[3px] border-gray-400",
-                                        )}
-                                    >
-                                        <Button
-                                            LinkComponent={Link}
-                                            href={"item.href"}
-                                            color="inherit"
-                                            sx={{ fontSize: 18, fontWeight: "inherit" }}
-                                            endIcon={<KeyboardArrowDown />}
-                                        >
-                                            {"KEŞFET"}
-                                        </Button>
-                                    </li>
+                                    <MobileMenuItem
+                                        title={"KEŞFET"}
+                                        menus={menus}
+                                    />
                                     {NAVBAR_MENU_ITEMS.map((item, i) => {
-                                        return <li
-                                            key={i + item.href}
-                                            className={cn(
-                                                "flex items-center  text-black   font-semibold",
-                                                "py-[6px] pl-4 ",
-                                                "border-l-[3px] border-gray-400",
-                                                { "mobile-active": item.href === pathname }
-                                            )}
-                                        >
-                                            <Button
-                                                LinkComponent={Link}
-                                                href={item.href}
-                                                color="inherit"
-                                                sx={{ fontSize: 18, fontWeight: "inherit" }}
-                                            >
-                                                {item.title}
-                                            </Button>
-                                        </li>
+                                        return <MobileMenuItem
+                                            title={item.title}
+                                            href={item.href}
+                                        />
                                     })}
 
                                 </ul>
