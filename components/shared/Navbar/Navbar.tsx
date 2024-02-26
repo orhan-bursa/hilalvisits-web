@@ -9,9 +9,7 @@ export default async function Navbar() {
   const third = await getMenus({ depth: 3 })
 
   return (
-    <>
-      <NavbarMenu menus={{ first, second, third }} />
-    </>
+    <NavbarMenu menus={{ first, second, third }} />
   );
 }
 

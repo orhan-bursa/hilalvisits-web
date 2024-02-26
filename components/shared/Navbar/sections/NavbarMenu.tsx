@@ -23,7 +23,6 @@ interface IProptypes {
 export default function NavbarMenu({ menus }: IProptypes) {
     const pathname = usePathname();
     const [open, setOpen] = useState<string | null>(null)
-
     const { first, second, third } = menus
 
     const constantMenuItems: Array<MenuItem> = [

@@ -1,8 +1,12 @@
+"use client"
 import { MenuPageObject } from "@/types";
 import { destructureMenuProps } from "@/utils";
-import { KeyboardArrowDown } from "@mui/icons-material";
+import { KeyboardArrowDown, KeyboardArrowUp } from "@mui/icons-material";
 import { Button } from "@mui/material";
 import cn from "classnames";
+import Link from "next/link";
+import { useState } from "react";
+import { MobileSecondaryMenuItem } from ".";
 
 interface IPropTypes {
     title: string,
@@ -14,34 +18,50 @@ interface IPropTypes {
     href?: string
 }
 export default function MobileMenuItem({ title, menus, href }: IPropTypes) {
+    const [isOpen, setOpen] = useState(false)
+    const handleOpen = () => setOpen(pre => !pre)
+    const [openMenu, setOpenMenu] = useState<string | null>(null)
 
-    const { first, second, third } = menus!
     return (
-        !!href ? <div>href</div> :
-            !!menus ? <li
-                className={cn(
-                    "text-black font-semibold py-[6px]",
-                )}
-            >
+        !!href ?
+            <li>
                 <Button
-                    color="inherit"
-                    sx={{ fontSize: 18, fontWeight: "inherit" }}
-                    endIcon={<KeyboardArrowDown />}
+                    className="text-black text-lg font-semibold py-[6px] hover:text-amber-500"
+                    LinkComponent={Link}
+                    href={href}
                 >
-                    {"KEŞFET"}
+                    {title?.toLocaleUpperCase('tr-TR')}
                 </Button>
-                <div style={{ display: "none" }}>
-                    <div className="flex">
-                        {first?.map((menu, ind) => {
-                            const { title } = destructureMenuProps(menu)
-                            return (
-                                <div>
-                                    {title}
-                                </div>
-                            )
-                        })}
-                    </div>
-                </div>
-            </li> : null
+            </li>
+            : !!menus ?
+                <li>
+                    <Button
+                        className="text-black text-lg font-semibold py-[6px]"
+                        onClick={handleOpen}
+                        endIcon={isOpen ? <KeyboardArrowUp /> : <KeyboardArrowDown />}
+                    >
+                        {"KEŞFET"}
+                    </Button>
+                    {isOpen ?
+                        <div className="flex flex-col text-start">
+                            {menus?.first?.map((menu, ind) => {
+                                const { title, path } = destructureMenuProps(menu)
+                                return (
+                                    <MobileSecondaryMenuItem
+                                        key={menu.id}
+                                        item={menu}
+                                        menus={{
+                                            second: menus?.second,
+                                            third: menus?.third
+                                        }}
+                                        open={openMenu}
+                                        setOpen={setOpenMenu}
+                                    />
+                                )
+                            })}
+                        </div>
+                        : null}
+                </li>
+                : null
     )
 }

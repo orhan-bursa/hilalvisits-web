@@ -92,7 +92,7 @@ export default function MobileMenu({ menus }: IProptypes) {
                             </nav>
                         </div>
                         <div className="w-full flex justify-between p-2 b-2 text-black" onClick={handleCloseMenu}>
-                            <IconButton size="small" href="mailto:hilalvisits@gmail.com">
+                            <IconButton size="small" href="mailto:hilalvisits@gmail.com" sx={{ color: "black" }}>
                                 <MailOutline />
                             </IconButton>
                             <div className="flex">

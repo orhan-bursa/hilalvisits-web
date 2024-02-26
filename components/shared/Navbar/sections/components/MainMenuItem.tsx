@@ -18,18 +18,18 @@ interface IProptypes {
 export default function MainMenuItem({ item, menus, open, setOpen }: IProptypes) {
 
     const { second, third } = menus
-    const { title: mainTitle } = destructureMenuProps(item)
-    const isOpen = useMemo(() => open === mainTitle, [open])
+    const { title: itemTitle } = destructureMenuProps(item)
+    const isOpen = useMemo(() => open === itemTitle, [open])
 
     return (
         <div
             className="relative flex font-semibold pb-1 px-2 cursor-pointer"
             onClick={() => {
-                setOpen(!isOpen ? mainTitle : null)
+                setOpen(!isOpen ? itemTitle : null)
             }}
         >
             <p className={isOpen ? "text-amber-500" : "text-black"}>
-                {mainTitle?.toLocaleUpperCase("tr-TR")}
+                {itemTitle?.toLocaleUpperCase("tr-TR")}
             </p>
             <KeyboardArrowDown className={isOpen ? "text-amber-400" : "text-black"} />
             <div className={cn(
