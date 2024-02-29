@@ -66,16 +66,17 @@ export default function MobileMenu({ menus }: IProptypes) {
                         onClick={stopPropagation}
                         className={cn(
                             "flex flex-col justify-between items-center sticky top-[15vh]",
-                            "h-[80vh] py-4 mt-[15vh] bg-white bg-opacity-100",
-                            "border-y-2 border-amber-400"
+                            "py-4 mt-[15vh] bg-white bg-opacity-100",
+                            "border-y-2 border-amber-400",
+                            "bg-[#fffbf7]"
                         )}>
                         <div className="w-full">
                             <div className="w-full flex justify-end p-2 b-2 text-amber-400">
-                                <IconButton onClick={handleCloseMenu}>
+                                <IconButton onClick={handleCloseMenu} sx={{ color: "black" }}>
                                     <Close />
                                 </IconButton>
                             </div>
-                            <nav className="w-full pl-8">
+                            <nav className="w-full">
                                 <ul>
                                     <MobileMenuItem
                                         title={"KEŞFET"}
@@ -87,11 +88,10 @@ export default function MobileMenu({ menus }: IProptypes) {
                                             href={item.href}
                                         />
                                     })}
-
                                 </ul>
                             </nav>
                         </div>
-                        <div className="w-full flex justify-between p-2 b-2 text-black" onClick={handleCloseMenu}>
+                        <div className="w-full flex justify-between items-center p-2 mt-12 text-black" onClick={handleCloseMenu}>
                             <IconButton size="small" href="mailto:hilalvisits@gmail.com" sx={{ color: "black" }}>
                                 <MailOutline />
                             </IconButton>
