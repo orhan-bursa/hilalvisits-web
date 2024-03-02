@@ -5,19 +5,16 @@ import { GetDatabaseResponse } from '@notionhq/client/build/src/api-endpoints';
 import { KeyboardArrowDown } from '@mui/icons-material';
 import { DatabaseProperty, MenuItem, MenuPageObject } from '@/types';
 import { destructureMenuProps } from '@/utils';
-import SecondaryMenuItem from './SecondaryMenuItem';
+import MainSecondaryMenuItem from './MainSecondaryMenuItem';
+import { useMenus } from '../../MenuContext';
 interface IProptypes {
     open: string | null,
     setOpen: Dispatch<SetStateAction<string | null>>
     item: MenuPageObject,
-    menus: {
-        second?: MenuPageObject[],
-        third?: MenuPageObject[]
-    }
 }
-export default function MainMenuItem({ item, menus, open, setOpen }: IProptypes) {
+export default function MainMenuItem({ item, open, setOpen }: IProptypes) {
 
-    const { second, third } = menus
+    const { second } = useMenus()
     const { title: itemTitle } = destructureMenuProps(item)
     const isOpen = useMemo(() => open === itemTitle, [open])
 
@@ -47,10 +44,9 @@ export default function MainMenuItem({ item, menus, open, setOpen }: IProptypes)
                     .map((menu, ind) => {
                         const { title } = destructureMenuProps(menu)
                         return (
-                            <SecondaryMenuItem
+                            <MainSecondaryMenuItem
                                 key={ind + title}
                                 item={menu}
-                                menus={{ third }}
                             />
                         )
                     }) : null}

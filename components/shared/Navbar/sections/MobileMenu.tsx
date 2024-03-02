@@ -8,8 +8,8 @@ import { CollectionsBookmark, Home, MailOutline, NotListedLocation, PhotoCamera,
 import Link from "next/link";
 import { Button, IconButton } from "@mui/material";
 import { SOCIAL_MENU_ITEMS } from "@/constants";
-import { MenuPageObject } from "@/types";
-import { MobileMenuItem } from "./components";
+import { MobileMenuItem, MobileSocials } from "./components/mobile";
+import { useMenus, useMobileMenu } from "./MenuContext";
 
 const NAVBAR_MENU_ITEMS = [
     {
@@ -39,28 +39,20 @@ const NAVBAR_MENU_ITEMS = [
     },
 ]
 
-interface IProptypes {
-    menus: {
-        first?: MenuPageObject[]
-        second?: MenuPageObject[]
-        third?: MenuPageObject[]
-    }
-}
-export default function MobileMenu({ menus }: IProptypes) {
-    const pathname = usePathname();
-
-    const [isMobileMenuOpen, setIsOpen] = useState(false)
-    const handleOpenMenu = () => setIsOpen(true)
-    const handleCloseMenu = () => setIsOpen(false)
+export default function MobileMenu() {
     const stopPropagation = (e: MouseEvent<HTMLElement>) => e.stopPropagation();
 
+    const { isOpen, setOpen } = useMobileMenu()
+
+    const handleOpenMenu = () => setOpen(true)
+    const handleCloseMenu = () => setOpen(false)
 
     return (
         <>
             <div onClick={handleOpenMenu} className="flex md:hidden justify-end px-3 pt-4 pb-1">
                 <Menu />
             </div>
-            {isMobileMenuOpen ?
+            {isOpen ?
                 <div className='absolute top-0 z-[250] w-full h-full bg-gray-200 bg-opacity-80' onClick={handleCloseMenu}>
                     <div
                         onClick={stopPropagation}
@@ -70,53 +62,33 @@ export default function MobileMenu({ menus }: IProptypes) {
                             "border-y-2 border-amber-400",
                             "bg-[#fffbf7]"
                         )}>
-                        <div className="w-full">
-                            <div className="w-full flex justify-end p-2 b-2 text-amber-400">
-                                <IconButton onClick={handleCloseMenu} sx={{ color: "black" }}>
+                        <div className="w-full max-w-md">
+                            <div className="w-full flex justify-end pt-2 text-amber-400">
+                                <IconButton onClick={handleCloseMenu} sx={{ color: "black", p: 0 }}>
                                     <Close />
                                 </IconButton>
                             </div>
                             <nav className="w-full">
                                 <ul>
-                                    <MobileMenuItem
-                                        title={"KEŞFET"}
-                                        menus={menus}
-                                    />
+                                    <MobileMenuItem title={"KEŞFET"} />
                                     {NAVBAR_MENU_ITEMS.map((item, i) => {
-                                        return <MobileMenuItem
-                                            title={item.title}
-                                            href={item.href}
-                                        />
+                                        return (
+                                            <li className="border-b-[1px] border-gray-400" onClick={handleCloseMenu}>
+                                                <Button
+                                                    key={i + item.title}
+                                                    className="w-full text-lg font-semibold px-2 py-3 flex justify-start text-black"
+                                                    LinkComponent={Link}
+                                                    href={item.href}
+                                                    onClick={handleCloseMenu}
+                                                >
+                                                    {item.title?.toLocaleUpperCase('tr-TR')}
+                                                </Button>
+                                            </li>
+                                        )
                                     })}
                                 </ul>
                             </nav>
-                        </div>
-                        <div className="w-full flex justify-between items-center p-2 mt-12 text-black" onClick={handleCloseMenu}>
-                            <IconButton size="small" href="mailto:hilalvisits@gmail.com" sx={{ color: "black" }}>
-                                <MailOutline />
-                            </IconButton>
-                            <div className="flex">
-                                {SOCIAL_MENU_ITEMS.map((item, i) => {
-                                    const Icon = item.icon
-                                    return <IconButton
-                                        key={i + item.title}
-                                        LinkComponent={Link}
-                                        href={item.href ?? "/"}
-                                        sx={{
-                                            height: 28,
-                                            width: 28,
-                                            color: "black",
-                                            transition: "all 400ms ease",
-                                            "&:hover": {
-                                                color: "#FBBF24",
-                                                backgroundColor: 'transparent',
-                                            }
-                                        }}
-                                    >
-                                        <Icon />
-                                    </IconButton>
-                                })}
-                            </div>
+                            <MobileSocials />
                         </div>
                     </div>
                 </div>

@@ -2,9 +2,10 @@ import { MenuPageObject } from "@/types"
 import { destructureMenuProps } from "@/utils"
 import cn from "classnames"
 import Link from "next/link"
+import { useMenus } from "../../MenuContext"
 
-export default function SecondaryMenuItem({ item, menus }: { item: MenuPageObject, menus: { third?: MenuPageObject[] } }) {
-    const { third } = menus
+export default function MainSecondaryMenuItem({ item }: { item: MenuPageObject }) {
+    const { third } = useMenus()
     const { title: secondaryTitle } = destructureMenuProps(item)
 
     return (
@@ -30,6 +31,7 @@ export default function SecondaryMenuItem({ item, menus }: { item: MenuPageObjec
                         const { title: childTitle, path } = destructureMenuProps(m)
                         return (
                             <Link
+                                key={m.id}
                                 href={path}
                             >
                                 <div className="bg-amber-400 hover:bg-amber-500 p-3 pl-5">
