@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Footer, Header, Navbar } from "@/components";
+import { Footer, Navbar } from "@/components";
 import "./globals.css";
 import { montserrat } from "@/utils/fonts";
 import Instagram from "@/components/shared/Instagram";
@@ -18,7 +18,6 @@ export default function RootLayout({
     <html lang="en" className={montserrat.className}>
       <body>
         <div className="relative">
-          <Header />
           <Navbar />
           {children}
           <Instagram />

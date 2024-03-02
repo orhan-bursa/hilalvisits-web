@@ -22,10 +22,10 @@ export default function HomeHero({ items }: { items: BlogPageObject[] | undefine
 
   const progressCircle = useRef(null);
   const progressContent = useRef(null);
-  const onAutoplayTimeLeft = (s: any, time: any, progress: any) => {
-    (progressCircle?.current as any)?.style?.setProperty('--progress', 1 - progress);
-    (progressContent?.current as any).textContent = ` · `; //${Math.ceil(time / 1000)}s
-  };
+  // const onAutoplayTimeLeft = (s: any, time: any, progress: any) => {
+  //   (progressCircle?.current as any)?.style?.setProperty('--progress', 1 - progress);
+  //   (progressContent?.current as any).textContent = ` · `; //${Math.ceil(time / 1000)}s
+  // };
 
   if (!items || !items.length) return <Alert>Unable to retrieve data from server</Alert>
 
@@ -47,9 +47,9 @@ export default function HomeHero({ items }: { items: BlogPageObject[] | undefine
           navigation={true}
           modules={[Navigation, Pagination, Autoplay]}
           autoplay={{
-            delay: 5000,
+            delay: 20000,
           }}
-          onAutoplayTimeLeft={onAutoplayTimeLeft}
+          // onAutoplayTimeLeft={onAutoplayTimeLeft}
           style={{
             width: "100%",
             height: "100%",
@@ -89,12 +89,12 @@ export default function HomeHero({ items }: { items: BlogPageObject[] | undefine
             </SwiperSlide>
           }
           )}
-          <div className="autoplay-progress" slot="container-end">
+          {/* <div className="autoplay-progress" slot="container-end">
             <svg viewBox="0 0 48 48" ref={progressCircle}>
               <circle cx="24" cy="24" r="20"></circle>
             </svg>
             <span ref={progressContent}></span>
-          </div>
+          </div> */}
         </Swiper>
       </div>
 

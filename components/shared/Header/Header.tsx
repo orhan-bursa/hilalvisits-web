@@ -39,18 +39,3 @@ export default function Header() {
 
     )
 }
-
-/*
-<div
-                        key={"/"}
-                        className={cn(
-                            "brand text-center text-[80px] sm:text-8xl whitespace-nowrap text-amber-400 py-2",
-                        )}
-                    >
-                        <Link href={"/"}>
-                            <h1
-                                className={babylonica.className}
-                            >Hilal Visits</h1>
-                        </Link>
-                    </div>
-*/

@@ -1,13 +1,11 @@
 import "server-only";
 import { Client } from "@notionhq/client";
 import { array } from ".";
-import { BlogPageObject, PhotoPageObject, AlbumPageObject } from "@/types";
+import { BlogPageObject, PhotoPageObject, AlbumPageObject, MenuPageObject } from "@/types";
 import { BlockObjectResponse } from "@notionhq/client/build/src/api-endpoints";
 
 type BlogsFilterQuery = {
-  parentCategoryKey?: string
-  categoryKey?: string
-  subCategoryKey?: string
+  menu_slug?: string;
 }
 
 export const notionClient = new Client({
@@ -16,39 +14,23 @@ export const notionClient = new Client({
 
 export async function getBlogs(filter?: BlogsFilterQuery) {
 
-  const filterQuery: any[] = [
-    {
-      property: "status",
-      status: {
-        equals: "published"
-      }
-    },
-  ]
+  const filterQuery: any[] = [{
+    property: "status",
+    status: {
+      equals: "published"
+    }
+  }]
 
-  if (!!filter?.parentCategoryKey) {
-    filterQuery.push({
-      property: "parent_category_key",
-      select: {
-        equals: filter.parentCategoryKey
+  if (filter) filterQuery.push({
+    property: "menu_path",
+    rollup: {
+      any: {
+        rich_text: {
+          contains: filter.menu_slug
+        }
       }
-    })
-  }
-  if (!!filter?.categoryKey) {
-    filterQuery.push({
-      property: "category_key",
-      select: {
-        equals: filter.categoryKey
-      }
-    })
-  }
-  if (!!filter?.subCategoryKey) {
-    filterQuery.push({
-      property: "sub_category_key",
-      select: {
-        equals: filter.subCategoryKey
-      }
-    })
-  }
+    }
+  })
 
   try {
     const res = await notionClient.databases.query({
@@ -64,6 +46,29 @@ export async function getBlogs(filter?: BlogsFilterQuery) {
     console.log(error);
   }
 };
+
+export async function getMenus({ depth }: { depth: number }) {
+  const filter = {
+    property: "depth",
+    formula: {
+      number: {
+        equals: depth
+      }
+    }
+  }
+
+  try {
+    const res = await notionClient.databases.query({
+      database_id: process.env.NOTION_MENUS_DATABASE_ID!,
+      filter
+    });
+
+    const menus = array<MenuPageObject>(res?.results)
+    return menus;
+  } catch (error) {
+    console.log(error);
+  }
+}
 
 export async function getPhotos() {
   try {

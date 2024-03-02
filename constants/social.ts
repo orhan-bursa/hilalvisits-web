@@ -24,9 +24,4 @@ export const SOCIAL_MENU_ITEMS = [
         href: SOCIAL_LINKS.facebook,
         icon: FacebookRounded
     },
-    {
-        title: "Threads",
-        href: SOCIAL_LINKS.threads,
-        icon: AlternateEmail
-    }
 ]
