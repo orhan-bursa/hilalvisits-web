@@ -20,5 +20,6 @@ export type PhotoProperties = {
   city: MultiSelectType;
   albums: RelationType;
   district: MultiSelectType;
+  type: SelectType;
   title: TitleType;
 };

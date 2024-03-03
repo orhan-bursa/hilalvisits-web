@@ -5,7 +5,6 @@ import cn from "classnames";
 import { Button, Tooltip } from "@mui/material";
 import { shortenText } from "@/utils/text";
 import InstagramIcon from "@mui/icons-material/Instagram";
-import { CustomButton } from "../custom";
 
 type MappedInstagramPost = {
   id: string;
@@ -92,13 +91,29 @@ export default async function Instagram() {
           </div>
         </div>
         <div className="flex justify-center">
-          <CustomButton
+          <Button
             LinkComponent={Link}
             href={"https://www.instagram.com/hilalvisits/"}
+            color="inherit"
             startIcon={<InstagramIcon />}
+            sx={{
+              color: "#fbbf24",
+              backgroundColor: 'transparent',
+              boxShadow: 'none',
+              border: 2,
+              borderColor: "#fbbf24",
+              borderRadius: 0,
+              transition: 'all 700ms',
+              ':hover': {
+                borderWidth: 2,
+                backgroundColor: "#fbbf24",
+                color: "#fff",
+                borderRadius: '6px'
+              },
+            }}
           >
             Follow
-          </CustomButton>
+          </Button>
         </div>
       </div>
     </div>

@@ -39,6 +39,7 @@ export function destructurePhotoProps(photo: PhotoPageObject) {
         city: photo?.properties?.city?.multi_select?.[0]?.name,
         albums: photo?.properties?.albums?.relation,
         district: photo?.properties?.district?.multi_select?.[0]?.name,
+        type: photo?.properties?.type?.select?.name,
     }
 }
 

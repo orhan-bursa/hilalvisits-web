@@ -1,4 +1,3 @@
-import { SectionDivider } from "@/components";
 import { BlogGrid, BlogHero } from "./sections";
 import { BlogPageObject } from "@/types";
 
@@ -8,9 +7,7 @@ export default function Blogs({ blogs }: { blogs: BlogPageObject[] }) {
   return (
     <div>
       <BlogHero item={latestBlog} />
-      <SectionDivider />
       <BlogGrid items={rest} />
-      <SectionDivider />
     </div>
   );
 }
