@@ -10,75 +10,28 @@ export default function PhotoGrid({ items }: { items: PhotoPageObject[] | undefi
     if (!items || !items.length) return <Alert>Unable to retrieve data from server</Alert>
 
     return (
-        <section className="cursor-default mx-auto max-w-[1200px]">
-
-            <div className={`columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-0`
-            }
-            >
+        <section className="cursor-default mx-auto max-w-[1400px] px-4">
+            <div className="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-0">
                 {items.map((p, i) => {
-                    const { image, title, type } = destructurePhotoProps(p)
+                    const { image, title } = destructurePhotoProps(p)
                     return (
-                        <div className={"flex justify-center items-center mx-1 " + (i === 0 ? "mt-0" : "mt-2")}>
-                            <img src={image} alt={title} className="object-cover w-full h-full rounded" />
+                        <div className={cn(
+                            "w-full h-full flex justify-center items-center px-1 py-1",
+                            "hover:opacity-90 cursor-pointer duration-300 group overflow-hidden",
+                            // { "pt-2": i === 0, "pt-2": i !== 0 }
+                        )}>
+                            <Image
+                                src={image}
+                                alt={title}
+                                width={300}
+                                height={700}
+                                objectFit="cover"
+                                className="w-full h-auto rounded"
+                            />
                         </div>
                     )
                 })}
             </div>
         </section>
     )
-
 }
-
-
-/*
-   <div className="w-full h-full">
-                <Swiper
-                    className="photo-hero-swiper"
-                    breakpoints={{
-                        0: {
-                            slidesPerView: 1,
-                        },
-                        768: {
-                            slidesPerView: 2,
-                            spaceBetween: 16
-                        },
-                        1024: {
-                            spaceBetween: 32,
-                            slidesPerView: 2,
-                        }
-                    }}
-                    pagination={{
-                        clickable: true,
-                    }}
-                    modules={[Navigation, Pagination, FreeMode]}
-                    freeMode
-                    style={{
-                        paddingBottom: 40
-                    }}
-                >
-                    {items.map((item, ind) => {
-                        const { image, title } = destructurePhotoProps(item)
-                        return <SwiperSlide
-                            key={ind}
-                            style={{
-                                textAlign: "center",
-                                fontSize: "18px",
-                                background: "#fff",
-                                display: "flex",
-                                alignItems: "center",
-                                flexDirection: "column"
-                            }}
-                        >
-                            <div className="relative w-full h-full min-h-[400px] md:min-h-[500px]">
-                                <Image
-                                    src={image ?? ""}
-                                    alt={title ?? ""}
-                                    fill
-                                    style={{ objectFit: "cover" }}
-                                />
-                            </div>
-                        </SwiperSlide>
-                    })}
-                </Swiper>
-            </div>
-*/
