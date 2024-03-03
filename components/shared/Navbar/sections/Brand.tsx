@@ -10,10 +10,9 @@ export default function Brand() {
         )}
         >
             <Link href={"/"}>
-                <h1
-                    className={cn(whisper.className, " leading-[50px]")
-                    }
-                >Hilal Visits</h1>
+                <h1 className={cn(whisper.className, " leading-[50px]")}
+                >Hilal Visits
+                </h1>
             </Link>
         </div>
     )

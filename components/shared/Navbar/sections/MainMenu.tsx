@@ -9,12 +9,10 @@ import Link from "next/link"
 
 export default function MainMenu() {
     const [open, setOpen] = useState<string | null>(null)
-    const { first, second, third } = useMenus()
+    const { first } = useMenus()
 
     return (
-        <div className={cn(
-            "hidden md:flex justify-between items-end grow",
-        )}>
+        <div className="hidden md:flex justify-between items-end grow">
             <div className="flex">
                 {first?.map((menu, ind) => {
                     return (

@@ -70,6 +70,28 @@ export async function getMenus({ depth }: { depth: number }) {
   }
 }
 
+export async function getMenuBySlug(slug: string) {
+  const filter = {
+    property: "slug",
+    formula: {
+      string: {
+        equals: slug!
+      }
+    }
+  }
+  try {
+    const res = await notionClient.databases.query({
+      database_id: process.env.NOTION_MENUS_DATABASE_ID!,
+      filter
+    });
+
+    const menu = array<MenuPageObject>(res?.results)[0]
+    return menu;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 export async function getPhotos() {
   try {
     const res = await notionClient.databases.query({

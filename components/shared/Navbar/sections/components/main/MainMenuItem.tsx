@@ -1,9 +1,8 @@
 "use client"
-import { Dispatch, SetStateAction, useMemo, useState } from 'react';
+import { Dispatch, SetStateAction, useMemo } from 'react';
 import cn from 'classnames';
-import { GetDatabaseResponse } from '@notionhq/client/build/src/api-endpoints';
 import { KeyboardArrowDown } from '@mui/icons-material';
-import { DatabaseProperty, MenuItem, MenuPageObject } from '@/types';
+import { MenuPageObject } from '@/types';
 import { destructureMenuProps } from '@/utils';
 import MainSecondaryMenuItem from './MainSecondaryMenuItem';
 import { useMenus } from '../../MenuContext';
@@ -42,10 +41,9 @@ export default function MainMenuItem({ item, open, setOpen }: IProptypes) {
                         return parent?.[0]?.id === item.id
                     })
                     .map((menu, ind) => {
-                        const { title } = destructureMenuProps(menu)
                         return (
                             <MainSecondaryMenuItem
-                                key={ind + title}
+                                key={ind + menu.id}
                                 item={menu}
                             />
                         )

@@ -8,9 +8,7 @@ import "./styles.css";
 import { Pagination, Navigation, Autoplay } from "swiper/modules";
 import Image from "next/image";
 import Link from "next/link";
-import { Facebook, Instagram, Twitter } from '@mui/icons-material/';
-import type { SvgIconComponent } from '@mui/icons-material'
-import { Alert, Button } from "@mui/material";
+import { Alert } from "@mui/material";
 import cn from "classnames";
 import { shortenText } from "@/utils/text";
 import { useBreakpoints } from "@/hooks";
@@ -32,7 +30,7 @@ export default function HomeHero({ items }: { items: BlogPageObject[] | undefine
   return (
     <section className={cn(
       "relative cursor-default mx-auto",
-      "w-full h-full max-w-[1200px] md:flex md:gap-8",
+      "max-w-[1200px] md:flex md:gap-8",
     )}>
       <div className="w-full h-full">
         <Swiper
@@ -55,6 +53,7 @@ export default function HomeHero({ items }: { items: BlogPageObject[] | undefine
             height: "100%",
             marginLeft: "auto",
             marginRight: "auto",
+            paddingBottom: 40
           }}
 
         >

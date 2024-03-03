@@ -1,20 +1,18 @@
-import { getBlogs, retrieveDatabase } from "@/utils/notion"
+import { getBlogs, getMenuBySlug, retrieveDatabase } from "@/utils/notion"
 import { Category as FeatureCategory } from "@/components"
 
 export default async function Category({ params }: { params: { parent: string, category: string } }) {
-    const { parent, category } = params
-    const blogs = await getBlogs({ parentCategoryKey: parent, categoryKey: category })
+    const slug = params.category
+    const blogs = await getBlogs({ menu_slug: slug })
+    const menu = await getMenuBySlug(slug ?? "")
 
-    const database = await retrieveDatabase(process.env.NOTION_BLOGS_DATABASE_ID!)
-
-    if (!blogs?.length) return <div>no blogs found for this categoryKey: {category}</div>
+    if (!blogs?.length) return <div>no blogs found for this slug: {slug}</div>
 
     return (
         <FeatureCategory
             items={blogs}
-            params={params}
-            type="category"
-            database={database}
+            menu={menu}
+            slug={slug}
         />
     )
 }
