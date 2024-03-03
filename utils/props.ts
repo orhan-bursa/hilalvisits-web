@@ -5,6 +5,16 @@ export function getUrlFromFilesType(item: FilesType) {
         (item?.files as FileType[])?.[0]?.file?.url;
 }
 
+function decodeCategories(_text: string | null | undefined) {
+    return _text ?
+        _text
+            .split(",")
+            .map((itemArr: string) => ({
+                title: itemArr.split("#")[0],
+                href: itemArr.split("#")[1],
+            })) : []
+}
+
 export function destructureBlogProps(blog: BlogPageObject) {
     return {
         title: blog?.properties?.title?.title?.[0]?.plain_text,
@@ -14,7 +24,8 @@ export function destructureBlogProps(blog: BlogPageObject) {
         cover: getUrlFromFilesType(blog?.properties?.cover),
         description: blog?.properties?.description?.rich_text?.[0]?.plain_text,
         menu: blog?.properties?.menu?.relation?.[0]?.id,
-        menu_path: blog?.properties?.menu_path?.rollup?.array?.[0]?.formula?.string
+        menu_path: blog?.properties?.menu_path?.rollup?.array?.[0]?.formula?.string,
+        categories: decodeCategories(blog?.properties?.categories?.formula?.string)
     }
 }
 
@@ -35,8 +46,10 @@ export function destructureMenuProps(menu: MenuPageObject) {
     return {
         title: menu?.properties?.title?.title?.[0]?.plain_text,
         path: menu?.properties?.path?.formula?.string ?? "#",
-        slug: menu?.properties?.slug?.formula?.string,
+        slug: menu?.properties?.slug?.rich_text?.[0]?.plain_text,
         parent: menu?.properties?.parent?.relation,
         subs: menu?.properties?.subs?.relation,
+        categories: decodeCategories(menu?.properties?.categories?.formula?.string),
+        children: decodeCategories(menu?.properties?.children?.formula?.string)
     }
 }

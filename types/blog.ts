@@ -6,6 +6,7 @@ import {
   RichTextType,
   SelectType,
   StatusType,
+  StringFormulaType,
   TitleType,
 } from "./core";
 
@@ -22,4 +23,5 @@ export type BlogProperties = {
   description: RichTextType;
   menu: RelationType;
   menu_path: ArrayRollupType;
+  categories: StringFormulaType;
 };

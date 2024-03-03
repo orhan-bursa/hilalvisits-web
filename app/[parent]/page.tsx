@@ -1,11 +1,10 @@
 import { Category as FeatureParentCategory } from "@/components"
-import { getBlogs, retrieveDatabase } from "@/utils/notion"
+import { getBlogs, getMenuBySlug } from "@/utils/notion"
 
 export default async function ParentCategory({ params }: { params: { parent?: string } }) {
     const slug = params.parent
-
     const blogs = await getBlogs({ menu_slug: slug })
-    console.log(blogs)
+    const menu = await getMenuBySlug(slug ?? "")
 
     //TODO: add custom not found page
     if (!blogs?.length) return <div>no blogs found for this slug: {slug}</div>
@@ -13,8 +12,8 @@ export default async function ParentCategory({ params }: { params: { parent?: st
     return (
         <FeatureParentCategory
             items={blogs}
-            params={params}
-            type="parent"
+            menu={menu}
+            slug={slug}
         />
     )
 }

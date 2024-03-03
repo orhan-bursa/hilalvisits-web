@@ -1,17 +1,10 @@
 "use client";
-import React, { useRef, useState } from "react";
-// Import Swiper React components
-import { Swiper, SwiperSlide } from "swiper/react";
-
-// Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 
 import "./styles.css";
 
-// import required modules
-import { Navigation } from "swiper/modules";
 import Image from "next/image";
 import Link from "next/link";
 import cn from "classnames";
@@ -36,8 +29,7 @@ export default function HomeLatestBlogs({ items }: { items: BlogPageObject[] | u
         "flex flex-col gap-8"
       )}>
         {items.map(blog => {
-          const { title, description, cover, category, sub_category, parent_category, slug,
-            parent_category_key, category_key, sub_category_key, } = destructureBlogProps(blog)
+          const { title, description, cover, slug, categories } = destructureBlogProps(blog)
           return (
             <div key={blog.id} className="flex flex-col sm:flex-row gap-6">
               <div className="relative h-[300px] sm:h-[200px] aspect-square">
@@ -54,24 +46,11 @@ export default function HomeLatestBlogs({ items }: { items: BlogPageObject[] | u
                 </Link>
                 <p>{description}</p>
                 <div className="flex flex-wrap gap-2 mt-2">
-                  {[
-                    {
-                      label: parent_category,
-                      href: `/${parent_category_key}`
-                    },
-                    {
-                      label: category,
-                      href: `/${parent_category_key}/${category_key}`
-                    },
-                    {
-                      label: sub_category,
-                      href: `/${parent_category_key}/${category_key}/${sub_category_key}`
-                    },
-                  ].map(tag => (
-                    <Link href={tag.href} key={tag.label}>
+                  {categories.map(c => (
+                    <Link key={c.title} href={c.href}>
                       <Chip
-                        key={tag.label}
-                        label={tag.label}
+                        key={c.title}
+                        label={c.title}
                         variant="outlined"
                         size="small"
                         className="cursor-pointer rounded border-stone-400 hover:border-black hover:bg-stone-100"
