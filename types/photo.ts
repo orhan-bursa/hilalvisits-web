@@ -16,8 +16,8 @@ export type PhotoProperties = {
   image: FilesType;
   status: StatusType;
   continent: SelectType;
-  country: MultiSelectType;
-  city: MultiSelectType;
+  country: SelectType;
+  city: SelectType;
   albums: RelationType;
   district: MultiSelectType;
   title: TitleType;
