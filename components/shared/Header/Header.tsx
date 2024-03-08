@@ -1,11 +1,8 @@
 "use client"
 import { SOCIAL_MENU_ITEMS } from '@/constants'
-import { babylonica } from '@/utils/fonts'
 import { MailOutline } from '@mui/icons-material'
 import { Button, IconButton } from '@mui/material'
-import cn from 'classnames'
 import Link from 'next/link'
-import { CustomButton } from '@/components/shared'
 import './styles.css'
 export default function Header() {
     return (

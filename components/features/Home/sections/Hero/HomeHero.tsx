@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
@@ -11,15 +11,13 @@ import Link from "next/link";
 import { Alert } from "@mui/material";
 import cn from "classnames";
 import { shortenText } from "@/utils/text";
-import { useBreakpoints } from "@/hooks";
 import { BlogPageObject } from "@/types";
 import { destructureBlogProps } from "@/utils";
 
 export default function HomeHero({ items }: { items: BlogPageObject[] | undefined }) {
-  const { isMobile } = useBreakpoints()
 
-  const progressCircle = useRef(null);
-  const progressContent = useRef(null);
+  //const progressCircle = useRef(null);
+  //const progressContent = useRef(null);
   // const onAutoplayTimeLeft = (s: any, time: any, progress: any) => {
   //   (progressCircle?.current as any)?.style?.setProperty('--progress', 1 - progress);
   //   (progressContent?.current as any).textContent = ` · `; //${Math.ceil(time / 1000)}s
@@ -36,8 +34,19 @@ export default function HomeHero({ items }: { items: BlogPageObject[] | undefine
         <Swiper
           className="home-hero-swiper"
           speed={500}
-          slidesPerView={isMobile ? 1 : 2}
-          spaceBetween={isMobile ? 16 : 32}
+          breakpoints={{
+            0: {
+              slidesPerView: 1,
+            },
+            768: {
+              slidesPerView: 2,
+              spaceBetween: 16
+            },
+            1024: {
+              spaceBetween: 32,
+              slidesPerView: 2,
+            }
+          }}
           loop={true}
           pagination={{
             clickable: true,
@@ -58,7 +67,7 @@ export default function HomeHero({ items }: { items: BlogPageObject[] | undefine
 
         >
           {items.map((item, ind) => {
-            const { cover, title, description } = destructureBlogProps(item)
+            const { cover, title, description, slug } = destructureBlogProps(item)
             return <SwiperSlide
               key={ind}
               style={{
@@ -78,11 +87,11 @@ export default function HomeHero({ items }: { items: BlogPageObject[] | undefine
                   style={{ objectFit: "cover" }}
                 />
               </div>
-              <div className="z-50 w-full top-[60%] absolute bg-black bg-opacity-40 text-white space-x-2">
-                <h2 className="my-2 text-4xl font-[500]">{title ?? "No title"}</h2>
+              <div className="absolute bottom-[25%] z-50 w-full bg-black bg-opacity-40 text-white space-x-2">
+                <h2 className="my-2 text-3xl md:text-4xl font-[500]">{title ?? "No title"}</h2>
                 <p>{shortenText(description, 100, 15)}</p>
-                <Link href={"/"}>
-                  <button className=" p-1 my-2 border-b-2 border-gray-400 text-lg italic">Read</button>
+                <Link href={`/blog/${slug}`}>
+                  <button className=" p-1 my-2 border-b-2 border-gray-400 text-sm md:text-lg italic">Devamı</button>
                 </Link>
               </div>
             </SwiperSlide>

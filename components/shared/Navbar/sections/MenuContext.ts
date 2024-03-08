@@ -1,5 +1,5 @@
-import { MenuPageObject } from '@/types';
 import { Dispatch, SetStateAction, createContext, useContext } from 'react';
+import { MenuPageObject } from '@/types';
 
 type MenuContextValue = {
     menus: {
@@ -28,7 +28,7 @@ export const useMobileMenu = () => {
     const context = useContext(MenuContext);
 
     if (!context)
-        throw new Error('useMenus hook must be used within <MenuContext.Provider> component');
+        throw new Error('useMobileMenu hook must be used within <MenuContext.Provider> component');
 
     return context.mobile;
 }

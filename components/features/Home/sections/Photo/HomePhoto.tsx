@@ -1,7 +1,6 @@
 "use client";
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { CustomButton } from "@/components/shared/custom";
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/navigation";
@@ -10,24 +9,20 @@ import "./styles.css";
 import { FreeMode, Navigation, Thumbs } from "swiper/modules";
 import Image from "next/image";
 import Link from "next/link";
-import { whisper } from "@/utils/fonts";
 import cn from "classnames";
-import { useBreakpoints } from "@/hooks";
 import { PhotoPageObject } from "@/types";
 import { destructurePhotoProps } from "@/utils";
-import { Alert } from "@mui/material";
+import { Alert, Button } from "@mui/material";
 
 export default function HomePhoto({ items }: { items: PhotoPageObject[] | undefined }) {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
-
-  const { isMobile, isDesktop } = useBreakpoints();
 
   if (!items || !items.length) return <Alert>Unable to retrieve data from server</Alert>
   return (
     <section className="max-w-[900px] w-full mx-auto">
       <h2 className={cn(
         "w-full cursor-default mb-6",
-        "text-5xl font-[500] text-center"
+        "text-4xl md:text-5xl font-semibold text-center",
       )}>
         Photography
       </h2>
@@ -39,14 +34,16 @@ export default function HomePhoto({ items }: { items: PhotoPageObject[] | undefi
             follow for more! Lorem ipsum dolor sit amet consectetur adipisicing
             elit. Obcaecati, praesentium.
           </p>
-          <div className="md:text-center">
-            <CustomButton
+          <div className="mb-2 mt-4 text-center">
+            <Button
+              variant="outlined"
+              color="inherit"
               LinkComponent={Link}
               href="/photo"
-              color="gray"
+              className="hover:bg-transparent text-black"
             >
-              View more
-            </CustomButton>
+              Devamı
+            </Button>
           </div>
         </div>
         <div className="w-full md:w-[65%]">

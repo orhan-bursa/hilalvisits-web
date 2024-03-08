@@ -19,15 +19,15 @@ export default function MainMenuItem({ item, open, setOpen }: IProptypes) {
 
     return (
         <div
-            className="relative flex font-semibold pb-1 px-2 cursor-pointer"
+            className="relative flex font-semibold pb-1 px-2 cursor-pointer hover:text-amber-500 duration-300"
             onClick={() => {
                 setOpen(!isOpen ? itemTitle : null)
             }}
         >
-            <p className={isOpen ? "text-amber-500" : "text-black"}>
+            <p className={isOpen ? "text-amber-500" : "text-inherit"}>
                 {itemTitle?.toLocaleUpperCase("tr-TR")}
             </p>
-            <KeyboardArrowDown className={isOpen ? "text-amber-400" : "text-black"} />
+            <KeyboardArrowDown className={isOpen ? "text-amber-400" : "text-inherit"} />
             <div className={cn(
                 "absolute top-10 -left-2 bg-amber-400 text-white z-50 min-w-[210px] -translate-y-2 duration-300",
                 {

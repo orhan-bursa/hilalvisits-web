@@ -32,11 +32,11 @@ export function destructureBlogProps(blog: BlogPageObject) {
 export function destructurePhotoProps(photo: PhotoPageObject) {
     return {
         title: photo?.properties?.title?.title?.[0]?.plain_text,
-        image: getUrlFromFilesType(photo.properties.image),
+        image: getUrlFromFilesType(photo?.properties?.image),
         status: photo?.properties?.status?.status,
         continent: photo?.properties?.continent?.select?.name,
-        country: photo?.properties?.country?.multi_select?.[0]?.name,
-        city: photo?.properties?.city?.multi_select?.[0]?.name,
+        country: photo?.properties?.country?.select?.name,
+        city: photo?.properties?.city?.select?.name,
         albums: photo?.properties?.albums?.relation,
         district: photo?.properties?.district?.multi_select?.[0]?.name,
     }
