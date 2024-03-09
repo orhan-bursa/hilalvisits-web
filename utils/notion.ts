@@ -13,7 +13,6 @@ export const notionClient = new Client({
 });
 
 export async function getBlogs(filter?: BlogsFilterQuery) {
-
   const filterQuery: any[] = [{
     property: "status",
     status: {
@@ -47,24 +46,33 @@ export async function getBlogs(filter?: BlogsFilterQuery) {
   }
 };
 
-export async function getMenus({ depth }: { depth: number }) {
-  const filter = {
-    property: "depth",
-    formula: {
-      number: {
-        equals: depth
-      }
-    }
-  }
-
+export async function getMenus(depth?: number) {
   try {
-    const res = await notionClient.databases.query({
-      database_id: process.env.NOTION_MENUS_DATABASE_ID!,
-      filter
-    });
+    if (!depth) {
+      const res = await notionClient.databases.query({
+        database_id: process.env.NOTION_MENUS_DATABASE_ID!,
+      });
 
-    const menus = array<MenuPageObject>(res?.results)
-    return menus;
+      const menus = array<MenuPageObject>(res?.results)
+      return menus;
+    }
+    else {
+      const filter = {
+        property: "depth",
+        formula: {
+          number: {
+            equals: depth
+          }
+        }
+      }
+      const res = await notionClient.databases.query({
+        database_id: process.env.NOTION_MENUS_DATABASE_ID!,
+        filter
+      });
+
+      const menus = array<MenuPageObject>(res?.results)
+      return menus;
+    }
   } catch (error) {
     console.log(error);
   }
@@ -93,6 +101,25 @@ export async function getMenuBySlug(slug: string) {
 }
 
 export async function getPhotos() {
+  try {
+    const res = await notionClient.databases.query({
+      database_id: process.env.NOTION_PHOTOS_DATABASE_ID!,
+      filter: {
+        property: "status",
+        status: {
+          equals: "published"
+        }
+      }
+    });
+
+    const photos = array<PhotoPageObject>(res?.results)
+    return photos;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export async function getPages() {
   try {
     const res = await notionClient.databases.query({
       database_id: process.env.NOTION_PHOTOS_DATABASE_ID!,

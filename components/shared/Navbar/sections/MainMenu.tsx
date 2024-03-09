@@ -13,16 +13,26 @@ export default function MainMenu() {
     return (
         <div className="hidden md:flex justify-between items-end grow">
             <div className="flex">
-                {first?.map((menu, ind) => {
+                {first?.map((menu) => {
                     return (
                         <MainMenuItem
-                            key={ind}
+                            key={menu.id}
                             open={open}
                             setOpen={setOpen}
                             item={menu}
                         />
                     )
                 })}
+                <FixedMenuItem
+                    key={"photo"}
+                    title={"Galeri"}
+                    href="/galeri"
+                />
+                <FixedMenuItem
+                    key={"hakkimda"}
+                    title={"Hakkımda"}
+                    href="/hakkimda"
+                />
             </div>
             <div className="flex gap-2">
                 {SOCIAL_MENU_ITEMS.map((item, i) => {
@@ -64,5 +74,19 @@ export default function MainMenu() {
                 </div>
             </div>
         </div>
+    )
+}
+
+function FixedMenuItem({ title, href }: { title: string, href: string }) {
+    return (
+        <Link href={href}>
+            <div
+                className="relative flex font-semibold pb-1 px-2 cursor-pointer hover:text-amber-500 duration-300"
+            >
+                <p className={"text-inherit"}>
+                    {title?.toLocaleUpperCase("tr-TR")}
+                </p>
+            </div>
+        </Link>
     )
 }

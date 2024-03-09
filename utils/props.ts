@@ -46,6 +46,7 @@ export function destructureMenuProps(menu: MenuPageObject) {
     return {
         title: menu?.properties?.title?.title?.[0]?.plain_text,
         path: menu?.properties?.path?.formula?.string ?? "#",
+        depth: menu?.properties?.depth?.formula?.number ?? 0,
         slug: menu?.properties?.slug?.rich_text?.[0]?.plain_text,
         parent: menu?.properties?.parent?.relation,
         subs: menu?.properties?.subs?.relation,

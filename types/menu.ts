@@ -1,4 +1,5 @@
 import {
+    NumberFormulaType,
     PageObjectBase,
     RelationType,
     RichTextType,
@@ -13,6 +14,7 @@ export type MenuPageObject = PageObjectBase & {
 export type MenuProperties = {
     slug: RichTextType;
     path: StringFormulaType;
+    depth: NumberFormulaType;
     title: TitleType;
     parent: RelationType;
     subs: RelationType;
