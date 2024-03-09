@@ -1,5 +1,5 @@
 "use client"
-import { AlternateEmail, Facebook, FacebookOutlined, FacebookRounded, Instagram, Twitter } from "@mui/icons-material"
+import { FacebookRounded, Instagram, Twitter } from "@mui/icons-material"
 
 export const SOCIAL_LINKS = {
     instagram: "https://www.instagram.com/hilalvisits/",

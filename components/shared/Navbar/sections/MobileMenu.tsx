@@ -70,12 +70,21 @@ export default function MobileMenu() {
                             </div>
                             <nav className="w-full">
                                 <ul>
-                                    <MobileMenuItem title={"KEŞFET"} />
-                                    {NAVBAR_MENU_ITEMS.map((item, i) => {
-                                        return (
+                                    <MobileMenuItem title={"KEŞFET"} defaultOpen={true} />
+                                    {
+                                        [
+                                            {
+                                                title: "Galeri",
+                                                href: "galeri"
+                                            },
+                                            {
+                                                title: "Kimim?",
+                                                href: "hakkımda"
+                                            }
+                                        ].map(item => (
                                             <li className="border-b-[1px] border-gray-400" onClick={handleCloseMenu}>
                                                 <Button
-                                                    key={i + item.title}
+                                                    key={item.title}
                                                     className="w-full text-lg font-semibold px-2 py-3 flex justify-start text-black"
                                                     LinkComponent={Link}
                                                     href={item.href}
@@ -84,8 +93,8 @@ export default function MobileMenu() {
                                                     {item.title?.toLocaleUpperCase('tr-TR')}
                                                 </Button>
                                             </li>
-                                        )
-                                    })}
+                                        ))
+                                    }
                                 </ul>
                             </nav>
                             <MobileSocials />

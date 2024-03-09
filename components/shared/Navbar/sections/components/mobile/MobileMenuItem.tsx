@@ -6,8 +6,8 @@ import { useState } from "react";
 import { MobileSecondaryMenuItem } from "../mobile";
 import { useMenus } from "../../MenuContext";
 
-export default function MobileMenuItem({ title }: { title: string }) {
-    const [isOpen, setOpen] = useState(false)
+export default function MobileMenuItem({ title, defaultOpen = false }: { title: string, defaultOpen?: boolean }) {
+    const [isOpen, setOpen] = useState(defaultOpen)
     const handleOpen = () => setOpen(pre => !pre)
     const [openMenu, setOpenMenu] = useState<string | null>(null)
 
