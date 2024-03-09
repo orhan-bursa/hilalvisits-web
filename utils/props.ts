@@ -1,4 +1,5 @@
 import { ExternalFileType, FileType, FilesType, BlogPageObject, PhotoPageObject, MenuPageObject } from "@/types";
+import { InfoPageObject } from "@/types/page";
 
 export function getUrlFromFilesType(item: FilesType) {
     return (item?.files as ExternalFileType[])?.[0]?.external?.url ??
@@ -52,5 +53,14 @@ export function destructureMenuProps(menu: MenuPageObject) {
         subs: menu?.properties?.subs?.relation,
         categories: decodeCategories(menu?.properties?.categories?.formula?.string),
         children: decodeCategories(menu?.properties?.children?.formula?.string)
+    }
+}
+
+export function destructureInfoPageProps(page: InfoPageObject) {
+    return {
+        title: page?.properties?.title?.title?.[0]?.plain_text,
+        path: page?.properties?.path?.formula?.string ?? "#",
+        slug: page?.properties?.slug?.rich_text?.[0]?.plain_text,
+        type: page?.properties?.type?.select?.name,
     }
 }

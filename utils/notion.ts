@@ -3,6 +3,7 @@ import { Client } from "@notionhq/client";
 import { array } from ".";
 import { BlogPageObject, PhotoPageObject, AlbumPageObject, MenuPageObject } from "@/types";
 import { BlockObjectResponse } from "@notionhq/client/build/src/api-endpoints";
+import { InfoPageObject } from "@/types/page";
 
 type BlogsFilterQuery = {
   menu_slug?: string;
@@ -81,10 +82,8 @@ export async function getMenus(depth?: number) {
 export async function getMenuBySlug(slug: string) {
   const filter = {
     property: "slug",
-    formula: {
-      string: {
-        equals: slug!
-      }
+    rich_text: {
+      equals: slug!
     }
   }
   try {
@@ -119,20 +118,34 @@ export async function getPhotos() {
   }
 };
 
-export async function getPages() {
+export async function getInfoPages() {
   try {
     const res = await notionClient.databases.query({
-      database_id: process.env.NOTION_PHOTOS_DATABASE_ID!,
-      filter: {
-        property: "status",
-        status: {
-          equals: "published"
-        }
-      }
+      database_id: process.env.NOTION_PAGES_DATABASE_ID!
     });
 
-    const photos = array<PhotoPageObject>(res?.results)
+    const photos = array<InfoPageObject>(res?.results)
     return photos;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export async function getInfoPageBySlug(slug: string) {
+  const filter = {
+    property: "slug",
+    rich_text: {
+      equals: slug!
+    }
+  }
+  try {
+    const res = await notionClient.databases.query({
+      database_id: process.env.NOTION_PAGES_DATABASE_ID!,
+      filter
+    });
+
+    const photos = array<InfoPageObject>(res?.results)
+    return photos.length ? photos[0] : undefined
   } catch (error) {
     console.log(error);
   }
@@ -169,14 +182,6 @@ export async function getBlockChildren(id: string) {
   }
 };
 
-export async function getPage(id: string) {
-  try {
-    const res = await notionClient.pages.retrieve({ page_id: id })
-    return res
-  } catch (error) {
-    console.log(error);
-  }
-}
 
 export async function getBlogBySlug(slug: string) {
   try {
@@ -211,4 +216,13 @@ export async function getBlogBySlug(slug: string) {
 export async function retrieveDatabase(database_id: string) {
   const res = await notionClient.databases.retrieve({ database_id });
   return res
+}
+
+export async function retrievePage(id: string) {
+  try {
+    const res = await notionClient.pages.retrieve({ page_id: id })
+    return res
+  } catch (error) {
+    console.log(error);
+  }
 }

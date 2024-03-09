@@ -11,28 +11,7 @@ import Link from "next/link"
 export default function FooterClient({ first }: { first?: MenuPageObject[] }) {
     return (
         <div className="max-w[900px] md:mx-8 space-y-4 md:space-y-0 md:flex md:justify-center md:gap-12">
-            <div>
-                <h1
-                    className={
-                        whisper.className + " " +
-                        "h-full md:h-auto flex justify-center items-center text-6xl md:text-7xl font-bold text-white z-50 whitespace-nowrap"
-                    }
-                > Hilal Visits
-                </h1>
-                <div className="flex justify-center">
-                    {SOCIAL_MENU_ITEMS.map((item, i) => {
-                        const Icon = item.icon
-                        return <IconButton
-                            key={i + item.title}
-                            LinkComponent={Link}
-                            href={item.href ?? "/"}
-                            color="inherit"
-                        >
-                            <Icon />
-                        </IconButton>
-                    })}
-                </div>
-            </div>
+            <BrandWithSocials />
             <div className={cn(
                 "flex justify-center gap-4 md:gap-12 max-w-[400px]",
                 "md:border-l-2 md:border-white md:border-opacity-70 md:pl-12"
@@ -70,13 +49,13 @@ export default function FooterClient({ first }: { first?: MenuPageObject[] }) {
                             },
                             {
                                 title: "Kimim?",
-                                href: "hakkımda"
+                                href: "sayfa/hakkimda"
                             }
                         ].map(item => (
                             <Button
                                 key={item.title}
                                 LinkComponent={Link}
-                                href="galeri"
+                                href={item.href}
                                 color="inherit"
                                 sx={{
                                     color: "#fff",
@@ -99,7 +78,7 @@ export default function FooterClient({ first }: { first?: MenuPageObject[] }) {
                         "border-b-[1px] border-white border-opacity-70"
                     )}>İletişim</h4>
                     <div className="max-w-[300px] md:max-w-none my-2 space-y-3">
-                        <p className="text-start">For business inquiries, or any questions, feel free to contact me!</p>
+                        <p className="text-start">Sorular veya iş teklifleri için iletişime geçmekten çekinmeyin!</p>
                         <Button
                             variant="outlined"
                             color="inherit"
@@ -107,22 +86,55 @@ export default function FooterClient({ first }: { first?: MenuPageObject[] }) {
                             target="blank"
                             startIcon={<MailOutline />}
                         >
-                            İletişim
+                            Email
                         </Button>
                     </div>
                 </div>
             </div>
-            <div className="flex md:justify-end md:block">
-                <Tooltip title="Scroll to top" >
-                    <IconButton
-                        onClick={() => window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })}
+            <ScrollToTopButton />
+        </div>
+    )
+}
+
+function BrandWithSocials() {
+    return (
+        <div>
+            <h1
+                className={
+                    whisper.className + " " +
+                    "h-full md:h-auto flex justify-center items-center text-6xl md:text-7xl font-bold text-white z-50 whitespace-nowrap"
+                }
+            > Hilal Visits
+            </h1>
+            <div className="flex justify-center">
+                {SOCIAL_MENU_ITEMS.map((item, i) => {
+                    const Icon = item.icon
+                    return <IconButton
+                        key={i + item.title}
+                        LinkComponent={Link}
+                        href={item.href ?? "/"}
                         color="inherit"
-                        sx={{ border: "1px solid white", padding: "4px" }}
                     >
-                        <KeyboardArrowUp />
+                        <Icon />
                     </IconButton>
-                </Tooltip>
+                })}
             </div>
+        </div>
+    )
+}
+
+function ScrollToTopButton() {
+    return (
+        <div className="flex md:justify-end md:block">
+            <Tooltip title="Scroll to top" >
+                <IconButton
+                    onClick={() => window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })}
+                    color="inherit"
+                    sx={{ border: "1px solid white", padding: "4px" }}
+                >
+                    <KeyboardArrowUp />
+                </IconButton>
+            </Tooltip>
         </div>
     )
 }
