@@ -28,7 +28,9 @@ export default function NavbarMenu({ menus }: IProptypes) {
             },
         }}>
             <nav className={cn(
-                "h-full w-full mx-auto md:pb-6 pt-6 md:pt-10 max-w-[1200px] bg-white md:flex md:gap-8",
+                "h-full w-full mx-auto md:pb-6 pt-6 md:pt-10 max-w-[1200px] bg-white",
+                "md:flex md:gap-8",
+                "md:px-4 xl:px-0"
             )}>
                 <Brand />
                 <MainMenu />

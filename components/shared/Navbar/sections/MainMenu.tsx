@@ -34,7 +34,7 @@ export default function MainMenu() {
                     href="/hakkimda"
                 />
             </div>
-            <div className="flex gap-2">
+            <div className="flex gap-2 md:hidden lg:flex">
                 {SOCIAL_MENU_ITEMS.map((item, i) => {
                     const Icon = item.icon
                     return <IconButton
