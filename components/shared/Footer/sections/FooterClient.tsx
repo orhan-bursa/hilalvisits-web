@@ -126,7 +126,7 @@ function BrandWithSocials() {
 function ScrollToTopButton() {
     return (
         <div className="flex md:justify-end md:block">
-            <Tooltip title="Scroll to top" >
+            <Tooltip title="En başa git" >
                 <IconButton
                     onClick={() => window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })}
                     color="inherit"

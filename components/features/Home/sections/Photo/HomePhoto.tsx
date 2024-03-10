@@ -24,7 +24,7 @@ export default function HomePhoto({ items }: { items: PhotoPageObject[] | undefi
         "w-full cursor-default mb-6",
         "text-4xl md:text-5xl font-semibold text-center",
       )}>
-        Photography
+        Fotoğraflar
       </h2>
       <div className="flex w-full flex-col md:flex-row">
         <div className="w-full md:w-[35%] space-y-4 m-2">

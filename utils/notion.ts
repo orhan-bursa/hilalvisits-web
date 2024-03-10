@@ -1,7 +1,7 @@
 import "server-only";
 import { Client } from "@notionhq/client";
 import { array } from ".";
-import { BlogPageObject, PhotoPageObject, AlbumPageObject, MenuPageObject } from "@/types";
+import { BlogPageObject, PhotoPageObject, MenuPageObject } from "@/types";
 import { BlockObjectResponse } from "@notionhq/client/build/src/api-endpoints";
 import { InfoPageObject } from "@/types/page";
 
@@ -151,26 +151,6 @@ export async function getInfoPageBySlug(slug: string) {
   }
 };
 
-export async function getAlbums() {
-  try {
-    const res = await notionClient.databases.query({
-      //TODO: get only published items
-      database_id: process.env.NOTION_ALBUMS_DATABASE_ID!,
-      filter: {
-        property: "status",
-        status: {
-          equals: "published"
-        }
-      }
-    });
-
-    const albums = array<AlbumPageObject>(res?.results)
-    return albums;
-  } catch (error) {
-    console.log(error);
-  }
-};
-
 export async function getBlockChildren(id: string) {
   try {
     const response = await notionClient.blocks.children.list({
@@ -181,7 +161,6 @@ export async function getBlockChildren(id: string) {
     console.log(error);
   }
 };
-
 
 export async function getBlogBySlug(slug: string) {
   try {

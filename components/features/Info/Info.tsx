@@ -10,7 +10,7 @@ interface IPropTypes {
 export default function Info({ infoPage, infoPageContents }: IPropTypes) {
     const { title } = destructureInfoPageProps(infoPage)
     return (
-        <div className="w-full flex flex-col items-center">
+        <div className="w-full flex flex-col items-center my-10">
             <section className="w-full md:max-w-[900px]">
                 <h1 className="text-2xl min-h-16 text-start font-semibold">
                     {title}

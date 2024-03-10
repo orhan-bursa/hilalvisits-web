@@ -3,9 +3,10 @@ import cn from "classnames";
 import Image from "next/image";
 import Link from "next/link";
 
-function getRichTextWithAnnotations(item: RichTextItemResponse, otherClassNames?: string) {
+function getRichTextWithAnnotations(item: RichTextItemResponse, key: any, otherClassNames?: string) {
     const { href, plain_text } = item
     const { bold, italic, underline } = item.annotations
+
 
     if (!bold && !italic && !underline) return href ? (
         <Link href={href ?? "/"} prefetch={false}>
@@ -32,7 +33,7 @@ export function mapContent(content: BlockObjectResponse, index: number) {
     const key = content.id + index
     switch (content?.type) {
         case "heading_1":
-            if (content.heading_1.rich_text.length === 0) return <div key={key} className="h-16"></div>
+            if (content.heading_1.rich_text.length === 0) return <div key={key} style={{ height: 64 }}></div>
             const h1item = content.heading_1.rich_text?.[0]
             return (
                 <h1 key={key} className={cn(
@@ -45,7 +46,7 @@ export function mapContent(content: BlockObjectResponse, index: number) {
                 </h1>
             )
         case "heading_2":
-            if (content.heading_2.rich_text.length === 0) return <div key={key} className="h-12"></div>
+            if (content.heading_2.rich_text.length === 0) return <div key={key} style={{ height: 48 }}></div>
             const h2item = content.heading_2.rich_text?.[0]
             return (
                 <h2 key={key} className={cn(
@@ -58,7 +59,7 @@ export function mapContent(content: BlockObjectResponse, index: number) {
                 </h2>
             )
         case "heading_3":
-            if (content.heading_3.rich_text.length === 0) return <div key={key} className="h-8"></div>
+            if (content.heading_3.rich_text.length === 0) return <div key={key} style={{ height: 32 }}></div>
             const h3item = content.heading_3.rich_text?.[0]
             return (
                 <h3 key={key} className={cn(
@@ -72,10 +73,10 @@ export function mapContent(content: BlockObjectResponse, index: number) {
             )
 
         case "paragraph":
-            if (content.paragraph.rich_text.length === 0) return <div key={key} className="h-6"></div>
+            if (content.paragraph.rich_text.length === 0) return <div key={key} style={{ height: 24 }}></div>
             return (
                 <div key={key} className="min-h-6">
-                    {content.paragraph.rich_text.map(item => getRichTextWithAnnotations(item))}
+                    {content.paragraph.rich_text.map((item, ind) => getRichTextWithAnnotations(item, key + ind))}
                 </div>
             )
         case "image":
@@ -91,17 +92,10 @@ export function mapContent(content: BlockObjectResponse, index: number) {
                 </div>
             )
         case "bulleted_list_item":
-            if (content.bulleted_list_item.rich_text.length === 0) return <div key={key} className="h-6"><li></li></div>
+            if (content.bulleted_list_item.rich_text.length === 0) return <div key={key} style={{ height: 24 }}></div>
             return (
                 <li key={key}>
-                    {content.bulleted_list_item.rich_text.map(item => getRichTextWithAnnotations(item))}
-                </li>
-            )
-        case "numbered_list_item":
-            if (content.numbered_list_item.rich_text.length === 0) return <div key={key} className="h-6"><li></li></div>
-            return (
-                <li key={key}>
-                    {content.numbered_list_item.rich_text.map(item => getRichTextWithAnnotations(item))}
+                    {content.bulleted_list_item.rich_text.map((item, ind) => getRichTextWithAnnotations(item, key + ind))}
                 </li>
             )
         default:
