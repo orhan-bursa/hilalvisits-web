@@ -8,7 +8,7 @@ interface IPropTypes {
 }
 export default function Category({ items, slug, menu }: IPropTypes) {
     return (
-        <div className="space-y-12 md:space-y-12 my-8">
+        <div className="space-y-6 md:space-y-12 my-8">
             <CategoryHeader slug={slug} menu={menu} />
             <CategoryBlogs items={items} />
         </div>
