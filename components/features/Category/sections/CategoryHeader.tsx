@@ -10,20 +10,17 @@ interface IPropTypes {
 
 export default function CategoryHeader({ slug, menu }: IPropTypes) {
 
-    if (!menu) return <div>header info not found</div>
+    if (!menu) return <div>Başlık bilgisi bulunamadı.</div>
     const { categories, children } = destructureMenuProps(menu)
     const currentCategory = categories.find(c => c.href.includes(slug!))
     return (
-        <section className="max-w-[1200px] w-full mx-auto">
-            <div className="flex justify-center">
-                <h2 className={cn(
-                    "cursor-default mb-2 px-4 pb-1",
-                    "text-4xl font-semibold text-center",
-                    "border-b-2 border-slate-200"
-                )}>
-                    {currentCategory?.title?.toUpperCase()}
-                </h2>
-            </div>
+        <section className="max-w-[1200px] mx-auto space-y-3">
+            <h2 className={cn(
+                "cursor-default px-4",
+                "text-4xl font-semibold text-center",
+            )}>
+                {currentCategory?.title?.toUpperCase()} BLOGLARI
+            </h2>
             <div className="flex justify-center">
                 <Breadcrumbs >
                     <Link
@@ -51,7 +48,7 @@ export default function CategoryHeader({ slug, menu }: IPropTypes) {
                 </Breadcrumbs>
             </div>
             {!!children.length ?
-                <div className="flex flex-wrap gap-2 mb-3">
+                <div className="flex justify-center flex-wrap gap-2 mb-3">
                     {children.map((c, i) => (
                         <Link
                             key={i + c.title}
@@ -60,8 +57,8 @@ export default function CategoryHeader({ slug, menu }: IPropTypes) {
                             <Chip
                                 label={c.title}
                                 className={cn(
-                                    "cursor-pointer rounded bg-slate-600 text-white",
-                                    "hover:bg-slate-400"
+                                    "cursor-pointer rounded bg-gray-500 text-white",
+                                    "hover:bg-gray-600"
                                 )}
                             />
                         </Link>

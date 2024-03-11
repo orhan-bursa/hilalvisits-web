@@ -1,13 +1,14 @@
-import { BlogGrid, BlogHero } from "./sections";
+import { getMenus } from "@/utils/notion";
+import { BlogGrid, BlogHeader } from "./sections";
 import { BlogPageObject } from "@/types";
 
-export default function Blogs({ blogs }: { blogs: BlogPageObject[] }) {
-  const latestBlog = blogs?.[0];
-  const rest = blogs.slice(1);
+export default async function Blogs({ blogs }: { blogs: BlogPageObject[] }) {
+  const menus = await getMenus(1);
+
   return (
-    <div>
-      <BlogHero item={latestBlog} />
-      <BlogGrid items={rest} />
+    <div className="space-y-6 md:space-y-12 my-8">
+      <BlogHeader menus={menus} />
+      <BlogGrid items={blogs} />
     </div>
   );
 }
