@@ -9,7 +9,7 @@ function getRichTextWithAnnotations(item: RichTextItemResponse, key: any, otherC
 
 
     if (!bold && !italic && !underline) return href ? (
-        <Link href={href ?? "/"} prefetch={false}>
+        <Link href={href ?? "/"} target="_blank" prefetch={false}>
             {item?.plain_text}
         </Link>
     ) : item?.plain_text
@@ -84,11 +84,16 @@ export function mapContent(content: BlockObjectResponse, index: number) {
                 <div key={key} className="min-h-[300px] w-full h-full relative">
                     <Image
                         alt={content.id + " image"}
-                        src={content.image.type === "file" ? content.image.file.url : content.image.external.url}
+                        src={content?.image?.type === "file" ? content?.image?.file?.url : content?.image?.external?.url}
                         width={900}
                         height={900}
                         style={{ objectFit: "cover" }}
                     />
+                    {content?.image?.caption ?
+                        <p className="text-[#373737a6] text-sm pt-2 px-1">
+                            {content.image.caption.map((item, ind) => getRichTextWithAnnotations(item, key + ind))}
+                        </p>
+                        : null}
                 </div>
             )
         case "bulleted_list_item":
