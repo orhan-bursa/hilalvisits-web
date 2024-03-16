@@ -5,15 +5,11 @@ import { BlogPageObject, PhotoPageObject, MenuPageObject } from "@/types";
 import { BlockObjectResponse } from "@notionhq/client/build/src/api-endpoints";
 import { InfoPageObject } from "@/types/page";
 
-type BlogsFilterQuery = {
-  menu_slug?: string;
-}
-
-export const notionClient = new Client({
+const notionClient = new Client({
   auth: process.env.NOTION_SECRET,
 });
 
-export async function getBlogs(filter?: BlogsFilterQuery) {
+export async function getBlogs(filter?: { menu_slug?: string }) {
   const filterQuery: any[] = [{
     property: "status",
     status: {
@@ -46,6 +42,35 @@ export async function getBlogs(filter?: BlogsFilterQuery) {
     console.log(error);
   }
 };
+export async function getBlogBySlug(slug: string) {
+  try {
+    const res = await notionClient.databases.query({
+      database_id: process.env.NOTION_BLOGS_DATABASE_ID!,
+      filter: {
+        and: [
+          {
+            property: "status",
+            status: {
+              equals: "published"
+            }
+          },
+          {
+            property: "slug",
+            rich_text: {
+              equals: slug
+            }
+          }
+        ]
+      }
+    })
+
+    const blogs = array<BlogPageObject>(res?.results)
+
+    return blogs.length ? blogs[0] : undefined
+  } catch (error) {
+    console.log(error);
+  }
+}
 
 export async function getMenus(depth?: number) {
   try {
@@ -78,7 +103,6 @@ export async function getMenus(depth?: number) {
     console.log(error);
   }
 }
-
 export async function getMenuBySlug(slug: string) {
   const filter = {
     property: "slug",
@@ -130,7 +154,6 @@ export async function getInfoPages() {
     console.log(error);
   }
 };
-
 export async function getInfoPageBySlug(slug: string) {
   const filter = {
     property: "slug",
@@ -161,47 +184,3 @@ export async function getBlockChildren(id: string) {
     console.log(error);
   }
 };
-
-export async function getBlogBySlug(slug: string) {
-  try {
-    const res = await notionClient.databases.query({
-      database_id: process.env.NOTION_BLOGS_DATABASE_ID!,
-      filter: {
-        and: [
-          {
-            property: "status",
-            status: {
-              equals: "published"
-            }
-          },
-          {
-            property: "slug",
-            rich_text: {
-              equals: slug
-            }
-          }
-        ]
-      }
-    })
-
-    const blogs = array<BlogPageObject>(res?.results)
-
-    return blogs.length ? blogs[0] : undefined
-  } catch (error) {
-    console.log(error);
-  }
-}
-
-export async function retrieveDatabase(database_id: string) {
-  const res = await notionClient.databases.retrieve({ database_id });
-  return res
-}
-
-export async function retrievePage(id: string) {
-  try {
-    const res = await notionClient.pages.retrieve({ page_id: id })
-    return res
-  } catch (error) {
-    console.log(error);
-  }
-}
