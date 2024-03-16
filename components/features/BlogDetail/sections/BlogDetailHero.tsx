@@ -9,17 +9,16 @@ export default function BlogDetailHero({ data }: { data: BlogPageObject }) {
 
     return (
         <section className="w-full h-full min-h-[600px] md:max-w-[1200px] space-y-3">
-            <div className="min-h-[600px] h-full relative">
+            <div className="min-w-[500px] w-full aspect-video relative">
                 <Image src={cover} alt={title} fill style={{ objectFit: "cover" }} />
             </div>
             <h1 className={cn(
-                whisper.className,
-                "text-amber-400 text-center",
-                "text-5xl sm:text-6xl md:text-7xl lg:text-8xl",
+                "text-amber-400 text-center px-4 xl:px-0 font-semibold max-w-[1050px] mx-auto",
+                "text-5xl sm:text-6xl md:text-7xl",
             )}>
                 {title}
             </h1>
-            <p className="italic md:max-w-[900px] mx-auto">
+            <p className="italic max-w-[900px] mx-auto px-4 xl:px-0">
                 {description}
             </p>
         </section>

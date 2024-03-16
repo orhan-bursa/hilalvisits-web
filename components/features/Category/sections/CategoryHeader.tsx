@@ -34,6 +34,7 @@ export default function CategoryHeader({ slug, menu }: IPropTypes) {
                         const isLastItem = i === categories.length - 1
                         return (!isLastItem ?
                             <Link
+                                key={i + c?.title}
                                 color="inherit"
                                 href={`/${c.href}`}
                                 className="hover:underline hover:text-red-500"
