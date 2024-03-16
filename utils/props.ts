@@ -26,7 +26,8 @@ export function destructureBlogProps(blog: BlogPageObject) {
         description: blog?.properties?.description?.rich_text?.[0]?.plain_text,
         menu: blog?.properties?.menu?.relation?.[0]?.id,
         menu_path: blog?.properties?.menu_path?.rollup?.array?.[0]?.formula?.string,
-        categories: decodeCategories(blog?.properties?.categories?.formula?.string)
+        categories: decodeCategories(blog?.properties?.categories?.formula?.string),
+        favorite: blog?.properties?.favorite?.checkbox
     }
 }
 

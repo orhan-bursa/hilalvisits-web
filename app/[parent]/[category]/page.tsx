@@ -1,4 +1,4 @@
-import { getBlogs, getMenuBySlug, retrieveDatabase } from "@/utils/notion"
+import { getBlogs, getMenuBySlug } from "@/utils/notion"
 import { Category as FeatureCategory } from "@/components"
 
 export default async function Category({ params }: { params: { parent: string, category: string } }) {

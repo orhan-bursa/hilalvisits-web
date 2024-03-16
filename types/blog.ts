@@ -1,5 +1,6 @@
 import {
   ArrayRollupType,
+  CheckboxType,
   FilesType,
   PageObjectBase,
   RelationType,
@@ -24,4 +25,5 @@ export type BlogProperties = {
   menu: RelationType;
   menu_path: ArrayRollupType;
   categories: StringFormulaType;
+  favorite: CheckboxType
 };
