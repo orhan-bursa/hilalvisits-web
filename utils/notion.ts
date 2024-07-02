@@ -5,8 +5,28 @@ import { BlogPageObject, PhotoPageObject, MenuPageObject } from "@/types";
 import { BlockObjectResponse } from "@notionhq/client/build/src/api-endpoints";
 import { InfoPageObject } from "@/types/page";
 
+const NOTION_VERSION = "2022-06-28";
+
+const {
+  NOTION_SECRET,
+  NOTION_BLOGS_DATABASE_ID,
+  NOTION_MENUS_DATABASE_ID,
+  NOTION_PHOTOS_DATABASE_ID,
+  NOTION_PAGES_DATABASE_ID
+} = process.env;
+
+const headers: HeadersInit = {
+  "Authorization": `Bearer ${NOTION_SECRET}`,
+  "Content-Type": "application/json",
+  "Notion-Version": NOTION_VERSION,
+}
+
+
+const next = { revalidate: 60 * 60 * 24 } // 24 hours
+const baseUrl = "https://api.notion.com/v1"
+
 const notionClient = new Client({
-  auth: process.env.NOTION_SECRET,
+  auth: NOTION_SECRET,
 });
 
 export async function getBlogs(filter?: { menu_slug?: string }) {
@@ -28,24 +48,31 @@ export async function getBlogs(filter?: { menu_slug?: string }) {
     }
   })
 
-  try {
-    const res = await notionClient.databases.query({
-      database_id: process.env.NOTION_BLOGS_DATABASE_ID!,
+  const url = `${baseUrl}/databases/${NOTION_BLOGS_DATABASE_ID}/query`
+  const data = await fetch(url, {
+    method: 'POST',
+    headers,
+    body: JSON.stringify({
       filter: {
         and: filterQuery
       }
-    });
+    }),
+    next,
+  })
+    .then(res => res.json())
+    .catch(err => console.log(err))
 
-    const blogs = array<BlogPageObject>(res?.results)
-    return blogs;
-  } catch (error) {
-    console.log(error);
-  }
+  const blogs = array<BlogPageObject>(data?.results)
+
+  return blogs;
 };
+
 export async function getBlogBySlug(slug: string) {
-  try {
-    const res = await notionClient.databases.query({
-      database_id: process.env.NOTION_BLOGS_DATABASE_ID!,
+  const url = `${baseUrl}/databases/${NOTION_BLOGS_DATABASE_ID}/query`
+  const data = await fetch(url, {
+    method: 'POST',
+    headers,
+    body: JSON.stringify({
       filter: {
         and: [
           {
@@ -62,97 +89,121 @@ export async function getBlogBySlug(slug: string) {
           }
         ]
       }
-    })
+    }),
+    next,
+  })
+    .then(res => res.json())
+    .catch(err => console.log(err))
 
-    const blogs = array<BlogPageObject>(res?.results)
-
-    return blogs.length ? blogs[0] : undefined
-  } catch (error) {
-    console.log(error);
-  }
+  const blogs = array<BlogPageObject>(data?.results)
+  return blogs.length ? blogs[0] : undefined
 }
 
 export async function getMenus(depth?: number) {
-  try {
-    if (!depth) {
-      const res = await notionClient.databases.query({
-        database_id: process.env.NOTION_MENUS_DATABASE_ID!,
-      });
+  const url = `${baseUrl}/databases/${NOTION_MENUS_DATABASE_ID}/query`
+  if (!depth) {
+    const data = await fetch(url, {
+      method: 'POST',
+      headers,
+      body: JSON.stringify({}),
+      next,
+    })
+      .then(res => res.json())
+      .catch(err => console.log(err))
 
-      const menus = array<MenuPageObject>(res?.results)
-      return menus;
-    }
-    else {
-      const filter = {
-        property: "depth",
-        formula: {
-          number: {
-            equals: depth
-          }
+    const menus = array<MenuPageObject>(data?.results)
+    return menus;
+  }
+  else {
+    const filter = {
+      property: "depth",
+      formula: {
+        number: {
+          equals: depth
         }
       }
-      const res = await notionClient.databases.query({
-        database_id: process.env.NOTION_MENUS_DATABASE_ID!,
-        filter
-      });
-
-      const menus = array<MenuPageObject>(res?.results)
-      return menus;
     }
-  } catch (error) {
-    console.log(error);
+
+    const data = await fetch(url, {
+      method: 'POST',
+      headers,
+      body: JSON.stringify({
+        filter
+      }),
+      next,
+    })
+      .then(res => res.json())
+      .catch(err => console.log(err))
+
+    const menus = array<MenuPageObject>(data?.results)
+    return menus;
   }
 }
 export async function getMenuBySlug(slug: string) {
   const filter = {
     property: "slug",
     rich_text: {
-      equals: slug!
+      equals: slug
     }
   }
-  try {
-    const res = await notionClient.databases.query({
-      database_id: process.env.NOTION_MENUS_DATABASE_ID!,
+  const url = `${baseUrl}/databases/${NOTION_MENUS_DATABASE_ID}/query`
+  const data = await fetch(url, {
+    method: 'POST',
+    headers,
+    body: JSON.stringify({
       filter
-    });
+    }),
+    next,
+  })
+    .then(res => res.json())
+    .catch(err => console.log(err))
 
-    const menu = array<MenuPageObject>(res?.results)[0]
-    return menu;
-  } catch (error) {
-    console.log(error);
-  }
+  const menu = array<MenuPageObject>(data?.results)[0]
+  return menu;
 }
 
 export async function getPhotos() {
-  try {
-    const res = await notionClient.databases.query({
-      database_id: process.env.NOTION_PHOTOS_DATABASE_ID!,
+  const url = `${baseUrl}/databases/${NOTION_PHOTOS_DATABASE_ID}/query`
+  const data = await fetch(url, {
+    method: 'POST',
+    headers,
+    body: JSON.stringify({
       filter: {
         property: "status",
         status: {
           equals: "published"
         }
       }
-    });
+    }),
+    next,
+  })
+    .then(res => res.json())
+    .catch(err => console.log(err))
 
-    const photos = array<PhotoPageObject>(res?.results)
-    return photos;
-  } catch (error) {
-    console.log(error);
-  }
+  const photos = array<PhotoPageObject>(data?.results)
+  return photos;
 };
 
 export async function getInfoPages() {
-  try {
-    const res = await notionClient.databases.query({
-      database_id: process.env.NOTION_PAGES_DATABASE_ID!
-    });
+  const url = `${baseUrl}/databases/${NOTION_PAGES_DATABASE_ID}/query`
+  const data = await fetch(url, {
+    method: 'POST',
+    headers,
+    body: JSON.stringify({
+      filter: {
+        property: "status",
+        status: {
+          equals: "published"
+        }
+      }
+    }),
+    next,
+  })
+    .then(res => res.json())
+    .catch(err => console.log(err))
 
-    const photos = array<InfoPageObject>(res?.results)
-    return photos;
-  } catch (error) {
-    console.log(error);
-  }
+  const photos = array<InfoPageObject>(data?.results)
+  return photos;
 };
 export async function getInfoPageBySlug(slug: string) {
   const filter = {
@@ -161,26 +212,31 @@ export async function getInfoPageBySlug(slug: string) {
       equals: slug!
     }
   }
-  try {
-    const res = await notionClient.databases.query({
-      database_id: process.env.NOTION_PAGES_DATABASE_ID!,
+  const url = `${baseUrl}/databases/${NOTION_PAGES_DATABASE_ID}/query`
+  const data = await fetch(url, {
+    method: 'POST',
+    headers,
+    body: JSON.stringify({
       filter
-    });
+    }),
+    next,
+  })
+    .then(res => res.json())
+    .catch(err => console.log(err))
 
-    const photos = array<InfoPageObject>(res?.results)
-    return photos.length ? photos[0] : undefined
-  } catch (error) {
-    console.log(error);
-  }
+  const pages = array<InfoPageObject>(data?.results)
+  return pages.length ? pages[0] : undefined
 };
 
 export async function getBlockChildren(id: string) {
-  try {
-    const response = await notionClient.blocks.children.list({
-      block_id: id,
-    });
-    return response?.results as BlockObjectResponse[]
-  } catch (error) {
-    console.log(error);
-  }
+  const url = `${baseUrl}/blocks/${id}/children`
+  const data = await fetch(url, {
+    headers,
+    next,
+  })
+    .then(res => res.json())
+    .catch(err => console.log(err))
+
+  const blocks = array<BlockObjectResponse>(data?.results)
+  return blocks
 };

@@ -1,43 +1,11 @@
 "use client";
-import { useState, type MouseEvent } from "react";
-import { usePathname } from "next/navigation";
+import { type MouseEvent } from "react";
 import cn from "classnames";
-
-import { PAGE_LINKS, PAGE_TITLES } from "@/constants/pages";
-import { CollectionsBookmark, Home, MailOutline, NotListedLocation, PhotoCamera, PhotoLibrary, Menu, Close, KeyboardArrowDown } from "@mui/icons-material";
+import { Menu, Close } from "@mui/icons-material";
 import Link from "next/link";
 import { Button, IconButton } from "@mui/material";
-import { SOCIAL_MENU_ITEMS } from "@/constants";
 import { MobileMenuItem, MobileSocials } from "./components/mobile";
-import { useMenus, useMobileMenu } from "./MenuContext";
-
-const NAVBAR_MENU_ITEMS = [
-    {
-        title: PAGE_TITLES.home,
-        href: PAGE_LINKS.home,
-        icon: Home
-    },
-    {
-        title: PAGE_TITLES.about,
-        href: PAGE_LINKS.about,
-        icon: NotListedLocation
-    },
-    {
-        title: PAGE_TITLES.blog,
-        href: PAGE_LINKS.blog,
-        icon: CollectionsBookmark
-    },
-    {
-        title: PAGE_TITLES.album,
-        href: PAGE_LINKS.album,
-        icon: PhotoLibrary
-    },
-    {
-        title: PAGE_TITLES.photo,
-        href: PAGE_LINKS.photo,
-        icon: PhotoCamera
-    },
-]
+import { useMobileMenu } from "./MenuContext";
 
 export default function MobileMenu() {
     const stopPropagation = (e: MouseEvent<HTMLElement>) => e.stopPropagation();

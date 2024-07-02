@@ -1,7 +1,4 @@
 export * from './blog'
 export * from './photo'
-export * from './album'
 export * from './core'
-export * from './navbar'
-export * from './database'
 export * from './menu'
