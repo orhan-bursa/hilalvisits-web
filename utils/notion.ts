@@ -1,5 +1,4 @@
 import "server-only";
-import { Client } from "@notionhq/client";
 import { array } from ".";
 import { BlogPageObject, PhotoPageObject, MenuPageObject } from "@/types";
 import { BlockObjectResponse } from "@notionhq/client/build/src/api-endpoints";
@@ -21,13 +20,8 @@ const headers: HeadersInit = {
   "Notion-Version": NOTION_VERSION,
 }
 
-
 const next = { revalidate: 60 * 60 * 24 } // 24 hours
 const baseUrl = "https://api.notion.com/v1"
-
-const notionClient = new Client({
-  auth: NOTION_SECRET,
-});
 
 export async function getBlogs(filter?: { menu_slug?: string }) {
   const filterQuery: any[] = [{
