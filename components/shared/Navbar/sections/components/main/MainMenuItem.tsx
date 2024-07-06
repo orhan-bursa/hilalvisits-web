@@ -15,7 +15,7 @@ export default function MainMenuItem({ item, open, setOpen }: IProptypes) {
 
     const { second } = useMenus()
     const { title: itemTitle } = destructureMenuProps(item)
-    const isOpen = useMemo(() => open === itemTitle, [open])
+    const isOpen = useMemo(() => open === itemTitle, [open, itemTitle])
 
     return (
         <div

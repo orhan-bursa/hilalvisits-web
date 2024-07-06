@@ -8,10 +8,10 @@ export default function CategoryBlogs({ items }: { items: BlogPageObject[] }) {
     return (
         <section className="max-w-[1200px] w-full mx-auto">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6">
-                {items.map(blog => {
+                {items?.map(blog => {
                     const { cover, title, description, slug, categories } = destructureBlogProps(blog)
                     return (
-                        <div className="col-span-1">
+                        <div className="col-span-1" key={blog?.id}>
                             <Link href={`/blog/${slug}`}>
                                 <div className="relative w-full aspect-[3/2] cursor-pointer mb-3">
                                     <Image

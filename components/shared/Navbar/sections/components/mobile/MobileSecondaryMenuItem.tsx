@@ -19,7 +19,7 @@ export default function MobileSecondaryMenuItem({ item, open, setOpen }: IPropTy
     const { setOpen: setMobileMenuOpen } = useMobileMenu()
     const closeMobileMenu = () => setMobileMenuOpen(false)
 
-    const isOpen = useMemo(() => open === itemTitle, [open])
+    const isOpen = useMemo(() => open === itemTitle, [open, itemTitle])
 
     return (
         <>
@@ -42,7 +42,7 @@ export default function MobileSecondaryMenuItem({ item, open, setOpen }: IPropTy
                 .map((m) => {
                     const { title, path } = destructureMenuProps(m)
                     return (
-                        <div className="pl-8 border-b-[1px] border-gray-400">
+                        <div className="pl-8 border-b-[1px] border-gray-400" key={m?.id}>
                             <Button
                                 key={m.id}
                                 LinkComponent={Link}

@@ -50,7 +50,7 @@ export default function MobileMenu() {
                                                 href: "hakkımda"
                                             }
                                         ].map(item => (
-                                            <li className="border-b-[1px] border-gray-400" onClick={handleCloseMenu}>
+                                            <li className="border-b-[1px] border-gray-400" onClick={handleCloseMenu} key={"menu-" + item.title}>
                                                 <Button
                                                     key={item.title}
                                                     className="w-full text-lg font-semibold px-2 py-3 flex justify-start text-black"
