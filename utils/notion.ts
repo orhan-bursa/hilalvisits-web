@@ -20,7 +20,7 @@ const headers: HeadersInit = {
   "Notion-Version": NOTION_VERSION,
 }
 
-const next = { revalidate: 60 * 60 * 24 } // 24 hours
+const next = { revalidate: 60 } // 60 * 60 * 24 - 24 hours
 const baseUrl = "https://api.notion.com/v1"
 
 export async function getBlogs(filter?: { menu_slug?: string }) {
