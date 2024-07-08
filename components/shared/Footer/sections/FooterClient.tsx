@@ -34,8 +34,11 @@ export default function FooterClient({ first }: { first?: MenuPageObject[] }) {
                                         color: "#fff",
                                         padding: 0,
                                     }}
-                                    className={montserrat.className + " " +
-                                        "flex justify-end md:justify-start pr-[2px] md:pl-[2px] hover:underline hover:bg-transparent"}
+                                    className={cn(
+                                        montserrat.className,
+                                        "flex justify-end md:justify-start pr-[2px] md:pl-[2px]",
+                                        "hover:underline hover:bg-transparent"
+                                    )}
                                 >
                                     {title}
                                 </Button>
@@ -76,7 +79,9 @@ export default function FooterClient({ first }: { first?: MenuPageObject[] }) {
                     <h4 className={cn(
                         "w-full font-extralight md:space-y-1 ",
                         "border-b-[1px] border-white border-opacity-70"
-                    )}>İletişim</h4>
+                    )}>
+                        İletişim
+                    </h4>
                     <div className="max-w-[300px] md:max-w-none my-2 space-y-3">
                         <p className="text-start">Sorular veya iş teklifleri için iletişime geçmekten çekinmeyin!</p>
                         <Button
@@ -101,8 +106,11 @@ function BrandWithSocials() {
         <div>
             <h1
                 className={
-                    whisper.className + " " +
-                    "h-full md:h-auto flex justify-center items-center text-6xl md:text-7xl font-bold text-white z-50 whitespace-nowrap"
+                    cn(
+                        whisper.className,
+                        "h-full md:h-auto flex justify-center items-center",
+                        "font-normal text-6xl md:text-7xl text-white z-50 whitespace-nowrap"
+                    )
                 }
             > Hilal Visits
             </h1>

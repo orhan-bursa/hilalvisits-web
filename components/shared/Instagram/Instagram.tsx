@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { whisper } from "@/utils/fonts";
-import Image from "next/image";
 import cn from "classnames";
 import { Button, Tooltip } from "@mui/material";
 import { shortenText } from "@/utils/text";
@@ -58,37 +57,27 @@ export default async function Instagram() {
         </div>
         <div
           className={cn(
-            "w-full h-[480px] max-h-[480px] border-2 border-amber-400 p-2 my-4",
-            "sm:h-[320px] sm:max-h-[320px]",
-            "lg:h-[240px] lg:max-h[240px]"
+            "w-full border-2 border-amber-400 p-2 my-4",
+            "grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2",
           )}
         >
-          <div className="relative grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 w-full h-full gap-2">
-            {posts.map((post) => {
-              const titleWithoutHashtags = post?.title?.split("#")[0];
-              const _postTitle = shortenText(titleWithoutHashtags, 100, 15);
-              return (
-                <Tooltip key={post.id} title={_postTitle}>
-                  <Link
-                    href={post.url}
-                    target="blank"
-                    className="w-full h-full col-span-1"
-                  >
-                    <div className="relative w-full h-full">
-                      {post.src && (
-                        <Image
-                          src={post.src}
-                          alt={post.title}
-                          fill
-                          style={{ objectFit: "cover" }}
-                        />
-                      )}
-                    </div>
-                  </Link>
-                </Tooltip>
-              );
-            })}
-          </div>
+          {posts?.map((post) => {
+            const titleWithoutHashtags = post?.title?.split("#")[0];
+            const _postTitle = shortenText(titleWithoutHashtags, 100, 15);
+            return (
+              <Tooltip key={post.id} title={_postTitle}>
+                <Link
+                  href={post.url}
+                  target="blank"
+                  style={{ height: "100%" }}
+                >
+                  {post.src && (
+                    <img src={post.src} alt={post.title} />
+                  )}
+                </Link>
+              </Tooltip>
+            );
+          })}
         </div>
         <div className="flex justify-center">
           <Button
