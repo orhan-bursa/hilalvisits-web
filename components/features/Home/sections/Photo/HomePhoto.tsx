@@ -26,13 +26,11 @@ export default function HomePhoto({ items }: { items: PhotoPageObject[] | undefi
       )}>
         Fotoğraflar
       </h2>
-      <div className="flex w-full flex-col md:flex-row">
-        <div className="w-full md:w-[35%] space-y-4 m-2">
+      <div className="flex w-full flex-col max-[900px]:px-4">
+        <div className="w-full space-y-4 m-2">
           <p>
-            I have a passion for photography! I like capturing unique moments
-            during my trips. I share tips for taking best travels photographs,
-            follow for more! Lorem ipsum dolor sit amet consectetur adipisicing
-            elit. Obcaecati, praesentium.
+            Fotoğrafçılığa tutkum var! Gezilerim sırasında eşsiz anları yakalamayı seviyorum. En iyi seyahat fotoğraflarını çekmenin ipuçlarını paylaşıyorum,
+            daha fazlası için galerime göz atın veya instagram sayfamı ziyaret edin.
           </p>
           <div className="mb-2 mt-4 text-center">
             <Button
@@ -42,11 +40,11 @@ export default function HomePhoto({ items }: { items: PhotoPageObject[] | undefi
               href="/photo"
               className="hover:bg-transparent text-black"
             >
-              Devamı
+              Galeri
             </Button>
           </div>
         </div>
-        <div className="w-full md:w-[65%]">
+        <div className="w-full">
           <Swiper
             style={{
 
@@ -84,6 +82,10 @@ export default function HomePhoto({ items }: { items: PhotoPageObject[] | undefi
                     alt={title ?? ""}
                     style={{ objectFit: "cover" }}
                     fill
+                    sizes={`
+                      (max-width: 900px) calc(100vw-32px), 
+                      900px
+                      `}
                   />
                 </SwiperSlide>
               );
@@ -122,6 +124,10 @@ export default function HomePhoto({ items }: { items: PhotoPageObject[] | undefi
                     alt={title ?? ""}
                     fill
                     style={{ objectFit: "cover" }}
+                    sizes={`
+                      (max-width: 900px) calc((100vw-32px-40px)/4), 
+                      218px
+                      `}
                   />
                 </SwiperSlide>
               );

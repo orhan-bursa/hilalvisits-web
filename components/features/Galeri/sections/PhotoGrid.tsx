@@ -61,6 +61,13 @@ export default function PhotoGrid({ items }: { items: PhotoPageObject[] | undefi
                                 height={700}
                                 className="w-full h-auto rounded object-cover opacity-0 duration-1000"
                                 onLoadingComplete={i => i.classList.remove("opacity-0")}
+                                sizes={`
+                                    (max-width: 640px) calc(100vw - 40px), 
+                                    (max-width: 768px) calc(calc(100vw-32px-16px)/2), 
+                                    (max-width: 1024px) calc(calc(100vw-32px-24px)/3), 
+                                    (max-width: 1400px) calc(calc(100vw-32px-32px)/4), 
+                                    334px
+                                    `}
                             />
                         </div>
                     )
@@ -75,19 +82,17 @@ export default function PhotoGrid({ items }: { items: PhotoPageObject[] | undefi
                         <div className="relative w-[90%] group max-w-7xl mx-auto h-[100vh] flex flex-col justify-between border-x-[1px] border-transparent hover:border-white hover:border-opacity-20"
                             onClick={e => e.stopPropagation()}
                         >
-                            <div className="w-full h-full flex justify-center">
-                                <Image
-                                    src={selectedImageProps.image}
-                                    alt={selectedImageProps.title}
-                                    fill
-                                    sizes="90vw"
-                                    style={{ objectFit: "contain" }}
-                                    className="h-full w-auto opacity-0 duration-1000"
-                                    onLoadingComplete={i => {
-                                        i.classList.remove("opacity-0")
-                                    }}
-                                />
-                            </div>
+                            <Image
+                                src={selectedImageProps.image}
+                                alt={selectedImageProps.title}
+                                fill
+                                sizes="90vw"
+                                style={{ objectFit: "contain" }}
+                                className="h-full w-auto opacity-0 duration-1000"
+                                onLoadingComplete={i => {
+                                    i.classList.remove("opacity-0")
+                                }}
+                            />
                             <div className={cn(
                                 "absolute top-0 right-0 w-max flex justify-between",
                                 "opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto duration-300",

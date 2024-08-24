@@ -3,30 +3,48 @@ import cn from "classnames";
 import Image from "next/image";
 import Link from "next/link";
 
-function getRichTextWithAnnotations(item: RichTextItemResponse, key: any, otherClassNames?: string) {
+function getRichTextWithAnnotations(item: RichTextItemResponse, key: any) {
     const { href, plain_text } = item
     const { bold, italic, underline } = item.annotations
 
-
     if (!bold && !italic && !underline) return href ? (
-        <Link href={href ?? "/"} target="_blank" prefetch={false}>
+        <Link
+            key={key}
+            href={href ?? "/"}
+            target="_blank"
+            prefetch={false}
+        >
             {item?.plain_text}
         </Link>
     ) : item?.plain_text
 
-    const result = <span className={cn(
-        otherClassNames,
-        bold ? "font-bold" : "",
-        italic ? "italic" : "",
-        underline ? "underline" : ""
-    )}>
-        {plain_text}
-    </span>
     return href ? (
-        <Link href={href ?? "/"} target="_blank" prefetch={false}>
-            {result}
+        <Link
+            key={key}
+            href={href ?? "/"}
+            target="_blank"
+            prefetch={false}
+        >
+            <span
+                className={cn(
+                    bold ? "font-bold" : "",
+                    italic ? "italic" : "",
+                    underline ? "underline" : ""
+                )}>
+                {plain_text}
+            </span>
         </Link>
-    ) : result
+    ) : (
+        <span
+            key={"span" + key}
+            className={cn(
+                bold ? "font-bold" : "",
+                italic ? "italic" : "",
+                underline ? "underline" : ""
+            )}>
+            {plain_text}
+        </span>
+    )
 }
 
 export function mapContent(content: BlockObjectResponse, index: number) {

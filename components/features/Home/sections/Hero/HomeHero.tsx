@@ -79,12 +79,19 @@ export default function HomeHero({ items }: { items: BlogPageObject[] | undefine
                 flexDirection: "column"
               }}
             >
-              <div className="relative w-full h-full min-h-[400px] md:min-h-[500px]">
+              <div className="relative w-full h-[400px] md:h-[500px]">
                 <Image
                   src={cover ?? ""}
                   alt={title ?? ""}
                   fill
                   style={{ objectFit: "cover" }}
+                  sizes={`
+                   (max-width: 768px) 100vw, 
+                   (max-width: 1024px) calc(50vw-8px), 
+                   (max-width: 1200px) calc(50vw-16px), 
+                   584px
+                   `}
+                  priority
                 />
               </div>
               <div className="absolute bottom-[25%] z-50 w-full bg-black bg-opacity-40 text-white space-x-2">

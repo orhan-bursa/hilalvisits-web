@@ -7,7 +7,7 @@ import Link from "next/link";
 export default function BlogGrid({ items }: { items: BlogPageObject[] }) {
   return (
     <section className="max-w-[1200px] w-full mx-auto">
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {items?.map(blog => {
           const { cover, title, description, slug, categories } = destructureBlogProps(blog)
           return (
@@ -19,11 +19,17 @@ export default function BlogGrid({ items }: { items: BlogPageObject[] }) {
                     alt={title}
                     fill
                     style={{ objectFit: "cover" }}
+                    sizes={`
+                      (max-width: 640px) 100vw, 
+                      (max-width: 1024px) calc((100vw-24px)/2), 
+                      (max-width: 1200px) calc((100vw-48px)/3), 
+                      calc((1200px-48px)/3)
+                      `}
                   />
                 </div>
-                <h3 className="text-3xl font-bold cursor-pointer hover:text-red-500 mb-3">{title}</h3>
+                <h3 className="text-3xl font-bold cursor-pointer hover:text-red-500 mb-3 px-2 min-[1200px]:px-0">{title}</h3>
               </Link>
-              <div className="flex flex-wrap gap-2 mb-3">
+              <div className="flex flex-wrap gap-2 mb-3 px-2 min-[1200px]:px-0">
                 {categories.map(c => (
                   <Link key={c.title} href={`/${c.href}`}>
                     <Chip
@@ -36,7 +42,9 @@ export default function BlogGrid({ items }: { items: BlogPageObject[] }) {
                   </Link>
                 ))}
               </div>
-              <p>{description}</p>
+              <p className="px-2 min-[1200px]:px-0">
+                {description}
+              </p>
             </div>
           );
         })}

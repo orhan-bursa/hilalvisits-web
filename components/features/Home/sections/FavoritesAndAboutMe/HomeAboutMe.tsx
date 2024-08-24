@@ -7,6 +7,7 @@ export default function HomeAboutMe() {
                 <Image
                     src={"/images/mostar2.jpg"}
                     alt="hilal kulüp mostar resim"
+                    //FIXME: correct sizes once the final image is selected for this section
                     width={800}
                     height={800}
                     className="w-full h-full object-cover duration-1000"

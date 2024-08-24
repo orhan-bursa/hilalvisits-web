@@ -21,6 +21,10 @@ export default function HomeFavorites({ items }: { items?: BlogPageObject[] }) {
                   alt={title}
                   fill
                   style={{ objectFit: "cover" }}
+                  sizes={`
+                    (max-width: 640px) 160px, 
+                    120px
+                    `}
                 />
               </Link>
             </div>

@@ -1,4 +1,3 @@
-import cn from "classnames";
 import {
   HomeFavoritesAndAboutMe,
   HomeHero,
@@ -6,10 +5,6 @@ import {
   HomePhoto
 } from "./sections"
 import { PhotoPageObject, BlogPageObject } from "@/types";
-import Image from "next/image";
-import { destructureBlogProps } from "@/utils";
-import Link from "next/link";
-import { Button, Chip } from "@mui/material";
 interface IPropTypes {
   blogs: BlogPageObject[] | undefined;
   photos: PhotoPageObject[] | undefined;

@@ -35,6 +35,10 @@ export default function HomeLatestBlogs({ items }: { items: BlogPageObject[] | u
                     alt={title}
                     fill
                     style={{ objectFit: "cover" }}
+                    sizes={`
+                      (max-width: 640px) calc(100vw-32px), 
+                      200px
+                      `}
                   />
                 </Link>
               </div>
