@@ -95,7 +95,7 @@ export default function HomeHero({ items }: { items: BlogPageObject[] | undefine
                 />
               </div>
               <div className="absolute bottom-[25%] z-50 w-full bg-black bg-opacity-40 text-white space-x-2">
-                <h2 className="my-2 text-3xl md:text-4xl font-[500]">{title ?? "No title"}</h2>
+                <h2 className="my-2 text-3xl md:text-4xl font-[500] line-clamp-1">{title ?? "No title"}</h2>
                 <p>{shortenText(description, 100, 15)}</p>
                 <Link href={`/blog/${slug}`}>
                   <button className=" p-1 my-2 border-b-2 border-gray-400 text-sm md:text-lg italic">Devamı</button>

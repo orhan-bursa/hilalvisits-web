@@ -42,7 +42,10 @@ export default async function Instagram() {
   const posts = mapPosts(data);
 
   return (
-    <div className="w-full bg-amber-50 h-max flex flex-col items-center p-4">
+    <div className={cn(
+      "w-full bg-amber-50 h-max flex flex-col items-center p-4",
+      "border-t-[1px] border-amber-400 border-opacity-60"
+    )}>
       <div className="max-w-[1200px] w-full h-full">
         <div className="w-full flex items-center justify-center ">
           <h1
@@ -72,7 +75,7 @@ export default async function Instagram() {
                   style={{ height: "100%" }}
                 >
                   {post.src && (
-                    <img src={post.src} alt={post.title} />
+                    <img src={post.src} alt={post.title} className="object-cover h-full" />
                   )}
                 </Link>
               </Tooltip>
@@ -86,6 +89,8 @@ export default async function Instagram() {
             color="inherit"
             startIcon={<InstagramIcon />}
             sx={{
+              px: 2,
+              py: 1,
               color: "#fbbf24",
               backgroundColor: 'transparent',
               boxShadow: 'none',

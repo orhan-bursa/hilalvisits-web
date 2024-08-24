@@ -59,7 +59,7 @@ export default function HomeLatestBlogs({ items }: { items: BlogPageObject[] | u
                     </Link>
                   ))}
                 </div>
-                <p>{description}</p>
+                <p className="line-clamp-5">{description}</p>
               </div>
             </div>
           )
