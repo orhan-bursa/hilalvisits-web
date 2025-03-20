@@ -2,8 +2,11 @@ import { Info as FeatureInfo } from "@/components";
 import { getBlockChildren, getInfoPageBySlug } from "@/utils/notion";
 import { notFound } from "next/navigation";
 
-export default async function Page({ params }: { params: { slug: string } }) {
-    const slug = params.slug
+
+type Params = Promise<{ slug: string }>
+
+export default async function Page({ params }: { params: Params }) {
+    const { slug } = await params
     const infoPage = await getInfoPageBySlug(slug)
 
     if (!infoPage) return notFound();

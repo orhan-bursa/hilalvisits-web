@@ -1,8 +1,10 @@
 import { getBlogs, getMenuBySlug } from "@/utils/notion"
 import { Category as FeatureSubCategory } from "@/components"
 
-export default async function SubCategory({ params }: { params: { parent: string, category: string, sub: string } }) {
-    const slug = params.sub
+type Params = Promise<{ parent: string, category: string, sub: string }>
+
+export default async function SubCategory({ params }: { params: Params}) {
+    const { sub:slug } = await params
     const blogs = await getBlogs({ menu_slug: slug })
     const menu = await getMenuBySlug(slug ?? "")
 
