@@ -2,7 +2,7 @@
 import { SOCIAL_MENU_ITEMS } from "@/constants"
 import { MenuPageObject } from "@/types"
 import { destructureMenuProps } from "@/utils"
-import { montserrat, whisper } from "@/utils/fonts"
+import { jost, whisper } from "@/utils/fonts"
 import { KeyboardArrowUp, MailOutline } from "@mui/icons-material"
 import { Button, IconButton, Tooltip } from "@mui/material"
 import cn from "classnames"
@@ -35,7 +35,7 @@ export default function FooterClient({ first }: { first?: MenuPageObject[] }) {
                                         padding: 0,
                                     }}
                                     className={cn(
-                                        montserrat.className,
+                                        jost.className,
                                         "flex justify-end md:justify-start pr-[2px] md:pl-[2px]",
                                         "hover:underline hover:bg-transparent"
                                     )}
@@ -64,7 +64,7 @@ export default function FooterClient({ first }: { first?: MenuPageObject[] }) {
                                     color: "#fff",
                                     padding: 0,
                                 }}
-                                className={montserrat.className + " " +
+                                className={jost.className + " " +
                                     "flex justify-end md:justify-start pr-[2px] md:pl-[2px] hover:underline hover:bg-transparent"}
                             >
                                 {item.title?.toLocaleUpperCase("tr-TR")}

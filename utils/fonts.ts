@@ -1,11 +1,11 @@
-import { Babylonica, Montserrat, Poppins, Whisper } from "next/font/google";
+import { Babylonica, Jost, Poppins, Whisper } from "next/font/google";
 
 export const poppins = Poppins({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
 });
 
-export const montserrat = Montserrat({
+export const jost = Jost({
   subsets: ["latin"],
   weight: ["200", "300", "400", "500", "600", "700"],
 });

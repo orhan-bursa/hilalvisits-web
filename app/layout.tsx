@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Footer, Navbar } from "@/components";
 import "./globals.css";
-import { montserrat } from "@/utils/fonts";
+import { jost } from "@/utils/fonts";
 import Instagram from "@/components/shared/Instagram";
 
 export const metadata: Metadata = {
@@ -15,7 +15,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={montserrat.className}>
+    <html lang="en" className={jost.className}>
       <body>
         <div className="relative">
           <Navbar />
