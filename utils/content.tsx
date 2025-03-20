@@ -98,18 +98,22 @@ export function mapContent(content: BlockObjectResponse, index: number) {
                 </div>
             )
         case "image":
-            console.log(content?.image?.caption)
             return (
                 <div key={key} className="min-h-[300px] w-max h-full relative mx-auto">
                     <Image
+                        unoptimized
+                        sizes={`
+                        (max-width: 800px) 100vw,
+                        800px
+                        `}
                         alt={content.id + " image"}
                         src={content?.image?.type === "file" ? content?.image?.file?.url : content?.image?.external?.url}
                         width={800}
                         height={800}
-                        style={{ objectFit: "cover", paddingTop:"20px", paddingBottom: !!content?.image?.caption?.length ? "0px": "20px" }}
+                        style={{ objectFit: "cover", paddingTop:"20px", paddingBottom: !!content?.image?.caption?.length ? "0px": "12px" }}
                     />
                     {!!content?.image?.caption?.length ?
-                        <p className="text-[#373737a6] text-sm pt-2 px-1" style={{ paddingBottom:"20px" }}>
+                        <p className="text-[#373737a6] text-sm pt-2 px-1" style={{ paddingBottom:"12px" }}>
                             {content.image.caption.map((item, ind) => getRichTextWithAnnotations(item, key + ind))}
                         </p>
                         : null}

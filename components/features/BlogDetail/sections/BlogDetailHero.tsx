@@ -26,7 +26,7 @@ export default function BlogDetailHero({ data }: { data: BlogPageObject }) {
             )}>
                 {title}
             </h1>
-            <p className="italic max-w-[900px] mx-auto px-4 xl:px-0">
+            <p className="italic max-w-[900px] mx-auto px-4 xl:px-0 text-lg">
                 {description}
             </p>
         </section>
