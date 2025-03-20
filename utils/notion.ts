@@ -20,13 +20,13 @@ const headers: HeadersInit = {
   "Notion-Version": NOTION_VERSION,
 }
 
-const next = { revalidate: 60 } // 60 * 60 * 24 -> 24 hours
+const next = undefined //{ revalidate: 60 * 60 } // 60 * 60 * 1 -> 1 hour
 const baseUrl = "https://api.notion.com/v1"
 
 const fetchConfig: RequestInit = {
   headers,
   cache: "no-store",
-  next
+  // next
 }
 
 export async function getBlogs(filter?: { menu_slug?: string }) {
