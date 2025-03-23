@@ -1,0 +1,55 @@
+{
+	// Editor
+	"editor.formatOnSave": true,
+	"editor.defaultFormatter": "esbenp.prettier-vscode",
+	"editor.tabSize": 2,
+	"editor.bracketPairColorization.enabled": true,
+	"editor.rulers": [100],
+	"editor.codeLens": true,
+	"editor.detectIndentation": false,
+	"editor.codeActionsOnSave": {
+		"source.organizeImports": "never",
+    "source.fixAll.eslint": "explicit"
+	},
+	"editor.formatOnPaste": true,
+	"editor.wordWrapColumn": 100,
+	"typescript.format.enable": false,
+	"javascript.format.enable": false,
+	// Prettier
+	"prettier.arrowParens": "avoid",
+	"prettier.bracketSpacing": true,
+	"prettier.jsxSingleQuote": false,
+	"prettier.plugins": ["prettier-plugin-tailwindcss"],
+	"prettier.printWidth": 100,
+	"prettier.semi": false,
+	"prettier.singleQuote": true,
+	"prettier.tabWidth": 2,
+	"prettier.trailingComma": "none",
+	"prettier.useTabs": true,
+	"prettier.requireConfig": true,
+	// Files
+	"files.eol": "\n",
+	"files.trimTrailingWhitespace": true,
+	"files.exclude": {
+		"**/.DS_Store": true,
+		"**/.git": true,
+		"**/.hg": true,
+		"**/.svn": true,
+		"**/CVS": true
+	},
+	// CSS
+	"tailwindCSS.includeLanguages": {
+		"css": "css",
+		"html": "html",
+		"javascript": "javascript"
+	},
+	"scss.validate": false,
+	"less.validate": false,
+	"css.validate": false,
+	"[typescript]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
+}

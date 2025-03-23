@@ -1,0 +1,9 @@
+{
+	"recommendations": [
+		"Prettier - Code formatter",
+		"Tailwind CSS IntelliSense",
+		"code-spell-checker",
+		"color-highlight",
+		"dbaeumer.vscode-eslint"
+	]
+}
