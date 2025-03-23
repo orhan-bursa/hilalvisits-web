@@ -105,13 +105,17 @@ export function mapContent(content: BlockObjectResponse, index: number) {
 			)
 		case 'image':
 			return (
-				<div key={key} className="relative mx-auto h-full min-h-[300px] w-max">
+				<div
+					key={key}
+					className="relative mx-auto h-full min-h-[300px] w-full"
+					style={{
+						maxWidth: '800px',
+						paddingTop: '12px',
+						paddingBottom: !!content?.image?.caption?.length ? '0px' : '12px'
+					}}
+				>
 					<Image
-						unoptimized
-						sizes={`
-                        (max-width: 800px) 100vw,
-                        800px
-                        `}
+						sizes="(max-width: 800px) 100vw, 800px"
 						alt={content.id + ' image'}
 						src={
 							content?.image?.type === 'file'
@@ -120,11 +124,8 @@ export function mapContent(content: BlockObjectResponse, index: number) {
 						}
 						width={800}
 						height={800}
-						style={{
-							objectFit: 'cover',
-							paddingTop: '20px',
-							paddingBottom: !!content?.image?.caption?.length ? '0px' : '12px'
-						}}
+						quality={60}
+						style={{ objectFit: 'cover' }}
 					/>
 					{!!content?.image?.caption?.length ? (
 						<p className="px-1 pt-2 text-sm text-[#373737a6]" style={{ paddingBottom: '12px' }}>
@@ -146,6 +147,10 @@ export function mapContent(content: BlockObjectResponse, index: number) {
 				</li>
 			)
 		default:
-			return <div>************Content type not yet added to mapper************</div>
+			if (process.env.NODE_ENV === 'development') {
+				console.log({ content, env: process.env.NODE_ENV })
+				return <div>************Content type not yet added to mapper************</div>
+			}
+			return null
 	}
 }

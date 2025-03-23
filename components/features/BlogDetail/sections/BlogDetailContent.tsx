@@ -1,13 +1,16 @@
-import { mapContent } from "@/utils";
-import { BlockObjectResponse } from "@notionhq/client/build/src/api-endpoints";
+import { mapContent } from '@/utils'
+import { BlockObjectResponse } from '@notionhq/client/build/src/api-endpoints'
 
-export default function BlogDetailContent({ blogContents }: { blogContents?: BlockObjectResponse[] }) {
+export default function BlogDetailContent({
+	blogContents
+}: {
+	blogContents?: BlockObjectResponse[]
+}) {
+	if (!blogContents) return <div>Blog içeriği bulunamadı.</div>
 
-    if (!blogContents) return <div>Blog içeriği bulunamadı.</div>
-
-    return (
-        <section className="mx-auto w-full md:max-w-[900px] mt-8 mb-12 px-4 xl:px-0 text-lg space-y-4">
-            {blogContents.map((content, ind) => mapContent(content, ind))}
-        </section>
-    )
+	return (
+		<section className="mx-auto mb-12 mt-8 w-full space-y-4 px-4 text-lg md:max-w-[900px] xl:px-0">
+			{blogContents.map((content, ind) => mapContent(content, ind))}
+		</section>
+	)
 }
