@@ -125,7 +125,6 @@ function BrandWithSocials() {
 					'z-50 whitespace-nowrap text-6xl font-normal text-white md:text-7xl'
 				)}
 			>
-				{' '}
 				Hilal Visits
 			</h1>
 			<div className="flex justify-center">
@@ -136,6 +135,7 @@ function BrandWithSocials() {
 							key={i + item.title}
 							LinkComponent={Link}
 							href={item.href ?? '/'}
+							target="_blank"
 							color="inherit"
 						>
 							<Icon />

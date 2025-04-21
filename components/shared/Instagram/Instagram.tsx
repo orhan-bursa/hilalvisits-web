@@ -83,6 +83,7 @@ export default async function Instagram() {
 					<CustomButtonHoverInvert
 						LinkComponent={Link}
 						href={'https://www.instagram.com/hilalvisits/'}
+						target="_blank"
 						startIcon={<InstagramIcon />}
 					>
 						Takip Et

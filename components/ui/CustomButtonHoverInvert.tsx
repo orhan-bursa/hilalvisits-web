@@ -1,7 +1,10 @@
 import { Button, ButtonProps } from '@mui/material'
-import React from 'react'
+import React, { HTMLAttributeAnchorTarget } from 'react'
 
-const CustomButtonHoverInvert: React.FC<ButtonProps> = ({ children, ...props }) => {
+const CustomButtonHoverInvert: React.FC<ButtonProps & { target?: HTMLAttributeAnchorTarget }> = ({
+	children,
+	...props
+}) => {
 	return (
 		<Button
 			color="inherit"
