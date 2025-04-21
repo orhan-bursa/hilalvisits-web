@@ -2,6 +2,7 @@ import { getBlogs, getMenuBySlug } from '@/utils/notion'
 import { Category as FeatureSubCategory } from '@/components'
 import { destructureBlogProps, destructureMenuProps } from '@/utils'
 import { Metadata } from 'next'
+import { notFound } from 'next/navigation'
 
 type Props = { params: Promise<{ parent: string; category: string; sub: string }> }
 
@@ -41,9 +42,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function SubCategory({ params }: Props) {
 	const { sub: slug } = await params
 	const blogs = await getBlogs({ menu_slug: slug })
-	const menu = await getMenuBySlug(slug ?? '')
 
-	if (!blogs?.length) return <div>no blogs found for this slug: {slug}</div>
+	if (!blogs?.length) if (!blogs?.length) return notFound()
+
+	const menu = await getMenuBySlug(slug ?? '')
 
 	return <FeatureSubCategory items={blogs} menu={menu} slug={slug} />
 }
