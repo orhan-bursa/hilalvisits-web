@@ -1,5 +1,6 @@
 import { BlogPageObject } from '@/types'
 import { destructureBlogProps } from '@/utils'
+import { proxyImageUrl } from '@/utils/image'
 import { Chip } from '@mui/material'
 import cn from 'classnames'
 import Image from 'next/image'
@@ -15,12 +16,14 @@ export default function CategoryBlogs({ items }: { items: BlogPageObject[] }) {
 		>
 			{items?.map(blog => {
 				const { cover, title, description, slug, categories } = destructureBlogProps(blog)
+				const url = proxyImageUrl(cover)
+
 				return (
 					<div className="col-span-1" key={blog?.id}>
 						<Link href={`/blog/${slug}`}>
 							<div className="relative mb-3 aspect-[3/2] w-full cursor-pointer">
 								<Image
-									src={cover ?? ''}
+									src={url ?? ''}
 									alt={title}
 									fill
 									style={{ objectFit: 'cover' }}

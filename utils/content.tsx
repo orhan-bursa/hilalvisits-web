@@ -2,6 +2,7 @@ import { BlockObjectResponse, RichTextItemResponse } from '@notionhq/client/buil
 import cn from 'classnames'
 import Image from 'next/image'
 import Link from 'next/link'
+import { proxyImageUrl } from './image'
 
 function getRichTextWithAnnotations(item: RichTextItemResponse, key: any) {
 	const { href, plain_text } = item
@@ -117,11 +118,11 @@ export function mapContent(content: BlockObjectResponse, index: number) {
 					<Image
 						sizes="(max-width: 800px) 100vw, 800px"
 						alt={content.id + ' image'}
-						src={
+						src={proxyImageUrl(
 							content?.image?.type === 'file'
 								? content?.image?.file?.url
 								: content?.image?.external?.url
-						}
+						)}
 						width={800}
 						height={800}
 						quality={60}

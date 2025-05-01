@@ -13,7 +13,6 @@ export default function HomeAboutMe() {
 				<Image
 					src="/images/about/maldives_1.jpg"
 					alt="hilal kulüp maldives resmi"
-					//FIXME: correct sizes once the final image is selected for this section
 					width={800}
 					height={800}
 					className="h-full w-full object-cover duration-1000"

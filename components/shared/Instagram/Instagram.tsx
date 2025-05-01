@@ -1,10 +1,10 @@
 import Link from 'next/link'
-import { whisper } from '@/utils/fonts'
 import cn from 'classnames'
 import { Tooltip } from '@mui/material'
 import { shortenText } from '@/utils/text'
 import InstagramIcon from '@mui/icons-material/Instagram'
 import CustomButtonHoverInvert from '@/components/ui/CustomButtonHoverInvert'
+import Image from 'next/image'
 
 type MappedInstagramPost = {
 	id: string
@@ -48,17 +48,19 @@ export default async function Instagram() {
 			)}
 		>
 			<div className="h-full w-full max-w-[1200px]">
-				<div className="flex w-full items-center justify-center">
-					<h1
-						className={cn(
-							whisper.className,
-							'z-30 mb-1 cursor-default text-center text-amber-400',
-							'text-6xl sm:text-[80px]'
-						)}
-					>
-						Instagram
-					</h1>
-				</div>
+				<Link
+					href={'https://www.instagram.com/hilalvisits/'}
+					target="_blank"
+					className="relative mx-auto flex w-max max-w-[300px] items-center justify-center text-[#222]"
+				>
+					<InstagramIcon sx={{ width: 50, height: 50 }} color="inherit" />
+					<Image
+						width={213.6}
+						height={80}
+						src="/images/instagram/instagram-text.png"
+						alt="instagram brand name"
+					/>
+				</Link>
 				<div
 					className={cn(
 						'my-4 w-full border-2 border-amber-400 p-2',
