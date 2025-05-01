@@ -1,18 +1,42 @@
-import { BlogDetail as FeatureBlogDetail } from "@/components"
-import { getBlockChildren, getBlogBySlug } from "@/utils/notion";
-import { notFound } from "next/navigation";
+import { BlogDetail as FeatureBlogDetail } from '@/components'
+import { destructureBlogProps } from '@/utils'
+import { getBlockChildren, getBlogBySlug } from '@/utils/notion'
+import { Metadata } from 'next'
+import { notFound } from 'next/navigation'
 
-export default async function BlogDetail({ params }: { params: { slug: string } }) {
-  const slug = params.slug
-  const blog = await getBlogBySlug(slug)
+type Props = { params: Promise<{ slug: string }> }
 
-  if (!blog) return notFound();
-  const blogContents = await getBlockChildren(blog.id)
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+	const { slug } = await params
+	const blog = await getBlogBySlug(slug)
 
-  return (
-    <FeatureBlogDetail
-      blog={blog}
-      blogContents={blogContents}
-    />
-  )
+	if (!blog) return {}
+
+	const { title: blogTitle, description: blogDescription } = destructureBlogProps(blog)
+
+	const title = `Hilal Visits | ${blogTitle}`
+	const description = blogDescription
+
+	return {
+		title,
+		description,
+		openGraph: {
+			title,
+			description,
+			type: 'article',
+			authors: 'Hilal Kulüp'
+			//TODO: add tags & seo props to notion
+			// tags
+		}
+	}
+}
+
+export default async function BlogDetail({ params }: Props) {
+	const { slug } = await params
+	const blog = await getBlogBySlug(slug)
+
+	if (!blog) return notFound()
+	const blogContents = await getBlockChildren(blog.id)
+
+	return <FeatureBlogDetail blog={blog} blogContents={blogContents} />
 }

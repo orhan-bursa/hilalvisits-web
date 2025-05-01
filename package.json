@@ -1,35 +1,36 @@
 {
-  "name": "hilalvisits-web",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev -p 3030",
-    "start": "next start -p 3030",
-    "build": "next build",
-    "lint": "next lint"
-  },
-  "dependencies": {
-    "@emotion/react": "^11.11.1",
-    "@emotion/styled": "^11.11.0",
-    "@mui/icons-material": "^5.14.19",
-    "@mui/material": "^5.14.20",
-    "@notionhq/client": "^2.2.13",
-    "@types/node": "20.5.7",
-    "@types/react": "^18.3.3",
-    "@types/react-dom": "^18.3.0",
-    "classnames": "^2.3.2",
-    "encoding": "^0.1.13",
-    "eslint": "8.48.0",
-    "eslint-config-next": "^14.2.4",
-    "next": "^14.2.4",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "swiper": "^11.0.4",
-    "typescript": "5.2.2"
-  },
-  "devDependencies": {
-    "autoprefixer": "^10.4.15",
-    "postcss": "^8.4.29",
-    "tailwindcss": "^3.3.3"
-  }
+	"name": "hilalvisits-web",
+	"version": "0.1.0",
+	"private": true,
+	"scripts": {
+		"dev": "next dev -p 3030",
+		"start": "next start -p 3030",
+		"build": "next build",
+		"lint": "next lint"
+	},
+	"dependencies": {
+		"@emotion/react": "^11.11.1",
+		"@emotion/styled": "^11.11.0",
+		"@mui/icons-material": "^5.14.19",
+		"@mui/material": "^5.14.20",
+		"@notionhq/client": "^2.2.13",
+		"@types/node": "20.5.7",
+		"classnames": "^2.3.2",
+		"encoding": "^0.1.13",
+		"eslint": "8.48.0",
+		"eslint-config-next": "^15.2.3",
+		"next": "^15.2.3",
+		"react": "^19.0.0",
+		"react-dom": "^19.0.0",
+		"swiper": "^11.0.4",
+		"typescript": "5.2.2"
+	},
+	"devDependencies": {
+		"@types/react": "^19.0.12",
+		"@types/react-dom": "^19.0.4",
+		"autoprefixer": "^10.4.15",
+		"postcss": "^8.4.29",
+		"prettier-plugin-tailwindcss": "^0.6.11",
+		"tailwindcss": "^3.3.3"
+	}
 }

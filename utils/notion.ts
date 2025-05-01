@@ -20,8 +20,14 @@ const headers: HeadersInit = {
   "Notion-Version": NOTION_VERSION,
 }
 
-const next = { revalidate: 60 } // 60 * 60 * 24 -> 24 hours
+const next = undefined //{ revalidate: 60 * 60 } // 60 * 60 * 1 -> 1 hour
 const baseUrl = "https://api.notion.com/v1"
+
+const fetchConfig: RequestInit = {
+  headers,
+  cache: "no-store",
+  // next
+}
 
 export async function getBlogs(filter?: { menu_slug?: string }) {
   const filterQuery: any[] = [{
@@ -44,14 +50,13 @@ export async function getBlogs(filter?: { menu_slug?: string }) {
 
   const url = `${baseUrl}/databases/${NOTION_BLOGS_DATABASE_ID}/query`
   const data = await fetch(url, {
+    ...fetchConfig,
     method: 'POST',
-    headers,
     body: JSON.stringify({
       filter: {
         and: filterQuery
       }
     }),
-    next,
   })
     .then(res => res.json())
     .catch(err => console.log(err))
@@ -64,8 +69,8 @@ export async function getBlogs(filter?: { menu_slug?: string }) {
 export async function getBlogBySlug(slug: string) {
   const url = `${baseUrl}/databases/${NOTION_BLOGS_DATABASE_ID}/query`
   const data = await fetch(url, {
+    ...fetchConfig,
     method: 'POST',
-    headers,
     body: JSON.stringify({
       filter: {
         and: [
@@ -83,8 +88,7 @@ export async function getBlogBySlug(slug: string) {
           }
         ]
       }
-    }),
-    next,
+    })
   })
     .then(res => res.json())
     .catch(err => console.log(err))
@@ -97,10 +101,10 @@ export async function getMenus(depth?: number) {
   const url = `${baseUrl}/databases/${NOTION_MENUS_DATABASE_ID}/query`
   if (!depth) {
     const data = await fetch(url, {
+      ...fetchConfig,
       method: 'POST',
-      headers,
       body: JSON.stringify({}),
-      next,
+
     })
       .then(res => res.json())
       .catch(err => console.log(err))
@@ -119,12 +123,11 @@ export async function getMenus(depth?: number) {
     }
 
     const data = await fetch(url, {
+      ...fetchConfig,
       method: 'POST',
-      headers,
       body: JSON.stringify({
         filter
-      }),
-      next,
+      })
     })
       .then(res => res.json())
       .catch(err => console.log(err))
@@ -142,12 +145,11 @@ export async function getMenuBySlug(slug: string) {
   }
   const url = `${baseUrl}/databases/${NOTION_MENUS_DATABASE_ID}/query`
   const data = await fetch(url, {
+    ...fetchConfig,
     method: 'POST',
-    headers,
     body: JSON.stringify({
       filter
-    }),
-    next,
+    })
   })
     .then(res => res.json())
     .catch(err => console.log(err))
@@ -159,8 +161,8 @@ export async function getMenuBySlug(slug: string) {
 export async function getPhotos() {
   const url = `${baseUrl}/databases/${NOTION_PHOTOS_DATABASE_ID}/query`
   const data = await fetch(url, {
+    ...fetchConfig,
     method: 'POST',
-    headers,
     body: JSON.stringify({
       filter: {
         property: "status",
@@ -168,8 +170,7 @@ export async function getPhotos() {
           equals: "published"
         }
       }
-    }),
-    next,
+    })
   })
     .then(res => res.json())
     .catch(err => console.log(err))
@@ -181,8 +182,8 @@ export async function getPhotos() {
 export async function getInfoPages() {
   const url = `${baseUrl}/databases/${NOTION_PAGES_DATABASE_ID}/query`
   const data = await fetch(url, {
+    ...fetchConfig,
     method: 'POST',
-    headers,
     body: JSON.stringify({
       filter: {
         property: "status",
@@ -190,8 +191,7 @@ export async function getInfoPages() {
           equals: "published"
         }
       }
-    }),
-    next,
+    })
   })
     .then(res => res.json())
     .catch(err => console.log(err))
@@ -208,12 +208,11 @@ export async function getInfoPageBySlug(slug: string) {
   }
   const url = `${baseUrl}/databases/${NOTION_PAGES_DATABASE_ID}/query`
   const data = await fetch(url, {
+    ...fetchConfig,
     method: 'POST',
-    headers,
     body: JSON.stringify({
       filter
-    }),
-    next,
+    })
   })
     .then(res => res.json())
     .catch(err => console.log(err))
@@ -225,8 +224,7 @@ export async function getInfoPageBySlug(slug: string) {
 export async function getBlockChildren(id: string) {
   const url = `${baseUrl}/blocks/${id}/children`
   const data = await fetch(url, {
-    headers,
-    next,
+    ...fetchConfig
   })
     .then(res => res.json())
     .catch(err => console.log(err))
