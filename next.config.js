@@ -38,7 +38,6 @@ const nextConfig = {
         hostname: 's3.amazonaws.com',
         port: '',
         pathname: '/**',
-        search: '',
       }
 		]
 	}

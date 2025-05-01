@@ -1,26 +1,36 @@
-import Image from "next/image";
+import Image from 'next/image'
 
 export default function HomeAboutMe() {
-    return (
-        <div className="w-full md:w-1/2 space-y-4">
-            <div className="w-full aspect-video">
-                <Image
-                    src={"/images/mostar2.jpg"}
-                    alt="hilal kulüp mostar resim"
-                    //FIXME: correct sizes once the final image is selected for this section
-                    width={800}
-                    height={800}
-                    className="w-full h-full object-cover duration-1000"
-                />
-            </div>
-            <div>
-                <h2 className="w-full cursor-default mb-6 text-4xl font-semibold text-start">
-                    Ben Kimim?
-                </h2>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur nemo voluptatem rerum quibusdam. Itaque fugiat beatae nihil, vitae quam architecto culpa cum blanditiis facere.
-                </p>
-            </div>
-        </div>
-    )
+	return (
+		<div className="flex w-full gap-8">
+			<div
+				className="aspect-square w-full max-w-[300px] overflow-hidden rounded-full"
+				// style={{
+				// 	WebkitMaskImage: 'radial-gradient(circle, black 60%, transparent 100%)',
+				// 	maskImage: 'radial-gradient(circle, black 60%, transparent 100%)'
+				// }}
+			>
+				<Image
+					src="/images/about/maldives_1.jpg"
+					alt="hilal kulüp maldives resmi"
+					//FIXME: correct sizes once the final image is selected for this section
+					width={800}
+					height={800}
+					className="h-full w-full object-cover duration-1000"
+				/>
+			</div>
+			<div className="py-4">
+				<h2 className="mb-6 w-full cursor-default text-start text-4xl font-semibold">Ben Kimim?</h2>
+				<p className="text-gray-600">
+					<span className="italic">Merhaba, sayfama hoşgeldin.</span>
+					<br />
+					<br />
+					Kısaca bahsetmek gerekirse yönetmenim ve seyahatseverim. Planlamasını tamamen kendim
+					yaptığım seyahatlerde gezip gördüğüm yerleri, olumlu-olumsuz tecrübelerimi hem kendime
+					günlük gibi, hem de seyahat etmek isteyenlere faydalı olur umuduyla Instagram hesabımda ve
+					bu blogda paylaşıyorum.
+				</p>
+			</div>
+		</div>
+	)
 }

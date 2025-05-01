@@ -1,5 +1,5 @@
 'use client'
-import { FacebookRounded, Instagram, Twitter, YouTube, X } from '@mui/icons-material'
+import { Instagram, YouTube, X } from '@mui/icons-material'
 
 export const SOCIAL_LINKS = {
 	instagram: 'https://www.instagram.com/hilalvisits/',
@@ -20,11 +20,6 @@ export const SOCIAL_MENU_ITEMS = [
 		href: SOCIAL_LINKS.twitter,
 		icon: X
 	},
-	// {
-	// 	title: 'Facebook',
-	// 	href: SOCIAL_LINKS.facebook,
-	// 	icon: FacebookRounded
-	// },
 	{
 		title: 'Youtube',
 		href: SOCIAL_LINKS.youtube,
