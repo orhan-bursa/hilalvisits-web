@@ -9,7 +9,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import cn from 'classnames'
 import { BlogPageObject } from '@/types'
-import { destructureBlogProps } from '@/utils'
+import { destructureBlogProps, getRichTextWithAnnotations } from '@/utils'
 import { Alert, Button, Chip } from '@mui/material'
 import { proxyImageUrl } from '@/utils/image'
 
@@ -66,7 +66,7 @@ export default function HomeLatestBlogs({ items }: { items: BlogPageObject[] | u
 										</Link>
 									))}
 								</div>
-								<p className="line-clamp-5">{description}</p>
+								<p className="line-clamp-5">{description?.map(getRichTextWithAnnotations)}</p>
 							</div>
 						</div>
 					)

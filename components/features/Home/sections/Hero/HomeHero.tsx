@@ -97,7 +97,7 @@ export default function HomeHero({ items }: { items: BlogPageObject[] | undefine
 									<h2 className="my-2 line-clamp-1 text-3xl font-[500] md:text-4xl">
 										{title ?? 'No title'}
 									</h2>
-									<p>{shortenText(description, 100, 15)}</p>
+									<p>{shortenText(description?.map(i => i?.plain_text).join(' '), 100, 15)}</p>
 									<Link href={`/blog/${slug}`}>
 										<button className="my-2 border-b-2 border-gray-400 p-1 text-sm italic md:text-lg">
 											Devamı
