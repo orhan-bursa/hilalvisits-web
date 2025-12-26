@@ -30,8 +30,7 @@ export default function BlogDetailHero({ data }: { data: BlogPageObject }) {
 			>
 				{title}
 			</h1>
-			{/*<p className="mx-auto max-w-[900px] px-4 text-lg italic xl:px-0">{description}</p>*/}
-			<p className="mx-auto max-w-[900px] px-4 text-lg italic xl:px-0">
+			<p className="mx-auto max-w-[900px] px-4 text-lg xl:px-0">
 				{description?.map(getRichTextWithAnnotations)}
 			</p>
 		</section>
