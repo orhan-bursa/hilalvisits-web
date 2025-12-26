@@ -15,7 +15,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 	const { title: blogTitle, description: blogDescription } = destructureBlogProps(blog)
 
 	const title = `Hilal Visits | ${blogTitle}`
-	const description = blogDescription
+	const description = blogDescription?.[0]?.plain_text
 
 	return {
 		title,

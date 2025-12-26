@@ -1,5 +1,5 @@
 import { BlogPageObject } from '@/types'
-import { destructureBlogProps } from '@/utils'
+import { destructureBlogProps, getRichTextWithAnnotations } from '@/utils'
 import { proxyImageUrl } from '@/utils/image'
 import { Chip } from '@mui/material'
 import Image from 'next/image'
@@ -47,7 +47,9 @@ export default function BlogGrid({ items }: { items: BlogPageObject[] }) {
 									</Link>
 								))}
 							</div>
-							<p className="px-2 min-[1200px]:px-0">{description}</p>
+							<p className="px-2 min-[1200px]:px-0">
+								{description?.map(getRichTextWithAnnotations)}
+							</p>
 						</div>
 					)
 				})}

@@ -1,5 +1,5 @@
 import { BlogPageObject } from '@/types'
-import { destructureBlogProps } from '@/utils'
+import { destructureBlogProps, getRichTextWithAnnotations } from '@/utils'
 import { proxyImageUrl } from '@/utils/image'
 import cn from 'classnames'
 import Image from 'next/image'
@@ -30,7 +30,10 @@ export default function BlogDetailHero({ data }: { data: BlogPageObject }) {
 			>
 				{title}
 			</h1>
-			<p className="mx-auto max-w-[900px] px-4 text-lg italic xl:px-0">{description}</p>
+			{/*<p className="mx-auto max-w-[900px] px-4 text-lg italic xl:px-0">{description}</p>*/}
+			<p className="mx-auto max-w-[900px] px-4 text-lg italic xl:px-0">
+				{description?.map(getRichTextWithAnnotations)}
+			</p>
 		</section>
 	)
 }

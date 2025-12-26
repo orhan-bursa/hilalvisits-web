@@ -4,7 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { proxyImageUrl } from './image'
 
-function getRichTextWithAnnotations(item: RichTextItemResponse, key: any) {
+export function getRichTextWithAnnotations(item: RichTextItemResponse, key?: any) {
 	const { href, plain_text } = item
 	const { bold, italic, underline } = item.annotations
 
