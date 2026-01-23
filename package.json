@@ -14,6 +14,10 @@
 		"@mui/icons-material": "^5.14.19",
 		"@mui/material": "^5.14.20",
 		"@notionhq/client": "^2.2.13",
+		"@prismicio/client": "^7.21.3",
+		"@prismicio/next": "^2.2.1",
+		"@prismicio/react": "^3.3.0",
+		"@tanstack/react-query": "^5.90.20",
 		"@types/node": "20.5.7",
 		"classnames": "^2.3.2",
 		"encoding": "^0.1.13",
@@ -26,6 +30,7 @@
 		"typescript": "5.2.2"
 	},
 	"devDependencies": {
+		"@tailwindcss/typography": "^0.5.19",
 		"@types/react": "^19.0.12",
 		"@types/react-dom": "^19.0.4",
 		"autoprefixer": "^10.4.15",
