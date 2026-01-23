@@ -3,6 +3,7 @@ import { Footer, Navbar } from '@/components'
 import './globals.css'
 import { jost } from '@/utils/fonts'
 import Instagram from '@/components/shared/Instagram'
+import QueryClientProvider from '@/providers/QueryClientProvider'
 
 export const metadata: Metadata = {
 	title: 'Hilal Visits',
@@ -20,12 +21,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 				<link rel="manifest" href="/favicon/site.webmanifest" />
 			</head>
 			<body>
-				<div className="relative">
-					<Navbar />
-					{children}
-					<Instagram />
-					<Footer />
-				</div>
+				<QueryClientProvider>
+					<div className="relative">
+						<Navbar />
+						{children}
+						<Instagram />
+						<Footer />
+					</div>
+				</QueryClientProvider>
 			</body>
 		</html>
 	)
