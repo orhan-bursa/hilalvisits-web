@@ -1,34 +1,30 @@
-import { Dispatch, SetStateAction, createContext, useContext } from 'react';
-import { MenuPageObject } from '@/types';
+import { Dispatch, SetStateAction, createContext, useContext } from 'react'
+import { MenuItemType } from '@/types/prismic-types'
 
 type MenuContextValue = {
-    menus: {
-        first?: MenuPageObject[]
-        second?: MenuPageObject[]
-        third?: MenuPageObject[]
-    }
-    mobile: {
-        isOpen: boolean,
-        setOpen: Dispatch<SetStateAction<boolean>>
-    }
+	menuItems: MenuItemType[]
+	mobile: {
+		isOpen: boolean
+		setOpen: Dispatch<SetStateAction<boolean>>
+	}
 }
 
 export const MenuContext = createContext<MenuContextValue | undefined>(undefined)
 
-export const useMenus = () => {
-    const context = useContext(MenuContext);
+export const useMenuItems = () => {
+	const context = useContext(MenuContext)
 
-    if (!context)
-        throw new Error('useMenus hook must be used within <MenuContext.Provider> component');
+	if (!context)
+		throw new Error('useMenuItems hook must be used within <MenuContext.Provider> component')
 
-    return context.menus;
-};
+	return context.menuItems
+}
 
 export const useMobileMenu = () => {
-    const context = useContext(MenuContext);
+	const context = useContext(MenuContext)
 
-    if (!context)
-        throw new Error('useMobileMenu hook must be used within <MenuContext.Provider> component');
+	if (!context)
+		throw new Error('useMobileMenu hook must be used within <MenuContext.Provider> component')
 
-    return context.mobile;
+	return context.mobile
 }
