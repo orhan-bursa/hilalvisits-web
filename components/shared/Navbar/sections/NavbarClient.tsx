@@ -7,8 +7,6 @@ import { MenuPageObject } from '@/types'
 import { MobileMenu } from '.'
 import Brand from './Brand'
 import MainMenu from './MainMenu'
-import useCategories from '@/hooks/useCategories'
-import useBlogs from '@/hooks/useBlogs'
 
 interface IProptypes {
 	menus: {
@@ -20,11 +18,6 @@ interface IProptypes {
 
 export default function NavbarMenu({ menus }: IProptypes) {
 	const [isMobileMenuOpen, setMobileMenuOpen] = useState(false)
-
-	const { categories } = useCategories()
-	// console.log({ categories })
-	const { blogs } = useBlogs()
-	console.log({ blogs })
 
 	return (
 		<MenuContext.Provider
