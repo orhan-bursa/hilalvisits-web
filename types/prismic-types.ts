@@ -59,7 +59,21 @@ export type BlogFields = BasePageData & {
 	description: any
 	cover: IImageContent
 	publish_date: string
-	category: { data: { title: string } }
+	category: {
+		id: string
+		type: 'category'
+		tags: any[]
+		lang: string
+		slug: 'iran'
+		first_publication_date: string
+		last_publication_date: string
+		uid: string
+		link_type: 'Document'
+		key: string
+		data: {
+			title: string
+		}
+	}
 }
 
 export type BlogPageDocument = PrismicDocument<BlogFields>
