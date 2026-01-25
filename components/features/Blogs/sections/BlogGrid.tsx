@@ -1,25 +1,28 @@
-import { BlogPageObject } from '@/types'
-import { destructureBlogProps, getRichTextWithAnnotations } from '@/utils'
-import { proxyImageUrl } from '@/utils/image'
+import { BlogPageDocument, MenuItemType } from '@/types/prismic-types'
+
 import { Chip } from '@mui/material'
+import { PrismicRichText } from '@prismicio/react'
 import Image from 'next/image'
 import Link from 'next/link'
 
-export default function BlogGrid({ items }: { items: BlogPageObject[] }) {
+export default function BlogGrid({
+	blogs,
+	menuItems
+}: {
+	blogs: BlogPageDocument[]
+	menuItems: MenuItemType[]
+}) {
 	return (
 		<section className="mx-auto w-full max-w-[1200px]">
 			<div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-				{items?.map(blog => {
-					const { cover, title, description, slug, categories } = destructureBlogProps(blog)
-					const url = proxyImageUrl(cover)
-
+				{blogs?.map((blog, key) => {
 					return (
-						<div className="col-span-1" key={blog?.id}>
-							<Link href={`/blog/${slug}`}>
+						<div className="col-span-1" key={key}>
+							<Link href={`/blog/${blog.uid}`}>
 								<div className="relative mb-3 aspect-[3/2] w-full cursor-pointer">
 									<Image
-										src={url ?? ''}
-										alt={title}
+										src={blog.data.cover.url ?? ''}
+										alt={blog.data.cover.alt || ''}
 										fill
 										style={{ objectFit: 'cover' }}
 										sizes={`
@@ -31,12 +34,13 @@ export default function BlogGrid({ items }: { items: BlogPageObject[] }) {
 									/>
 								</div>
 								<h3 className="mb-3 cursor-pointer px-2 text-3xl font-bold hover:text-red-500 min-[1200px]:px-0">
-									{title}
+									{blog.data.title}
 								</h3>
 							</Link>
-							<div className="mb-3 flex flex-wrap gap-2 px-2 min-[1200px]:px-0">
-								{categories.map(c => (
-									<Link key={c.title} href={`/${c.href}`}>
+							{/*FIXME FIX CATEGORY BADGE*/}
+							{/*<div className="mb-3 flex flex-wrap gap-2 px-2 min-[1200px]:px-0">
+								{[blog.data.category.data].map(c => (
+									<Link key={c.title} href={`/`}>
 										<Chip
 											key={c.title}
 											label={c.title}
@@ -46,10 +50,10 @@ export default function BlogGrid({ items }: { items: BlogPageObject[] }) {
 										/>
 									</Link>
 								))}
+							</div>*/}
+							<div className="prose prose-lg px-2 min-[1200px]:px-0">
+								<PrismicRichText field={blog.data.description} />
 							</div>
-							<p className="px-2 min-[1200px]:px-0">
-								{description?.map(getRichTextWithAnnotations)}
-							</p>
 						</div>
 					)
 				})}

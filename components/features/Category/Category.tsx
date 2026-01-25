@@ -1,16 +1,15 @@
-import { BlogPageObject, MenuPageObject } from "@/types";
-import { CategoryHeader, CategoryBlogs } from "./sections";
+import { CategoryHeader, CategoryBlogs } from './sections'
+import { BlogPageDocument } from '@/types/prismic-types'
 
 interface IPropTypes {
-    items: BlogPageObject[]
-    slug?: string
-    menu?: MenuPageObject
+	blogs: BlogPageDocument[]
+	slug?: string
 }
-export default function Category({ items, slug, menu }: IPropTypes) {
-    return (
-        <div className="space-y-6 md:space-y-12 my-8">
-            <CategoryHeader slug={slug} menu={menu} />
-            <CategoryBlogs items={items} />
-        </div>
-    )
+export default function Category({ blogs, slug }: IPropTypes) {
+	return (
+		<div className="my-8 space-y-6 md:space-y-12">
+			<CategoryHeader slug={slug} />
+			<CategoryBlogs blogs={blogs} />
+		</div>
+	)
 }

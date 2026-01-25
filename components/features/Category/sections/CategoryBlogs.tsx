@@ -1,12 +1,14 @@
 import { BlogPageObject } from '@/types'
+import { BlogPageDocument } from '@/types/prismic-types'
 import { destructureBlogProps, getRichTextWithAnnotations } from '@/utils'
 import { proxyImageUrl } from '@/utils/image'
 import { Chip } from '@mui/material'
+import { PrismicRichText } from '@prismicio/react'
 import cn from 'classnames'
 import Image from 'next/image'
 import Link from 'next/link'
 
-export default function CategoryBlogs({ items }: { items: BlogPageObject[] }) {
+export default function CategoryBlogs({ blogs }: { blogs: BlogPageDocument[] }) {
 	return (
 		<section
 			className={cn(
@@ -14,17 +16,14 @@ export default function CategoryBlogs({ items }: { items: BlogPageObject[] }) {
 				'grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3'
 			)}
 		>
-			{items?.map(blog => {
-				const { cover, title, description, slug, categories } = destructureBlogProps(blog)
-				const url = proxyImageUrl(cover)
-
+			{blogs?.map(blog => {
 				return (
 					<div className="col-span-1" key={blog?.id}>
-						<Link href={`/blog/${slug}`}>
+						<Link href={`/blog/${blog.uid}`}>
 							<div className="relative mb-3 aspect-[3/2] w-full cursor-pointer">
 								<Image
-									src={url ?? ''}
-									alt={title}
+									src={blog.data.cover.url ?? ''}
+									alt={blog.data.cover.alt || ''}
 									fill
 									style={{ objectFit: 'cover' }}
 									sizes={`
@@ -35,9 +34,12 @@ export default function CategoryBlogs({ items }: { items: BlogPageObject[] }) {
                         `}
 								/>
 							</div>
-							<h3 className="mb-3 cursor-pointer text-3xl font-bold hover:text-red-500">{title}</h3>
+							<h3 className="mb-3 cursor-pointer text-3xl font-bold hover:text-red-500">
+								{blog.data.title}
+							</h3>
 						</Link>
-						<div className="mb-3 flex flex-wrap gap-2">
+						{/*FIXME: FIX BADGES*/}
+						{/*<div className="mb-3 flex flex-wrap gap-2">
 							{categories.map(c => (
 								<Link key={c.title} href={`/${c.href}`}>
 									<Chip
@@ -48,8 +50,8 @@ export default function CategoryBlogs({ items }: { items: BlogPageObject[] }) {
 									/>
 								</Link>
 							))}
-						</div>
-						<p>{description?.map(getRichTextWithAnnotations)}</p>
+						</div>*/}
+						<PrismicRichText field={blog.data.description} />
 					</div>
 				)
 			})}
