@@ -2,20 +2,28 @@ import { SOCIAL_MENU_ITEMS } from '@/constants'
 import { MailOutline } from '@mui/icons-material'
 import { IconButton } from '@mui/material'
 import { MainMenuItem } from './components/main'
-import { useMenus } from './MenuContext'
 import { useState } from 'react'
 import Link from 'next/link'
+import { useMenuItems } from './MenuContext'
 
 export default function MainMenu() {
 	const [open, setOpen] = useState<string | null>(null)
-	const { first } = useMenus()
+
+	const menuItems = useMenuItems()
 
 	return (
 		<div className="hidden grow items-end justify-between md:flex">
 			<div className="flex">
-				{first?.map(menu => {
-					return <MainMenuItem key={menu.id} open={open} setOpen={setOpen} item={menu} />
-				})}
+				<MainMenuItem
+					open={open}
+					setOpen={setOpen}
+					item={{
+						path: '/blog',
+						title: 'Keşfet',
+						uid: 'kesfet',
+						items: menuItems
+					}}
+				/>
 				<FixedMenuItem key={'photo'} title={'Galeri'} href="/galeri" />
 				<FixedMenuItem key={'hakkimda'} title={'Hakkımda'} href="/hakkimda" />
 			</div>

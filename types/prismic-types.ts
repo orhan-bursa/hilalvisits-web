@@ -63,3 +63,10 @@ export type BlogFields = BasePageData & {
 }
 
 export type BlogPageDocument = PrismicDocument<BlogFields>
+
+export type MenuItemType = {
+	uid: string | null
+	title: string
+	path: string
+	items?: MenuItemType[]
+}

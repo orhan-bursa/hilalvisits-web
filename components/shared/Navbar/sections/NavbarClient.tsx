@@ -2,27 +2,22 @@
 import { useState } from 'react'
 import cn from 'classnames'
 import { MenuContext } from './MenuContext'
-
-import { MenuPageObject } from '@/types'
 import { MobileMenu } from '.'
 import Brand from './Brand'
 import MainMenu from './MainMenu'
+import { MenuItemType } from '@/types/prismic-types'
 
-interface IProptypes {
-	menus: {
-		first?: MenuPageObject[]
-		second?: MenuPageObject[]
-		third?: MenuPageObject[]
-	}
+type Props = {
+	menuItems: MenuItemType[]
 }
 
-export default function NavbarMenu({ menus }: IProptypes) {
+export default function NavbarMenu({ menuItems }: Props) {
 	const [isMobileMenuOpen, setMobileMenuOpen] = useState(false)
 
 	return (
 		<MenuContext.Provider
 			value={{
-				menus,
+				menuItems,
 				mobile: {
 					isOpen: isMobileMenuOpen,
 					setOpen: setMobileMenuOpen
