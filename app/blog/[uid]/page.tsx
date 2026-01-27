@@ -1,9 +1,6 @@
 import { BlogDetail as FeatureBlogDetail } from '@/components'
 import prismicClient from '@/lib/prismic'
 import { BlogPageDocument } from '@/types/prismic-types'
-import { destructureBlogProps } from '@/utils'
-import { getBlockChildren, getBlogBySlug } from '@/utils/notion'
-import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 
 export const dynamicParams = true

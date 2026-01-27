@@ -1,7 +1,6 @@
 import { Category as FeatureParentCategory } from '@/components'
 import prismicClient from '@/lib/prismic'
 import { BlogPageDocument, CategoryPageDocument } from '@/types/prismic-types'
-import { getBlogs, getMenuBySlug } from '@/utils/notion'
 import { notFound } from 'next/navigation'
 import * as prismic from '@prismicio/client'
 
