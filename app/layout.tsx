@@ -3,13 +3,23 @@ import { Footer, Navbar } from '@/components'
 import './globals.css'
 import { jost } from '@/utils/fonts'
 import Instagram from '@/components/shared/Instagram'
+import prismicClient from '@/lib/prismic'
+import { CategoryPageDocument, MenuItemType } from '@/types/prismic-types'
+import { recursiveMenuItemMapper } from '@/utils/menu-item-mapper'
 
 export const metadata: Metadata = {
 	title: 'Hilal Visits',
 	description: 'Your go to blog for traveling adventures!'
 }
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+	const categories = await prismicClient
+		.getAllByType<CategoryPageDocument>('category')
+		.catch(err => [] as CategoryPageDocument[])
+
+	const mainCategories = categories?.filter(c => !c.data.parent_category?.data)
+	const menuItems: MenuItemType[] = mainCategories.map(m => recursiveMenuItemMapper(m, categories))
+
 	return (
 		<html lang="tr" className={jost.className}>
 			<head>
@@ -21,10 +31,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 			</head>
 			<body>
 				<div className="relative">
-					<Navbar />
+					<Navbar menuItems={menuItems} />
 					{children}
 					<Instagram />
-					<Footer />
+					<Footer menuItems={menuItems} />
 				</div>
 			</body>
 		</html>

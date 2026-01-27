@@ -5,7 +5,7 @@ import { ArrowForward, KeyboardArrowDown, KeyboardArrowUp } from '@mui/icons-mat
 import { Button } from '@mui/material'
 import Link from 'next/link'
 import { Dispatch, SetStateAction, useMemo, useState } from 'react'
-import { useMenuItems, useMenus, useMobileMenu } from '../../MenuContext'
+import { useMobileMenu } from '../../MenuContext'
 import { MenuItemType } from '@/types/prismic-types'
 
 interface IPropTypes {

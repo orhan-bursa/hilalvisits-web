@@ -1,9 +1,7 @@
-import React from 'react'
-import HomeFavorites from './HomeFavorites'
 import HomeAboutMe from './HomeAboutMe'
-import { BlogPageObject } from '@/types'
+import { BlogPageDocument } from '@/types/prismic-types'
 
-export default function HomeFavoritesAndAboutMe({ items }: { items?: BlogPageObject[] }) {
+export default function HomeFavoritesAndAboutMe({ blogs }: { blogs?: BlogPageDocument[] }) {
 	return (
 		<section className="mx-auto flex max-w-[900px] flex-col gap-6 px-4 md:flex-row xl:px-0">
 			<div>

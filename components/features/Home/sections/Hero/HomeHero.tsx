@@ -11,11 +11,12 @@ import Link from 'next/link'
 import { Alert } from '@mui/material'
 import cn from 'classnames'
 import { shortenText } from '@/utils/text'
-import { BlogPageObject } from '@/types'
 import { destructureBlogProps } from '@/utils'
 import { proxyImageUrl } from '@/utils/image'
+import { BlogPageDocument } from '@/types/prismic-types'
+import { PrismicRichText } from '@prismicio/react'
 
-export default function HomeHero({ items }: { items: BlogPageObject[] | undefined }) {
+export default function HomeHero({ blogs }: { blogs: BlogPageDocument[] | undefined }) {
 	//const progressCircle = useRef(null);
 	//const progressContent = useRef(null);
 	// const onAutoplayTimeLeft = (s: any, time: any, progress: any) => {
@@ -23,7 +24,7 @@ export default function HomeHero({ items }: { items: BlogPageObject[] | undefine
 	//   (progressContent?.current as any).textContent = ` · `; //${Math.ceil(time / 1000)}s
 	// };
 
-	if (!items || !items.length) return <Alert>Unable to retrieve data from server</Alert>
+	if (!blogs || !blogs.length) return <Alert>Unable to retrieve data from server</Alert>
 
 	return (
 		<section className={cn('relative mx-auto cursor-default', 'max-w-[1200px] md:flex md:gap-8')}>
@@ -62,10 +63,7 @@ export default function HomeHero({ items }: { items: BlogPageObject[] | undefine
 						paddingBottom: 40
 					}}
 				>
-					{items.map((item, ind) => {
-						const { cover, title, description, slug } = destructureBlogProps(item)
-						const url = proxyImageUrl(cover)
-
+					{blogs.map((blog, ind) => {
 						return (
 							<SwiperSlide
 								key={ind}
@@ -80,8 +78,8 @@ export default function HomeHero({ items }: { items: BlogPageObject[] | undefine
 							>
 								<div className="relative h-[400px] w-full md:h-[500px]">
 									<Image
-										src={url ?? ''}
-										alt={title ?? ''}
+										src={blog.data.cover.url}
+										alt={blog.data.cover.alt ?? blog.data.title}
 										fill
 										style={{ objectFit: 'cover' }}
 										sizes={`
@@ -93,13 +91,13 @@ export default function HomeHero({ items }: { items: BlogPageObject[] | undefine
 										priority
 									/>
 								</div>
-								<div className="absolute bottom-[25%] z-50 w-full space-x-2 bg-black bg-opacity-40 text-white">
+								<div className="absolute bottom-[25%] z-50 min-h-[191px] w-full space-x-2 bg-black bg-opacity-40 text-white">
 									<h2 className="my-2 line-clamp-1 text-3xl font-[500] md:text-4xl">
-										{title ?? 'No title'}
+										{blog.data.title ?? 'No title'}
 									</h2>
-									<p>{shortenText(description?.map(i => i?.plain_text).join(' '), 100, 15)}</p>
-									<Link href={`/blog/${slug}`}>
-										<button className="my-2 border-b-2 border-gray-400 p-1 text-sm italic md:text-lg">
+									<PrismicRichText field={blog.data.description} />
+									<Link href={`/blog/${blog.uid}`}>
+										<button className="my-2 border-b-2 border-gray-400 p-1 text-sm md:text-lg">
 											Devamı
 										</button>
 									</Link>

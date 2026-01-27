@@ -8,13 +8,15 @@ import './styles.css'
 import Image from 'next/image'
 import Link from 'next/link'
 import cn from 'classnames'
-import { BlogPageObject } from '@/types'
 import { destructureBlogProps, getRichTextWithAnnotations } from '@/utils'
 import { Alert, Button, Chip } from '@mui/material'
 import { proxyImageUrl } from '@/utils/image'
+import { BlogPageDocument } from '@/types/prismic-types'
+import { PrismicRichText } from '@prismicio/react'
 
-export default function HomeLatestBlogs({ items }: { items: BlogPageObject[] | undefined }) {
-	if (!items || !items.length) return <Alert>Unable to retrieve data from server</Alert>
+export default function HomeLatestBlogs({ blogs }: { blogs: BlogPageDocument[] }) {
+	//TODO: handle empty state
+	if (!blogs.length) return <Alert>Unable to retrieve data from server</Alert>
 
 	return (
 		<section className="mx-auto w-full max-w-[900px]">
@@ -27,17 +29,14 @@ export default function HomeLatestBlogs({ items }: { items: BlogPageObject[] | u
 				En Yeniler
 			</h2>
 			<div className="flex w-full flex-col gap-8 px-4 lg:px-0">
-				{items.map(blog => {
-					const { title, description, cover, slug, categories } = destructureBlogProps(blog)
-					const url = proxyImageUrl(cover)
-
+				{blogs.map(blog => {
 					return (
 						<div key={blog.id} className="flex flex-col gap-4 sm:flex-row lg:gap-6">
 							<div className="relative aspect-square h-[300px] sm:h-[200px]">
-								<Link href={`/blog/${slug}`}>
+								<Link href={`/blog/${blog.uid}`}>
 									<Image
-										src={url ?? ''}
-										alt={title}
+										src={blog.data.cover.url ?? ''}
+										alt={blog.data.cover.alt || blog.data.title}
 										fill
 										style={{ objectFit: 'cover' }}
 										sizes={`
@@ -48,12 +47,13 @@ export default function HomeLatestBlogs({ items }: { items: BlogPageObject[] | u
 								</Link>
 							</div>
 							<div>
-								<Link href={`/blog/${slug}`}>
+								<Link href={`/blog/${blog.uid}`}>
 									<h3 className="mb-3 cursor-pointer text-3xl font-bold hover:text-red-500">
-										{title}
+										{blog.data.title}
 									</h3>
 								</Link>
-								<div className="mb-2 flex flex-wrap gap-2">
+								{/*TODO: fix category badges*/}
+								{/*<div className="mb-2 flex flex-wrap gap-2">
 									{categories.map(c => (
 										<Link key={c.title} href={c.href}>
 											<Chip
@@ -65,8 +65,15 @@ export default function HomeLatestBlogs({ items }: { items: BlogPageObject[] | u
 											/>
 										</Link>
 									))}
+								</div>*/}
+								<div className="prose prose-lg">
+									<PrismicRichText
+										field={blog.data.description}
+										components={{
+											paragraph: ({ children }) => <p className="line-clamp-5">{children}</p>
+										}}
+									/>
 								</div>
-								<p className="line-clamp-5">{description?.map(getRichTextWithAnnotations)}</p>
 							</div>
 						</div>
 					)
