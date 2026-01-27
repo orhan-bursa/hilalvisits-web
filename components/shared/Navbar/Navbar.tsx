@@ -1,17 +1,36 @@
-import prismicClient from '@/lib/prismic'
-import { NavbarClient } from './sections'
-import { CategoryPageDocument, MenuItemType } from '@/types/prismic-types'
-import { recursiveMenuItemMapper } from '@/utils/menu-item-mapper'
+'use client'
+import { MenuItemType } from '@/types/prismic-types'
+import { useState } from 'react'
+import { MenuContext } from './sections/MenuContext'
+import Brand from './sections/Brand'
+import MainMenu from './sections/MainMenu'
+import cn from 'classnames'
+import MobileMenu from './sections/MobileMenu'
 
-export default async function Navbar() {
-	const categoryDocs = await prismicClient
-		.getAllByType<CategoryPageDocument>('category')
-		.catch(err => [] as CategoryPageDocument[])
+export default function Navbar({ menuItems }: { menuItems: MenuItemType[] }) {
+	const [isMobileMenuOpen, setMobileMenuOpen] = useState(false)
 
-	const mainCategoryDocs = categoryDocs?.filter(c => !c.data.parent_category?.data)
-	const menuItems: MenuItemType[] = mainCategoryDocs.map(m =>
-		recursiveMenuItemMapper(m, categoryDocs)
+	return (
+		<MenuContext.Provider
+			value={{
+				menuItems,
+				mobile: {
+					isOpen: isMobileMenuOpen,
+					setOpen: setMobileMenuOpen
+				}
+			}}
+		>
+			<nav
+				className={cn(
+					'mx-auto h-full w-full max-w-[1200px] bg-white pt-6 md:pb-6 md:pt-10',
+					'md:flex md:gap-8',
+					'md:px-4 xl:px-0'
+				)}
+			>
+				<Brand />
+				<MainMenu />
+				<MobileMenu />
+			</nav>
+		</MenuContext.Provider>
 	)
-
-	return <NavbarClient menuItems={menuItems} />
 }

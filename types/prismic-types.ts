@@ -59,6 +59,7 @@ export type BlogFields = BasePageData & {
 	description: any
 	cover: IImageContent
 	publish_date: string
+	is_favorite: boolean
 	category: {
 		id: string
 		type: 'category'
