@@ -1,7 +1,5 @@
-import { getBlogs, getMenuBySlug } from '@/utils/notion'
 import { Category as FeatureCategory } from '@/components'
-import { destructureBlogProps, destructureMenuProps } from '@/utils'
-import { Metadata } from 'next'
+
 import { notFound } from 'next/navigation'
 import prismicClient from '@/lib/prismic'
 import { BlogPageDocument, CategoryPageDocument } from '@/types/prismic-types'
