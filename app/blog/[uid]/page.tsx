@@ -21,31 +21,6 @@ type Props = {
 	params: Promise<{ uid: string }>
 }
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-	const { slug } = await params
-	const blog = await getBlogBySlug(slug)
-
-	if (!blog) return {}
-
-	const { title: blogTitle, description: blogDescription } = destructureBlogProps(blog)
-
-	const title = `Hilal Visits | ${blogTitle}`
-	const description = blogDescription?.[0]?.plain_text
-
-	return {
-		title,
-		description,
-		openGraph: {
-			title,
-			description,
-			type: 'article',
-			authors: 'Hilal Kulüp'
-			//TODO: add tags & seo props to notion
-			// tags
-		}
-	}
-}
-
 export default async function BlogDetail({ params }: Props) {
 	const { uid } = await params
 
