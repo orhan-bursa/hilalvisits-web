@@ -1,14 +1,13 @@
-'use client'
-import { SOCIAL_MENU_ITEMS } from '@/constants'
-import { MenuPageObject } from '@/types'
-import { destructureMenuProps } from '@/utils'
-import { jost, whisper } from '@/utils/fonts'
-import { KeyboardArrowUp, MailOutline } from '@mui/icons-material'
-import { Button, IconButton, Tooltip } from '@mui/material'
+import { MenuItemType } from '@/types/prismic-types'
+import { jost } from '@/utils/fonts'
+import { MailOutline } from '@mui/icons-material'
+import { Button } from '@mui/material'
 import cn from 'classnames'
 import Link from 'next/link'
+import ScrollToTopButton from './ScrollToTopButton'
+import BrandWithSocials from './BrandWithSocials'
 
-export default function FooterClient({ first }: { first?: MenuPageObject[] }) {
+export default function FooterContent({ menuItems }: { menuItems: MenuItemType[] }) {
 	return (
 		<div className="max-w[900px] space-y-4 md:mx-8 md:flex md:justify-center md:gap-12 md:space-y-0">
 			<BrandWithSocials />
@@ -28,13 +27,12 @@ export default function FooterClient({ first }: { first?: MenuPageObject[] }) {
 						Keşfet
 					</h4>
 					<div className="mx-auto my-2 max-w-[200px] md:mx-0 md:max-w-none md:space-y-1">
-						{first?.map(menu => {
-							const { title, path } = destructureMenuProps(menu)
+						{menuItems?.map(m => {
 							return (
 								<Button
-									key={title}
+									key={m.title}
 									LinkComponent={Link}
-									href={`/${path}`}
+									href={m.path}
 									color="inherit"
 									sx={{
 										color: '#fff',
@@ -46,7 +44,7 @@ export default function FooterClient({ first }: { first?: MenuPageObject[] }) {
 										'hover:bg-transparent hover:underline'
 									)}
 								>
-									{title}
+									{m.title}
 								</Button>
 							)
 						})}
@@ -111,54 +109,6 @@ export default function FooterClient({ first }: { first?: MenuPageObject[] }) {
 				</div>
 			</div>
 			<ScrollToTopButton />
-		</div>
-	)
-}
-
-function BrandWithSocials() {
-	return (
-		<div>
-			<h1
-				className={cn(
-					whisper.className,
-					'flex h-full items-center justify-center md:h-auto',
-					'z-50 whitespace-nowrap text-6xl font-normal text-white md:text-7xl'
-				)}
-			>
-				Hilal Visits
-			</h1>
-			<div className="flex justify-center">
-				{SOCIAL_MENU_ITEMS.map((item, i) => {
-					const Icon = item.icon
-					return (
-						<IconButton
-							key={i + item.title}
-							LinkComponent={Link}
-							href={item.href ?? '/'}
-							target="_blank"
-							color="inherit"
-						>
-							<Icon />
-						</IconButton>
-					)
-				})}
-			</div>
-		</div>
-	)
-}
-
-function ScrollToTopButton() {
-	return (
-		<div className="flex md:block md:justify-end">
-			<Tooltip title="En başa git">
-				<IconButton
-					onClick={() => window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })}
-					color="inherit"
-					sx={{ border: '1px solid white', padding: '4px' }}
-				>
-					<KeyboardArrowUp />
-				</IconButton>
-			</Tooltip>
 		</div>
 	)
 }
