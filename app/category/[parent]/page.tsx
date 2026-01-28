@@ -1,8 +1,8 @@
-import { Category as FeatureParentCategory } from '@/components'
 import prismicClient from '@/lib/prismic'
 import { BlogPageDocument, CategoryPageDocument } from '@/types/prismic-types'
 import { notFound } from 'next/navigation'
 import * as prismic from '@prismicio/client'
+import CategoryPageContent from '@/components/features/Category/CategoryPageContent'
 
 type Props = { params: Promise<{ parent: string }> }
 
@@ -25,5 +25,5 @@ export default async function ParentCategory({ params }: Props) {
 
 	if (!filteredBlogs?.length) return notFound()
 
-	return <FeatureParentCategory blogs={filteredBlogs} slug={slug} />
+	return <CategoryPageContent blogs={filteredBlogs} slug={slug} />
 }

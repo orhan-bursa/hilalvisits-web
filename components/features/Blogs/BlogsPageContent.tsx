@@ -1,7 +1,8 @@
-import { BlogGrid, BlogHeader } from './sections'
 import { BlogPageDocument, MenuItemType } from '@/types/prismic-types'
+import BlogHeader from './sections/BlogHeader'
+import BlogGrid from './sections/BlogGrid'
 
-export default async function Blogs({
+export default async function BlogsPageContent({
 	blogs,
 	menuItems
 }: {

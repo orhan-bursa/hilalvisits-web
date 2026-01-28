@@ -44,7 +44,7 @@ const text = (
 		Hilal 🌸
 	</>
 )
-export default function About() {
+export default function AboutPageContent() {
 	const profile = IMAGES[0]
 	const cover = IMAGES[1]
 	return (
