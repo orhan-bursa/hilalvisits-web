@@ -1,4 +1,4 @@
-import { Category as FeatureCategory } from '@/components'
+import CategoryPageContent from '@/components/features/Category/CategoryPageContent'
 
 import { notFound } from 'next/navigation'
 import prismicClient from '@/lib/prismic'
@@ -18,5 +18,5 @@ export default async function Category({ params }: Props) {
 	const blogs = await prismicClient.getAllByType<BlogPageDocument>('blog')
 	const filteredBlogs = blogs.filter(b => category.data.title === b.data.category.data.title)
 
-	return <FeatureCategory blogs={filteredBlogs} slug={slug} />
+	return <CategoryPageContent blogs={filteredBlogs} slug={slug} />
 }

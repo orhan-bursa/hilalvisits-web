@@ -8,9 +8,8 @@ import './styles.css'
 import Image from 'next/image'
 import Link from 'next/link'
 import cn from 'classnames'
-import { destructureBlogProps, getRichTextWithAnnotations } from '@/utils'
 import { Alert, Button, Chip } from '@mui/material'
-import { proxyImageUrl } from '@/utils/image'
+
 import { BlogPageDocument } from '@/types/prismic-types'
 import { PrismicRichText } from '@prismicio/react'
 
