@@ -1,7 +1,5 @@
 import { Breadcrumbs, Chip } from '@mui/material'
 import Link from 'next/link'
-import { MenuPageObject } from '@/types'
-import { destructureMenuProps } from '@/utils'
 import cn from 'classnames'
 interface IPropTypes {
 	slug?: string

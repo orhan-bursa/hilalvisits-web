@@ -1,11 +1,11 @@
-import { Home as FeatureHome } from '@/components'
-import prismicClient from '@/lib/prismic'
-import { BlogPageDocument } from '@/types/prismic-types'
-import { getBlogs, getPhotos } from '@/utils/notion'
-export default async function Home() {
-	const blogs = await prismicClient.getAllByType<BlogPageDocument>('blog')
+import HomePageContent from '@/components/features/Home/HomePageContent'
+import { getBlogs } from '@/lib/prismic/services'
+import { NextPage } from 'next'
 
-	const photos = await getPhotos()
+const HomePage: NextPage = async () => {
+	const blogs = await getBlogs('tr')
 
-	return <FeatureHome photos={photos} blogs={blogs} />
+	return <HomePageContent photos={[]} blogs={blogs} />
 }
+
+export default HomePage

@@ -1,7 +1,4 @@
-import { BlogPageObject } from '@/types'
 import { BlogPageDocument } from '@/types/prismic-types'
-import { destructureBlogProps, getRichTextWithAnnotations } from '@/utils'
-import { proxyImageUrl } from '@/utils/image'
 import { Chip } from '@mui/material'
 import { PrismicRichText } from '@prismicio/react'
 import cn from 'classnames'

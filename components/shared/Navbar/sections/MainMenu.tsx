@@ -1,10 +1,16 @@
 import { SOCIAL_MENU_ITEMS } from '@/constants'
-import { MailOutline } from '@mui/icons-material'
+import { Instagram, MailOutline, X, YouTube } from '@mui/icons-material'
 import { IconButton } from '@mui/material'
 import { MainMenuItem } from './components/main'
 import { useState } from 'react'
 import Link from 'next/link'
 import { useMenuItems } from './MenuContext'
+
+const ICON_MAP = {
+	instagram: <Instagram />,
+	twitter: <X />,
+	youtube: <YouTube />
+}
 
 export default function MainMenu() {
 	const [open, setOpen] = useState<string | null>(null)
@@ -29,7 +35,6 @@ export default function MainMenu() {
 			</div>
 			<div className="flex gap-2 md:hidden lg:flex">
 				{SOCIAL_MENU_ITEMS.map((item, i) => {
-					const Icon = item.icon
 					return (
 						<IconButton
 							key={i + item.title}
@@ -47,7 +52,7 @@ export default function MainMenu() {
 								}
 							}}
 						>
-							<Icon />
+							{ICON_MAP[item.icon as keyof typeof ICON_MAP]}
 						</IconButton>
 					)
 				})}
