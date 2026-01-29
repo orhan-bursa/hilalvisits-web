@@ -1,11 +1,6 @@
 import type { Metadata } from 'next'
-import { Footer, Navbar } from '@/components'
 import './globals.css'
-import { jost } from '@/utils/fonts'
-import Instagram from '@/components/shared/Instagram'
-import prismicClient from '@/lib/prismic'
-import { CategoryPageDocument, MenuItemType } from '@/types/prismic-types'
-import { recursiveMenuItemMapper } from '@/utils/menu-item-mapper'
+import AppLayout from '@/components/shared/Layout/AppLayout'
 
 export const metadata: Metadata = {
 	title: 'Hilal Visits',
@@ -13,30 +8,5 @@ export const metadata: Metadata = {
 }
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
-	const categories = await prismicClient
-		.getAllByType<CategoryPageDocument>('category')
-		.catch(err => [] as CategoryPageDocument[])
-
-	const mainCategories = categories?.filter(c => !c.data.parent_category?.data)
-	const menuItems: MenuItemType[] = mainCategories.map(m => recursiveMenuItemMapper(m, categories))
-
-	return (
-		<html lang="tr" className={jost.className}>
-			<head>
-				<link rel="icon" href="/favicon.ico" sizes="any" />
-				<link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
-				<link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
-				<link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
-				<link rel="manifest" href="/favicon/site.webmanifest" />
-			</head>
-			<body>
-				<div className="relative">
-					<Navbar menuItems={menuItems} />
-					{children}
-					<Instagram />
-					<Footer menuItems={menuItems} />
-				</div>
-			</body>
-		</html>
-	)
+	return <AppLayout locale="tr">{children}</AppLayout>
 }

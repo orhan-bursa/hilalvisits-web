@@ -8,7 +8,7 @@ import { notFound } from 'next/navigation'
 const BlogsPage: NextPage = async () => {
 	const blogs = await getBlogs('tr')
 
-	const categories = await getCategories()
+	const categories = await getCategories('tr')
 	const mainCategories = categories?.filter(c => !c.data.parent_category?.data)
 	const menuItems: MenuItemType[] = mainCategories.map(m => recursiveMenuItemMapper(m, categories))
 
