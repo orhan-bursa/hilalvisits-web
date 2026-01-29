@@ -7,18 +7,19 @@ import {
 	getParentCategories,
 	getSubCategoriesByParentID
 } from '@/lib/prismic/services'
+import { LocaleDynamic } from '@/types/locale'
 
-type Props = { params: Promise<{ parent: string }> }
+type Props = { params: Promise<{ locale: LocaleDynamic; parent: string }> }
 
-const ParentCategoryPage: NextPage<Props> = async ({ params }) => {
-	const { parent: parentUID } = await params
-	const parentCategory = await getCategoryByUID(parentUID, 'tr').catch(() => null)
+const ParentCategoryPageWithLocale: NextPage<Props> = async ({ params }) => {
+	const { locale, parent: parentUID } = await params
+	const parentCategory = await getCategoryByUID(parentUID, locale).catch(() => null)
 
 	if (!parentCategory) return notFound()
 
 	const subCategories = await getSubCategoriesByParentID(parentCategory.id, 'tr')
 
-	const blogs = await getBlogs('tr')
+	const blogs = await getBlogs(locale)
 	const filteredBlogs = blogs.filter(b =>
 		subCategories.some(c => c.data.title === b.data.category.data.title)
 	)
@@ -28,17 +29,17 @@ const ParentCategoryPage: NextPage<Props> = async ({ params }) => {
 	return <CategoryPageContent blogs={filteredBlogs} slug={parentUID} />
 }
 
-export default ParentCategoryPage
+export default ParentCategoryPageWithLocale
 
 export async function generateStaticParams() {
 	//map each locales config if more than one is added
-	const categories = await getParentCategories('tr')
+	const categories = await getParentCategories('en')
 
-	console.log('ALSDKFAWL====================', { categories })
+	console.log('ALSDKFAWL====================en', { categories })
 	console.log('parents', categories.map(c => c.data.title).join())
 
 	return categories.map(category => ({
 		uid: category.uid,
-		locale: 'tr'
+		locale: 'en'
 	}))
 }

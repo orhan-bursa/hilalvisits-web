@@ -14,7 +14,7 @@ const BlogsPageWithLocale: NextPage<Props> = async ({ params }) => {
 	const { locale } = await params
 	const blogs = await getBlogs(locale)
 
-	const categories = await getCategories()
+	const categories = await getCategories(locale)
 	const mainCategories = categories?.filter(c => !c.data.parent_category?.data)
 	const menuItems: MenuItemType[] = mainCategories.map(m => recursiveMenuItemMapper(m, categories))
 

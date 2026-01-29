@@ -24,12 +24,11 @@ const BlogDetailPageWithLocale: NextPage<Props> = async ({ params }) => {
 export default BlogDetailPageWithLocale
 
 export async function generateStaticParams() {
-	//TODO: check how the locale logic should be with SSG config
+	//map each locales config if more than one is added
 	const blogs = await getBlogs('en')
 
-	console.log({ uids: blogs.map(b => b.uid).join(', ') })
-
 	return blogs.map(blog => ({
-		uid: blog.uid
+		uid: blog.uid,
+		locale: 'en'
 	}))
 }

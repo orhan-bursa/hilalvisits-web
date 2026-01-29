@@ -26,7 +26,19 @@ type IImageContent = {
 
 export type CategoryFields = BasePageData & {
 	title: string
-	parent_category: { data: { title: string } }
+	parent_category: {
+		id: string
+		type: 'category'
+		tags: any[]
+		lang: string
+		slug: string
+		first_publication_date: string
+		last_publication_date: string
+		uid: string
+		link_type: 'Document'
+		key: string
+		data: { title: string }
+	}
 }
 
 export type CategoryPageDocument = PrismicDocument<CategoryFields>
@@ -65,7 +77,7 @@ export type BlogFields = BasePageData & {
 		type: 'category'
 		tags: any[]
 		lang: string
-		slug: 'iran'
+		slug: string
 		first_publication_date: string
 		last_publication_date: string
 		uid: string
