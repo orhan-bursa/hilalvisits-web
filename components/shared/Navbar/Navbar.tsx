@@ -29,7 +29,6 @@ export default function Navbar({ menuItems }: { menuItems: MenuItemType[] }) {
 			>
 				<Brand />
 				<MainMenu />
-				<div>en | tr</div>
 				<MobileMenu />
 			</nav>
 		</MenuContext.Provider>

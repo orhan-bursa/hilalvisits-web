@@ -3,7 +3,6 @@ import { getBlogByUID, getBlogs } from '@/lib/prismic/services'
 import { NextPage } from 'next'
 import { notFound } from 'next/navigation'
 
-export const dynamicParams = true
 export const revalidate = 86400 // 60 * 60 * 24 => 1 day
 
 type Props = {

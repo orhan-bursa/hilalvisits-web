@@ -24,7 +24,6 @@ const BlogDetailPageWithLocale: NextPage<Props> = async ({ params }) => {
 export default BlogDetailPageWithLocale
 
 export async function generateStaticParams() {
-	//map each locales config if more than one is added
 	const blogs = await getBlogs('en')
 
 	return blogs.map(blog => ({
