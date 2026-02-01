@@ -8,10 +8,10 @@ import {
 	getSubCategoriesByParentID
 } from '@/lib/prismic/services'
 
-type Props = { params: Promise<{ parent: string }> }
+type Props = { params: Promise<{ parent_category_uid: string }> }
 
 const ParentCategoryPage: NextPage<Props> = async ({ params }) => {
-	const { parent: parentUID } = await params
+	const { parent_category_uid: parentUID } = await params
 	const parentCategory = await getCategoryByUID(parentUID, 'tr').catch(() => null)
 
 	if (!parentCategory) return notFound()
@@ -19,9 +19,7 @@ const ParentCategoryPage: NextPage<Props> = async ({ params }) => {
 	const subCategories = await getSubCategoriesByParentID(parentCategory.id, 'tr')
 
 	const blogs = await getBlogs('tr')
-	const filteredBlogs = blogs.filter(b =>
-		subCategories.some(c => c.data.title === b.data.category.data.title)
-	)
+	const filteredBlogs = blogs.filter(b => subCategories.some(c => c.uid === b.data.category.uid))
 
 	if (!filteredBlogs?.length) return notFound()
 
@@ -29,16 +27,3 @@ const ParentCategoryPage: NextPage<Props> = async ({ params }) => {
 }
 
 export default ParentCategoryPage
-
-export async function generateStaticParams() {
-	//map each locales config if more than one is added
-	const categories = await getParentCategories('tr')
-
-	console.log('ALSDKFAWL====================', { categories })
-	console.log('parents', categories.map(c => c.data.title).join())
-
-	return categories.map(category => ({
-		uid: category.uid,
-		locale: 'tr'
-	}))
-}
