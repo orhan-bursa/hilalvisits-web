@@ -14,7 +14,6 @@ const ParentCategoryPageWithLocale: NextPage<Props> = async ({ params }) => {
 
 	const subCategories = await getSubCategoriesByParentID(parentCategory.id, locale)
 
-	console.log(JSON.stringify(parentCategory.data))
 	const blogs = await getBlogs(locale)
 	const filteredBlogs = blogs.filter(b => subCategories.some(c => c.uid === b.data.category.uid))
 
