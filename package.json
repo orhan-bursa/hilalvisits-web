@@ -13,7 +13,6 @@
 		"@emotion/styled": "^11.11.0",
 		"@mui/icons-material": "^5.14.19",
 		"@mui/material": "^5.14.20",
-		"@notionhq/client": "^2.2.13",
 		"@prismicio/client": "^7.21.3",
 		"@prismicio/next": "^2.2.1",
 		"@prismicio/react": "^3.3.0",
