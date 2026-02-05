@@ -1,12 +1,43 @@
 import BlogDetailPageContent from '@/components/features/BlogDetail/BlogDetailPageContent'
 import { getBlogByUID, getBlogs } from '@/lib/prismic/services'
-import { NextPage } from 'next'
+import { asImageSrc, asText } from '@prismicio/client'
+import { Metadata, NextPage, ResolvingMetadata } from 'next'
 import { notFound } from 'next/navigation'
 
 export const revalidate = 86400 // 60 * 60 * 24 => 1 day
 
 type Props = {
 	params: Promise<{ uid: string }>
+}
+
+export async function generateMetadata(
+	{ params }: Props,
+	parent: ResolvingMetadata
+): Promise<Metadata> {
+	const { uid } = await params
+
+	const blog = await getBlogByUID(uid, 'tr')
+
+	console.log({
+		url: asImageSrc(blog.data.meta_image) ?? '',
+		width: 800,
+		height: 600,
+		alt: blog?.data?.meta_image?.alt || ''
+	})
+	return {
+		title: blog?.data?.meta_title,
+		description: blog?.data.meta_description,
+		openGraph: {
+			images: [
+				{
+					url: asImageSrc(blog.data.meta_image) ?? '',
+					width: 800,
+					height: 600,
+					alt: blog?.data?.meta_image?.alt || ''
+				}
+			]
+		}
+	}
 }
 
 const BlogDetailPage: NextPage<Props> = async ({ params }) => {

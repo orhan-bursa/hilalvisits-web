@@ -2,8 +2,14 @@ import BlogsPageContent from '@/components/features/Blogs/BlogsPageContent'
 import { getBlogs, getCategories } from '@/lib/prismic/services'
 import { MenuItemType } from '@/types/prismic-types'
 import { recursiveMenuItemMapper } from '@/utils/menu-item-mapper'
-import { NextPage } from 'next'
+import { Metadata, NextPage, ResolvingMetadata } from 'next'
 import { notFound } from 'next/navigation'
+
+export const metadata: Metadata = {
+	title: 'Hilal Visits | Hilalin Seyahat Blogu',
+	description: 'Türkiye ve dünyadan kareler paylaşan unutulmaz bir gezi rehberi.'
+	//TODO: expand metadata and add meta images / socail media url images
+}
 
 const BlogsPage: NextPage = async () => {
 	const blogs = await getBlogs('tr')
