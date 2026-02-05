@@ -18,12 +18,6 @@ export async function generateMetadata(
 
 	const blog = await getBlogByUID(uid, 'tr')
 
-	console.log({
-		url: asImageSrc(blog.data.meta_image) ?? '',
-		width: 800,
-		height: 600,
-		alt: blog?.data?.meta_image?.alt || ''
-	})
 	return {
 		title: blog?.data?.meta_title,
 		description: blog?.data.meta_description,
