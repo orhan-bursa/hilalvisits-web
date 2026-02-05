@@ -92,7 +92,12 @@ export default function HomeHero({ blogs }: { blogs: BlogPageDocument[] | undefi
 									<h2 className="my-2 line-clamp-1 text-3xl font-[500] md:text-4xl">
 										{blog.data.title ?? 'No title'}
 									</h2>
-									<PrismicRichText field={blog.data.description} />
+									<PrismicRichText
+										field={blog.data.description}
+										components={{
+											paragraph: ({ children }) => <p className="line-clamp-3">{children}</p>
+										}}
+									/>
 									<Link href={`/blog/${blog.uid}`}>
 										<button className="my-2 border-b-2 border-gray-400 p-1 text-sm md:text-lg">
 											Devamı
