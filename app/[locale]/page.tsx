@@ -1,5 +1,5 @@
 import HomePageContent from '@/components/features/Home/HomePageContent'
-import { getBlogs } from '@/lib/prismic/services'
+import { getBlogs, getCategories } from '@/lib/prismic/services'
 import { LocaleDynamic } from '@/types/locale'
 import { NextPage } from 'next'
 

@@ -19,7 +19,13 @@ const ParentCategoryPageWithLocale: NextPage<Props> = async ({ params }) => {
 
 	if (!filteredBlogs?.length) return notFound()
 
-	return <CategoryPageContent blogs={filteredBlogs} slug={parentUID} />
+	return (
+		<CategoryPageContent
+			blogs={filteredBlogs}
+			category={parentCategory}
+			subCategories={subCategories}
+		/>
+	)
 }
 
 export default ParentCategoryPageWithLocale

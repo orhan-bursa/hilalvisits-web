@@ -1,0 +1,21 @@
+{
+	"URI": {
+		"category_uri": "category"
+	},
+	"CategoryPage": {
+		"category_uri": "category",
+		"category_blogs": "{category} Blogs",
+		"home_page": "Home"
+	},
+	"HomePage": {
+		"latest_blogs": "Latest Blogs",
+		"read_more": "Read more",
+		"whoami": "Who am I?",
+		"whoami_desc": "<span>Hello, welcome to my page.</span><br></br><br></br>Briefly about myself: I am a director and a travel enthusiast. In the trips that I plan entirely on my own, I share the places I visit and see, along with my positive and negative experiences, both as a personal journal for myself and in the hope that it will be helpful for those who want to travel, on my Instagram account and on this blog."
+	},
+	"Navbar": {
+		"gallery": "Photos",
+		"about": "About",
+		"discover": "Discover"
+	}
+}

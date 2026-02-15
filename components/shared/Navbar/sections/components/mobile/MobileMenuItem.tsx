@@ -2,22 +2,25 @@
 import { KeyboardArrowDown, KeyboardArrowUp } from '@mui/icons-material'
 import { Button } from '@mui/material'
 import cn from 'classnames'
-import { useState } from 'react'
+import { Dispatch, SetStateAction, useState } from 'react'
 import { MobileSecondaryMenuItem } from '../mobile'
-import { useMenuItems } from '../../MenuContext'
+import { MenuItemType } from '@/types/prismic-types'
 
 export default function MobileMenuItem({
 	title,
+	menuItems,
+	setMobileMenuOpen,
 	defaultOpen = false
 }: {
 	title: string
+	menuItems: MenuItemType[]
+	setMobileMenuOpen: Dispatch<SetStateAction<boolean>>
 	defaultOpen?: boolean
 }) {
 	const [isOpen, setOpen] = useState(defaultOpen)
 	const handleOpen = () => setOpen(pre => !pre)
 	const [openMenu, setOpenMenu] = useState<string | null>(null)
 
-	const menuItems = useMenuItems()
 	return !!menuItems && menuItems.length > 0 ? (
 		<>
 			<li className="flex border-b-[1px] border-gray-400">
@@ -38,6 +41,7 @@ export default function MobileMenuItem({
 								item={item}
 								open={openMenu}
 								setOpen={setOpenMenu}
+								setMobileMenuOpen={setMobileMenuOpen}
 							/>
 						)
 					})}

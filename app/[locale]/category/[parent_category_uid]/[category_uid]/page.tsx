@@ -8,7 +8,7 @@ import { LocaleDynamic } from '@/types/locale'
 type Props = {
 	params: Promise<{
 		locale: LocaleDynamic
-		parent: string
+		parent_category_uid: string
 		category_uid: string
 	}>
 }
@@ -23,7 +23,7 @@ const CategoryPageWithLocale: NextPage<Props> = async ({ params }) => {
 	const blogs = await getBlogs(locale)
 	const filteredBlogs = blogs.filter(b => category.uid === b.data.category.uid)
 
-	return <CategoryPageContent blogs={filteredBlogs} slug={categoryUID} />
+	return <CategoryPageContent blogs={filteredBlogs} category={category} />
 }
 
 export default CategoryPageWithLocale

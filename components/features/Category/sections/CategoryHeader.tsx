@@ -1,52 +1,72 @@
 import { Breadcrumbs, Chip } from '@mui/material'
 import Link from 'next/link'
 import cn from 'classnames'
-interface IPropTypes {
-	slug?: string
+import { CategoryPageDocument } from '@/types/prismic-types'
+import { getLocale, getTranslations } from 'next-intl/server'
+import { localizeURI } from '@/lib/i18n'
+
+interface Props {
+	category: CategoryPageDocument
+	subCategories?: CategoryPageDocument[]
 }
 
-export default function CategoryHeader({ slug }: IPropTypes) {
+export default async function CategoryHeader({ category, subCategories }: Props) {
+	const locale = await getLocale()
+	const t = await getTranslations('CategoryPage')
+
 	return (
 		<section className="mx-auto max-w-[1200px] space-y-3">
 			<h2 className={cn('cursor-default px-4', 'text-center text-4xl font-semibold')}>
-				{slug} BLOGLARI
+				{t('category_blogs', { category: category.data.title })}
 			</h2>
-			<div className="flex justify-center">
+			<div className="flex justify-center uppercase">
 				<Breadcrumbs>
-					<Link color="inherit" href="/" className="hover:text-red-500 hover:underline">
-						ANA SAYFA
+					<Link
+						color="inherit"
+						href={localizeURI('/', locale)}
+						className="hover:text-red-500 hover:underline"
+					>
+						{t('home_page')}
 					</Link>
-					{/*FIXME: fix categories*/}
-					{/*{categories.map((c, i) => {
-                        const isLastItem = i === categories.length - 1
-                        return (!isLastItem ?
-                            <Link
-                                key={i + c?.title}
-                                color="inherit"
-                                href={`/${c.href}`}
-                                className="hover:underline hover:text-red-500"
-                            >
-                                {c?.title?.toUpperCase()}
-                            </Link> :
-                            <p className="font-bold cursor-default">
-                                {c?.title?.toLocaleUpperCase("tr-TR")}
-                            </p>
-                        )
-                    })}*/}
+					{!!category.data.parent_category?.uid ? (
+						<>
+							<Link
+								color="inherit"
+								href={localizeURI(
+									`/${t('category_uri')}/${category.data.parent_category?.uid}`,
+									locale
+								)}
+								className="hover:text-red-500 hover:underline"
+							>
+								{category.data.parent_category?.data?.title}
+							</Link>
+							<p className="cursor-default font-bold">{category.data.title}</p>
+						</>
+					) : (
+						<Link color="inherit" href="/" className="hover:text-red-500 hover:underline">
+							{category.data.title}
+						</Link>
+					)}
 				</Breadcrumbs>
 			</div>
-			{/*{!!children.length ? (
+			{!!subCategories && subCategories.length > 0 && (
 				<div className="mb-3 flex flex-wrap justify-center gap-2">
-					{children.map((c, i) => (
-						<Link key={i + c.title} href={`/${c.href}`}>
+					{subCategories.map((c, i) => (
+						<Link
+							key={i}
+							href={localizeURI(
+								`/${t('category_uri')}/${c.data.parent_category.uid}/${c.uid}`,
+								locale
+							)}
+						>
 							<Chip
-								label={c.title}
-								className={cn('cursor-pointer rounded bg-gray-500 text-white', 'hover:bg-gray-600')}
+								label={c.data.title}
+								className="cursor-pointer rounded bg-gray-500 text-white hover:bg-gray-600"
 							/>
 						</Link>
 					))}
 				</div>
-			) : null}*/}
+			)}
 		</section>
 	)
 }

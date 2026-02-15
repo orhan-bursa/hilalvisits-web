@@ -1,27 +1,26 @@
 'use client'
-import { type MouseEvent } from 'react'
+import { useState, type MouseEvent } from 'react'
 import cn from 'classnames'
-import { Menu, Close } from '@mui/icons-material'
+import { Menu as MenuIcon, Close as CloseIcon } from '@mui/icons-material'
 import Link from 'next/link'
 import { Button, IconButton } from '@mui/material'
 import { MobileMenuItem, MobileSocials } from './components/mobile'
-import { useMobileMenu } from './MenuContext'
 import { MenuItemType } from '@/types/prismic-types'
 
-export default function MobileMenu() {
+export default function MobileMenu({ menuItems }: { menuItems: MenuItemType[] }) {
+	const [isMobileMenuOpen, setMobileMenuOpen] = useState(false)
+
 	const stopPropagation = (e: MouseEvent<HTMLElement>) => e.stopPropagation()
 
-	const { isOpen, setOpen } = useMobileMenu()
-
-	const handleOpenMenu = () => setOpen(true)
-	const handleCloseMenu = () => setOpen(false)
+	const handleOpenMenu = () => setMobileMenuOpen(true)
+	const handleCloseMenu = () => setMobileMenuOpen(false)
 
 	return (
 		<>
 			<div onClick={handleOpenMenu} className="flex justify-end px-3 pb-1 pt-4 md:hidden">
-				<Menu />
+				<MenuIcon />
 			</div>
-			{isOpen ? (
+			{isMobileMenuOpen ? (
 				<div
 					className="absolute top-0 z-[250] h-full w-full bg-gray-200 bg-opacity-80"
 					onClick={handleCloseMenu}
@@ -38,12 +37,17 @@ export default function MobileMenu() {
 						<div className="w-full max-w-md">
 							<div className="flex w-full justify-end pt-2 text-amber-400">
 								<IconButton onClick={handleCloseMenu} sx={{ color: 'black', p: 0 }}>
-									<Close />
+									<CloseIcon />
 								</IconButton>
 							</div>
 							<nav className="w-full">
 								<ul>
-									<MobileMenuItem title={'KEŞFET'} defaultOpen={true} />
+									<MobileMenuItem
+										setMobileMenuOpen={setMobileMenuOpen}
+										menuItems={menuItems}
+										title={'KEŞFET'}
+										defaultOpen
+									/>
 									{[
 										{
 											title: 'Galeri',
@@ -72,7 +76,7 @@ export default function MobileMenu() {
 									))}
 								</ul>
 							</nav>
-							<MobileSocials />
+							<MobileSocials setMobileMenuOpen={setMobileMenuOpen} />
 						</div>
 					</div>
 				</div>

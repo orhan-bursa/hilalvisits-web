@@ -1,5 +1,6 @@
 import { LocaleDynamic } from '@/types/locale'
 import AppLayout from '@/components/shared/Layout/AppLayout'
+import { setRequestLocale } from 'next-intl/server'
 
 type Props = {
 	children: React.ReactNode
@@ -8,6 +9,7 @@ type Props = {
 
 export default async function RootLayoutWithLocale({ children, params }: Props) {
 	const { locale } = await params
+	setRequestLocale(locale)
 
 	return <AppLayout locale={locale}>{children}</AppLayout>
 }

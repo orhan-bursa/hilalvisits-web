@@ -1,12 +1,7 @@
 import { notFound } from 'next/navigation'
 import CategoryPageContent from '@/components/features/Category/CategoryPageContent'
 import { NextPage } from 'next'
-import {
-	getBlogs,
-	getCategoryByUID,
-	getParentCategories,
-	getSubCategoriesByParentID
-} from '@/lib/prismic/services'
+import { getBlogs, getCategoryByUID, getSubCategoriesByParentID } from '@/lib/prismic/services'
 
 type Props = { params: Promise<{ parent_category_uid: string }> }
 
@@ -23,7 +18,13 @@ const ParentCategoryPage: NextPage<Props> = async ({ params }) => {
 
 	if (!filteredBlogs?.length) return notFound()
 
-	return <CategoryPageContent blogs={filteredBlogs} slug={parentUID} />
+	return (
+		<CategoryPageContent
+			blogs={filteredBlogs}
+			category={parentCategory}
+			subCategories={subCategories}
+		/>
+	)
 }
 
 export default ParentCategoryPage

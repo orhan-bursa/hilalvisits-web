@@ -85,6 +85,11 @@ export type BlogFields = BasePageData & {
 		key: string
 		data: {
 			title: string
+			parent_category?: {
+				data: { title: string }
+				uid: string
+				id: string
+			}
 		}
 	}
 }

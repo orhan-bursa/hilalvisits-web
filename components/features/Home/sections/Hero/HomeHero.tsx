@@ -12,8 +12,17 @@ import { Alert } from '@mui/material'
 import cn from 'classnames'
 import { BlogPageDocument } from '@/types/prismic-types'
 import { PrismicRichText } from '@prismicio/react'
+import { localizeURI } from '@/lib/i18n'
 
-export default function HomeHero({ blogs }: { blogs: BlogPageDocument[] | undefined }) {
+export default function HomeHero({
+	blogs,
+	readMoreText,
+	locale
+}: {
+	blogs: BlogPageDocument[] | undefined
+	readMoreText: string
+	locale: string
+}) {
 	//const progressCircle = useRef(null);
 	//const progressContent = useRef(null);
 	// const onAutoplayTimeLeft = (s: any, time: any, progress: any) => {
@@ -92,15 +101,17 @@ export default function HomeHero({ blogs }: { blogs: BlogPageDocument[] | undefi
 									<h2 className="my-2 line-clamp-1 text-3xl font-[500] md:text-4xl">
 										{blog.data.title ?? 'No title'}
 									</h2>
-									<PrismicRichText
-										field={blog.data.description}
-										components={{
-											paragraph: ({ children }) => <p className="line-clamp-3">{children}</p>
-										}}
-									/>
-									<Link href={`/blog/${blog.uid}`}>
+									<p className="line-clamp-3 text-start">
+										<PrismicRichText
+											field={blog.data.description}
+											components={{
+												paragraph: ({ children }) => <>{children}</>
+											}}
+										/>
+									</p>
+									<Link href={localizeURI(`/blog/${blog.uid}`, locale)}>
 										<button className="my-2 border-b-2 border-gray-400 p-1 text-sm md:text-lg">
-											Devamı
+											{readMoreText}
 										</button>
 									</Link>
 								</div>

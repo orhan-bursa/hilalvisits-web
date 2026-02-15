@@ -4,7 +4,7 @@ import { notFound } from 'next/navigation'
 import { getBlogs, getCategories, getCategoryByUID } from '@/lib/prismic/services'
 import { NextPage } from 'next'
 
-type Props = { params: Promise<{ parent: string; category_uid: string }> }
+type Props = { params: Promise<{ parent_category_uid: string; category_uid: string }> }
 
 const CategoryPage: NextPage<Props> = async ({ params }) => {
 	const { category_uid: categoryUID } = await params
@@ -16,7 +16,7 @@ const CategoryPage: NextPage<Props> = async ({ params }) => {
 	const blogs = await getBlogs('tr')
 	const filteredBlogs = blogs.filter(b => category.uid === b.data.category.uid)
 
-	return <CategoryPageContent blogs={filteredBlogs} slug={categoryUID} />
+	return <CategoryPageContent blogs={filteredBlogs} category={category} />
 }
 
 export default CategoryPage

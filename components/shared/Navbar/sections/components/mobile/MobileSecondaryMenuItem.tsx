@@ -3,17 +3,21 @@ import { ArrowForward, KeyboardArrowDown, KeyboardArrowUp } from '@mui/icons-mat
 import { Button } from '@mui/material'
 import Link from 'next/link'
 import { Dispatch, SetStateAction, useMemo, useState } from 'react'
-import { useMobileMenu } from '../../MenuContext'
 import { MenuItemType } from '@/types/prismic-types'
 
 interface IPropTypes {
 	item: MenuItemType
 	open: string | null
 	setOpen: Dispatch<SetStateAction<string | null>>
+	setMobileMenuOpen: Dispatch<SetStateAction<boolean>>
 }
 
-export default function MobileSecondaryMenuItem({ item, open, setOpen }: IPropTypes) {
-	const { setOpen: setMobileMenuOpen } = useMobileMenu()
+export default function MobileSecondaryMenuItem({
+	item,
+	open,
+	setOpen,
+	setMobileMenuOpen
+}: IPropTypes) {
 	const closeMobileMenu = () => setMobileMenuOpen(false)
 
 	const isOpen = useMemo(() => open === item.title, [open, item])

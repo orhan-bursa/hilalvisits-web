@@ -1,0 +1,21 @@
+{
+	"URI": {
+		"category_uri": "kategori"
+	},
+	"CategoryPage": {
+		"category_uri": "kategori",
+		"category_blogs": "{category} Blogları",
+		"home_page": "Ana Sayfa"
+	},
+	"HomePage": {
+		"latest_blogs": "En Yeniler",
+		"read_more": "Devamı",
+		"whoami": "Ben Kimim?",
+		"whoami_desc": "<span>Merhaba, sayfama hoşgeldin.</span><br/><br/>Kısaca bahsetmek gerekirse yönetmenim ve seyahatseverim. Planlamasını tamamen kendim yaptığım seyahatlerde gezip gördüğüm yerleri, olumlu-olumsuz tecrübelerimi hem kendime günlük gibi, hem de seyahat etmek isteyenlere faydalı olur umuduyla Instagram hesabımda ve bu blogda paylaşıyorum."
+	},
+	"Navbar": {
+		"gallery": "Galeri",
+		"about": "Hakkımda",
+		"discover": "Keşfet"
+	}
+}

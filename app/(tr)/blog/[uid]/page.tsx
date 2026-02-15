@@ -10,10 +10,7 @@ type Props = {
 	params: Promise<{ uid: string }>
 }
 
-export async function generateMetadata(
-	{ params }: Props,
-	parent: ResolvingMetadata
-): Promise<Metadata> {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
 	const { uid } = await params
 
 	const blog = await getBlogByUID(uid, 'tr')

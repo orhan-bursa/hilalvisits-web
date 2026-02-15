@@ -2,9 +2,9 @@ import { SOCIAL_MENU_ITEMS } from '@/constants'
 import { Instagram, MailOutline, X, YouTube } from '@mui/icons-material'
 import { IconButton } from '@mui/material'
 import { MainMenuItem } from './components/main'
-import { useState } from 'react'
 import Link from 'next/link'
-import { useMenuItems } from './MenuContext'
+import { MenuItemType } from '@/types/prismic-types'
+import { getTranslations } from 'next-intl/server'
 
 const ICON_MAP = {
 	instagram: <Instagram />,
@@ -12,26 +12,29 @@ const ICON_MAP = {
 	youtube: <YouTube />
 }
 
-export default function MainMenu() {
-	const [open, setOpen] = useState<string | null>(null)
-
-	const menuItems = useMenuItems()
-
+export default async function DesktopMenu({ menuItems }: { menuItems: MenuItemType[] }) {
+	const t = await getTranslations('Navbar')
 	return (
-		<div className="hidden grow items-end justify-between md:flex">
+		<div className="hidden grow items-end justify-between uppercase md:flex">
 			<div className="flex">
 				<MainMenuItem
-					open={open}
-					setOpen={setOpen}
 					item={{
 						path: '/blog',
-						title: 'Keşfet',
-						uid: 'kesfet',
+						title: t('discover'),
+						uid: '',
 						items: menuItems
 					}}
 				/>
-				<FixedMenuItem key={'photo'} title={'Galeri'} href="/galeri" />
-				<FixedMenuItem key={'hakkimda'} title={'Hakkımda'} href="/hakkimda" />
+				<Link href={'/galeri'}>
+					<div className="relative flex cursor-pointer px-2 pb-1 font-semibold duration-300 hover:text-amber-500">
+						<p>{t('gallery')}</p>
+					</div>
+				</Link>
+				<Link href={'/hakkimda'}>
+					<div className="relative flex cursor-pointer px-2 pb-1 font-semibold duration-300 hover:text-amber-500">
+						<p>Hakkımda</p>
+					</div>
+				</Link>
 			</div>
 			<div className="flex gap-2 md:hidden lg:flex">
 				{SOCIAL_MENU_ITEMS.map((item, i) => {
@@ -75,15 +78,5 @@ export default function MainMenu() {
 				</div>
 			</div>
 		</div>
-	)
-}
-
-function FixedMenuItem({ title, href }: { title: string; href: string }) {
-	return (
-		<Link href={href}>
-			<div className="relative flex cursor-pointer px-2 pb-1 font-semibold duration-300 hover:text-amber-500">
-				<p className={'text-inherit'}>{title?.toLocaleUpperCase('tr-TR')}</p>
-			</div>
-		</Link>
 	)
 }

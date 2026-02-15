@@ -27,7 +27,8 @@ export const getBlogs = async (locale: LocaleAll) => {
 		orderings: {
 			field: 'document.first_publication_date',
 			direction: 'desc'
-		}
+		},
+		fetchLinks: ['category.parent_category', 'category.title']
 	})
 }
 export const getBlogByUID = async (uid: string, locale: LocaleAll) => {
