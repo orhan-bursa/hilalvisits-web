@@ -102,3 +102,12 @@ export type MenuItemType = {
 	path: string
 	items?: MenuItemType[]
 }
+
+export type InfoPageFields = BasePageData & {
+	title: string
+	title_short: string
+	description: any
+	content: any
+}
+
+export type InfoPageDocument = PrismicDocument<InfoPageFields>

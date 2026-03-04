@@ -17,5 +17,12 @@
 		"gallery": "Galeri",
 		"about": "Hakkımda",
 		"discover": "Keşfet"
+	},
+	"Footer": {
+		"all_rights_reserved": "Hilal Visits, Tüm hakları saklıdır.",
+		"terms_of_use": "Kullanım Koşulları",
+		"cookies": "Çerezler",
+		"privacy": "Gizlilik",
+		"scroll_to_top": "En başa git"
 	}
 }

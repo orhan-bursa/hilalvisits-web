@@ -17,5 +17,12 @@
 		"gallery": "Photos",
 		"about": "About",
 		"discover": "Discover"
+	},
+	"Footer": {
+		"all_rights_reserved": "Hilal Visits, All rights are reserved.",
+		"terms_of_use": "Terms of Use",
+		"cookies": "Cookies",
+		"privacy": "Privacy",
+		"scroll_to_top": "Scroll to top"
 	}
 }

@@ -6,8 +6,10 @@ import cn from 'classnames'
 import Link from 'next/link'
 import ScrollToTopButton from './ScrollToTopButton'
 import BrandWithSocials from './BrandWithSocials'
+import { getTranslations } from 'next-intl/server'
 
-export default function FooterContent({ menuItems }: { menuItems: MenuItemType[] }) {
+export default async function FooterContent({ menuItems }: { menuItems: MenuItemType[] }) {
+	const t = await getTranslations('Footer')
 	return (
 		<div className="max-w[900px] space-y-4 md:mx-8 md:flex md:justify-center md:gap-12 md:space-y-0">
 			<BrandWithSocials />
@@ -49,12 +51,12 @@ export default function FooterContent({ menuItems }: { menuItems: MenuItemType[]
 							)
 						})}
 						{[
+							// {
+							// 	title: 'Galeri',
+							// 	href: '/galeri'
+							// },
 							{
-								title: 'Galeri',
-								href: '/galeri'
-							},
-							{
-								title: 'Kimim?',
+								title: 'Hakkımda',
 								href: '/hakkimda'
 							}
 						].map(item => (
@@ -108,7 +110,7 @@ export default function FooterContent({ menuItems }: { menuItems: MenuItemType[]
 					</div>
 				</div>
 			</div>
-			<ScrollToTopButton />
+			<ScrollToTopButton tooltipText={t('scroll_to_top')} />
 		</div>
 	)
 }

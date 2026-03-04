@@ -38,7 +38,7 @@ export default async function HomeLatestBlogs({ blogs }: { blogs: BlogPageDocume
 										style={{ objectFit: 'cover' }}
 										sizes={`
                       (max-width: 640px) calc(100vw-32px),
-                      200px
+                      400px
                       `}
 									/>
 								</Link>

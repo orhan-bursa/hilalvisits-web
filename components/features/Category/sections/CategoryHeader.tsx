@@ -43,7 +43,11 @@ export default async function CategoryHeader({ category, subCategories }: Props)
 							<p className="cursor-default font-bold">{category.data.title}</p>
 						</>
 					) : (
-						<Link color="inherit" href="/" className="hover:text-red-500 hover:underline">
+						<Link
+							color="inherit"
+							href={localizeURI(`/${t('category_uri')}/${category.uid}`, locale)}
+							className="hover:text-red-500 hover:underline"
+						>
 							{category.data.title}
 						</Link>
 					)}

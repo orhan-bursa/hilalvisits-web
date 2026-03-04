@@ -1,11 +1,15 @@
 'use client'
 import { KeyboardArrowUp } from '@mui/icons-material'
 import { IconButton, Tooltip } from '@mui/material'
+import { useTranslations } from 'next-intl'
 
-const ScrollToTopButton: React.FC = () => {
+type Props = {
+	tooltipText: string
+}
+const ScrollToTopButton: React.FC<Props> = ({ tooltipText }) => {
 	return (
 		<div className="flex md:block md:justify-end">
-			<Tooltip title="En başa git">
+			<Tooltip title={tooltipText}>
 				<IconButton
 					onClick={() => window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })}
 					color="inherit"

@@ -4,10 +4,10 @@ export function isDefaultLocale(locale: string) {
 	return locale === 'tr'
 }
 
-export function getLocaleURI(locale: string) {
+export function getLocaleUriPrefix(locale: string) {
 	return isDefaultLocale(locale) ? '' : `/${locale}`
 }
 export function localizeURI(uri: string, locale: string) {
-	const prefix = getLocaleURI(locale)
+	const prefix = getLocaleUriPrefix(locale)
 	return prefix + uri
 }

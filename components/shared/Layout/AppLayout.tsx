@@ -1,15 +1,16 @@
 import { Footer, Navbar } from '@/components'
 import { jost } from '@/utils/fonts'
 import Instagram from '@/components/shared/Instagram'
-import { CategoryPageDocument, MenuItemType } from '@/types/prismic-types'
+import { CategoryPageDocument, InfoPageDocument, MenuItemType } from '@/types/prismic-types'
 import { recursiveMenuItemMapper } from '@/utils/menu-item-mapper'
 import { LocaleAll } from '@/types/locale'
-import { getCategories } from '@/lib/prismic/services'
+import { getCategories, getInfoPages } from '@/lib/prismic/services'
 
 type Props = { locale: LocaleAll; children: React.ReactNode }
 
 const AppLayout: React.FC<Props> = async ({ locale, children }) => {
 	const categories = await getCategories(locale).catch(err => [] as CategoryPageDocument[])
+	const infoPages = await getInfoPages(locale).catch(err => [] as InfoPageDocument[])
 
 	const mainCategories = categories?.filter(c => !c.data.parent_category?.data)
 	const menuItems: MenuItemType[] = mainCategories.map(m => recursiveMenuItemMapper(m, categories))
@@ -28,7 +29,7 @@ const AppLayout: React.FC<Props> = async ({ locale, children }) => {
 					<Navbar menuItems={menuItems} />
 					{children}
 					<Instagram />
-					<Footer menuItems={menuItems} />
+					<Footer menuItems={menuItems} infoPages={infoPages} />
 				</div>
 			</body>
 		</html>

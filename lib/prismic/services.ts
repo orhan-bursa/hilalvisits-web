@@ -1,5 +1,5 @@
 import { LocaleAll } from '@/types/locale'
-import { BlogPageDocument, CategoryPageDocument } from '@/types/prismic-types'
+import { BlogPageDocument, CategoryPageDocument, InfoPageDocument } from '@/types/prismic-types'
 import { ClientConfig, createClient, getRepositoryEndpoint } from '@prismicio/client'
 import * as prismic from '@prismicio/client'
 
@@ -71,5 +71,25 @@ export const getParentCategories = async (locale: LocaleAll) => {
 	return client.getAllByType<CategoryPageDocument>('category', {
 		lang: LANG_MAPPER[locale],
 		filters: [prismic.filter.missing('my.category.parent_category')]
+	})
+}
+
+export const getInfoPages = async (locale: LocaleAll) => {
+	const client = createClient(endpoint, config)
+
+	return client.getAllByType<InfoPageDocument>('info_page', {
+		lang: LANG_MAPPER[locale],
+		orderings: {
+			field: 'document.first_publication_date',
+			direction: 'desc'
+		}
+	})
+}
+
+export const getInfoPageByUID = async (uid: string, locale: LocaleAll) => {
+	const client = createClient(endpoint, config)
+
+	return client.getByUID<InfoPageDocument>('info_page', uid, {
+		lang: LANG_MAPPER[locale]
 	})
 }
