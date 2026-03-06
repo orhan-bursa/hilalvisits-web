@@ -1,9 +1,9 @@
 {
 	"URI": {
-		"category_uri": "kategori"
+		"category_uri": "kategori",
+		"about_uri": "hakkimda"
 	},
 	"CategoryPage": {
-		"category_uri": "kategori",
 		"category_blogs": "{category} Blogları",
 		"home_page": "Ana Sayfa"
 	},
@@ -11,7 +11,9 @@
 		"latest_blogs": "En Yeniler",
 		"read_more": "Devamı",
 		"whoami": "Ben Kimim?",
-		"whoami_desc": "<span>Merhaba, sayfama hoşgeldin.</span><br/><br/>Kısaca bahsetmek gerekirse yönetmenim ve seyahatseverim. Planlamasını tamamen kendim yaptığım seyahatlerde gezip gördüğüm yerleri, olumlu-olumsuz tecrübelerimi hem kendime günlük gibi, hem de seyahat etmek isteyenlere faydalı olur umuduyla Instagram hesabımda ve bu blogda paylaşıyorum."
+		"whoami_desc": "<span>Merhaba, sayfama hoşgeldin.</span><br></br><br></br>Kısaca bahsetmek gerekirse yönetmenim ve seyahatseverim. Planlamasını tamamen kendim yaptığım seyahatlerde gezip gördüğüm yerleri, olumlu-olumsuz tecrübelerimi hem kendime günlük gibi, hem de seyahat etmek isteyenlere faydalı olur umuduyla Instagram hesabımda ve bu blogda paylaşıyorum.",
+		"view_all": "Tümünü gör",
+		"follow": "Takip et"
 	},
 	"Navbar": {
 		"gallery": "Galeri",
@@ -23,6 +25,16 @@
 		"terms_of_use": "Kullanım Koşulları",
 		"cookies": "Çerezler",
 		"privacy": "Gizlilik",
-		"scroll_to_top": "En başa git"
+		"scroll_to_top": "En başa git",
+		"contact": "İletişim",
+		"contact_desc": "Sorular veya iş teklifleri için iletişime geçmekten çekinmeyin!",
+		"email": "Email",
+		"about": "Hakkımda",
+		"discover": "Keşfet"
+	},
+	"BlogPage": {
+		"home_page": "Ana Sayfa",
+		"all_blogs": "Tüm Bloglar",
+		"blogs": "Bloglar"
 	}
 }

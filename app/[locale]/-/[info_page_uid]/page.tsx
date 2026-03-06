@@ -1,7 +1,6 @@
-import BlogDetailPageContent from '@/components/features/BlogDetail/BlogDetailPageContent'
-import InfoPageDetailContent from '@/components/features/InfoPageDetail/InfoPageDetailContent'
+import InfoPageDetailContent from '@/components/features/InfoPage/InfoPageDetailContent'
 import { getInfoPages, getInfoPageByUID } from '@/lib/prismic/services'
-import { LocaleDynamic } from '@/types/locale'
+import { LocaleAll, LocaleDynamic } from '@/types/locale'
 import { NextPage } from 'next'
 import { notFound } from 'next/navigation'
 
@@ -18,7 +17,7 @@ const InfoPageDetailWithLocale: NextPage<Props> = async ({ params }) => {
 
 	if (!infoPage) return notFound()
 
-	return <InfoPageDetailContent infoPage={infoPage} />
+	return <InfoPageDetailContent infoPage={infoPage} locale={locale} />
 }
 
 export default InfoPageDetailWithLocale

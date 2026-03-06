@@ -1,5 +1,4 @@
-import BlogDetailPageContent from '@/components/features/BlogDetail/BlogDetailPageContent'
-import InfoPageDetailContent from '@/components/features/InfoPageDetail/InfoPageDetailContent'
+import InfoPageDetailContent from '@/components/features/InfoPage/InfoPageDetailContent'
 import { getInfoPages, getInfoPageByUID } from '@/lib/prismic/services'
 import { NextPage } from 'next'
 import { notFound } from 'next/navigation'
@@ -17,7 +16,7 @@ const InfoPageDetail: NextPage<Props> = async ({ params }) => {
 
 	if (!infoPage) return notFound()
 
-	return <InfoPageDetailContent infoPage={infoPage} />
+	return <InfoPageDetailContent infoPage={infoPage} locale="tr" />
 }
 
 export default InfoPageDetail

@@ -18,7 +18,7 @@ const BlogDetailPageWithLocale: NextPage<Props> = async ({ params }) => {
 
 	if (!blog) return notFound()
 
-	return <BlogDetailPageContent blog={blog} />
+	return <BlogDetailPageContent blog={blog} locale={locale} />
 }
 
 export default BlogDetailPageWithLocale

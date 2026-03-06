@@ -23,6 +23,7 @@ const ParentCategoryPage: NextPage<Props> = async ({ params }) => {
 			blogs={filteredBlogs}
 			category={parentCategory}
 			subCategories={subCategories}
+			locale="tr"
 		/>
 	)
 }

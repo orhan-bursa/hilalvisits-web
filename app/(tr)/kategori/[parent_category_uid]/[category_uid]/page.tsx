@@ -16,7 +16,7 @@ const CategoryPage: NextPage<Props> = async ({ params }) => {
 	const blogs = await getBlogs('tr')
 	const filteredBlogs = blogs.filter(b => category.uid === b.data.category.uid)
 
-	return <CategoryPageContent blogs={filteredBlogs} category={category} />
+	return <CategoryPageContent blogs={filteredBlogs} category={category} locale="tr" />
 }
 
 export default CategoryPage

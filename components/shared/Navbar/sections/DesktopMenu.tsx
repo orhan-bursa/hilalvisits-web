@@ -5,6 +5,8 @@ import { MainMenuItem } from './components/main'
 import Link from 'next/link'
 import { MenuItemType } from '@/types/prismic-types'
 import { getTranslations } from 'next-intl/server'
+import { LocaleAll } from '@/types/locale'
+import { localizeURI } from '@/lib/i18n'
 
 const ICON_MAP = {
 	instagram: <Instagram />,
@@ -12,14 +14,20 @@ const ICON_MAP = {
 	youtube: <YouTube />
 }
 
-export default async function DesktopMenu({ menuItems }: { menuItems: MenuItemType[] }) {
-	const t = await getTranslations('Navbar')
+type Props = {
+	locale: LocaleAll
+	menuItems: MenuItemType[]
+}
+export default async function DesktopMenu({ locale, menuItems }: Props) {
+	const t = await getTranslations({ namespace: 'Navbar', locale })
+	const tURI = await getTranslations({ namespace: 'URI', locale })
 	return (
 		<div className="hidden grow items-end justify-between uppercase md:flex">
 			<div className="flex">
 				<MainMenuItem
+					locale={locale}
 					item={{
-						path: '/blog',
+						path: localizeURI('/blog', locale),
 						title: t('discover'),
 						uid: '',
 						items: menuItems
@@ -30,9 +38,9 @@ export default async function DesktopMenu({ menuItems }: { menuItems: MenuItemTy
 						<p>{t('gallery')}</p>
 					</div>
 				</Link>
-				<Link href={'/hakkimda'}>
+				<Link href={localizeURI(`/${tURI('about_uri')}`, locale)}>
 					<div className="relative flex cursor-pointer px-2 pb-1 font-semibold duration-300 hover:text-amber-500">
-						<p>Hakkımda</p>
+						<p>{t('about')}</p>
 					</div>
 				</Link>
 			</div>

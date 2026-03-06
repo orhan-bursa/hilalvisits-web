@@ -5,12 +5,16 @@ import { Alert, Button, Chip } from '@mui/material'
 
 import { BlogPageDocument } from '@/types/prismic-types'
 import { PrismicRichText } from '@prismicio/react'
-import { getLocale, getTranslations } from 'next-intl/server'
+import { getTranslations } from 'next-intl/server'
 import { localizeURI } from '@/lib/i18n'
+import { LocaleAll } from '@/types/locale'
 
-export default async function HomeLatestBlogs({ blogs }: { blogs: BlogPageDocument[] }) {
-	const locale = await getLocale()
-	const t = await getTranslations('HomePage')
+type Props = {
+	blogs: BlogPageDocument[]
+	locale: LocaleAll
+}
+export default async function HomeLatestBlogs({ blogs, locale }: Props) {
+	const t = await getTranslations({ namespace: 'HomePage', locale })
 	const tURI = await getTranslations('URI')
 	//TODO: handle empty state
 	if (!blogs.length) return <Alert>Unable to retrieve data from server</Alert>
@@ -69,7 +73,7 @@ export default async function HomeLatestBlogs({ blogs }: { blogs: BlogPageDocume
 									{blog.data.category && (
 										<Link
 											href={localizeURI(
-												`/${tURI('category_uri')}/${blog.data.category?.uid}`,
+												`/${tURI('category_uri')}/${blog.data.category.data.parent_category?.uid}/${blog.data.category?.uid}`,
 												locale
 											)}
 										>
@@ -113,10 +117,10 @@ export default async function HomeLatestBlogs({ blogs }: { blogs: BlogPageDocume
 					variant="outlined"
 					color="inherit"
 					LinkComponent={Link}
-					href="/blog"
+					href={localizeURI('/blog', locale)}
 					className="text-black hover:bg-transparent"
 				>
-					Tümünü Gör
+					{t('view_all')}
 				</Button>
 			</div>
 		</section>

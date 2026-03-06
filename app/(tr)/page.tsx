@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 const HomePage: NextPage = async () => {
 	const blogs = await getBlogs('tr')
 
-	return <HomePageContent photos={[]} blogs={blogs} />
+	return <HomePageContent photos={[]} blogs={blogs} locale="tr" />
 }
 
 export default HomePage

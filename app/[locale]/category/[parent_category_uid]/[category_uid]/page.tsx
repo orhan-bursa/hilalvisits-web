@@ -23,7 +23,7 @@ const CategoryPageWithLocale: NextPage<Props> = async ({ params }) => {
 	const blogs = await getBlogs(locale)
 	const filteredBlogs = blogs.filter(b => category.uid === b.data.category.uid)
 
-	return <CategoryPageContent blogs={filteredBlogs} category={category} />
+	return <CategoryPageContent blogs={filteredBlogs} category={category} locale={locale} />
 }
 
 export default CategoryPageWithLocale

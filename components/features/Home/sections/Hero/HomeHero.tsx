@@ -13,6 +13,7 @@ import cn from 'classnames'
 import { BlogPageDocument } from '@/types/prismic-types'
 import { PrismicRichText } from '@prismicio/react'
 import { localizeURI } from '@/lib/i18n'
+import { LocaleAll } from '@/types/locale'
 
 export default function HomeHero({
 	blogs,
@@ -21,7 +22,7 @@ export default function HomeHero({
 }: {
 	blogs: BlogPageDocument[] | undefined
 	readMoreText: string
-	locale: string
+	locale: LocaleAll
 }) {
 	//const progressCircle = useRef(null);
 	//const progressContent = useRef(null);

@@ -10,7 +10,7 @@ const HomePageWithLocale: NextPage<Props> = async ({ params }) => {
 	const { locale } = await params
 	const blogs = await getBlogs(locale)
 
-	return <HomePageContent photos={[]} blogs={blogs} />
+	return <HomePageContent photos={[]} blogs={blogs} locale={locale} />
 }
 
 export default HomePageWithLocale

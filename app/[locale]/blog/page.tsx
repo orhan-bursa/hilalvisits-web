@@ -20,7 +20,7 @@ const BlogsPageWithLocale: NextPage<Props> = async ({ params }) => {
 
 	if (!blogs?.length) return notFound()
 
-	return <BlogsPageContent blogs={blogs} menuItems={menuItems} />
+	return <BlogsPageContent blogs={blogs} menuItems={menuItems} locale={locale} />
 }
 
 export default BlogsPageWithLocale

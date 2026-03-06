@@ -2,14 +2,19 @@ import cn from 'classnames'
 import Link from 'next/link'
 import { KeyboardArrowRight } from '@mui/icons-material'
 import { MenuItemType } from '@/types/prismic-types'
-import { getLocale } from 'next-intl/server'
+import { getLocale, getTranslations } from 'next-intl/server'
 import { localizeURI } from '@/lib/i18n'
+import { LocaleAll } from '@/types/locale'
 
-export default async function MainSecondaryMenuItem({ item }: { item: MenuItemType }) {
-	const locale = await getLocale()
+type Props = {
+	item: MenuItemType
+	locale: LocaleAll
+}
+export default async function MainSecondaryMenuItem({ item, locale }: Props) {
+	const tURI = await getTranslations({ namespace: 'URI', locale })
 	return (
 		<div className="group/item relative cursor-pointer bg-amber-400">
-			<Link href={localizeURI(item.path, locale)}>
+			<Link href={localizeURI(`/${tURI('category_uri')}${item.path}`, locale)}>
 				<p
 					className={`border-l-4 border-transparent p-3 transition-all hover:border-amber-600 hover:bg-amber-500 group-hover/item:border-amber-500 group-hover:pl-4`}
 				>
@@ -27,7 +32,7 @@ export default async function MainSecondaryMenuItem({ item }: { item: MenuItemTy
 				{!!item.items && item.items.length > 0
 					? item.items.map((c, idx) => {
 							return (
-								<Link key={idx} href={localizeURI(c.path, locale)}>
+								<Link key={idx} href={localizeURI(`/${tURI('category_uri')}${c.path}`, locale)}>
 									<div className="bg-amber-400 p-3 pl-5 hover:bg-amber-500">{c.title}</div>
 								</Link>
 							)

@@ -7,9 +7,16 @@ import Link from 'next/link'
 import ScrollToTopButton from './ScrollToTopButton'
 import BrandWithSocials from './BrandWithSocials'
 import { getTranslations } from 'next-intl/server'
+import { LocaleAll } from '@/types/locale'
 
-export default async function FooterContent({ menuItems }: { menuItems: MenuItemType[] }) {
-	const t = await getTranslations('Footer')
+export default async function FooterContent({
+	menuItems,
+	locale
+}: {
+	menuItems: MenuItemType[]
+	locale: LocaleAll
+}) {
+	const t = await getTranslations({ namespace: 'Footer', locale })
 	return (
 		<div className="max-w[900px] space-y-4 md:mx-8 md:flex md:justify-center md:gap-12 md:space-y-0">
 			<BrandWithSocials />
@@ -26,7 +33,7 @@ export default async function FooterContent({ menuItems }: { menuItems: MenuItem
 							'border-b-[1px] border-white border-opacity-70'
 						)}
 					>
-						Keşfet
+						{t('discover')}
 					</h4>
 					<div className="mx-auto my-2 max-w-[200px] md:mx-0 md:max-w-none md:space-y-1">
 						{menuItems?.map(m => {
@@ -56,7 +63,7 @@ export default async function FooterContent({ menuItems }: { menuItems: MenuItem
 							// 	href: '/galeri'
 							// },
 							{
-								title: 'Hakkımda',
+								title: t('about'),
 								href: '/hakkimda'
 							}
 						].map(item => (
@@ -92,12 +99,10 @@ export default async function FooterContent({ menuItems }: { menuItems: MenuItem
 							'border-b-[1px] border-white border-opacity-70'
 						)}
 					>
-						İletişim
+						{t('contact')}
 					</h4>
 					<div className="my-2 max-w-[300px] space-y-3 md:max-w-none">
-						<p className="text-start">
-							Sorular veya iş teklifleri için iletişime geçmekten çekinmeyin!
-						</p>
+						<p className="text-start">{t('contact_desc')}</p>
 						<Button
 							variant="outlined"
 							color="inherit"
@@ -105,7 +110,7 @@ export default async function FooterContent({ menuItems }: { menuItems: MenuItem
 							target="blank"
 							startIcon={<MailOutline />}
 						>
-							Email
+							{t('email')}
 						</Button>
 					</div>
 				</div>

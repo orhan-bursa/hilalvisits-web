@@ -5,12 +5,14 @@ import { PrismicRichText, SliceZone } from '@prismicio/react'
 import RichTextSlice from '@/components/slices/RichTextSlice'
 import ImageFullWidthSlice from '@/components/slices/ImageFullWidthSlice'
 import ImageSideBySideSlice from '@/components/slices/ImageSideBySideSlice'
+import { LocaleAll } from '@/types/locale'
 
-interface IPropTypes {
+type Props = {
 	blog: BlogPageDocument
+	locale: LocaleAll
 }
 
-export default function BlogDetailPageContent({ blog }: IPropTypes) {
+export default function BlogDetailPageContent({ blog }: Props) {
 	return (
 		<div>
 			<div className="mx-auto h-max min-h-[500px] w-full space-y-3 md:max-w-[1200px]">

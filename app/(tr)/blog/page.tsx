@@ -20,7 +20,7 @@ const BlogsPage: NextPage = async () => {
 
 	if (!blogs?.length) return notFound()
 
-	return <BlogsPageContent blogs={blogs} menuItems={menuItems} />
+	return <BlogsPageContent blogs={blogs} menuItems={menuItems} locale="tr" />
 }
 
 export default BlogsPage

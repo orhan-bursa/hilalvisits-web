@@ -1,9 +1,11 @@
+import { LocaleAll } from '@/types/locale'
 import { InfoPageDocument } from '@/types/prismic-types'
 import { PrismicRichText } from '@prismicio/react'
 import classNames from 'classnames'
 
 type Props = {
 	infoPage: InfoPageDocument
+	locale: LocaleAll
 }
 
 const InfoPageDetailContent: React.FC<Props> = ({ infoPage }) => {

@@ -5,6 +5,8 @@ import { shortenText } from '@/utils/text'
 import InstagramIcon from '@mui/icons-material/Instagram'
 import CustomButtonHoverInvert from '@/components/ui/CustomButtonHoverInvert'
 import Image from 'next/image'
+import { LocaleAll } from '@/types/locale'
+import { getTranslations } from 'next-intl/server'
 
 type MappedInstagramPost = {
 	id: string
@@ -12,31 +14,32 @@ type MappedInstagramPost = {
 	url: string
 	src: string
 }
-export default async function Instagram() {
-	const mapPosts: (response: any) => MappedInstagramPost[] = (response: any) => {
-		const mappedItems = response?.media?.data?.map((post: any) => {
-			return {
-				id: post.id,
-				title: post.caption,
-				url: post.permalink,
-				src: post.thumbnail_url || post.media_url
-			}
-		})
-		return mappedItems
-	}
+const fetchInstagramData = async () => {
+	const instaID = process.env.INSTAGRAM_ID
+	const instaToken = process.env.INSTAGRAM_TOKEN
+	const instaFields =
+		'profile_picture_url,name,username,biography,media.limit(6){caption,media_url,permalink,thumbnail_url,timestamp,comments_count,like_count,media_type,children{media_url}}'
+	const url = `https://graph.facebook.com/v16.0/${instaID}?fields=${instaFields}&access_token=${instaToken}`
+	const res = await fetch(url, {
+		cache: 'no-store'
+	})
 
-	const fetchInstagramData = async () => {
-		const instaID = process.env.INSTAGRAM_ID
-		const instaToken = process.env.INSTAGRAM_TOKEN
-		const instaFields =
-			'profile_picture_url,name,username,biography,media.limit(6){caption,media_url,permalink,thumbnail_url,timestamp,comments_count,like_count,media_type,children{media_url}}'
-		const url = `https://graph.facebook.com/v16.0/${instaID}?fields=${instaFields}&access_token=${instaToken}`
-		const res = await fetch(url, {
-			cache: 'no-store'
-		})
+	return await res.json()
+}
+const mapPosts: (response: any) => MappedInstagramPost[] = (response: any) => {
+	const mappedItems = response?.media?.data?.map((post: any) => {
+		return {
+			id: post.id,
+			title: post.caption,
+			url: post.permalink,
+			src: post.thumbnail_url || post.media_url
+		}
+	})
+	return mappedItems
+}
 
-		return await res.json()
-	}
+export default async function Instagram({ locale }: { locale: LocaleAll }) {
+	const t = await getTranslations({ namespace: 'HomePage', locale })
 	const data = await fetchInstagramData()
 	const posts = mapPosts(data)
 
@@ -88,7 +91,7 @@ export default async function Instagram() {
 						target="_blank"
 						startIcon={<InstagramIcon />}
 					>
-						Takip Et
+						{t('follow')}
 					</CustomButtonHoverInvert>
 				</div>
 			</div>

@@ -26,10 +26,10 @@ const AppLayout: React.FC<Props> = async ({ locale, children }) => {
 			</head>
 			<body>
 				<div className="relative">
-					<Navbar menuItems={menuItems} />
+					<Navbar menuItems={menuItems} locale={locale} />
 					{children}
-					<Instagram />
-					<Footer menuItems={menuItems} infoPages={infoPages} />
+					<Instagram locale={locale} />
+					<Footer menuItems={menuItems} infoPages={infoPages} locale={locale} />
 				</div>
 			</body>
 		</html>

@@ -2,11 +2,13 @@ import cn from 'classnames'
 import { KeyboardArrowDown } from '@mui/icons-material'
 import MainSecondaryMenuItem from './MainSecondaryMenuItem'
 import { MenuItemType } from '@/types/prismic-types'
+import { LocaleAll } from '@/types/locale'
 
-interface Props {
+type Props = {
 	item: MenuItemType
+	locale: LocaleAll
 }
-export default function MainMenuItem({ item }: Props) {
+export default function MainMenuItem({ item, locale }: Props) {
 	const title = item.title
 
 	return (
@@ -15,13 +17,13 @@ export default function MainMenuItem({ item }: Props) {
 			<KeyboardArrowDown className="text-inherit" />
 			<div
 				className={cn(
-					'absolute -left-2 top-10 z-50 min-w-[210px] -translate-y-2 bg-amber-400 text-white duration-300',
+					'absolute -left-2 top-9 z-50 min-w-[210px] -translate-y-2 bg-amber-400 text-white duration-300',
 					'pointer-events-none opacity-0 group-hover:pointer-events-auto group-hover:opacity-100'
 				)}
 			>
 				{!!item.items && item.items?.length > 0
 					? item.items.map((menu, ind) => {
-							return <MainSecondaryMenuItem key={ind} item={menu} />
+							return <MainSecondaryMenuItem key={ind} item={menu} locale={locale} />
 						})
 					: null}
 			</div>
