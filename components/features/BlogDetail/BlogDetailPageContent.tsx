@@ -26,7 +26,7 @@ export default function BlogDetailPageContent({ blog }: Props) {
 				>
 					{blog.data.title}
 				</h1>
-				<div className="prose prose-lg mx-auto max-w-[900px] px-4 text-lg xl:px-0">
+				<div className="prose prose-lg mx-auto !mb-8 max-w-[900px] px-4 text-lg xl:px-0">
 					<PrismicRichText field={blog.data.description} />
 				</div>
 			</div>
