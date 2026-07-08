@@ -10,7 +10,7 @@ type Props = {
 
 const InfoPageDetailContent: React.FC<Props> = ({ infoPage }) => {
 	return (
-		<div className="mx-auto h-max min-h-[500px] w-full py-20 pb-8 md:max-w-[1200px]">
+		<div className="mx-auto h-max min-h-[500px] w-full py-20 md:max-w-[1200px]">
 			<h1
 				className={classNames(
 					'mx-auto max-w-[900px] px-4 pb-8 font-semibold xl:px-0',
