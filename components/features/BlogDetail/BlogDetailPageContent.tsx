@@ -16,8 +16,7 @@ export default function BlogDetailPageContent({ blog }: Props) {
 	return (
 		<div className="pb-8">
 			<div className="mx-auto h-max min-h-[500px] w-full space-y-3 md:max-w-[1200px]">
-				<PrismicNextImage field={blog.data.cover} />
-
+				<PrismicNextImage field={blog.data.cover} className="mx-auto" />
 				<h1
 					className={cn(
 						'mx-auto max-w-[1050px] px-4 text-center font-semibold xl:px-0',
