@@ -15,7 +15,7 @@ type Props = {
 export default function BlogDetailPageContent({ blog }: Props) {
 	return (
 		<div>
-			<div className="mx-auto h-max min-h-[500px] w-full space-y-3 md:max-w-[1200px]">
+			<div className="mx-auto h-max min-h-[500px] w-full space-y-3 pb-8 md:max-w-[1200px]">
 				<PrismicNextImage field={blog.data.cover} />
 
 				<h1

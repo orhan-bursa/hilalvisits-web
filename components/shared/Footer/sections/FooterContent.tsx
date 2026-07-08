@@ -17,6 +17,8 @@ export default async function FooterContent({
 	locale: LocaleAll
 }) {
 	const t = await getTranslations({ namespace: 'Footer', locale })
+	const tURI = await getTranslations({ namespace: 'URI', locale })
+
 	return (
 		<div className="max-w[900px] space-y-4 md:mx-8 md:flex md:justify-center md:gap-12 md:space-y-0">
 			<BrandWithSocials />
@@ -41,7 +43,7 @@ export default async function FooterContent({
 								<Button
 									key={m.title}
 									LinkComponent={Link}
-									href={m.path}
+									href={`/${tURI('category_uri')}${m.path}`}
 									color="inherit"
 									sx={{
 										color: '#fff',
