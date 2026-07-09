@@ -3,13 +3,11 @@ import Brand from './sections/Brand'
 import DesktopMenu from './sections/DesktopMenu'
 import cn from 'classnames'
 import MobileMenu from './sections/MobileMenu'
-import { LocaleAll } from '@/types/locale'
 
 type Props = {
 	menuItems: MenuItemType[]
-	locale: LocaleAll
 }
-export default function Navbar({ locale, menuItems }: Props) {
+export default function Navbar({ menuItems }: Props) {
 	return (
 		<nav
 			className={cn(
@@ -18,9 +16,9 @@ export default function Navbar({ locale, menuItems }: Props) {
 				'md:px-4 xl:px-0'
 			)}
 		>
-			<Brand locale={locale} />
-			<DesktopMenu menuItems={menuItems} locale={locale} />
-			<MobileMenu menuItems={menuItems} locale={locale} />
+			<Brand />
+			<DesktopMenu menuItems={menuItems} />
+			<MobileMenu menuItems={menuItems} />
 		</nav>
 	)
 }

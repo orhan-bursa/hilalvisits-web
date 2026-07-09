@@ -1,5 +1,5 @@
 'use client'
-import React, { useRef } from 'react'
+import React from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/css'
 import 'swiper/css/pagination'
@@ -12,18 +12,8 @@ import { Alert } from '@mui/material'
 import cn from 'classnames'
 import { BlogPageDocument } from '@/types/prismic-types'
 import { PrismicRichText } from '@prismicio/react'
-import { localizeURI } from '@/lib/i18n'
-import { LocaleAll } from '@/types/locale'
 
-export default function HomeHero({
-	blogs,
-	readMoreText,
-	locale
-}: {
-	blogs: BlogPageDocument[] | undefined
-	readMoreText: string
-	locale: LocaleAll
-}) {
+export default function HomeHero({ blogs }: { blogs: BlogPageDocument[] | undefined }) {
 	//const progressCircle = useRef(null);
 	//const progressContent = useRef(null);
 	// const onAutoplayTimeLeft = (s: any, time: any, progress: any) => {
@@ -110,9 +100,9 @@ export default function HomeHero({
 											}}
 										/>
 									</p>
-									<Link href={localizeURI(`/blog/${blog.uid}`, locale)}>
+									<Link href={`/blog/${blog.uid}`}>
 										<button className="my-2 border-b-2 border-gray-400 p-1 text-sm md:text-lg">
-											{readMoreText}
+											Devamı
 										</button>
 									</Link>
 								</div>

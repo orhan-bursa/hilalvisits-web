@@ -5,7 +5,7 @@ type Props = { slice: RichTextSliceType }
 
 const RichTextSlice: React.FC<Props> = ({ slice }) => {
 	return (
-		<section className="prose prose-lg w-[900px] max-w-none">
+		<section className="prose prose-lg max-w-[900px]">
 			<PrismicRichText
 				field={slice.primary.content}
 				components={{

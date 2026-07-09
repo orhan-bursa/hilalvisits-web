@@ -10,7 +10,7 @@ const ImageFullWidthSlice: React.FC<Props> = ({ slice }) => {
 		<section className="my-6">
 			<PrismicNextImage field={slice.primary.image} />
 			{hasCaption && (
-				<div className="prose mt-2">
+				<div className="prose mt-2 max-w-none">
 					<PrismicRichText field={slice.primary.caption} />
 				</div>
 			)}

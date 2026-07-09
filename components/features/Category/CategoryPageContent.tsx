@@ -1,10 +1,7 @@
 import { BlogPageDocument, CategoryPageDocument } from '@/types/prismic-types'
-import { LocaleAll } from '@/types/locale'
 import { Breadcrumbs, Chip } from '@mui/material'
 import Link from 'next/link'
 import cn from 'classnames'
-import { getTranslations } from 'next-intl/server'
-import { localizeURI } from '@/lib/i18n'
 import Image from 'next/image'
 import { PrismicRichText } from '@prismicio/react'
 
@@ -12,41 +9,25 @@ type Props = {
 	blogs: BlogPageDocument[]
 	category: CategoryPageDocument
 	subCategories?: CategoryPageDocument[]
-	locale: LocaleAll
 }
-export default async function CategoryPageContent({
-	locale,
-	blogs,
-	category,
-	subCategories
-}: Props) {
-	const t = await getTranslations({ namespace: 'CategoryPage', locale })
-	const tURI = await getTranslations({ namespace: 'URI', locale })
-
+export default async function CategoryPageContent({ blogs, category, subCategories }: Props) {
 	return (
 		<div className="my-8 space-y-6 md:space-y-12">
 			{/* HEADER */}
 			<section className="mx-auto max-w-[1200px] space-y-3">
 				<h2 className={cn('cursor-default px-4', 'text-center text-4xl font-semibold')}>
-					{t('category_blogs', { category: category.data.title })}
+					{category.data.title} Blogları
 				</h2>
 				<div className="flex justify-center uppercase">
 					<Breadcrumbs>
-						<Link
-							color="inherit"
-							href={localizeURI('/', locale)}
-							className="hover:text-red-500 hover:underline"
-						>
-							{t('home_page')}
+						<Link color="inherit" href="/" className="hover:text-red-500 hover:underline">
+							Ana Sayfa
 						</Link>
 						{!!category.data.parent_category?.uid ? (
 							<>
 								<Link
 									color="inherit"
-									href={localizeURI(
-										`/${tURI('category_uri')}/${category.data.parent_category?.uid}`,
-										locale
-									)}
+									href={`/${category.data.parent_category?.uid}`}
 									className="hover:text-red-500 hover:underline"
 								>
 									{category.data.parent_category?.data?.title}
@@ -56,7 +37,7 @@ export default async function CategoryPageContent({
 						) : (
 							<Link
 								color="inherit"
-								href={localizeURI(`/${tURI('category_uri')}/${category.uid}`, locale)}
+								href={`/${category.uid}`}
 								className="hover:text-red-500 hover:underline"
 							>
 								{category.data.title}
@@ -67,13 +48,7 @@ export default async function CategoryPageContent({
 				{!!subCategories && subCategories.length > 0 && (
 					<div className="mb-3 flex flex-wrap justify-center gap-2">
 						{subCategories.map((c, i) => (
-							<Link
-								key={i}
-								href={localizeURI(
-									`/${tURI('category_uri')}/${c.data.parent_category.uid}/${c.uid}`,
-									locale
-								)}
-							>
+							<Link key={i} href={`/${c.data.parent_category.uid}/${c.uid}`}>
 								<Chip
 									label={c.data.title}
 									className="cursor-pointer rounded bg-gray-500 text-white hover:bg-gray-600"

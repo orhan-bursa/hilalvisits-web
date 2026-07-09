@@ -8,7 +8,11 @@ module.exports = {
 		'./components/**/*.{js,ts,jsx,tsx,mdx}'
 	],
 	theme: {
-		extend: {}
+		extend: {
+			screens: {
+				'md-2': '900px'
+			}
+		}
 	},
 	plugins: [typographyPlugin]
 }

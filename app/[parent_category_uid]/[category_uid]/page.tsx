@@ -9,28 +9,25 @@ type Props = { params: Promise<{ parent_category_uid: string; category_uid: stri
 const CategoryPage: NextPage<Props> = async ({ params }) => {
 	const { category_uid: categoryUID } = await params
 
-	const category = await getCategoryByUID(categoryUID, 'tr').catch(() => null)
+	const category = await getCategoryByUID(categoryUID).catch(() => null)
 
 	if (!category) return notFound()
 
-	const blogs = await getBlogs('tr')
+	const blogs = await getBlogs()
 	const filteredBlogs = blogs.filter(b => category.uid === b.data.category.uid)
 
-	return <CategoryPageContent blogs={filteredBlogs} category={category} locale="tr" />
+	return <CategoryPageContent blogs={filteredBlogs} category={category} />
 }
 
 export default CategoryPage
 
-// MAIN LOCALE CATEGORY PAGE (TR)
-// Generate paths for /kategori/:parent/:category
-// example => /kategori/avrupa/isvicre
 export async function generateStaticParams({
 	params
 }: {
 	params: { parent_category_uid: string }
 }) {
 	const { parent_category_uid } = params
-	const categories = await getCategories('tr')
+	const categories = await getCategories()
 	const subCategories = categories.filter(c => c.data.parent_category.uid === parent_category_uid)
 
 	return subCategories.map(c => ({

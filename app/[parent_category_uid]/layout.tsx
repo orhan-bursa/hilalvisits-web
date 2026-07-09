@@ -6,14 +6,10 @@ const ParentCategoryLayout: React.FC<Props> = ({ children }) => {
 }
 export default ParentCategoryLayout
 
-// MAIN LOCALE PARENT CATEGORY LAYOUT (TR)
-// Generate paths for /kategori/:parent
-// example => /kategori/avrupa
 export async function generateStaticParams() {
-	const categories = await getParentCategories('tr')
+	const categories = await getParentCategories()
 
 	return categories.map(category => ({
-		locale: 'tr',
 		parent_category_uid: category.uid
 	}))
 }

@@ -1,12 +1,11 @@
-import { LocaleAll } from '@/types/locale'
 import { BlogPageDocument, CategoryPageDocument, InfoPageDocument } from '@/types/prismic-types'
 import { ClientConfig, createClient, getRepositoryEndpoint } from '@prismicio/client'
 import * as prismic from '@prismicio/client'
 
-const LANG_MAPPER: Record<LocaleAll, string> = {
-	en: 'en-us',
-	tr: 'tr'
-}
+// const LANG_MAPPER: Record<LocaleAll, string> = {
+// 	en: 'en-us',
+// 	tr: 'tr'
+// }
 
 const endpoint = getRepositoryEndpoint('hilal-visits-cms')
 const config: ClientConfig = {
@@ -19,11 +18,10 @@ const config: ClientConfig = {
 			: { cache: 'no-store' }
 }
 
-export const getBlogs = async (locale: LocaleAll) => {
+export const getBlogs = async () => {
 	const client = createClient(endpoint, config)
 
 	return client.getAllByType<BlogPageDocument>('blog', {
-		lang: LANG_MAPPER[locale],
 		orderings: {
 			field: 'document.first_publication_date',
 			direction: 'desc'
@@ -31,54 +29,46 @@ export const getBlogs = async (locale: LocaleAll) => {
 		fetchLinks: ['category.parent_category', 'category.title']
 	})
 }
-export const getBlogByUID = async (uid: string, locale: LocaleAll) => {
+export const getBlogByUID = async (uid: string) => {
 	const client = createClient(endpoint, config)
 
-	return client.getByUID<BlogPageDocument>('blog', uid, {
-		lang: LANG_MAPPER[locale]
-	})
+	return client.getByUID<BlogPageDocument>('blog', uid)
 }
 
-export const getCategories = async (locale: LocaleAll) => {
+export const getCategories = async () => {
 	const client = createClient(endpoint, config)
 
 	return client.getAllByType<CategoryPageDocument>('category', {
-		lang: LANG_MAPPER[locale],
 		orderings: {
 			field: 'document.first_publication_date',
 			direction: 'desc'
 		}
 	})
 }
-export const getCategoryByUID = async (uid: string, locale: LocaleAll) => {
+export const getCategoryByUID = async (uid: string) => {
 	const client = createClient(endpoint, config)
 
-	return client.getByUID<CategoryPageDocument>('category', uid, {
-		lang: LANG_MAPPER[locale]
-	})
+	return client.getByUID<CategoryPageDocument>('category', uid)
 }
-export const getSubCategoriesByParentID = async (id: string, locale: LocaleAll) => {
+export const getSubCategoriesByParentID = async (id: string) => {
 	const client = createClient(endpoint, config)
 
 	return client.getAllByType<CategoryPageDocument>('category', {
-		lang: LANG_MAPPER[locale],
 		filters: [prismic.filter.at('my.category.parent_category', id)]
 	})
 }
-export const getParentCategories = async (locale: LocaleAll) => {
+export const getParentCategories = async () => {
 	const client = createClient(endpoint, config)
 
 	return client.getAllByType<CategoryPageDocument>('category', {
-		lang: LANG_MAPPER[locale],
 		filters: [prismic.filter.missing('my.category.parent_category')]
 	})
 }
 
-export const getInfoPages = async (locale: LocaleAll) => {
+export const getInfoPages = async () => {
 	const client = createClient(endpoint, config)
 
 	return client.getAllByType<InfoPageDocument>('info_page', {
-		lang: LANG_MAPPER[locale],
 		orderings: {
 			field: 'document.first_publication_date',
 			direction: 'desc'
@@ -86,10 +76,8 @@ export const getInfoPages = async (locale: LocaleAll) => {
 	})
 }
 
-export const getInfoPageByUID = async (uid: string, locale: LocaleAll) => {
+export const getInfoPageByUID = async (uid: string) => {
 	const client = createClient(endpoint, config)
 
-	return client.getByUID<InfoPageDocument>('info_page', uid, {
-		lang: LANG_MAPPER[locale]
-	})
+	return client.getByUID<InfoPageDocument>('info_page', uid)
 }

@@ -2,19 +2,18 @@ import { notFound } from 'next/navigation'
 import CategoryPageContent from '@/components/features/Category/CategoryPageContent'
 import { NextPage } from 'next'
 import { getBlogs, getCategoryByUID, getSubCategoriesByParentID } from '@/lib/prismic/services'
-import { LocaleDynamic } from '@/types/locale'
 
-type Props = { params: Promise<{ locale: LocaleDynamic; parent_category_uid: string }> }
+type Props = { params: Promise<{ parent_category_uid: string }> }
 
-const ParentCategoryPageWithLocale: NextPage<Props> = async ({ params }) => {
-	const { locale, parent_category_uid: parentUID } = await params
-	const parentCategory = await getCategoryByUID(parentUID, locale).catch(() => null)
+const ParentCategoryPage: NextPage<Props> = async ({ params }) => {
+	const { parent_category_uid: parentUID } = await params
+	const parentCategory = await getCategoryByUID(parentUID).catch(() => null)
 
 	if (!parentCategory) return notFound()
 
-	const subCategories = await getSubCategoriesByParentID(parentCategory.id, locale)
+	const subCategories = await getSubCategoriesByParentID(parentCategory.id)
 
-	const blogs = await getBlogs(locale)
+	const blogs = await getBlogs()
 	const filteredBlogs = blogs.filter(b => subCategories.some(c => c.uid === b.data.category.uid))
 
 	if (!filteredBlogs?.length) return notFound()
@@ -24,9 +23,8 @@ const ParentCategoryPageWithLocale: NextPage<Props> = async ({ params }) => {
 			blogs={filteredBlogs}
 			category={parentCategory}
 			subCategories={subCategories}
-			locale={locale}
 		/>
 	)
 }
 
-export default ParentCategoryPageWithLocale
+export default ParentCategoryPage

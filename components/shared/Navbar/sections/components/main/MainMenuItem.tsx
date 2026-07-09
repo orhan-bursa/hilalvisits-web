@@ -2,13 +2,11 @@ import cn from 'classnames'
 import { KeyboardArrowDown } from '@mui/icons-material'
 import MainSecondaryMenuItem from './MainSecondaryMenuItem'
 import { MenuItemType } from '@/types/prismic-types'
-import { LocaleAll } from '@/types/locale'
 
 type Props = {
 	item: MenuItemType
-	locale: LocaleAll
 }
-export default function MainMenuItem({ item, locale }: Props) {
+export default function MainMenuItem({ item }: Props) {
 	const title = item.title
 
 	return (
@@ -23,7 +21,7 @@ export default function MainMenuItem({ item, locale }: Props) {
 			>
 				{!!item.items && item.items?.length > 0
 					? item.items.map((menu, ind) => {
-							return <MainSecondaryMenuItem key={ind} item={menu} locale={locale} />
+							return <MainSecondaryMenuItem key={ind} item={menu} />
 						})
 					: null}
 			</div>

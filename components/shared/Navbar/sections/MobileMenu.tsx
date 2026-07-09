@@ -6,11 +6,9 @@ import Link from 'next/link'
 import { Button, IconButton } from '@mui/material'
 import { MobileMenuItem, MobileSocials } from './components/mobile'
 import { MenuItemType } from '@/types/prismic-types'
-import { LocaleAll } from '@/types/locale'
 
 type Props = {
 	menuItems: MenuItemType[]
-	locale: LocaleAll
 }
 export default function MobileMenu({ menuItems }: Props) {
 	const [isMobileMenuOpen, setMobileMenuOpen] = useState(false)

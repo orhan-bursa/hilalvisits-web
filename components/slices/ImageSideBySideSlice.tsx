@@ -16,7 +16,7 @@ const ImageSideBySideSlice: React.FC<Props> = ({ slice }) => {
 				<PrismicNextImage className="h-full w-full object-cover" field={slice.primary.image_left} />
 			</div>
 			{hasCaptionLeft && (
-				<div className="prose md:col-start-1 md:row-start-2">
+				<div className="prose max-w-none md:col-start-1 md:row-start-2">
 					<PrismicRichText field={slice.primary.caption_left} />
 				</div>
 			)}
@@ -28,7 +28,7 @@ const ImageSideBySideSlice: React.FC<Props> = ({ slice }) => {
 				/>
 			</div>
 			{hasCaptionRight && (
-				<div className="prose md:col-start-2 md:row-start-2">
+				<div className="prose max-w-none md:col-start-2 md:row-start-2">
 					<PrismicRichText field={slice.primary.caption_right} />
 				</div>
 			)}

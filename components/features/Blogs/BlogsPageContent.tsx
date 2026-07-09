@@ -1,39 +1,33 @@
 import { BlogPageDocument, MenuItemType } from '@/types/prismic-types'
-import { LocaleAll } from '@/types/locale'
 import { Breadcrumbs, Chip } from '@mui/material'
 import cn from 'classnames'
-import { getTranslations } from 'next-intl/server'
 import Link from 'next/link'
 import Image from 'next/image'
 import { PrismicRichText } from '@prismicio/react'
-import { localizeURI } from '@/lib/i18n'
 
 type Props = {
 	blogs: BlogPageDocument[]
 	menuItems: MenuItemType[]
-	locale: LocaleAll
 }
-export default async function BlogsPageContent({ blogs, menuItems, locale }: Props) {
-	const t = await getTranslations({ namespace: 'BlogPage', locale })
-	const tURI = await getTranslations({ namespace: 'URI', locale })
+export default async function BlogsPageContent({ blogs, menuItems }: Props) {
 	return (
 		<div className="my-8 space-y-6 md:space-y-12">
 			<section className="mx-auto max-w-[1200px] space-y-3">
 				<h2 className={cn('cursor-default px-4', 'text-center text-4xl font-semibold')}>
-					{t('all_blogs')}
+					Tüm Bloglar
 				</h2>
 				<div className="flex justify-center">
 					<Breadcrumbs>
 						<Link color="inherit" href="/" className="uppercase hover:text-red-500 hover:underline">
-							{t('home_page')}
+							Ana Sayfa
 						</Link>
-						<p className="cursor-default font-bold uppercase">{t('blogs')}</p>
+						<p className="cursor-default font-bold uppercase">Bloglar</p>
 					</Breadcrumbs>
 				</div>
 				<div className="mb-2 flex justify-center gap-2">
 					{menuItems?.map((m, key) => {
 						return (
-							<Link key={key} href={localizeURI(`/${tURI('category_uri')}${m.path}`, locale)}>
+							<Link key={key} href={m.path}>
 								<Chip
 									label={m.title}
 									className={cn(
@@ -84,7 +78,7 @@ export default async function BlogsPageContent({ blogs, menuItems, locale }: Pro
 											</Link>
 										))}
 									</div>*/}
-								<div className="prose prose-lg px-2 min-[1200px]:px-0">
+								<div className="prose prose-lg px-4 min-[1200px]:px-0">
 									<PrismicRichText field={blog.data.description} />
 								</div>
 							</div>

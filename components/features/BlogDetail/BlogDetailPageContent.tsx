@@ -5,17 +5,15 @@ import { PrismicRichText, SliceZone } from '@prismicio/react'
 import RichTextSlice from '@/components/slices/RichTextSlice'
 import ImageFullWidthSlice from '@/components/slices/ImageFullWidthSlice'
 import ImageSideBySideSlice from '@/components/slices/ImageSideBySideSlice'
-import { LocaleAll } from '@/types/locale'
 
 type Props = {
 	blog: BlogPageDocument
-	locale: LocaleAll
 }
 
 export default function BlogDetailPageContent({ blog }: Props) {
 	return (
 		<div className="pb-8">
-			<div className="mx-auto h-max min-h-[500px] w-full space-y-3 md:max-w-[1200px]">
+			<div className="mx-auto h-max w-full space-y-3 sm:min-h-[500px] md:max-w-[1200px]">
 				<PrismicNextImage field={blog.data.cover} className="mx-auto" />
 				<h1
 					className={cn(
@@ -25,11 +23,11 @@ export default function BlogDetailPageContent({ blog }: Props) {
 				>
 					{blog.data.title}
 				</h1>
-				<div className="prose prose-lg mx-auto !mb-8 max-w-[900px] px-4 text-lg xl:px-0">
+				<div className="md-2:px-0 prose prose-lg mx-auto !mb-8 max-w-[900px] px-4 text-lg">
 					<PrismicRichText field={blog.data.description} />
 				</div>
 			</div>
-			<article className="mx-auto max-w-[900px]">
+			<article className="md-2:px-0 mx-auto max-w-[900px] break-words px-4 [&>*]:!w-full">
 				<SliceZone
 					slices={blog.data.slices}
 					components={{

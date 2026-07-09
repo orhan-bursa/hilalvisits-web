@@ -5,8 +5,6 @@ import { shortenText } from '@/utils/text'
 import InstagramIcon from '@mui/icons-material/Instagram'
 import CustomButtonHoverInvert from '@/components/ui/CustomButtonHoverInvert'
 import Image from 'next/image'
-import { LocaleAll } from '@/types/locale'
-import { getTranslations } from 'next-intl/server'
 
 type MappedInstagramPost = {
 	id: string
@@ -38,8 +36,7 @@ const mapPosts: (response: any) => MappedInstagramPost[] = (response: any) => {
 	return mappedItems
 }
 
-export default async function Instagram({ locale }: { locale: LocaleAll }) {
-	const t = await getTranslations({ namespace: 'HomePage', locale })
+export default async function Instagram() {
 	const data = await fetchInstagramData()
 	const posts = mapPosts(data)
 
@@ -91,7 +88,7 @@ export default async function Instagram({ locale }: { locale: LocaleAll }) {
 						target="_blank"
 						startIcon={<InstagramIcon />}
 					>
-						{t('follow')}
+						Takip et
 					</CustomButtonHoverInvert>
 				</div>
 			</div>
