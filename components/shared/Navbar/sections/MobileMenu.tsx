@@ -52,10 +52,10 @@ export default function MobileMenu({ menuItems }: Props) {
 										defaultOpen
 									/>
 									{[
-										{
-											title: 'Galeri',
-											href: 'galeri'
-										},
+										// {
+										// 	title: 'Galeri',
+										// 	href: 'galeri'
+										// },
 										{
 											title: 'Kimim?',
 											href: 'hakkımda'

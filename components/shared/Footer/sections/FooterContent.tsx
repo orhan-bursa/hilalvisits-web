@@ -26,7 +26,7 @@ export default async function FooterContent({ menuItems }: { menuItems: MenuItem
 					>
 						Keşfet
 					</h4>
-					<div className="mx-auto my-2 max-w-[200px] md:mx-0 md:max-w-none md:space-y-1">
+					<div className="mx-auto my-2 flex max-w-[200px] flex-col justify-end md:mx-0 md:max-w-none md:justify-start md:space-y-1">
 						{menuItems?.map(m => {
 							return (
 								<Button
@@ -36,15 +36,16 @@ export default async function FooterContent({ menuItems }: { menuItems: MenuItem
 									color="inherit"
 									sx={{
 										color: '#fff',
-										padding: 0
+										padding: '0px 4px'
 									}}
+									fullWidth
 									className={cn(
 										jost.className,
-										'flex justify-end pr-[2px] md:justify-start md:pl-[2px]',
+										'md:justify-start-start',
 										'hover:bg-transparent hover:underline'
 									)}
 								>
-									{m.title}
+									<span className="w-full">{m.title}</span>
 								</Button>
 							)
 						})}
@@ -65,15 +66,16 @@ export default async function FooterContent({ menuItems }: { menuItems: MenuItem
 								color="inherit"
 								sx={{
 									color: '#fff',
-									padding: 0
+									padding: '0px 4px'
 								}}
-								className={
-									jost.className +
-									' ' +
-									'flex justify-end pr-[2px] hover:bg-transparent hover:underline md:justify-start md:pl-[2px]'
-								}
+								fullWidth
+								className={cn(
+									jost.className,
+									'md:justify-start-start',
+									'hover:bg-transparent hover:underline'
+								)}
 							>
-								{item.title?.toLocaleUpperCase('tr-TR')}
+								<span className="w-full">{item.title?.toLocaleUpperCase('tr-TR')}</span>
 							</Button>
 						))}
 					</div>
