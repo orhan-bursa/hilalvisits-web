@@ -1,6 +1,7 @@
 'use client'
-import { KeyboardArrowUp } from '@mui/icons-material'
-import { IconButton, Tooltip } from '@mui/material'
+import KeyboardArrowUp from '@mui/icons-material/KeyboardArrowUp'
+import IconButton from '@mui/material/IconButton'
+import Tooltip from '@mui/material/Tooltip'
 
 type Props = {}
 const ScrollToTopButton: React.FC<Props> = () => {

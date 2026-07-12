@@ -1,8 +1,11 @@
 'use client'
-import { ArrowForward, KeyboardArrowDown, KeyboardArrowUp } from '@mui/icons-material'
-import { Button } from '@mui/material'
+import ArrowForward from '@mui/icons-material/ArrowForward'
+import KeyboardArrowDown from '@mui/icons-material/KeyboardArrowDown'
+import KeyboardArrowUp from '@mui/icons-material/KeyboardArrowUp'
+import Button from '@mui/material/Button'
+
 import Link from 'next/link'
-import { Dispatch, SetStateAction, useMemo, useState } from 'react'
+import { Dispatch, SetStateAction, useMemo } from 'react'
 import { MenuItemType } from '@/types/prismic-types'
 
 interface IPropTypes {

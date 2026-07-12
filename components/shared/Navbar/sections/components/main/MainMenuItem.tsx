@@ -1,5 +1,5 @@
 import cn from 'classnames'
-import { KeyboardArrowDown } from '@mui/icons-material'
+import KeyboardArrowDown from '@mui/icons-material/KeyboardArrowDown'
 import MainSecondaryMenuItem from './MainSecondaryMenuItem'
 import { MenuItemType } from '@/types/prismic-types'
 

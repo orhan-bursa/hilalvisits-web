@@ -1,4 +1,4 @@
-import { Button, ButtonProps } from '@mui/material'
+import Button, { ButtonProps } from '@mui/material/Button'
 import React, { HTMLAttributeAnchorTarget } from 'react'
 
 const CustomButtonHoverInvert: React.FC<ButtonProps & { target?: HTMLAttributeAnchorTarget }> = ({

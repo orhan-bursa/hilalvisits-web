@@ -1,5 +1,6 @@
 import { BlogPageDocument, MenuItemType } from '@/types/prismic-types'
-import { Breadcrumbs, Chip } from '@mui/material'
+import Breadcrumbs from '@mui/material/Breadcrumbs'
+import Chip from '@mui/material/Chip'
 import cn from 'classnames'
 import Link from 'next/link'
 import BlogGrid from '@/components/shared/BlogGrid'

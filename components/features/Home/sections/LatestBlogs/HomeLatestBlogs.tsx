@@ -1,7 +1,9 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import cn from 'classnames'
-import { Alert, Button, Chip } from '@mui/material'
+import Alert from '@mui/material/Alert'
+import Chip from '@mui/material/Chip'
+import Button from '@mui/material/Button'
 
 import { BlogPageDocument } from '@/types/prismic-types'
 import { PrismicRichText } from '@prismicio/react'

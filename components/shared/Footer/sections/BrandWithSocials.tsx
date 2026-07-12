@@ -1,7 +1,10 @@
 import { SOCIAL_MENU_ITEMS } from '@/constants'
 import { whisper } from '@/utils/fonts'
-import { X, YouTube, Instagram } from '@mui/icons-material'
-import { IconButton } from '@mui/material'
+import YouTube from '@mui/icons-material/YouTube'
+import Instagram from '@mui/icons-material/Instagram'
+import X from '@mui/icons-material/X'
+import IconButton from '@mui/material/IconButton'
+
 import cn from 'classnames'
 import Link from 'next/link'
 
