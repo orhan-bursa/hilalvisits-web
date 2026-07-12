@@ -16,8 +16,6 @@ const ParentCategoryPage: NextPage<Props> = async ({ params }) => {
 	const blogs = await getBlogs()
 	const filteredBlogs = blogs.filter(b => subCategories.some(c => c.uid === b.data.category.uid))
 
-	if (!filteredBlogs?.length) return notFound()
-
 	return (
 		<CategoryPageContent
 			blogs={filteredBlogs}

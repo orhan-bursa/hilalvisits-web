@@ -39,10 +39,12 @@ export const getCategories = async () => {
 	const client = createClient(endpoint, config)
 
 	return client.getAllByType<CategoryPageDocument>('category', {
-		orderings: {
-			field: 'document.first_publication_date',
-			direction: 'desc'
-		}
+		orderings: [
+			{
+				field: 'my.category.order',
+				direction: 'asc'
+			}
+		]
 	})
 }
 export const getCategoryByUID = async (uid: string) => {
@@ -61,7 +63,13 @@ export const getParentCategories = async () => {
 	const client = createClient(endpoint, config)
 
 	return client.getAllByType<CategoryPageDocument>('category', {
-		filters: [prismic.filter.missing('my.category.parent_category')]
+		filters: [prismic.filter.missing('my.category.parent_category')],
+		orderings: [
+			{
+				field: 'my.category.order',
+				direction: 'asc'
+			}
+		]
 	})
 }
 
