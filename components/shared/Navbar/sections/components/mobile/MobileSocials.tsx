@@ -14,7 +14,7 @@ const ICON_MAP = {
 
 export default function MobileSocials() {
 	return (
-		<div className="sticky bottom-0 flex w-full items-center justify-between bg-white px-4 py-4">
+		<div className="flex w-full items-center justify-between bg-white px-4 py-4">
 			<div className="flex items-center gap-2">
 				{SOCIAL_MENU_ITEMS.map((item, i) => {
 					return (
