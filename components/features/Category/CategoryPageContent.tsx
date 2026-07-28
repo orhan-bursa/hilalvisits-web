@@ -1,9 +1,9 @@
 import { BlogPageDocument, CategoryPageDocument } from '@/types/prismic-types'
-import { Breadcrumbs, Chip } from '@mui/material'
+import Breadcrumbs from '@mui/material/Breadcrumbs'
+import Chip from '@mui/material/Chip'
 import Link from 'next/link'
 import cn from 'classnames'
-import Image from 'next/image'
-import { PrismicRichText } from '@prismicio/react'
+import BlogGrid from '@/components/shared/BlogGrid'
 
 type Props = {
 	blogs: BlogPageDocument[]
@@ -20,29 +20,19 @@ export default async function CategoryPageContent({ blogs, category, subCategori
 				</h2>
 				<div className="flex justify-center uppercase">
 					<Breadcrumbs>
-						<Link color="inherit" href="/" className="hover:text-red-500 hover:underline">
-							Ana Sayfa
+						<Link color="inherit" href="/blog" className="hover:text-red-500 hover:underline">
+							Bloglar
 						</Link>
-						{!!category.data.parent_category?.uid ? (
-							<>
-								<Link
-									color="inherit"
-									href={`/${category.data.parent_category?.uid}`}
-									className="hover:text-red-500 hover:underline"
-								>
-									{category.data.parent_category?.data?.title}
-								</Link>
-								<p className="cursor-default font-bold">{category.data.title}</p>
-							</>
-						) : (
+						{!!category.data.parent_category?.uid && (
 							<Link
 								color="inherit"
-								href={`/${category.uid}`}
+								href={`/${category.data.parent_category?.uid}`}
 								className="hover:text-red-500 hover:underline"
 							>
-								{category.data.title}
+								{category.data.parent_category?.data?.title}
 							</Link>
 						)}
+						<p className="cursor-default last:font-bold">{category.data.title}</p>
 					</Breadcrumbs>
 				</div>
 				{!!subCategories && subCategories.length > 0 && (
@@ -59,52 +49,7 @@ export default async function CategoryPageContent({ blogs, category, subCategori
 				)}
 			</section>
 			{/* BLOGS */}
-			<section
-				className={cn(
-					'mx-auto w-full max-w-[1200px]',
-					'grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3'
-				)}
-			>
-				{blogs?.map(blog => {
-					return (
-						<div className="col-span-1" key={blog?.id}>
-							<Link href={`/blog/${blog.uid}`}>
-								<div className="relative mb-3 aspect-[3/2] w-full cursor-pointer">
-									<Image
-										src={blog.data.cover.url ?? ''}
-										alt={blog.data.cover.alt || ''}
-										fill
-										style={{ objectFit: 'cover' }}
-										sizes={`
-                        (max-width: 640px) 100vw,
-                        (max-width: 1024px) calc((100vw-24px)/2),
-                        (max-width: 1200px) calc((100vw-48px)/3),
-                        calc((1200px-48px)/3)
-                        `}
-									/>
-								</div>
-								<h3 className="mb-3 cursor-pointer text-3xl font-bold hover:text-red-500">
-									{blog.data.title}
-								</h3>
-							</Link>
-							{/*FIXME: FIX BADGES*/}
-							{/*<div className="mb-3 flex flex-wrap gap-2">
-										{categories.map(c => (
-											<Link key={c.title} href={`/${c.href}`}>
-												<Chip
-													label={c.title}
-													variant="outlined"
-													size="small"
-													className="cursor-pointer rounded border-stone-400 hover:border-black hover:bg-stone-100"
-												/>
-											</Link>
-										))}
-									</div>*/}
-							<PrismicRichText field={blog.data.description} />
-						</div>
-					)
-				})}
-			</section>
+			<BlogGrid blogs={blogs} />
 		</div>
 	)
 }

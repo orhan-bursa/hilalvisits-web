@@ -59,9 +59,9 @@ export default async function RootLayoutDefault({ children }: { children: React.
 				<link rel="manifest" href="/favicon/site.webmanifest" />
 			</head>
 			<body>
-				<div className="relative">
+				<div className="relative flex min-h-screen flex-col">
 					<Navbar menuItems={menuItems} />
-					{children}
+					<div className="grow">{children}</div>
 					<Instagram />
 					<Footer menuItems={menuItems} infoPages={infoPages} />
 				</div>

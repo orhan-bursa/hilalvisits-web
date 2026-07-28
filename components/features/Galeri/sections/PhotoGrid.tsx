@@ -1,10 +1,5 @@
 'use client'
 import { useMemo, useState } from 'react'
-import cn from 'classnames'
-import Image from 'next/image'
-import { Alert } from '@mui/material'
-import { Close, ArrowBackIosNew, ArrowForwardIos } from '@mui/icons-material'
-
 export default function PhotoGrid({ items }: { items: any[] | undefined }) {
 	return null
 

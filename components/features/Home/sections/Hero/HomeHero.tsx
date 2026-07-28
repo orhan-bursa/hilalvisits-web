@@ -8,7 +8,7 @@ import './styles.css'
 import { Pagination, Navigation, Autoplay } from 'swiper/modules'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Alert } from '@mui/material'
+import Alert from '@mui/material/Alert'
 import cn from 'classnames'
 import { BlogPageDocument } from '@/types/prismic-types'
 import { PrismicRichText } from '@prismicio/react'
@@ -89,10 +89,10 @@ export default function HomeHero({ blogs }: { blogs: BlogPageDocument[] | undefi
 									/>
 								</div>
 								<div className="absolute bottom-[25%] z-50 min-h-[191px] w-full space-x-2 bg-black bg-opacity-40 text-white">
-									<h2 className="my-2 line-clamp-1 text-3xl font-[500] md:text-4xl">
-										{blog.data.title ?? 'No title'}
+									<h2 className="my-2 line-clamp-1 px-2 text-3xl font-[500] md:text-4xl">
+										{blog.data?.title ?? 'No title'}
 									</h2>
-									<p className="line-clamp-3 text-start">
+									<p className="line-clamp-3 px-2 text-start">
 										<PrismicRichText
 											field={blog.data.description}
 											components={{

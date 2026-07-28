@@ -1,6 +1,7 @@
 'use client'
-import { KeyboardArrowDown, KeyboardArrowUp } from '@mui/icons-material'
-import { Button } from '@mui/material'
+import KeyboardArrowUp from '@mui/icons-material/KeyboardArrowUp'
+import KeyboardArrowDown from '@mui/icons-material/KeyboardArrowDown'
+import Button from '@mui/material/Button'
 import cn from 'classnames'
 import { Dispatch, SetStateAction, useState } from 'react'
 import { MobileSecondaryMenuItem } from '../mobile'
@@ -25,7 +26,7 @@ export default function MobileMenuItem({
 		<>
 			<li className="flex border-b-[1px] border-gray-400">
 				<Button
-					className={cn('flex w-full justify-start py-3 text-lg font-semibold text-black')}
+					className={cn('flex w-full justify-start px-4 py-3 text-lg font-semibold text-black')}
 					onClick={handleOpen}
 					endIcon={isOpen ? <KeyboardArrowUp /> : <KeyboardArrowDown />}
 				>

@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import cn from 'classnames'
-import { Tooltip } from '@mui/material'
+import Tooltip from '@mui/material/Tooltip'
 import { shortenText } from '@/utils/text'
 import InstagramIcon from '@mui/icons-material/Instagram'
 import CustomButtonHoverInvert from '@/components/ui/CustomButtonHoverInvert'

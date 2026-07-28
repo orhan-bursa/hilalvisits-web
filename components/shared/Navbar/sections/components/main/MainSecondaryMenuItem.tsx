@@ -1,6 +1,6 @@
 import cn from 'classnames'
 import Link from 'next/link'
-import { KeyboardArrowRight } from '@mui/icons-material'
+import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight'
 import { MenuItemType } from '@/types/prismic-types'
 
 type Props = {

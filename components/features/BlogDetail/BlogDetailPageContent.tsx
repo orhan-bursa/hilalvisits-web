@@ -11,10 +11,20 @@ type Props = {
 }
 
 export default function BlogDetailPageContent({ blog }: Props) {
+	const hasCoverCaption =
+		Array.isArray(blog.data.cover_caption) && blog.data.cover_caption.length > 0
 	return (
 		<div className="pb-8">
 			<div className="mx-auto h-max w-full space-y-3 sm:min-h-[500px] md:max-w-[1200px]">
-				<PrismicNextImage field={blog.data.cover} className="mx-auto" />
+				<div>
+					<PrismicNextImage field={blog.data.cover} className="mx-auto" />
+					{hasCoverCaption && (
+						<div className="prose max-w-none px-2 md:col-start-1 md:row-start-2 xl:px-0">
+							<PrismicRichText field={blog.data.cover_caption} />
+						</div>
+					)}
+				</div>
+
 				<h1
 					className={cn(
 						'mx-auto max-w-[1050px] px-4 text-center font-semibold xl:px-0',

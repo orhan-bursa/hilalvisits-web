@@ -26,6 +26,7 @@ type IImageContent = {
 
 export type CategoryFields = BasePageData & {
 	title: string
+	order: number
 	parent_category: {
 		id: string
 		type: 'category'
@@ -37,7 +38,10 @@ export type CategoryFields = BasePageData & {
 		uid: string
 		link_type: 'Document'
 		key: string
-		data: { title: string }
+		data: {
+			title: string
+			order: number
+		}
 	}
 }
 
@@ -70,6 +74,7 @@ export type BlogFields = BasePageData & {
 	title: string
 	description: any
 	cover: IImageContent
+	cover_caption: any
 	publish_date: string
 	is_favorite: boolean
 	category: {

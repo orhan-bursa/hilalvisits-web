@@ -1,8 +1,10 @@
 import { SOCIAL_MENU_ITEMS } from '@/constants'
-import { MailOutline } from '@mui/icons-material'
-import { IconButton } from '@mui/material'
+import IconButton from '@mui/material/IconButton'
 import Link from 'next/link'
-import { X, YouTube, Instagram } from '@mui/icons-material'
+import MailOutline from '@mui/icons-material/MailOutline'
+import YouTube from '@mui/icons-material/YouTube'
+import Instagram from '@mui/icons-material/Instagram'
+import X from '@mui/icons-material/X'
 
 const ICON_MAP = {
 	instagram: <Instagram />,
@@ -10,23 +12,17 @@ const ICON_MAP = {
 	youtube: <YouTube />
 }
 
-export default function MobileSocials({
-	setMobileMenuOpen
-}: {
-	setMobileMenuOpen: (val: boolean) => void
-}) {
+export default function MobileSocials() {
 	return (
-		<div
-			className="mt-12 flex w-full items-center justify-between p-2 text-black"
-			onClick={() => setMobileMenuOpen(false)}
-		>
-			<div className="flex">
+		<div className="flex w-full items-center justify-between bg-white px-4 py-4">
+			<div className="flex items-center gap-2">
 				{SOCIAL_MENU_ITEMS.map((item, i) => {
 					return (
 						<IconButton
 							key={i + item.title}
 							LinkComponent={Link}
 							href={item.href ?? '/'}
+							target="_blank"
 							sx={{
 								height: 28,
 								width: 28,

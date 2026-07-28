@@ -1,8 +1,12 @@
 'use client'
 import { SOCIAL_MENU_ITEMS } from '@/constants'
-import { MailOutline } from '@mui/icons-material'
-import { Button, IconButton } from '@mui/material'
-import { X, YouTube, Instagram } from '@mui/icons-material'
+import Button from '@mui/material/Button'
+import IconButton from '@mui/material/IconButton'
+
+import MailOutline from '@mui/icons-material/MailOutline'
+import YouTube from '@mui/icons-material/YouTube'
+import Instagram from '@mui/icons-material/Instagram'
+import X from '@mui/icons-material/X'
 import Link from 'next/link'
 import './styles.css'
 
