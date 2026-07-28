@@ -1,8 +1,15 @@
 import AboutPageContent from '@/components/features/About/AboutPageContent'
+import { buildPageMetadata } from '@/lib/seo/metadata'
+import type { Metadata } from 'next'
 
-type Props = {}
+export const metadata: Metadata = buildPageMetadata({
+	title: 'Hakkımda',
+	description:
+		'Hilal Visits kurucusu Hilal hakkında — yönetmen ve seyahatsever. Seyahat deneyimlerini ve gezi rehberlerini paylaşıyor.',
+	path: '/about'
+})
 
-const AboutPage: React.FC<Props> = ({}) => {
+const AboutPage = () => {
 	return <AboutPageContent />
 }
 

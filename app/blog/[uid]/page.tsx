@@ -1,6 +1,6 @@
 import BlogDetailPageContent from '@/components/features/BlogDetail/BlogDetailPageContent'
 import { getBlogByUID, getBlogs } from '@/lib/prismic/services'
-import { asImageSrc } from '@prismicio/client'
+import { buildPrismicPageMetadata } from '@/lib/seo/metadata'
 import { Metadata, NextPage } from 'next'
 import { notFound } from 'next/navigation'
 
@@ -32,21 +32,16 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
 	const { uid } = await params
-
 	const blog = await getBlogByUID(uid)
 
-	return {
-		title: blog?.data?.meta_title,
-		description: blog?.data.meta_description,
-		openGraph: {
-			images: [
-				{
-					url: asImageSrc(blog.data.meta_image) ?? '',
-					width: 800,
-					height: 600,
-					alt: blog?.data?.meta_image?.alt || ''
-				}
-			]
-		}
-	}
+	if (!blog) return {}
+
+	return buildPrismicPageMetadata({
+		metaTitle: blog.data.meta_title,
+		metaDescription: blog.data.meta_description,
+		metaImage: blog.data.meta_image,
+		path: `/blog/${uid}`,
+		fallbackTitle: blog.data.title,
+		openGraphType: 'article'
+	})
 }

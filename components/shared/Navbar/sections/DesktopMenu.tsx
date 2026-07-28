@@ -26,11 +26,6 @@ export default async function DesktopMenu({ menuItems }: Props) {
 						items: menuItems
 					}}
 				/>
-				<Link href={'/galeri'}>
-					<div className="relative flex cursor-pointer px-2 pb-1 font-semibold duration-300 hover:text-amber-500">
-						<p>Galeri</p>
-					</div>
-				</Link>
 				<Link href="/about">
 					<div className="relative flex cursor-pointer px-2 pb-1 font-semibold duration-300 hover:text-amber-500">
 						<p>Hakkımda</p>

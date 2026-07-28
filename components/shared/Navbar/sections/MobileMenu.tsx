@@ -53,12 +53,8 @@ export default function MobileMenu({ menuItems }: Props) {
 									/>
 									{[
 										{
-											title: 'Galeri',
-											href: 'galeri'
-										},
-										{
-											title: 'Kimim?',
-											href: 'hakkımda'
+											title: 'Hakkımda',
+											href: '/about'
 										}
 									].map(item => (
 										<li

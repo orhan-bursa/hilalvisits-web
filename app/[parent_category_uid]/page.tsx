@@ -1,9 +1,25 @@
-import { notFound } from 'next/navigation'
 import CategoryPageContent from '@/components/features/Category/CategoryPageContent'
-import { NextPage } from 'next'
 import { getBlogs, getCategoryByUID, getSubCategoriesByParentID } from '@/lib/prismic/services'
+import { buildPrismicPageMetadata } from '@/lib/seo/metadata'
+import { Metadata, NextPage } from 'next'
+import { notFound } from 'next/navigation'
 
 type Props = { params: Promise<{ parent_category_uid: string }> }
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+	const { parent_category_uid } = await params
+	const category = await getCategoryByUID(parent_category_uid).catch(() => null)
+
+	if (!category) return {}
+
+	return buildPrismicPageMetadata({
+		metaTitle: category.data.meta_title,
+		metaDescription: category.data.meta_description,
+		metaImage: category.data.meta_image,
+		path: `/${parent_category_uid}`,
+		fallbackTitle: category.data.title
+	})
+}
 
 const ParentCategoryPage: NextPage<Props> = async ({ params }) => {
 	const { parent_category_uid: parentUID } = await params

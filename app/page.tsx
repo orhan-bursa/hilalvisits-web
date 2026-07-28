@@ -1,14 +1,15 @@
 import HomePageContent from '@/components/features/Home/HomePageContent'
+import { SITE_DESCRIPTION, SITE_NAME } from '@/constants/site'
 import { getBlogs } from '@/lib/prismic/services'
+import { buildPageMetadata } from '@/lib/seo/metadata'
 import { Metadata, NextPage } from 'next'
 
-export const metadata: Metadata = {
-	title: {
-		absolute: 'Hilal Visits | Hilalin Seyahat Rehberi'
-	},
-	description: 'Türkiye ve dünyadan kareler paylaşan unutulmaz bir gezi rehberi.'
-	//TODO: expand metadata and add meta images / socail media url images
-}
+export const metadata: Metadata = buildPageMetadata({
+	title: `${SITE_NAME} | Hilalin Seyahat Rehberi`,
+	description: SITE_DESCRIPTION,
+	path: '/',
+	titleAbsolute: true
+})
 
 const HomePage: NextPage = async () => {
 	const blogs = await getBlogs()

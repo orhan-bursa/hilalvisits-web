@@ -1,15 +1,17 @@
 import BlogsPageContent from '@/components/features/Blogs/BlogsPageContent'
+import { SITE_DESCRIPTION } from '@/constants/site'
 import { getBlogs, getCategories } from '@/lib/prismic/services'
+import { buildPageMetadata } from '@/lib/seo/metadata'
 import { MenuItemType } from '@/types/prismic-types'
 import { recursiveMenuItemMapper } from '@/utils/menu-item-mapper'
 import { Metadata, NextPage } from 'next'
 import { notFound } from 'next/navigation'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
 	title: 'Hilalin Seyahat Blogu',
-	description: 'Türkiye ve dünyadan kareler paylaşan unutulmaz bir gezi rehberi.'
-	//TODO: expand metadata and add meta images / socail media url images
-}
+	description: SITE_DESCRIPTION,
+	path: '/blog'
+})
 
 const BlogsPage: NextPage = async () => {
 	const blogs = await getBlogs()

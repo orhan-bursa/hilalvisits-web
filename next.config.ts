@@ -28,6 +28,15 @@ const nextConfig: NextConfig = {
 				pathname: '/**'
 			}
 		]
+	},
+	async redirects() {
+		return [
+			{
+				source: '/hakkimda',
+				destination: '/about',
+				permanent: true
+			}
+		]
 	}
 }
 
