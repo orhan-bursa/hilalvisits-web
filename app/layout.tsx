@@ -1,12 +1,46 @@
 import { Footer, Navbar } from '@/components'
 import Instagram from '@/components/shared/Instagram'
-
+import {
+	DEFAULT_OG_IMAGE,
+	SITE_DESCRIPTION,
+	SITE_NAME,
+	SITE_URL
+} from '@/constants/site'
 import { getCategories, getInfoPages } from '@/lib/prismic/services'
 import { CategoryPageDocument, InfoPageDocument, MenuItemType } from '@/types/prismic-types'
 import { jost } from '@/utils/fonts'
 import { recursiveMenuItemMapper } from '@/utils/menu-item-mapper'
+import type { Metadata } from 'next'
 
 import './globals.css'
+
+export const metadata: Metadata = {
+	metadataBase: new URL(SITE_URL),
+	title: {
+		default: `${SITE_NAME} | Hilalin Seyahat Rehberi`,
+		template: `%s | ${SITE_NAME}`
+	},
+	description: SITE_DESCRIPTION,
+	openGraph: {
+		type: 'website',
+		locale: 'tr_TR',
+		siteName: SITE_NAME,
+		title: `${SITE_NAME} | Hilalin Seyahat Rehberi`,
+		description: SITE_DESCRIPTION,
+		images: [
+			{
+				url: DEFAULT_OG_IMAGE,
+				alt: SITE_NAME
+			}
+		]
+	},
+	twitter: {
+		card: 'summary_large_image',
+		title: `${SITE_NAME} | Hilalin Seyahat Rehberi`,
+		description: SITE_DESCRIPTION,
+		images: [DEFAULT_OG_IMAGE]
+	}
+}
 
 export default async function RootLayoutDefault({ children }: { children: React.ReactNode }) {
 	const categories = await getCategories().catch(err => [] as CategoryPageDocument[])

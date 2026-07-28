@@ -6,7 +6,7 @@ import { Metadata, NextPage } from 'next'
 import { notFound } from 'next/navigation'
 
 export const metadata: Metadata = {
-	title: 'Hilal Visits | Hilalin Seyahat Blogu',
+	title: 'Hilalin Seyahat Blogu',
 	description: 'Türkiye ve dünyadan kareler paylaşan unutulmaz bir gezi rehberi.'
 	//TODO: expand metadata and add meta images / socail media url images
 }

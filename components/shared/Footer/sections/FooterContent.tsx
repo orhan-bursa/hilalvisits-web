@@ -55,7 +55,7 @@ export default async function FooterContent({ menuItems }: { menuItems: MenuItem
 							// },
 							{
 								title: 'Hakkımda',
-								href: '/hakkimda'
+								href: '/about'
 							}
 						].map(item => (
 							<Button
