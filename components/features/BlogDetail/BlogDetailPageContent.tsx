@@ -5,6 +5,7 @@ import { PrismicRichText, SliceZone } from '@prismicio/react'
 import RichTextSlice from '@/components/slices/RichTextSlice'
 import ImageFullWidthSlice from '@/components/slices/ImageFullWidthSlice'
 import ImageSideBySideSlice from '@/components/slices/ImageSideBySideSlice'
+import GeoLocationSlice from '@/components/slices/GeoLocationSlice'
 
 type Props = {
 	blog: BlogPageDocument
@@ -33,17 +34,18 @@ export default function BlogDetailPageContent({ blog }: Props) {
 				>
 					{blog.data.title}
 				</h1>
-				<div className="md-2:px-0 prose prose-lg mx-auto !mb-8 max-w-[900px] px-4 text-lg">
+				<div className="prose prose-lg mx-auto !mb-8 max-w-[900px] px-4 text-lg md-2:px-0">
 					<PrismicRichText field={blog.data.description} />
 				</div>
 			</div>
-			<article className="md-2:px-0 mx-auto max-w-[900px] break-words px-4 [&>*]:!w-full">
+			<article className="mx-auto max-w-[900px] break-words px-4 md-2:px-0 [&>*]:!w-full">
 				<SliceZone
 					slices={blog.data.slices}
 					components={{
 						rich_text: RichTextSlice,
 						image_full_width: ImageFullWidthSlice,
-						image_side_by_side: ImageSideBySideSlice
+						image_side_by_side: ImageSideBySideSlice,
+						geo_location: GeoLocationSlice
 					}}
 				/>
 			</article>

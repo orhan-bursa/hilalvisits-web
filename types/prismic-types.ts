@@ -70,6 +70,17 @@ export type ImageSideBySideSliceType = Slice<
 	}
 >
 
+export type GeoLocationSliceType = Slice<
+	'geo_location',
+	{
+		location: {
+			longitude: number
+			latitude: number
+		}
+		place_name?: string | null
+	}
+>
+
 export type BlogFields = BasePageData & {
 	title: string
 	description: any
