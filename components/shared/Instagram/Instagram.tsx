@@ -1,44 +1,42 @@
-import Link from 'next/link'
-import cn from 'classnames'
-import Tooltip from '@mui/material/Tooltip'
+'use client'
+
+import type { InstagramPost } from '@/app/api/instagram/route'
+import CustomButtonHoverInvert from '@/components/ui/CustomButtonHoverInvert'
 import { shortenText } from '@/utils/text'
 import InstagramIcon from '@mui/icons-material/Instagram'
-import CustomButtonHoverInvert from '@/components/ui/CustomButtonHoverInvert'
+import Tooltip from '@mui/material/Tooltip'
+import cn from 'classnames'
 import Image from 'next/image'
+import Link from 'next/link'
+import { useEffect, useState } from 'react'
 
-type MappedInstagramPost = {
-	id: string
-	title: string
-	url: string
-	src: string
-}
-const fetchInstagramData = async () => {
-	const instaID = process.env.INSTAGRAM_ID
-	const instaToken = process.env.INSTAGRAM_TOKEN
-	const instaFields =
-		'profile_picture_url,name,username,biography,media.limit(6){caption,media_url,permalink,thumbnail_url,timestamp,comments_count,like_count,media_type,children{media_url}}'
-	const url = `https://graph.facebook.com/v16.0/${instaID}?fields=${instaFields}&access_token=${instaToken}`
-	const res = await fetch(url, {
-		cache: 'no-store'
-	})
+const INSTAGRAM_URL = 'https://www.instagram.com/hilalvisits/'
+const SKELETON_COUNT = 6
 
-	return await res.json()
-}
-const mapPosts: (response: any) => MappedInstagramPost[] = (response: any) => {
-	const mappedItems = response?.media?.data?.map((post: any) => {
-		return {
-			id: post.id,
-			title: post.caption,
-			url: post.permalink,
-			src: post.thumbnail_url || post.media_url
-		}
-	})
-	return mappedItems
-}
+/**
+ * Instagram feed, loaded in the browser from `/api/instagram`.
+ *
+ * Loaded client-side on purpose: Instagram image URLs expire, so keeping them out of the
+ * server-rendered HTML lets every page be statically cached (ISR) without breaking images.
+ */
+export default function Instagram() {
+	const [posts, setPosts] = useState<InstagramPost[] | null>(null)
 
-export default async function Instagram() {
-	const data = await fetchInstagramData()
-	const posts = mapPosts(data)
+	useEffect(() => {
+		const controller = new AbortController()
+
+		fetch('/api/instagram', { signal: controller.signal })
+			.then(res => (res.ok ? res.json() : { posts: [] }))
+			.then((data: { posts: InstagramPost[] }) => setPosts(data.posts ?? []))
+			.catch(err => {
+				if (err?.name !== 'AbortError') setPosts([])
+			})
+
+		return () => controller.abort()
+	}, [])
+
+	const isLoading = posts === null
+	const hasPosts = !!posts?.length
 
 	return (
 		<div
@@ -49,8 +47,10 @@ export default async function Instagram() {
 		>
 			<div className="h-full w-full max-w-[1200px]">
 				<Link
-					href={'https://www.instagram.com/hilalvisits/'}
+					href={INSTAGRAM_URL}
 					target="_blank"
+					rel="noopener noreferrer"
+					aria-label="Instagram'da Hilal Visits"
 					className="relative mx-auto flex w-max max-w-[300px] items-center justify-center text-[#222]"
 				>
 					<InstagramIcon sx={{ width: 50, height: 50 }} color="inherit" />
@@ -58,34 +58,54 @@ export default async function Instagram() {
 						width={213.6}
 						height={80}
 						src="/images/instagram/instagram-text.png"
-						alt="instagram brand name"
+						alt="Instagram"
 					/>
 				</Link>
-				<div
-					className={cn(
-						'my-4 w-full border-2 border-amber-400 p-2',
-						'grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-6'
-					)}
-				>
-					{posts?.map(post => {
-						const titleWithoutHashtags = post?.title?.split('#')[0]
-						const _postTitle = shortenText(titleWithoutHashtags, 100, 15)
-						return (
-							<Tooltip key={post.id} title={_postTitle}>
-								<Link href={post.url} target="blank" style={{ height: '100%' }}>
-									{post.src && (
-										<img src={post.src} alt={post.title} className="h-full object-cover" />
-									)}
-								</Link>
-							</Tooltip>
-						)
-					})}
-				</div>
-				<div className="flex justify-center">
+
+				{(isLoading || hasPosts) && (
+					<div
+						className={cn(
+							'my-4 w-full border-2 border-amber-400 p-2',
+							'grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-6'
+						)}
+					>
+						{isLoading
+							? Array.from({ length: SKELETON_COUNT }).map((_, i) => (
+									<div key={i} className="aspect-square w-full animate-pulse bg-amber-100" />
+								))
+							: posts!.map(post => {
+									const captionWithoutHashtags = post.caption.split('#')[0].trim()
+									const shortCaption = shortenText(captionWithoutHashtags, 100, 15)
+
+									return (
+										<Tooltip key={post.id} title={shortCaption}>
+											<Link
+												href={post.url}
+												target="_blank"
+												rel="noopener noreferrer"
+												className="block aspect-square w-full overflow-hidden"
+											>
+												{/* eslint-disable-next-line @next/next/no-img-element */}
+												<img
+													src={post.src}
+													alt={shortCaption || 'Hilal Visits Instagram gönderisi'}
+													loading="lazy"
+													decoding="async"
+													className="h-full w-full object-cover"
+												/>
+											</Link>
+										</Tooltip>
+									)
+								})}
+					</div>
+				)}
+
+				<div className={cn('flex justify-center', !isLoading && !hasPosts && 'mt-4')}>
 					<CustomButtonHoverInvert
 						LinkComponent={Link}
-						href={'https://www.instagram.com/hilalvisits/'}
+						href={INSTAGRAM_URL}
 						target="_blank"
+						rel="noopener noreferrer"
 						startIcon={<InstagramIcon />}
 					>
 						Takip et

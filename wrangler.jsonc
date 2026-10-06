@@ -13,5 +13,34 @@
 			"pattern": "hilalvisits.com",
 			"custom_domain": true
 		}
+	],
+	// Needed by OpenNext so the worker can call itself for background revalidation
+	"services": [
+		{
+			"binding": "WORKER_SELF_REFERENCE",
+			"service": "hilal-visits"
+		}
+	],
+	// ISR / fetch cache storage
+	"r2_buckets": [
+		{
+			"binding": "NEXT_INC_CACHE_R2_BUCKET",
+			"bucket_name": "hilal-visits-cache"
+		}
+	],
+	// Revalidation queue
+	"durable_objects": {
+		"bindings": [
+			{
+				"name": "NEXT_CACHE_DO_QUEUE",
+				"class_name": "DOQueueHandler"
+			}
+		]
+	},
+	"migrations": [
+		{
+			"tag": "v1",
+			"new_sqlite_classes": ["DOQueueHandler"]
+		}
 	]
 }

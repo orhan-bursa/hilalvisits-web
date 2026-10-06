@@ -7,6 +7,8 @@ import { recursiveMenuItemMapper } from '@/utils/menu-item-mapper'
 import { Metadata, NextPage } from 'next'
 import { notFound } from 'next/navigation'
 
+export const revalidate = 86400 // 60 * 60 * 24 => 1 day
+
 export const metadata: Metadata = buildPageMetadata({
 	title: 'Hilalin Seyahat Blogu',
 	description: SITE_DESCRIPTION,

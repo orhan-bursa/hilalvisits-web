@@ -4,6 +4,8 @@ import { buildPrismicPageMetadata } from '@/lib/seo/metadata'
 import { Metadata, NextPage } from 'next'
 import { notFound } from 'next/navigation'
 
+export const revalidate = 86400 // 60 * 60 * 24 => 1 day
+
 type Props = { params: Promise<{ parent_category_uid: string; category_uid: string }> }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {

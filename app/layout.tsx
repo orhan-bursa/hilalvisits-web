@@ -6,10 +6,12 @@ import {
 	SITE_NAME,
 	SITE_URL
 } from '@/constants/site'
+import { PRISMIC_REPOSITORY_NAME } from '@/lib/prismic/client'
 import { getCategories, getInfoPages } from '@/lib/prismic/services'
 import { CategoryPageDocument, InfoPageDocument, MenuItemType } from '@/types/prismic-types'
 import { jost } from '@/utils/fonts'
 import { recursiveMenuItemMapper } from '@/utils/menu-item-mapper'
+import { PrismicPreview } from '@prismicio/next'
 import type { Metadata } from 'next'
 
 import './globals.css'
@@ -65,6 +67,7 @@ export default async function RootLayoutDefault({ children }: { children: React.
 					<Instagram />
 					<Footer menuItems={menuItems} infoPages={infoPages} />
 				</div>
+				<PrismicPreview repositoryName={PRISMIC_REPOSITORY_NAME} />
 			</body>
 		</html>
 	)
