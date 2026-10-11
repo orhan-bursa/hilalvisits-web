@@ -3,9 +3,6 @@ import { enableAutoPreviews } from '@prismicio/next'
 
 export const PRISMIC_REPOSITORY_NAME = 'hilal-visits-cms'
 
-/** 24h – production pages & Prismic responses are refreshed (ISR) once a day. */
-export const REVALIDATE_SECONDS = 60 * 60 * 24
-
 /**
  * Route resolvers, used by Prismic to build `document.url`.
  * Required for Prismic Previews so the "Preview" button opens the correct page.
@@ -32,10 +29,7 @@ const routes: Route[] = [
 export const createClient = (config: ClientConfig = {}) => {
 	const client = baseCreateClient(PRISMIC_REPOSITORY_NAME, {
 		routes,
-		fetchOptions:
-			process.env.NODE_ENV === 'production'
-				? { next: { revalidate: REVALIDATE_SECONDS } }
-				: { cache: 'no-store' },
+		fetchOptions: { cache: 'no-store' },
 		...config
 	})
 
