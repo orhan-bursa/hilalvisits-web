@@ -12,7 +12,7 @@ type Props = {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
 	const { info_page_uid } = await params
-	const infoPage = await getInfoPageByUID(info_page_uid)
+	const infoPage = await getInfoPageByUID(info_page_uid).catch(() => null)
 
 	if (!infoPage) return {}
 
@@ -28,7 +28,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 const InfoPageDetail: NextPage<Props> = async ({ params }) => {
 	const { info_page_uid } = await params
 
-	const infoPage = await getInfoPageByUID(info_page_uid)
+	const infoPage = await getInfoPageByUID(info_page_uid).catch(() => null)
 
 	if (!infoPage) return notFound()
 

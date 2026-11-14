@@ -21,15 +21,16 @@ const routes: Route[] = [
 /**
  * Creates a Prismic client.
  *
- * - Production: responses are cached in the Next.js data cache for 24h (ISR).
- * - Development: no caching, so localhost always shows the latest content.
+ * - No `fetchOptions.cache` is set on purpose: `cache: 'no-store'` would opt every
+ *   route into dynamic rendering and disable ISR. Freshness is controlled by each
+ *   route's `export const revalidate` (and /api/revalidate for on-demand updates).
+ * - Development: `next dev` re-renders on every request, so localhost stays fresh.
  * - Draft mode (Prismic Preview): `enableAutoPreviews` makes the client query the
  *   preview ref, and Next.js bypasses the cache for that request only.
  */
 export const createClient = (config: ClientConfig = {}) => {
 	const client = baseCreateClient(PRISMIC_REPOSITORY_NAME, {
 		routes,
-		fetchOptions: { cache: 'no-store' },
 		...config
 	})
 
