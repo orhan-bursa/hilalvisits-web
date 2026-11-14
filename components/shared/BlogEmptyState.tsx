@@ -1,5 +1,4 @@
-import Link from 'next/link'
-import Button from '@mui/material/Button'
+import LinkButton from '@/components/ui/LinkButton'
 import ArticleIcon from '@mui/icons-material/Article'
 import cn from 'classnames'
 
@@ -20,9 +19,9 @@ const BlogEmptyState: React.FC = () => {
 				yazılarımıza göz atabilirsin.
 			</p>
 
-			<Button variant="outlined" color="inherit" LinkComponent={Link} href="/blog">
+			<LinkButton variant="outlined" color="inherit" href="/blog">
 				Tüm Blogları Gör
-			</Button>
+			</LinkButton>
 		</div>
 	)
 }

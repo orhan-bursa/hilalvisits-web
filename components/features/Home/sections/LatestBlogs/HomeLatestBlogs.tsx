@@ -3,7 +3,7 @@ import Link from 'next/link'
 import cn from 'classnames'
 import Alert from '@mui/material/Alert'
 import Chip from '@mui/material/Chip'
-import Button from '@mui/material/Button'
+import LinkButton from '@/components/ui/LinkButton'
 
 import { BlogPageDocument } from '@/types/prismic-types'
 import { PrismicRichText } from '@prismicio/react'
@@ -101,15 +101,14 @@ export default async function HomeLatestBlogs({ blogs }: Props) {
 				})}
 			</div>
 			<div className="mb-2 mt-4 space-y-2 text-center">
-				<Button
+				<LinkButton
 					variant="outlined"
 					color="inherit"
-					LinkComponent={Link}
 					href="/blog"
 					className="text-black hover:bg-transparent"
 				>
 					Tümünü gör
-				</Button>
+				</LinkButton>
 			</div>
 		</section>
 	)

@@ -1,4 +1,7 @@
+'use client'
+
 import Button, { ButtonProps } from '@mui/material/Button'
+import Link from 'next/link'
 import React, { HTMLAttributeAnchorTarget } from 'react'
 
 const CustomButtonHoverInvert: React.FC<ButtonProps & { target?: HTMLAttributeAnchorTarget }> = ({
@@ -8,6 +11,7 @@ const CustomButtonHoverInvert: React.FC<ButtonProps & { target?: HTMLAttributeAn
 	return (
 		<Button
 			color="inherit"
+			LinkComponent={Link}
 			{...props}
 			sx={{
 				px: 2,

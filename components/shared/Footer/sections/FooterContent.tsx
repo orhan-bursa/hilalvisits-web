@@ -2,8 +2,8 @@ import { MenuItemType } from '@/types/prismic-types'
 import { jost } from '@/utils/fonts'
 import MailOutline from '@mui/icons-material/MailOutline'
 import Button from '@mui/material/Button'
+import LinkButton from '@/components/ui/LinkButton'
 import cn from 'classnames'
-import Link from 'next/link'
 import ScrollToTopButton from './ScrollToTopButton'
 import BrandWithSocials from './BrandWithSocials'
 
@@ -29,9 +29,8 @@ export default async function FooterContent({ menuItems }: { menuItems: MenuItem
 					<div className="mx-auto my-2 flex max-w-[200px] flex-col justify-end md:mx-0 md:max-w-none md:justify-start md:space-y-1">
 						{menuItems?.map(m => {
 							return (
-								<Button
+								<LinkButton
 									key={m.title}
-									LinkComponent={Link}
 									href={m.path}
 									color="inherit"
 									sx={{
@@ -46,7 +45,7 @@ export default async function FooterContent({ menuItems }: { menuItems: MenuItem
 									)}
 								>
 									<span className="w-full">{m.title}</span>
-								</Button>
+								</LinkButton>
 							)
 						})}
 						{[
@@ -59,9 +58,8 @@ export default async function FooterContent({ menuItems }: { menuItems: MenuItem
 								href: '/about'
 							}
 						].map(item => (
-							<Button
+							<LinkButton
 								key={item.title}
-								LinkComponent={Link}
 								href={item.href}
 								color="inherit"
 								sx={{
@@ -76,7 +74,7 @@ export default async function FooterContent({ menuItems }: { menuItems: MenuItem
 								)}
 							>
 								<span className="w-full">{item.title?.toLocaleUpperCase('tr-TR')}</span>
-							</Button>
+							</LinkButton>
 						))}
 					</div>
 				</div>

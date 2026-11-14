@@ -41,11 +41,11 @@ export default CategoryPage
 export async function generateStaticParams({
 	params
 }: {
-	params: { parent_category_uid: string }
+	params: { parent_category_uid: string } | Promise<{ parent_category_uid: string }>
 }) {
-	const { parent_category_uid } = params
+	const { parent_category_uid } = await params
 	const categories = await getCategories()
-	const subCategories = categories.filter(c => c.data.parent_category.uid === parent_category_uid)
+	const subCategories = categories.filter(c => c.data.parent_category?.uid === parent_category_uid)
 
 	return subCategories.map(c => ({
 		parent_category_uid,

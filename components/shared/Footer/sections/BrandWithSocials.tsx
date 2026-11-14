@@ -6,7 +6,6 @@ import X from '@mui/icons-material/X'
 import IconButton from '@mui/material/IconButton'
 
 import cn from 'classnames'
-import Link from 'next/link'
 
 const ICON_MAP = {
 	instagram: <Instagram />,
@@ -30,7 +29,6 @@ const BrandWithSocials: React.FC = () => {
 					return (
 						<IconButton
 							key={i + item.title}
-							LinkComponent={Link}
 							href={item.href ?? '/'}
 							target="_blank"
 							color="inherit"

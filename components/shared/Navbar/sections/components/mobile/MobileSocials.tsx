@@ -1,6 +1,5 @@
 import { SOCIAL_MENU_ITEMS } from '@/constants'
 import IconButton from '@mui/material/IconButton'
-import Link from 'next/link'
 import MailOutline from '@mui/icons-material/MailOutline'
 import YouTube from '@mui/icons-material/YouTube'
 import Instagram from '@mui/icons-material/Instagram'
@@ -20,7 +19,6 @@ export default function MobileSocials() {
 					return (
 						<IconButton
 							key={i + item.title}
-							LinkComponent={Link}
 							href={item.href ?? '/'}
 							target="_blank"
 							sx={{

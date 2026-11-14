@@ -16,7 +16,7 @@
 		"@emotion/styled": "^11.11.0",
 		"@mui/icons-material": "^5.14.19",
 		"@mui/material": "^5.14.20",
-		"@opennextjs/cloudflare": "^1.16.3",
+		"@opennextjs/cloudflare": "^1.20.17",
 		"@prismicio/client": "^7.21.3",
 		"@prismicio/next": "^2.2.1",
 		"@prismicio/react": "^3.3.0",
@@ -25,7 +25,7 @@
 		"encoding": "^0.1.13",
 		"eslint": "8.48.0",
 		"eslint-config-next": "^15.2.3",
-		"next": "15.2.8",
+		"next": "16.4.6",
 		"react": "19.0.3",
 		"react-dom": "19.0.3",
 		"swiper": "^11.0.4",
@@ -39,7 +39,7 @@
 		"postcss": "^8.4.29",
 		"prettier-plugin-tailwindcss": "^0.6.11",
 		"tailwindcss": "^3.3.3",
-		"wrangler": "^4.63.0"
+		"wrangler": "^4.162.0"
 	},
 	"packageManager": "pnpm@9.15.9+sha512.68046141893c66fad01c079231128e9afb89ef87e2691d69e4d40eee228988295fd4682181bae55b58418c3a253bde65a505ec7c5f9403ece5cc3cd37dcf2531"
 }

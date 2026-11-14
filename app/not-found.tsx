@@ -1,5 +1,4 @@
 import CustomButtonHoverInvert from '@/components/ui/CustomButtonHoverInvert'
-import Link from 'next/link'
 
 export default function NotFound() {
 	return (
@@ -9,7 +8,7 @@ export default function NotFound() {
 				<h2 className="mb-2 text-4xl font-semibold">Sayfa bulunamadı</h2>
 
 				<p>Aradığınız sayfa veya blog bulunamadı.</p>
-				<CustomButtonHoverInvert LinkComponent={Link} href={'/'} sx={{ mt: 2 }}>
+				<CustomButtonHoverInvert href={'/'} sx={{ mt: 2 }}>
 					Ana sayfaya dön
 				</CustomButtonHoverInvert>
 			</div>

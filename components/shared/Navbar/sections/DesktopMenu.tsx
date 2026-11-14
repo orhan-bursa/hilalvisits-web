@@ -40,7 +40,6 @@ export default async function DesktopMenu({ menuItems }: Props) {
 					return (
 						<IconButton
 							key={i + item.title}
-							LinkComponent={Link}
 							href={item.href ?? '/'}
 							target="_blank"
 							sx={{
