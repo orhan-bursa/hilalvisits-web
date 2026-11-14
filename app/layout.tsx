@@ -2,6 +2,7 @@ import { Footer, Navbar } from '@/components'
 import Instagram from '@/components/shared/Instagram'
 import {
 	DEFAULT_OG_IMAGE,
+	RSS_FEED_PATH,
 	SITE_DESCRIPTION,
 	SITE_NAME,
 	SITE_URL
@@ -23,6 +24,9 @@ export const metadata: Metadata = {
 		template: `%s | ${SITE_NAME}`
 	},
 	description: SITE_DESCRIPTION,
+	alternates: {
+		types: { 'application/rss+xml': [{ url: RSS_FEED_PATH, title: SITE_NAME }] }
+	},
 	openGraph: {
 		type: 'website',
 		locale: 'tr_TR',

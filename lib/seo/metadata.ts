@@ -1,6 +1,7 @@
 import {
 	AUTHOR_URL,
 	DEFAULT_OG_IMAGE,
+	RSS_FEED_PATH,
 	SITE_DESCRIPTION,
 	SITE_NAME,
 	SITE_URL
@@ -50,7 +51,9 @@ export function buildPageMetadata({
 		title: titleAbsolute ? { absolute: title } : title,
 		description,
 		alternates: {
-			canonical: url
+			canonical: url,
+			// Repeated here because a page's `alternates` replaces the layout's entirely.
+			types: { 'application/rss+xml': [{ url: RSS_FEED_PATH, title: SITE_NAME }] }
 		},
 		openGraph: {
 			type: openGraphType,

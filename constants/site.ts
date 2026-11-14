@@ -6,6 +6,8 @@ export const SITE_DESCRIPTION = 'Türkiye ve dünyadan kareler paylaşan unutulm
 
 export const DEFAULT_OG_IMAGE = '/images/default_og_image.png'
 
+export const RSS_FEED_PATH = '/feed.xml'
+
 export const SITE_LOGO = '/favicon/android-chrome-512x512.png'
 
 export const AUTHOR_NAME = 'Hilal'
