@@ -11,22 +11,27 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 		getInfoPages()
 	])
 
+	// Use real content dates instead of `new Date()`: a lastmod that changes on every
+	// request is ignored by Google. Listing pages change when the newest blog changes.
+	const latestBlogDate = blogs.length
+		? new Date(Math.max(...blogs.map(b => new Date(b.last_publication_date).getTime())))
+		: undefined
+
 	const staticRoutes: MetadataRoute.Sitemap = [
 		{
 			url: SITE_URL,
-			lastModified: new Date(),
+			lastModified: latestBlogDate,
 			changeFrequency: 'weekly',
 			priority: 1
 		},
 		{
 			url: `${SITE_URL}/blog`,
-			lastModified: new Date(),
+			lastModified: latestBlogDate,
 			changeFrequency: 'daily',
 			priority: 0.9
 		},
 		{
 			url: `${SITE_URL}/about`,
-			lastModified: new Date(),
 			changeFrequency: 'monthly',
 			priority: 0.7
 		}
@@ -60,8 +65,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 		}
 	}
 
+	// Skip empty subcategories: they only render an empty state (thin content).
 	const subCategoryRoutes: MetadataRoute.Sitemap = categories
 		.filter(category => category.data.parent_category?.uid)
+		.filter(category => blogs.some(blog => blog.data.category?.uid === category.uid))
 		.map(category => ({
 			url: `${SITE_URL}/${category.data.parent_category.uid}/${category.uid}`,
 			lastModified: new Date(category.last_publication_date),

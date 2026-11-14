@@ -76,16 +76,12 @@ export default function HomeHero({ blogs }: { blogs: BlogPageDocument[] | undefi
 								<div className="relative h-[400px] w-full md:h-[500px]">
 									<Image
 										src={blog.data.cover.url}
-										alt={blog.data.cover.alt ?? blog.data.title}
+										alt={blog.data.cover.alt || blog.data.title}
 										fill
 										style={{ objectFit: 'cover' }}
-										sizes={`
-                   (max-width: 768px) 100vw,
-                   (max-width: 1024px) calc(50vw-8px),
-                   (max-width: 1200px) calc(50vw-16px),
-                   584px
-                   `}
-										priority
+										sizes="(max-width: 768px) 100vw, (max-width: 1200px) calc(50vw - 16px), 584px"
+										// Only the slides visible on load (1 on mobile, 2 on desktop) are LCP candidates.
+										preload={ind < 2}
 									/>
 								</div>
 								<div className="absolute bottom-[25%] z-50 min-h-[191px] w-full space-x-2 bg-black bg-opacity-40 text-white">

@@ -1,4 +1,5 @@
 import AboutPageContent from '@/components/features/About/AboutPageContent'
+import { breadcrumbSchema, JsonLd, personSchema } from '@/lib/seo/jsonld'
 import { buildPageMetadata } from '@/lib/seo/metadata'
 import type { Metadata } from 'next'
 
@@ -10,7 +11,20 @@ export const metadata: Metadata = buildPageMetadata({
 })
 
 const AboutPage = () => {
-	return <AboutPageContent />
+	return (
+		<>
+			<JsonLd
+				data={[
+					personSchema(),
+					breadcrumbSchema([
+						{ name: 'Ana Sayfa', path: '/' },
+						{ name: 'Hakkımda', path: '/about' }
+					])
+				]}
+			/>
+			<AboutPageContent />
+		</>
+	)
 }
 
 export default AboutPage

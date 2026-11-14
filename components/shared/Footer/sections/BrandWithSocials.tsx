@@ -15,7 +15,7 @@ const ICON_MAP = {
 const BrandWithSocials: React.FC = () => {
 	return (
 		<div>
-			<h1
+			<p
 				className={cn(
 					whisper.className,
 					'flex h-full items-center justify-center md:h-auto',
@@ -23,7 +23,7 @@ const BrandWithSocials: React.FC = () => {
 				)}
 			>
 				Hilal Visits
-			</h1>
+			</p>
 			<div className="flex justify-center">
 				{SOCIAL_MENU_ITEMS.map((item, i) => {
 					return (

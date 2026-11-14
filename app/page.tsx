@@ -1,6 +1,7 @@
 import HomePageContent from '@/components/features/Home/HomePageContent'
 import { SITE_DESCRIPTION, SITE_NAME } from '@/constants/site'
 import { getBlogs } from '@/lib/prismic/services'
+import { JsonLd, personSchema, websiteSchema } from '@/lib/seo/jsonld'
 import { buildPageMetadata } from '@/lib/seo/metadata'
 import { Metadata, NextPage } from 'next'
 
@@ -16,7 +17,12 @@ export const metadata: Metadata = buildPageMetadata({
 const HomePage: NextPage = async () => {
 	const blogs = await getBlogs()
 
-	return <HomePageContent photos={[]} blogs={blogs} />
+	return (
+		<>
+			<JsonLd data={[websiteSchema(), personSchema()]} />
+			<HomePageContent photos={[]} blogs={blogs} />
+		</>
+	)
 }
 
 export default HomePage

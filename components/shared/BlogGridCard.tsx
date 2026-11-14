@@ -18,15 +18,10 @@ const BlogGridCard: React.FC<Props> = ({ blog }) => {
 				<div className="relative mb-3 aspect-[3/2] w-full cursor-pointer">
 					<Image
 						src={blog.data.cover.url ?? ''}
-						alt={blog.data.cover.alt || ''}
+						alt={blog.data.cover.alt || blog.data.title}
 						fill
 						style={{ objectFit: 'cover' }}
-						sizes={`
-                      (max-width: 640px) 100vw,
-                      (max-width: 1024px) calc((100vw-24px)/2),
-                      (max-width: 1200px) calc((100vw-48px)/3),
-                      calc((1200px-48px)/3)
-                      `}
+						sizes="(max-width: 640px) 100vw, (max-width: 1024px) calc((100vw - 24px) / 2), (max-width: 1200px) calc((100vw - 48px) / 3), 384px"
 					/>
 				</div>
 				<h3 className="mb-3 cursor-pointer px-2 text-3xl font-bold hover:text-red-500 min-[1200px]:px-0">

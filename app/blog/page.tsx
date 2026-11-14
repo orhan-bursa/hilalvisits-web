@@ -1,6 +1,7 @@
 import BlogsPageContent from '@/components/features/Blogs/BlogsPageContent'
 import { SITE_DESCRIPTION } from '@/constants/site'
 import { getBlogs, getCategories } from '@/lib/prismic/services'
+import { breadcrumbSchema, JsonLd } from '@/lib/seo/jsonld'
 import { buildPageMetadata } from '@/lib/seo/metadata'
 import { MenuItemType } from '@/types/prismic-types'
 import { recursiveMenuItemMapper } from '@/utils/menu-item-mapper'
@@ -24,7 +25,17 @@ const BlogsPage: NextPage = async () => {
 
 	if (!blogs?.length) return notFound()
 
-	return <BlogsPageContent blogs={blogs} menuItems={menuItems} />
+	return (
+		<>
+			<JsonLd
+				data={breadcrumbSchema([
+					{ name: 'Ana Sayfa', path: '/' },
+					{ name: 'Bloglar', path: '/blog' }
+				])}
+			/>
+			<BlogsPageContent blogs={blogs} menuItems={menuItems} />
+		</>
+	)
 }
 
 export default BlogsPage

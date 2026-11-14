@@ -18,7 +18,12 @@ export default function BlogDetailPageContent({ blog }: Props) {
 		<div className="pb-8">
 			<div className="mx-auto h-max w-full space-y-3 sm:min-h-[500px] md:max-w-[1200px]">
 				<div>
-					<PrismicNextImage field={blog.data.cover} className="mx-auto" />
+					<PrismicNextImage
+						field={blog.data.cover}
+						className="mx-auto"
+						sizes="(max-width: 1200px) 100vw, 1200px"
+						preload // cover is the LCP element on blog posts
+					/>
 					{hasCoverCaption && (
 						<div className="prose max-w-none px-2 md:col-start-1 md:row-start-2 xl:px-0">
 							<PrismicRichText field={blog.data.cover_caption} />

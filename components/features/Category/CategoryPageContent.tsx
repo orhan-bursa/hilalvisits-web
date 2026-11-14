@@ -15,9 +15,9 @@ export default async function CategoryPageContent({ blogs, category, subCategori
 		<div className="my-8 space-y-6 md:space-y-12">
 			{/* HEADER */}
 			<section className="mx-auto max-w-[1200px] space-y-3">
-				<h2 className={cn('cursor-default px-4', 'text-center text-4xl font-semibold')}>
+				<h1 className={cn('cursor-default px-4', 'text-center text-4xl font-semibold')}>
 					{category.data.title} Blogları
-				</h2>
+				</h1>
 				<div className="flex justify-center uppercase">
 					<Breadcrumbs>
 						<Link color="inherit" href="/blog" className="hover:text-red-500 hover:underline">

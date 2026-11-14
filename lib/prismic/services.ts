@@ -21,7 +21,9 @@ export const getBlogs = async () => {
 export const getBlogByUID = async (uid: string) => {
 	const client = createClient()
 
-	return client.getByUID<BlogPageDocument>('blog', uid)
+	return client.getByUID<BlogPageDocument>('blog', uid, {
+		fetchLinks: ['category.parent_category', 'category.title']
+	})
 }
 
 export const getCategories = async () => {

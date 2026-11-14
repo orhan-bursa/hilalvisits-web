@@ -1,4 +1,10 @@
-import { DEFAULT_OG_IMAGE, SITE_DESCRIPTION, SITE_NAME, SITE_URL } from '@/constants/site'
+import {
+	AUTHOR_URL,
+	DEFAULT_OG_IMAGE,
+	SITE_DESCRIPTION,
+	SITE_NAME,
+	SITE_URL
+} from '@/constants/site'
 import { asImageSrc, ImageFieldImage, isFilled } from '@prismicio/client'
 import type { Metadata } from 'next'
 
@@ -13,6 +19,13 @@ type BuildPageMetadataOptions = {
 	imageAlt?: string
 	openGraphType?: 'website' | 'article'
 	titleAbsolute?: boolean
+	article?: ArticleMetadata
+}
+
+export type ArticleMetadata = {
+	publishedTime?: string
+	modifiedTime?: string
+	section?: string
 }
 
 function resolveUrl(path: string) {
@@ -27,7 +40,8 @@ export function buildPageMetadata({
 	image,
 	imageAlt,
 	openGraphType = 'website',
-	titleAbsolute = false
+	titleAbsolute = false,
+	article
 }: BuildPageMetadataOptions): Metadata {
 	const url = resolveUrl(path)
 	const ogImage = image || resolveUrl(DEFAULT_OG_IMAGE)
@@ -40,6 +54,12 @@ export function buildPageMetadata({
 		},
 		openGraph: {
 			type: openGraphType,
+			...(openGraphType === 'article' && {
+				publishedTime: article?.publishedTime,
+				modifiedTime: article?.modifiedTime,
+				section: article?.section,
+				authors: [resolveUrl(AUTHOR_URL)]
+			}),
 			locale: 'tr_TR',
 			siteName: SITE_NAME,
 			title,
@@ -72,6 +92,7 @@ type BuildPrismicPageMetadataOptions = {
 	fallbackTitle: string
 	fallbackDescription?: string
 	openGraphType?: 'website' | 'article'
+	article?: ArticleMetadata
 }
 
 export function buildPrismicPageMetadata({
@@ -82,7 +103,8 @@ export function buildPrismicPageMetadata({
 	path,
 	fallbackTitle,
 	fallbackDescription = SITE_DESCRIPTION,
-	openGraphType = 'website'
+	openGraphType = 'website',
+	article
 }: BuildPrismicPageMetadataOptions): Metadata {
 	const selectedImage = isFilled.image(metaImage)
 		? metaImage
@@ -105,6 +127,16 @@ export function buildPrismicPageMetadata({
 		path,
 		image,
 		imageAlt: selectedImage?.alt || metaTitle || fallbackTitle,
-		openGraphType
+		openGraphType,
+		article
 	})
+}
+
+/** Trims text to `max` chars without cutting a word in half (for meta descriptions). */
+export function truncateAtWord(text: string, max = 160) {
+	const clean = text.replace(/\s+/g, ' ').trim()
+	if (clean.length <= max) return clean
+	const cut = clean.slice(0, max - 1)
+	const lastSpace = cut.lastIndexOf(' ')
+	return `${(lastSpace > max * 0.6 ? cut.slice(0, lastSpace) : cut).replace(/[\s,.;:–-]+$/, '')}…`
 }

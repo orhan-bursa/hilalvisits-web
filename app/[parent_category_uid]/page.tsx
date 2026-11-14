@@ -1,8 +1,9 @@
 import CategoryPageContent from '@/components/features/Category/CategoryPageContent'
 import { getBlogs, getCategoryByUID, getSubCategoriesByParentID } from '@/lib/prismic/services'
+import { breadcrumbSchema, JsonLd } from '@/lib/seo/jsonld'
 import { buildPrismicPageMetadata } from '@/lib/seo/metadata'
 import { Metadata, NextPage } from 'next'
-import { notFound } from 'next/navigation'
+import { notFound, permanentRedirect } from 'next/navigation'
 
 export const revalidate = 86400 // 60 * 60 * 24 => 1 day
 
@@ -29,17 +30,30 @@ const ParentCategoryPage: NextPage<Props> = async ({ params }) => {
 
 	if (!parentCategory) return notFound()
 
+	// A subcategory requested at the top level: send it to its canonical /<parent>/<uid> URL.
+	const realParentUID = parentCategory.data.parent_category?.uid
+	if (realParentUID) permanentRedirect(`/${realParentUID}/${parentCategory.uid}`)
+
 	const subCategories = await getSubCategoriesByParentID(parentCategory.id)
 
 	const blogs = await getBlogs()
 	const filteredBlogs = blogs.filter(b => subCategories.some(c => c.uid === b.data.category.uid))
 
 	return (
-		<CategoryPageContent
+		<>
+			<JsonLd
+				data={breadcrumbSchema([
+					{ name: 'Ana Sayfa', path: '/' },
+					{ name: 'Bloglar', path: '/blog' },
+					{ name: parentCategory.data.title, path: `/${parentCategory.uid}` }
+				])}
+			/>
+			<CategoryPageContent
 			blogs={filteredBlogs}
 			category={parentCategory}
 			subCategories={subCategories}
-		/>
+			/>
+		</>
 	)
 }
 

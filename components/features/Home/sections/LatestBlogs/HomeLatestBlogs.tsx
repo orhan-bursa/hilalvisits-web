@@ -36,10 +36,7 @@ export default async function HomeLatestBlogs({ blogs }: Props) {
 										alt={blog.data.cover.alt || blog.data.title}
 										fill
 										style={{ objectFit: 'cover' }}
-										sizes={`
-                      (max-width: 640px) calc(100vw-32px),
-                      400px
-                      `}
+										sizes="(max-width: 640px) calc(100vw - 32px), 400px"
 									/>
 								</Link>
 							</div>

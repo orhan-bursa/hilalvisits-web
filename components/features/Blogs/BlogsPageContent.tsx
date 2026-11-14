@@ -13,9 +13,9 @@ export default async function BlogsPageContent({ blogs, menuItems }: Props) {
 	return (
 		<div className="my-8 space-y-6 md:space-y-12">
 			<section className="mx-auto max-w-[1200px] space-y-3">
-				<h2 className={cn('cursor-default px-4', 'text-center text-4xl font-semibold')}>
+				<h1 className={cn('cursor-default px-4', 'text-center text-4xl font-semibold')}>
 					Tüm Bloglar
-				</h2>
+				</h1>
 				<div className="flex justify-center">
 					<Breadcrumbs>
 						<Link color="inherit" href="/" className="uppercase hover:text-red-500 hover:underline">
