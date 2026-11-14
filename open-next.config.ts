@@ -2,6 +2,7 @@ import { defineCloudflareConfig } from '@opennextjs/cloudflare'
 import r2IncrementalCache from '@opennextjs/cloudflare/overrides/incremental-cache/r2-incremental-cache'
 import { withRegionalCache } from '@opennextjs/cloudflare/overrides/incremental-cache/regional-cache'
 import doQueue from '@opennextjs/cloudflare/overrides/queue/do-queue'
+import doShardedTagCache from '@opennextjs/cloudflare/overrides/tag-cache/do-sharded-tag-cache'
 
 /**
  * ISR setup:
@@ -9,11 +10,13 @@ import doQueue from '@opennextjs/cloudflare/overrides/queue/do-queue'
  * - Regional cache (Cache API) keeps hot entries close to the visitor to cut R2 reads / TTFB.
  * - Durable Object queue handles background revalidation once an entry is stale
  *   (binding: NEXT_CACHE_DO_QUEUE).
- *
- * No tag cache is configured because we only use time-based revalidation
- * (no revalidateTag / revalidatePath).
+ * - Durable Object tag cache records on-demand invalidations, so `revalidatePath()` in
+ *   /api/revalidate actually marks pages stale (binding: NEXT_TAG_CACHE_DO_SHARDED).
+ *   Without a tag cache OpenNext falls back to a no-op and revalidatePath does nothing.
  */
 export default defineCloudflareConfig({
 	incrementalCache: withRegionalCache(r2IncrementalCache, { mode: 'long-lived' }),
-	queue: doQueue
+	queue: doQueue,
+	// Small site, low traffic: a few shards are plenty.
+	tagCache: doShardedTagCache({ baseShardSize: 4 })
 })
