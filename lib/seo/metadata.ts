@@ -124,12 +124,17 @@ export function buildPrismicPageMetadata({
 			})
 		: null
 
+	const customTitle = metaTitle?.trim()
+	const customDescription = metaDescription?.trim()
+
 	return buildPageMetadata({
-		title: metaTitle || fallbackTitle,
-		description: metaDescription || fallbackDescription,
+		title: customTitle || fallbackTitle,
+		description: customDescription || fallbackDescription,
+		// A title written in Prismic is used verbatim; only fallback titles get the layout's " | SITE_NAME" suffix.
+		titleAbsolute: Boolean(customTitle),
 		path,
 		image,
-		imageAlt: selectedImage?.alt || metaTitle || fallbackTitle,
+		imageAlt: selectedImage?.alt || customTitle || fallbackTitle,
 		openGraphType,
 		article
 	})
